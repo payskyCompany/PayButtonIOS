@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C528E24C2166118F00CAFBC4 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2462166118F00CAFBC4 /* Extentions.swift */; };
+		C528E24D2166118F00CAFBC4 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2472166118F00CAFBC4 /* Global.swift */; };
+		C528E24F2166118F00CAFBC4 /* ApiManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2492166118F00CAFBC4 /* ApiManger.swift */; };
+		C528E2502166118F00CAFBC4 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E24A2166118F00CAFBC4 /* Networking.swift */; };
+		C528E2512166118F00CAFBC4 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E24B2166118F00CAFBC4 /* AppConstant.swift */; };
+		C528E2542166129000CAFBC4 /* AlertDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */; };
+		C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2562166130700CAFBC4 /* BaseResponse.swift */; };
+		C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */; };
+		C528E25F216621B600CAFBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C528E25C216621B600CAFBC4 /* Localizable.strings */; };
+		C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */; };
+		C5A4164721650280008A93B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4164621650280008A93B3 /* AppDelegate.swift */; };
+		C5A4164921650280008A93B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4164821650280008A93B3 /* ViewController.swift */; };
+		C5A4164C21650280008A93B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164A21650280008A93B3 /* Main.storyboard */; };
+		C5A4164E21650280008A93B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164D21650280008A93B3 /* Assets.xcassets */; };
+		C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164F21650280008A93B3 /* LaunchScreen.storyboard */; };
+		C5B900E72168E7F000301C13 /* QRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900E52168E7F000301C13 /* QRTableViewCell.swift */; };
+		C5B900E82168E7F000301C13 /* QRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B900E62168E7F000301C13 /* QRTableViewCell.xib */; };
+		C5B900EB2168F0B500301C13 /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900E92168F0B500301C13 /* CompleteTableViewCell.swift */; };
+		C5B900EC2168F0B500301C13 /* CompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B900EA2168F0B500301C13 /* CompleteTableViewCell.xib */; };
+		C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */; };
+		C5B900F0216918F500301C13 /* RequestMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */; };
+		C5B900F4216A404F00301C13 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F3216A404F00301C13 /* PaymentViewController.swift */; };
+		C5B900F6216A416F00301C13 /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F5216A416F00301C13 /* PaymentData.swift */; };
+		C5B900F8216A42F800301C13 /* PayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F7216A42F800301C13 /* PayResponse.swift */; };
+		C5B900FA216A44A200301C13 /* BasePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F9216A44A200301C13 /* BasePaymentViewController.swift */; };
+		C5F5D81C216650C70090E5FF /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D81A216650C70090E5FF /* CardTableViewCell.swift */; };
+		C5F5D81D216650C70090E5FF /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5F5D81B216650C70090E5FF /* CardTableViewCell.xib */; };
+		C5F5D81F216655D40090E5FF /* CardScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D81E216655D40090E5FF /* CardScanViewController.swift */; };
+		C5F5D821216664490090E5FF /* MainScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D820216664490090E5FF /* MainScanViewController.swift */; };
+		C5F5D823216668680090E5FF /* BaseUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D822216668680090E5FF /* BaseUITableViewCell.swift */; };
+		F4C20C485D8C709F583B58F6 /* Pods_PayButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2E035F9718A143F416A97F /* Pods_PayButton.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7B2E035F9718A143F416A97F /* Pods_PayButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C60CAADA98BBEF2BEFDBED1 /* Pods-PayButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.release.xcconfig"; path = "Pods/Target Support Files/Pods-PayButton/Pods-PayButton.release.xcconfig"; sourceTree = "<group>"; };
+		9C8C91EF7BD8E01215BC5133 /* Pods-PayButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PayButton/Pods-PayButton.debug.xcconfig"; sourceTree = "<group>"; };
+		C528E2462166118F00CAFBC4 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		C528E2472166118F00CAFBC4 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		C528E2492166118F00CAFBC4 /* ApiManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManger.swift; sourceTree = "<group>"; };
+		C528E24A2166118F00CAFBC4 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		C528E24B2166118F00CAFBC4 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertDialogViewController.xib; sourceTree = "<group>"; };
+		C528E2562166130700CAFBC4 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDialogViewController.swift; sourceTree = "<group>"; };
+		C528E25D216621B600CAFBC4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C528E25E216621B600CAFBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PayButtonBoard.storyboard; sourceTree = "<group>"; };
+		C5A4164321650280008A93B3 /* PayButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5A4164621650280008A93B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C5A4164821650280008A93B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C5A4164B21650280008A93B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C5A4164D21650280008A93B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5A4165021650280008A93B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C5A4165221650280008A93B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B900E52168E7F000301C13 /* QRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTableViewCell.swift; sourceTree = "<group>"; };
+		C5B900E62168E7F000301C13 /* QRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRTableViewCell.xib; sourceTree = "<group>"; };
+		C5B900E92168F0B500301C13 /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableViewCell.swift; sourceTree = "<group>"; };
+		C5B900EA2168F0B500301C13 /* CompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteTableViewCell.xib; sourceTree = "<group>"; };
+		C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestMoneyViewController.xib; sourceTree = "<group>"; };
+		C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMoneyViewController.swift; sourceTree = "<group>"; };
+		C5B900F3216A404F00301C13 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		C5B900F5216A416F00301C13 /* PaymentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		C5B900F7216A42F800301C13 /* PayResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayResponse.swift; sourceTree = "<group>"; };
+		C5B900F9216A44A200301C13 /* BasePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePaymentViewController.swift; sourceTree = "<group>"; };
+		C5F5D81A216650C70090E5FF /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		C5F5D81B216650C70090E5FF /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
+		C5F5D81E216655D40090E5FF /* CardScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScanViewController.swift; sourceTree = "<group>"; };
+		C5F5D820216664490090E5FF /* MainScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanViewController.swift; sourceTree = "<group>"; };
+		C5F5D822216668680090E5FF /* BaseUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C5A416402165027F008A93B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C20C485D8C709F583B58F6 /* Pods_PayButton.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ACEE1A58393684F51D11D74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B2E035F9718A143F416A97F /* Pods_PayButton.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C528E2452166118F00CAFBC4 /* utilti */ = {
+			isa = PBXGroup;
+			children = (
+				C528E2462166118F00CAFBC4 /* Extentions.swift */,
+				C528E2472166118F00CAFBC4 /* Global.swift */,
+				C528E2492166118F00CAFBC4 /* ApiManger.swift */,
+				C528E24A2166118F00CAFBC4 /* Networking.swift */,
+				C528E24B2166118F00CAFBC4 /* AppConstant.swift */,
+			);
+			path = utilti;
+			sourceTree = "<group>";
+		};
+		C528E2522166129000CAFBC4 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */,
+				C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */,
+				C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */,
+				C5F5D81B216650C70090E5FF /* CardTableViewCell.xib */,
+				C5B900E62168E7F000301C13 /* QRTableViewCell.xib */,
+				C5B900EA2168F0B500301C13 /* CompleteTableViewCell.xib */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		C528E2552166130700CAFBC4 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C5B900F7216A42F800301C13 /* PayResponse.swift */,
+				C5B900F5216A416F00301C13 /* PaymentData.swift */,
+				C528E2562166130700CAFBC4 /* BaseResponse.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C528E2582166135D00CAFBC4 /* viewCotrollers */ = {
+			isa = PBXGroup;
+			children = (
+				C5B900F9216A44A200301C13 /* BasePaymentViewController.swift */,
+				C5B900F3216A404F00301C13 /* PaymentViewController.swift */,
+				C5F5D81E216655D40090E5FF /* CardScanViewController.swift */,
+				C5F5D820216664490090E5FF /* MainScanViewController.swift */,
+			);
+			path = viewCotrollers;
+			sourceTree = "<group>";
+		};
+		C528E25B216621B600CAFBC4 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				C528E25C216621B600CAFBC4 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		C5A4163A2165027F008A93B3 = {
+			isa = PBXGroup;
+			children = (
+				C5A4164521650280008A93B3 /* PayButton */,
+				C5A4164421650280008A93B3 /* Products */,
+				D835301CA94E8EE65D846DCF /* Pods */,
+				1ACEE1A58393684F51D11D74 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C5A4164421650280008A93B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5A4164321650280008A93B3 /* PayButton.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C5A4164521650280008A93B3 /* PayButton */ = {
+			isa = PBXGroup;
+			children = (
+				C5B900FB216A478700301C13 /* TestApi */,
+				C5B900F221691CBA00301C13 /* Dialog */,
+				C5B900F121691C2B00301C13 /* Cell */,
+				C528E25B216621B600CAFBC4 /* Strings */,
+				C5A4164621650280008A93B3 /* AppDelegate.swift */,
+				C528E2582166135D00CAFBC4 /* viewCotrollers */,
+				C528E2552166130700CAFBC4 /* model */,
+				C528E2522166129000CAFBC4 /* storyboard */,
+				C528E2452166118F00CAFBC4 /* utilti */,
+				C5A4164D21650280008A93B3 /* Assets.xcassets */,
+				C5A4165221650280008A93B3 /* Info.plist */,
+			);
+			path = PayButton;
+			sourceTree = "<group>";
+		};
+		C5B900F121691C2B00301C13 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C5B900E92168F0B500301C13 /* CompleteTableViewCell.swift */,
+				C5B900E52168E7F000301C13 /* QRTableViewCell.swift */,
+				C5F5D822216668680090E5FF /* BaseUITableViewCell.swift */,
+				C5F5D81A216650C70090E5FF /* CardTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C5B900F221691CBA00301C13 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */,
+				C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		C5B900FB216A478700301C13 /* TestApi */ = {
+			isa = PBXGroup;
+			children = (
+				C5A4164A21650280008A93B3 /* Main.storyboard */,
+				C5A4164F21650280008A93B3 /* LaunchScreen.storyboard */,
+				C5A4164821650280008A93B3 /* ViewController.swift */,
+			);
+			path = TestApi;
+			sourceTree = "<group>";
+		};
+		D835301CA94E8EE65D846DCF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9C8C91EF7BD8E01215BC5133 /* Pods-PayButton.debug.xcconfig */,
+				9C60CAADA98BBEF2BEFDBED1 /* Pods-PayButton.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C5A416422165027F008A93B3 /* PayButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5A4165521650280008A93B3 /* Build configuration list for PBXNativeTarget "PayButton" */;
+			buildPhases = (
+				4548A312988E8B226529BB13 /* [CP] Check Pods Manifest.lock */,
+				C5A4163F2165027F008A93B3 /* Sources */,
+				C5A416402165027F008A93B3 /* Frameworks */,
+				C5A416412165027F008A93B3 /* Resources */,
+				A3B4ACD95249672ECC1ED2E6 /* [CP] Embed Pods Frameworks */,
+				F4C4BAAC3ABB08FC8BC33343 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayButton;
+			productName = PayButton;
+			productReference = C5A4164321650280008A93B3 /* PayButton.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C5A4163B2165027F008A93B3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = Paysky;
+				TargetAttributes = {
+					C5A416422165027F008A93B3 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = C5A4163E2165027F008A93B3 /* Build configuration list for PBXProject "PayButton" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+			);
+			mainGroup = C5A4163A2165027F008A93B3;
+			productRefGroup = C5A4164421650280008A93B3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C5A416422165027F008A93B3 /* PayButton */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5A416412165027F008A93B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B900EC2168F0B500301C13 /* CompleteTableViewCell.xib in Resources */,
+				C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */,
+				C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */,
+				C5F5D81D216650C70090E5FF /* CardTableViewCell.xib in Resources */,
+				C5B900E82168E7F000301C13 /* QRTableViewCell.xib in Resources */,
+				C528E25F216621B600CAFBC4 /* Localizable.strings in Resources */,
+				C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */,
+				C528E2542166129000CAFBC4 /* AlertDialogViewController.xib in Resources */,
+				C5A4164E21650280008A93B3 /* Assets.xcassets in Resources */,
+				C5A4164C21650280008A93B3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4548A312988E8B226529BB13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PayButton-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3B4ACD95249672ECC1ED2E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CreditCardValidator/CreditCardValidator.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
+				"${PODS_ROOT}/PayCardsRecognizer/Source/PayCardsRecognizer.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/swiftScan/swiftScan.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CreditCardValidator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayCardsRecognizer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/swiftScan.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4C4BAAC3ABB08FC8BC33343 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PayButton/Pods-PayButton-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C5A4163F2165027F008A93B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */,
+				C5F5D821216664490090E5FF /* MainScanViewController.swift in Sources */,
+				C5B900EB2168F0B500301C13 /* CompleteTableViewCell.swift in Sources */,
+				C5F5D81F216655D40090E5FF /* CardScanViewController.swift in Sources */,
+				C5B900F6216A416F00301C13 /* PaymentData.swift in Sources */,
+				C5F5D81C216650C70090E5FF /* CardTableViewCell.swift in Sources */,
+				C528E24F2166118F00CAFBC4 /* ApiManger.swift in Sources */,
+				C528E24D2166118F00CAFBC4 /* Global.swift in Sources */,
+				C5B900F4216A404F00301C13 /* PaymentViewController.swift in Sources */,
+				C5B900F8216A42F800301C13 /* PayResponse.swift in Sources */,
+				C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */,
+				C5B900FA216A44A200301C13 /* BasePaymentViewController.swift in Sources */,
+				C5A4164921650280008A93B3 /* ViewController.swift in Sources */,
+				C5A4164721650280008A93B3 /* AppDelegate.swift in Sources */,
+				C5F5D823216668680090E5FF /* BaseUITableViewCell.swift in Sources */,
+				C528E24C2166118F00CAFBC4 /* Extentions.swift in Sources */,
+				C5B900E72168E7F000301C13 /* QRTableViewCell.swift in Sources */,
+				C5B900F0216918F500301C13 /* RequestMoneyViewController.swift in Sources */,
+				C528E2502166118F00CAFBC4 /* Networking.swift in Sources */,
+				C528E2512166118F00CAFBC4 /* AppConstant.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C528E25C216621B600CAFBC4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C528E25D216621B600CAFBC4 /* ar */,
+				C528E25E216621B600CAFBC4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C5A4164A21650280008A93B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5A4164B21650280008A93B3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C5A4164F21650280008A93B3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5A4165021650280008A93B3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C5A4165321650280008A93B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C5A4165421650280008A93B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C5A4165621650280008A93B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C8C91EF7BD8E01215BC5133 /* Pods-PayButton.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F2D5764FY5;
+				INFOPLIST_FILE = PayButton/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.payskey.PayButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5A4165721650280008A93B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C60CAADA98BBEF2BEFDBED1 /* Pods-PayButton.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F2D5764FY5;
+				INFOPLIST_FILE = PayButton/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.payskey.PayButton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C5A4163E2165027F008A93B3 /* Build configuration list for PBXProject "PayButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5A4165321650280008A93B3 /* Debug */,
+				C5A4165421650280008A93B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5A4165521650280008A93B3 /* Build configuration list for PBXNativeTarget "PayButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5A4165621650280008A93B3 /* Debug */,
+				C5A4165721650280008A93B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C5A4163B2165027F008A93B3 /* Project object */;
+}

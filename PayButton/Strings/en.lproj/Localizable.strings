@@ -1,0 +1,90 @@
+/* 
+  LocalizableAR.strings
+  Mzadkm
+
+  Created by Raghda Ramadan on 3/17/17.
+  Copyright © 2017 Amr Saied. All rights reserved.
+*/
+"app_name"="PayButton";
+"pay_now"="Pay Now";
+"quick_payment_from"="Quick Payment form";
+"merchant"="MERCHANT";
+"amount"="AMOUNT";
+"arabic"="عربى";
+"terms_conditions"="Terms and conditions";
+"hello_blank_fragment"="Hello blank fragment";
+"card"="Card";
+"wallet"="Wallet";
+"enter_card_data"="Please enter card data";
+"card_number"="Card number";
+"name_on_card"="Name on card";
+"expire_date"="Expiry date";
+"cvc"="CVC";
+"proceed"="Proceed";
+"error"="Error";
+"check_internet_connection"="Check internet connection and try again.";
+"ok"="OK";
+"invalid_card_number_length"="Please re-enter 16 card number.";
+"enter_valid_owner"="Enter valid owner name.";
+"invalid_expire_date"="Expire date should be 4 digits.";
+"invalid_ccv"="CCV should be 3 digits length.";
+"please_wait"="Please wait…";
+"error_try_again"="Error in connection,try again.";
+"auth_number"="Auth Code:";
+"trx_id"="Transaction No:";
+"close"="Close";
+"send_receipt"="Send Receipt";
+"send_notification"="Send receipt";
+"email_hint"="Email";
+"send"="Send";
+"transaction_success"="Transaction Approved";
+"invalid_mail"="Invalid email address.";
+"mail_sent_to"="Email sent to ";
+"cannot_send_mail"="Cannot send email, try again.";
+"transaction_declined"="Transaction declined";
+"try_again"="Try again";
+"open_wallet_app"="Please Scan the QR code with your Wallet app. to make payment.";
+"enter_send_money"="1-Enter send money";
+"help"="Help?";
+"qr_code"="QR Code";
+"sms"="SMS";
+"quick_payment_form"="Quick Payment form";
+"select_send_money"="2-Select send money";
+"select_qr_code"="3-Select QR code";
+"scan_qr_code"="4-Scan QR code on the left";
+"enter_pin"="5-Then enter m-PIN";
+"enter_mobile_number"="Enter your wallet mobil number";
+"mobile_number"="Mobile number";
+"send_otp"="Send";
+"invalid_mobile_number"="invalid mobile number.";
+"enter_pin_code"="Enter PIN";
+"pin"="PIN";
+"sms_received_within"="Sms should be received within";
+"seconds"="Seconds";
+"terms_conditions_text"="This is terms and conditions to use pay sky payment service integeration.";
+"swipe"="Read Card";
+"send_sms_success"="Send sms success.";
+"or"="OR";
+"cant_scan_code"="Can\'t scan Qr code? \nSend payment request to the entered mobile number.";
+"request_payment"="Request Payment";
+"invalid_expire_date_date"="Invalid expire date";
+"egp"="EGP";
+"print"="Print receipt";
+"accepted_operation"="Accepted Operation";
+"confirm_receipt_info"="Confirm receipt info";
+"enter_manual"="Enter card data";
+"no_payment_selected"="No payment method selected.";
+"read_qr"="Read Qr code";
+"magnetic"="Read card";
+"device_not_support_magnetic"="Device not support magnetic card payment.";
+"merchant_copy__"="---Merchant copy---";
+"customer_copy__"="---Customer copy---";
+"merchant_copy"="Merchant copy";
+"customer_copy"="Customer copy";
+"powered_paysky"="Powered by PaySky.io";
+"qr"="Qr Scan";
+
+
+
+
+

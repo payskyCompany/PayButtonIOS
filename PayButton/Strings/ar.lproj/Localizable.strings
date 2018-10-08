@@ -1,0 +1,84 @@
+
+
+
+
+
+
+
+
+"app_name"="PayButton";
+"pay_now"="ادفع ألان";
+"quick_payment_from"="الدفع السريع";
+"merchant"="التاجر";
+"amount"="المبلغ";
+"arabic"="English";
+"terms_conditions"="الشروط والاحكام";
+"hello_blank_fragment"="Hello blank fragment";
+"card"="بطاقة";
+"wallet"="المحفظة";
+"enter_card_data"="تحقق من ادخال بيانات البطاقة";
+"card_number"="رقم البطاقة";
+"name_on_card"="اسم صاحب البطاقة";
+"expire_date"="تاريخ الانتهاء";
+"cvc"="رمز الحماية";
+"proceed"="تأكيد";
+"error"="خطأ";
+"check_internet_connection"="تحقق من الاتصال بالانترنت,وحاول مرة أخرى.";
+"ok"="موافق";
+"invalid_card_number_length"="تحقق من ادخال 16 رقم للبطاقة";
+"enter_valid_owner"="اسم صاحب البطاقة غير صحيح.";
+"invalid_expire_date"="تاريخ الانتهاء يجب الا يزيد عن اربع ارقام";
+"invalid_ccv"="رمز الحماية يجب ان يكون 3 ارقام.";
+"please_wait"="برجاء الانتظار…";
+"error_try_again"="خطأ فى الاتصال,حاول مرة أخرى.";
+"auth_number"="رقم الموافقة ";
+"trx_id"="رقم المعاملة ";
+"close"="اغلاق";
+"send_receipt"="ارسل نسخة";
+"send_notification"="ارسال إيصال";
+"email_hint"="البريد الالكترونى";
+"send"="ارسال";
+"transaction_success"="عملية مقبولة";
+"invalid_mail"="البريد الالكترونى غير صحيح.";
+"mail_sent_to"="تم إرسال بريد الكترونى الى ";
+"cannot_send_mail"="تعذر ارسال الايميل";
+"transaction_declined"="عملية مرفوضة";
+"try_again"="حاول مرة أخرى";
+"open_wallet_app"="قم بفتح تطبيق المحفظة لتتمكن من اتمام المعاملة";
+"enter_send_money"="1-اضغط ارسال اموال";
+"help"="مساعدة؟";
+"qr_code"="كود الدفع";
+"sms"="رسالة";
+"quick_payment_form"="نموذج الدفع السريع";
+"select_send_money"="2-اختر ارسال اموال";
+"select_qr_code"="3-اختر كود الدفع";
+"scan_qr_code"="4-وجة الهاتف على كود الدفع";
+"enter_pin"="5-تحقق من ادخال رمز التحقق";
+"enter_mobile_number"="ادخل رقم الهاتف للمحفظة";
+"mobile_number"="رقم الهاتف";
+"send_otp"="ارسال";
+"invalid_mobile_number"="رقم الهاتف غير صحيح.";
+"enter_pin_code"="ادخل ال PIN";
+"pin"="PIN";
+"sms_received_within"="ستصلك رسالة فى غضون ";
+"seconds"="ثانية";
+"terms_conditions_text"="شروط واحكام شركة باى سكاى لاستخدام خدماتها";
+"swipe"="اسحب البطاقة";
+"send_sms_success"="تم ارسال الرسالة.";
+"or"="أو";
+"cant_scan_code"="لا تستطيع فحص الصور؟ \n قم بارسال المعاملة عن طريق رقم التليفون.";
+"request_payment"="طلب اموال";
+"invalid_expire_date_date"="تاريخ الانتهاء غير صحيح.";
+"egp"="جنية";
+"print"="إطبع الفاتوره";
+"accepted_operation"="عمليه مقبوله";
+"confirm_receipt_info"="تأكيد بيانات الايصال";
+"enter_manual"="ادخل بيانات الكارت";
+"no_payment_selected"="لم يتم اختيار طريقه الدفع.";
+"read_qr"="إقرأ كود الدفع";
+"magnetic"="إقرأ البطاقة";
+"device_not_support_magnetic"="الجهاز لا يدعم خاصيه قرأه البطاقة";
+"powered_paysky"="Powered by PaySky.io";
+
+
+
