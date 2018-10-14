@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "payButtonIOS"
-  s.version      = "0.0.1"
+  s.name         = "PayButton"
+  s.version      = "0.0.4"
   s.summary      = "A short description of payButtonIOS."
 
   # This description is used to generate tags and improve search results.
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                    DESC
 
-  s.homepage     = "http://EXAMPLE/payButtonIOS"
+  s.homepage     = "https://github.com/payskyCompany/payButtonIOS"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 

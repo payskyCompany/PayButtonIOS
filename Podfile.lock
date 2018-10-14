@@ -28,6 +28,19 @@ DEPENDENCIES:
   - QRCode
   - Toast-Swift
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - CreditCardValidator
+    - DynamicBlurView
+    - EVReflection
+    - InputMask
+    - IQKeyboardManagerSwift
+    - PayCardsRecognizer
+    - PopupDialog
+    - QRCode
+    - Toast-Swift
+
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CreditCardValidator: 9f0814dd61682c004071a250d89327ca83514a48
@@ -40,6 +53,6 @@ SPEC CHECKSUMS:
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: e85f5167b50e879f190b64aa83bfd291cc81e99a
+PODFILE CHECKSUM: 12909fe3292cc8d5534ee3b13a0040d66e7c1d1e
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
