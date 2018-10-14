@@ -2,14 +2,21 @@
 
 
 
+"app_name"="زر الدفع";
 
+"Merchant ID" = "رقم التاجر";
+"Terminal ID" = "رقم الجهاز";
+"Amount" = "المبلغ";
+"Currency" = "العملة";
 
+"change_lang" = "تغير اللغة";
 
-
-"app_name"="PayButton";
+"Done" = "تاكيد";
+"scanCard" = "افحص بيانات الكارت";
 "pay_now"="ادفع ألان";
 "quick_payment_from"="الدفع السريع";
 "merchant"="التاجر";
+
 "amount"="المبلغ";
 "arabic"="English";
 "terms_conditions"="الشروط والاحكام";
@@ -79,6 +86,14 @@
 "magnetic"="إقرأ البطاقة";
 "device_not_support_magnetic"="الجهاز لا يدعم خاصيه قرأه البطاقة";
 "powered_paysky"="Powered by PaySky.io";
+"mobile_number_valid"="من فضلك ادخل رقم الهاتف";
 
-
-
+"DateTF_NOTVALID"="من فضلك ادخل التاريخ";
+"cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت";
+"CVCTF_NOTVALID"="من فضلك ادخل الكود السري";
+"please_entre_your_mail"="من فضلك ادخل البريد الالكتروني";
+"please_entre_valid_mail"= " من فضلك ادخل البريد الالكتروني صحيح";
+"email_send_to"= "تم ارسال رسال الي ";
+"Error" = "حدث خطأ";
+"validation_card"="التحقق من البطاقة";
+"CardHolderNameRequird" = "من فضلك ادخر اسم صاحب البطاقة";

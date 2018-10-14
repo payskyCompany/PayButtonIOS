@@ -10,8 +10,34 @@ import EVReflection
 import Foundation
 public class BaseResponse: EVObject {
     
-public    var sucssues = true;
+public    var Success = false;
  public   var Message = ""
- public   var ModelState = ""
+ public   var TerminalId = MainScanViewController.paymentData.terminalId
+    public   var MerchantId = MainScanViewController.paymentData.merchantId
+    public   var DateTimeLocalTrxn = BaseResponse.getDate()
+    public   var SecureHash = ""
+    public   var TxnId = 0
+    public   var ModelState = ""
+
+
+    
+
+
+  public static  func getDate() -> String  {
+
+        
+        let date : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHHmmssSSS"
+        let todaysDate = dateFormatter.string(from: date)
+        
+        
+        
+  return  todaysDate
+       
+        
+    }
+    
+
     
 }

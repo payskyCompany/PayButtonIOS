@@ -10,154 +10,127 @@ import Foundation
 import Alamofire
 
 public class ApiManger {
-//    public static func registerUser(merchantToken:String, completion: @escaping (RegisterResponse) -> ()){
-//
-//        
-//        executePOST(path: ApiURL.REGISTER,headerToken:merchantToken, completion: { (value) in
-//            completion(    RegisterResponse(json: value))
-//        } )
-//        
-//       
-//    }
-//    
-//    
-//    
-//    public static func loginUser( userId:String,validationCode :String, completion: @escaping (LoginResponse) -> ()){
-//
-//        let loginUser =  loginUserRequest()
-//        loginUser.UserName = userId
-//        loginUser.Password = validationCode
-//
-//        
-//        executePOST(path: ApiURL.LOGIN,parameters: loginUser , completion: { (value) in
-//            completion(    LoginResponse(json: value))
-//        } )
-//        
-//        
-//        
-//    }
-//    
-//    
-//    
-//    static func getCardList(token:String, completion: @escaping ([CardListResponse]) -> ()){
-//
-//        executePOST(path: ApiURL.CARD_LIST,method: .get ,  headerToken:"Bearer " + token , headerName : "Authorization", completion: { (value) in
-//            completion(    [CardListResponse](json: value))
-//        } )
-//        
-//
-//        
-//    }
-//    
-//    
-//    
-//     static func  addCard( userToken:String,  tokenName:String,  isDefault:Bool,  cardNumber:String,
-//     cardHolderName:String,  ccv:String,  expireDate:String , completion: @escaping (BaseResponse) -> ()){
-//        UIApplication.topViewController()?.view.showLoadingIndicator()
-//
-//        let addcardRequest = addCardRequest()
-//        addcardRequest.TokenName = tokenName
-//        addcardRequest.IsDefault = isDefault
-//        addcardRequest.CardNumber = cardNumber
-//        addcardRequest.CardHolderName = cardHolderName
-//        addcardRequest.CVV = ccv
-//        addcardRequest.ExpDate = expireDate
-//        
-//        
-//        executePOST(path: ApiURL.ADD_CARD,parameters: addcardRequest,  headerToken:"Bearer " + userToken , headerName : "Authorization", completion: { (value) in
-//            completion(   BaseResponse(json: value))
-//        } )
-//        
-//        
-//        
-//
-//    
-//    }
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    static func  deleteCard( userToken:String,  cardtoken:String, completion: @escaping (BaseResponse) -> ()){
-//
-//        
-//
-//        
-//        executePOST(path: ApiURL.DELETE_CARD + cardtoken,method: .delete, headerToken:"Bearer " + userToken , headerName : "Authorization", completion: { (value) in
-//            completion(   BaseResponse(json: value))
-//        } )
-//        
-//        
-//        
-//  
-//        
-//    }
-//    
-//    
-//    static func  setCardAsDefault( userToken:String,  cardtoken:String, completion: @escaping (BaseResponse) -> ()){
-//        
-//        
-//        
-//        
-//        executePOST(path: ApiURL.SET_AS_DEFAULT+cardtoken ,method: .put, headerToken:"Bearer " + userToken , headerName : "Authorization", completion: { (value) in
-//            completion(   BaseResponse(json: value))
-//        } )
-//        
-//        
-//        
-//        
-//        
-//    }
-//    
-//    
-//    
-//    
-//    
-//    
-//    static func  parseQR( userToken:String,  qrString:String, completion: @escaping (QrResponse) -> ()){
-//        let addcardRequest = parseQrRequest()
-//        addcardRequest.IsoQR = qrString
-//
-//        
-//        executePOST(path: ApiURL.PARSQR,parameters: addcardRequest, headerToken:"Bearer " + userToken , headerName : "Authorization", completion: { (value) in
-//            completion(   QrResponse(json: value))
-//        } )
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//    }
-//    
-// 
-//    static func  payNow( userToken:String,  token:String,    merchentId:String,
-//                          TerminalId:String,  amount:Int,  orderId:String , completion: @escaping (PayResponse) -> ()){
-//
-//        
-//        let addcardRequest = PayRequest()
-//        addcardRequest.Token = token
-//        addcardRequest.MerchantId = merchentId
-//        addcardRequest.Amount = amount
-//        addcardRequest.OrderId = orderId
-//        addcardRequest.TerminalId = TerminalId
-//        
-//        
-//        
-//        executePOST(path: ApiURL.PAY,parameters: addcardRequest, headerToken:"Bearer " + userToken , headerName : "Authorization", completion: { (value) in
-//            completion(   PayResponse(json: value))
-//        } )
-//        
-//        
-//        
-//       
-//        
-//        
-//        
-//    }
+
+    
+    
+     static func  PayByCard( PAN:String,  cvv2:String,
+                             DateExpiration:String,
+                             completion: @escaping (TransactionStatusResponse) -> ()){
+        let addcardRequest = ManualPaymentRequest()
+        addcardRequest.PAN = PAN
+        addcardRequest.cvv2 = cvv2
+        addcardRequest.DateExpiration = DateExpiration
+        addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
+        executePOST(path: ApiURL.PayByCard,parameters: addcardRequest, completion: { (value) in
+            completion(   TransactionStatusResponse(json: value))
+        } )
+    }
+    
+    static func  PayByCard( addcardRequest:ManualPaymentRequest,
+                            completion: @escaping (TransactionStatusResponse) -> ()){
+     
+        executePOST(path: ApiURL.PayByCard,parameters: addcardRequest, completion: { (value) in
+            completion(   TransactionStatusResponse(json: value))
+        } )
+    }
+    
+    static func  Compose3DSTransaction( addcardRequest:ManualPaymentRequest,
+                            completion: @escaping (Compose3DSTransactionResponse) -> ()){
+        
+        
+        executePOST(path: ApiURL.Compose3DSTransaction,parameters: addcardRequest, completion: { (value) in
+            completion(   Compose3DSTransactionResponse(json: value))
+        } )
+    }
+    
+    
+    
+
+    
+
+    
+    
+    static func  Process3DSTransaction( ThreeDSResponseData : String , GatewayType : Int,
+                                        completion: @escaping (Process3DSTransactionResonse) -> ()){
+        let addcardRequest = Process3DSTransactionRequest()
+    addcardRequest.GatewayType = GatewayType
+        addcardRequest.ThreeDSResponseData = ThreeDSResponseData
+        executePOST(path: ApiURL.Process3DSTransaction,parameters: addcardRequest, completion: { (value) in
+            completion(   Process3DSTransactionResonse(json: value))
+        } )
+    }
+    
+    
+    
+    
+    
+    static func  sendEmail(EmailTo:String,  externalReceiptNo:String,  transactionChannel:String,
+                            completion: @escaping (BaseResponse) -> ()){
+        
+        let addcardRequest = SendReceiptByMailRequest()
+        addcardRequest.EmailTo = EmailTo
+        addcardRequest.TransactionChannel = transactionChannel
+        addcardRequest.ExternalReceiptNo = externalReceiptNo
+        addcardRequest.TxnId = Int ( externalReceiptNo )!
+
+        executePOST(path: ApiURL.SendReceiptToEmail,parameters: addcardRequest, completion: { (value) in
+            completion(   BaseResponse(json: value))
+        } )
+    }
+    
+    
+    static func  generateQrCode(
+                           completion: @escaping (QrGenratorResponse) -> ()){
+        let addcardRequest = QrGenratorRequest()
+        addcardRequest.AmountTrxn = MainScanViewController.paymentData.amount
+        executePOST(path: ApiURL.GenerateQR,parameters: addcardRequest, completion: { (value) in
+            completion(   QrGenratorResponse(json: value))
+        } )
+    }
+    
+    
+    static func  checkTransactionPaymentStatus(transactionId:Int,
+        completion: @escaping (TransactionStatusResponse) -> ()){
+        let addcardRequest = BaseResponse()
+        addcardRequest.TxnId =   transactionId 
+        executePOST(path: ApiURL.CheckTxnStatus,parameters: addcardRequest, completion: { (value) in
+            completion(   TransactionStatusResponse(json: value))
+        } )
+    }
+    
+    
+    
+    static func  requestToPay(MobileNumber:String,
+                                               completion: @escaping (BaseResponse) -> ()){
+        let addcardRequest = SmsPaymentRequest()
+        addcardRequest.TxnId = MainScanViewController.paymentData.orderId
+        addcardRequest.MobileNumber = MobileNumber
+        addcardRequest.ISOQR = MainScanViewController.paymentData.staticQR
+        executePOST(path: ApiURL.RequestToPay,parameters: addcardRequest, completion: { (value) in
+            completion(   BaseResponse(json: value))
+        } )
+    }
+    
+    
+    
+    
+    
+    
+    
+    static func  CheckPaymentMethod(
+                              completion: @escaping (PaymentMethodResponse) -> ()){
+        let addcardRequest = PaymentMethodRequest()
+        executePOST(path: ApiURL.CheckPaymentMethod,parameters: addcardRequest, completion: { (value) in
+            completion(   PaymentMethodResponse(json: value))
+        } )
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
 }

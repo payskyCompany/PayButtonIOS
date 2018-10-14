@@ -46,11 +46,21 @@ class QRTableViewCell: BaseUITableViewCell {
         CantScanLabel.text =  NSLocalizedString("cant_scan_code",bundle :  self.bandle,comment: "")
         requestBtn.setTitle(NSLocalizedString("request_payment",bundle :  self.bandle,comment: ""), for: .normal)
         
-        let qrCode = QRCode( "fghgfhgfhfghfghgfhfghfghfghgh")
+        let qrCode = QRCode( MainScanViewController.paymentData.staticQR )
         self.QrImage.image =  qrCode?.image
         requestBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        
+        
+        
+        
+
 
     }
+    
+    
+    
+  
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -64,8 +74,6 @@ class QRTableViewCell: BaseUITableViewCell {
  
         
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, preferredWidth: 600, gestureDismissal: true)
-        // Present dialog
-//        popup.preferredWidth = 600
         
         self.viewContainingController()?.present(popup, animated: true, completion: nil)
      

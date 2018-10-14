@@ -224,7 +224,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="AccountName" destination="962-aI-UUL" id="1sL-XA-pf7"/>
                 <outlet property="BackgroundImage" destination="Ze3-9h-NYR" id="fut-sw-3Cu"/>
                 <outlet property="CVCTF" destination="uoG-EH-gG8" id="jVh-VM-NQG"/>
                 <outlet property="CardHolderName" destination="962-aI-UUL" id="JjO-uB-jir"/>

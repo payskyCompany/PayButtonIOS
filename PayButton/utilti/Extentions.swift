@@ -114,7 +114,7 @@ extension UIViewController: UIAlertViewDelegate {
      }*/
     
     func showAlert(_ title: String, message: String, okTitle: String = "OK",
-                   okHandler: (()->Void)? = nil, cancelTitle: String = "", cancelHandler: (()->Void)? = nil ,showimage : Bool = true ,  image: UIImage = #imageLiteral(resourceName: "correct_transaction") ) {
+                   okHandler: (()->Void)? = nil, cancelTitle: String = "", cancelHandler: (()->Void)? = nil ,showimage : Bool = true ,  image: UIImage = #imageLiteral(resourceName: "TransactionDeclined")) {
         //        let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: cancelTitle)
         //        alert.show()
         
@@ -320,6 +320,21 @@ extension UIFont {
     } // with(traits:)
 } // extension
 
+extension URL {
+    
+    public var queryParameters: [String: String]? {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: true), let queryItems = components.queryItems else {
+            return nil
+        }
+        
+        var parameters = [String: String]()
+        for item in queryItems {
+            parameters[item.name] = item.value
+        }
+        
+        return parameters
+    }
+}
 
 extension UIView {
     
@@ -327,12 +342,12 @@ extension UIView {
     
     func showLoadingIndicator() {
         self.makeToastActivity(ToastPosition.center)
-        self.isUserInteractionEnabled = false
+    //    self.isUserInteractionEnabled = false
     }
     
     func hideLoadingIndicator() {
          self.hideToastActivity()
-        self.isUserInteractionEnabled = true
+      //  self.isUserInteractionEnabled = true
     }
  
    
@@ -377,6 +392,17 @@ extension UIApplication {
         
         return viewController
     }
+}
+
+extension String {
+    func isValidEmail() -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+    
 }
 
 

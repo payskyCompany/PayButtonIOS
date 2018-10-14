@@ -9,20 +9,38 @@
 import UIKit
 import PayCardsRecognizer
 
-class CardScanViewController: UIViewController ,PayCardsRecognizerPlatformDelegate{
+class CardScanViewController: BasePaymentViewController ,PayCardsRecognizerPlatformDelegate{
     var recognizer: PayCardsRecognizer!
 
     var delegate : ScanCardtDelegate!
 
+    @IBOutlet weak var HeaderView: UIView!
+    @IBOutlet weak var CloseImage: UIImageView!
+    @IBOutlet weak var HeaderLabel: UILabel!
+    @IBOutlet weak var CameraView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-       recognizer = PayCardsRecognizer(delegate: self, resultMode: .sync, container: self.view, frameColor: .green)
+       recognizer = PayCardsRecognizer(delegate: self, resultMode: .sync, container: self.CameraView, frameColor: .green)
         // Do any additional setup after loading the view.
+        
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(close(sender:)))
+        
+        HeaderView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
+        HeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        self.CloseImage.isUserInteractionEnabled = true
+        self.CloseImage.addGestureRecognizer(tap3)
+        HeaderLabel.text = NSLocalizedString("scanCard",bundle :  self.bandle,comment: "")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func close(sender: UITapGestureRecognizer? = nil) {
+        
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 
@@ -40,7 +58,7 @@ class CardScanViewController: UIViewController ,PayCardsRecognizerPlatformDelega
     func payCardsRecognizer(_ payCardsRecognizer: PayCardsRecognizer, didRecognize result: PayCardsRecognizerResult) {
         delegate.cardResult(result)
         recognizer.stopCamera()
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
 
 
     }

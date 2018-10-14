@@ -22,16 +22,30 @@ class BaseUITableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(_ selected: Bool) {
 
+    func setData(transactionStatusResponse: TransactionStatusResponse) {
+        
         
     }
-    
-    
 
+    func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+                     manualPaymentRequest : ManualPaymentRequest
+        ){
+        
+    }
 }
 protocol ActionCellActionDelegate: class {
-    func ComfirmBtnClick()
-    func RequestMoney()
+    func SaveCard(transactionStatusResponse:TransactionStatusResponse)
+    func completeRequest(transactionStatusResponse:TransactionStatusResponse)
+    
+    
+    func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+                         manualPaymentRequest : ManualPaymentRequest
+                         )
+   
+    func closeWebView(encodeData:String ,compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+                      manualPaymentRequest : ManualPaymentRequest
+    )
+     func tryAgin()
 
 }

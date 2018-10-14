@@ -11,14 +11,19 @@ import EVReflection
 import Foundation
 class PaymentData: EVObject {
     
-    var orderId = ""
+    var orderId = 0
     var merchantId = ""
-    var amount = -1
+    var staticQR = ""
+
+    var Is3DS = true
+    
+    var amount = 0 
     var terminalId = ""
-    var merchant_token = ""
+    var KEY = ""
     var currencyCode = 818
     var merchant_name = ""
 
+    var PaymentMethod = 0
 
     
 }

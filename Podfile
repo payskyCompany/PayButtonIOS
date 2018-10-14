@@ -16,4 +16,5 @@ target 'PayButton' do
     pod "CreditCardValidator"
     pod 'PayCardsRecognizer'
     pod 'QRCode'
+
 end

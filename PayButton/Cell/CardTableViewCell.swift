@@ -13,7 +13,7 @@ import CreditCardValidator
 import PayCardsRecognizer
 //CardIOPaymentViewControllerDelegate
 import IQKeyboardManagerSwift
-
+import PopupDialog
 class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
 ScanCardtDelegate {
     
@@ -67,14 +67,14 @@ ScanCardtDelegate {
         let vc :CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
         vc.delegate = self.delegate
         
-        UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
     }
     
     @IBOutlet weak var CVCTF: UITextField!
     @IBOutlet weak var CardNumbeTV: UITextField!
     
 
-    @IBOutlet weak var AccountName: UITextField!
+
     @IBOutlet weak var DateTF: UITextField!
     @IBOutlet weak var CardHolderName: UITextField!
     
@@ -126,8 +126,8 @@ ScanCardtDelegate {
             
         }
         
-        SaveCardBtn.setTitle(NSLocalizedString("Save",bundle :  self.bandle,comment: ""), for: .normal)
-        EnterCardData.text = NSLocalizedString("Please enter card data",bundle :  self.bandle,comment: "")
+        SaveCardBtn.setTitle(NSLocalizedString("proceed",bundle :  self.bandle,comment: ""), for: .normal)
+        EnterCardData.text = NSLocalizedString("enter_card_data",bundle :  self.bandle,comment: "")
 
         
         
@@ -155,17 +155,17 @@ ScanCardtDelegate {
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( NSLocalizedString("Card Number",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( NSLocalizedString("card_number",bundle :  self.bandle,comment: "") , title: "4987654321098769", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
-        CVCTF.setTextFieldStyle( NSLocalizedString("CVC",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
-        
-        
-        AccountName.setTextFieldStyle( NSLocalizedString("Account Name",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 20,padding: 10,keyboardType: UIKeyboardType.default)
-        
-        DateTF.setTextFieldStyle(NSLocalizedString("Expiry date",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
+        CVCTF.setTextFieldStyle( NSLocalizedString("cvc",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
         
-        CardHolderName.setTextFieldStyle(NSLocalizedString("Name on card",bundle :  self.bandle,comment: "")  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
+
+        
+        DateTF.setTextFieldStyle(NSLocalizedString("expire_date",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
+        
+        
+        CardHolderName.setTextFieldStyle(NSLocalizedString("name_on_card",bundle :  self.bandle,comment: "")  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
         MaskedCreditCard = MaskedTextFieldDelegate(format: "[0000] [0000] [0000] [0000]")
         MaskedDateExpired = MaskedTextFieldDelegate(format: "[00]/[00]")
@@ -259,10 +259,10 @@ ScanCardtDelegate {
         }else if  textField.tag  == 2 {
             
             if value.count == 4 {
-                let last2 = value.suffix(2)
-                let frist2 = value.prefix(2)
+                self.year  = String(value.suffix(2))
+                self.month  = String(value.prefix(2))
                 
-                if Int (last2)! > 18 && Int (frist2)! < 13  {
+                if Int ( self.year)! > 18 && Int ( self.month)! < 13  {
                     validDate = true;
                     
                 }else{
@@ -286,11 +286,94 @@ ScanCardtDelegate {
 
         // Configure the view for the selected state
     }
-    
+    var year = ""
+    var month = ""
+
     
     @IBAction func SendMoneyByCard(_ sender: Any) {
+
         
-        delegateActions?.ComfirmBtnClick()
+        if (self.CVCTF.text?.isEmpty)! {
+            
+             UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CVCTF_NOTVALID",bundle :  self.bandle,comment: "") )
+
+            return;
+        }
+        
+        
+        
+        if (self.CardHolderName.text?.isEmpty)! {
+            
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CardHolderNameRequird",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+        
+        if self.cardNumber.isEmpty {
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_NOTVALID",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+        
+        if (self.DateTF.text?.isEmpty)! || !validDate {
+            UIApplication.topViewController()?.view.makeToast(
+                NSLocalizedString("DateTF_NOTVALID",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+        
+        var YearMonth = self.year + self.month
+
+        let addcardRequest = ManualPaymentRequest()
+        addcardRequest.PAN = self.cardNumber
+        addcardRequest.CVV2 =  self.CVCTF.text!
+        addcardRequest.DateExpiration = YearMonth
+        addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
+        
+        
+        if MainScanViewController.paymentData.Is3DS {
+            ApiManger.Compose3DSTransaction(addcardRequest: addcardRequest) { (transactionStatusResponse) in
+                
+    
+                
+                
+                if transactionStatusResponse.Success {
+                    
+                    
+                    self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse, manualPaymentRequest: addcardRequest)
+               
+//                let popupVC = DsWebViewViewController(nibName: "DsWebViewViewController", bundle: nil)
+                
+//                    popupVC.manualPaymentRequest = addcardRequest
+//                    popupVC.compose3DSTransactionResponse = transactionStatusResponse
+//                    popupVC.SendHandler = {(value) in
+//
+
+//
+        
+                    
+                
+                }else {
+                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
+                }
+                
+                
+                
+            }
+            
+        }else {
+            ApiManger.PayByCard(PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
+                
+                
+                transactionStatusResponse.FROMWHERE = "Card"
+                self.delegateActions?.SaveCard(transactionStatusResponse: transactionStatusResponse)
+                
+                
+            }
+            
+            
+        }
+        
 
         
     }

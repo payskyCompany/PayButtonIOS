@@ -67,6 +67,8 @@ class AlertDialogViewController: UIViewController {
             MainImage.isHidden = true
 
         }
+        
+        self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         // Do any additional setup after loading the view.
     }
     

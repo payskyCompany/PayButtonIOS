@@ -5,6 +5,22 @@
   Created by Raghda Ramadan on 3/17/17.
   Copyright © 2017 Amr Saied. All rights reserved.
 */
+
+
+"Merchant ID" = "Merchant ID";
+"Terminal ID" = "Terminal ID";
+"Amount" = "Amount";
+"Currency" = "Currency";
+
+"Done" = "Done";
+
+"scanCard" = "Scan card date ";
+
+"change_lang" = "Change langauage";
+
+
+
+
 "app_name"="PayButton";
 "pay_now"="Pay Now";
 "quick_payment_from"="Quick Payment form";
@@ -84,7 +100,17 @@
 "powered_paysky"="Powered by PaySky.io";
 "qr"="Qr Scan";
 
+"mobile_number_valid"="please enter mobile number ";
 
 
+"DateTF_NOTVALID"="Please enter your date";
+"cardNumber_NOTVALID"="Please enter card number";
+"CVCTF_NOTVALID"="please enter CVC";
+"Error" = "Error";
+"validation_card"="Card validation";
 
+"please_entre_your_mail"= "please entre your mail";
+"please_entre_valid_mail"= "please entre valid mail";
+"email_send_to"=  "Email sent to";
 
+"CardHolderNameRequird" = "Card Holder Name Requird";

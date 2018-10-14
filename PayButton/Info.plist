@@ -41,5 +41,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>${PRODUCT_NAME} We need to access your camera to scan QR</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+        
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription - 2</key>
+	<string>Allow to cupture ad photo</string>
 </dict>
 </plist>

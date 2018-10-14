@@ -21,6 +21,10 @@ class CompleteTableViewCell: BaseUITableViewCell {
     
     @IBOutlet weak var TextStatus: UILabel!
     
+    @IBOutlet weak var ErrorMessage: UILabel!
+
+    
+    
     @IBOutlet weak var SendMail: UIButton!
     
     
@@ -31,6 +35,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
     
     @IBOutlet weak var TryBtn: UIButton!
     
+    @IBOutlet weak var EmailLabel: UILabel!
     var bandle :Bundle!
     
     override func awakeFromNib() {
@@ -77,24 +82,65 @@ class CompleteTableViewCell: BaseUITableViewCell {
     
     
     @IBAction func SendEmailAction(_ sender: Any) {
+        
+        
+        if (EmailED.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please entre your mail")
+            return
+        }
+        
+        if !(EmailED.text?.isValidEmail())! {
+            UIApplication.topViewController()?.view.makeToast("please entre valid mail")
+            return
+        }
+        
+        ApiManger.sendEmail(EmailTo: EmailED.text!, externalReceiptNo: self.transactionStatusResponse.ReceiptNumber, transactionChannel:  self.transactionStatusResponse.FROMWHERE) { (baseresponse) in
+            if baseresponse.Success {
+                  self.EmailLabel.isHidden = false
+                self.EmailLabel.text = NSLocalizedString("email_send_to",bundle :  self.bandle,comment: "") + self.EmailED.text!
+            }else{
+                
+                       UIApplication.topViewController()?.view.makeToast(baseresponse.Message)
+            }
+        }
     }
     
-    
-  override  func setData(_ selected: Bool) {
-    if selected {
+    var transactionStatusResponse: TransactionStatusResponse =  TransactionStatusResponse()
+  override  func setData(transactionStatusResponse: TransactionStatusResponse) {
+    self.transactionStatusResponse = transactionStatusResponse
+    if transactionStatusResponse.Success {
         self.StackComplete.isHidden = false
         self.TryBtn.isHidden = true
   
         var string = NSLocalizedString("transaction_success",bundle :  self.bandle,comment: "")
         var stringArr = string.components(separatedBy: " ")
         let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value: UIColor.green,
+        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value:  Global.hexStringToUIColor("#00BFA5"),
                                      range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
         TextStatus.attributedText = myMutableString
         
-        TransNumber.text =  NSLocalizedString("trx_id",bundle :  self.bandle,comment: "")  + " #5121321"
-        AuthCode.text =  NSLocalizedString("auth_number",bundle :  self.bandle,comment: "") + " #257"
+        var TranNumber = ""
+        var Auth = ""
+        if !transactionStatusResponse.TransactionNo.isEmpty {
+            TranNumber = transactionStatusResponse.TransactionNo
+        }else{
+            TranNumber = transactionStatusResponse.SystemReference
+        }
+        
+        if !transactionStatusResponse.TransactionNo.isEmpty {
+            Auth = transactionStatusResponse.AuthCode
+        }else{
+            Auth = transactionStatusResponse.NetworkReference
+        }
+        
+        
+        
+        
+        
+        TransNumber.text =  NSLocalizedString("trx_id",bundle :  self.bandle,comment: "")  + " #" + TranNumber
+        AuthCode.text =  NSLocalizedString("auth_number",bundle :  self.bandle,comment: "") + " #"  + Auth
         self.ImageSucces.image = #imageLiteral(resourceName: "TransactionApproved")
+        ErrorMessage.isHidden = true
 
     }else {
         self.StackComplete.isHidden = true
@@ -102,14 +148,14 @@ class CompleteTableViewCell: BaseUITableViewCell {
         self.ImageSucces.image = #imageLiteral(resourceName: "TransactionDeclined")
     
         
-        var string = NSLocalizedString("transaction_declined",bundle :  self.bandle,comment: "")
+        let string = NSLocalizedString("transaction_declined",bundle :  self.bandle,comment: "")
         var stringArr = string.components(separatedBy: " ")
         let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value: UIColor.red,
+        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value:  Global.hexStringToUIColor("#C23A2C"),
                                      range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
         TextStatus.attributedText = myMutableString
-
-        TransNumber.text =  NSLocalizedString("trx_id",bundle :  self.bandle,comment: "")  + " #5121321"
+ErrorMessage.isHidden = false
+    ErrorMessage.text =  transactionStatusResponse.Message
 
         
     }
@@ -117,12 +163,14 @@ class CompleteTableViewCell: BaseUITableViewCell {
     }
     
     @IBAction func Close(_ sender: Any) {
-        delegateActions?.RequestMoney()
+        
+        
+        delegateActions?.completeRequest(transactionStatusResponse: self.transactionStatusResponse)
     }
     
     
     @IBAction func TryAction(_ sender: Any) {
-        delegateActions?.ComfirmBtnClick()
+    delegateActions?.tryAgin()
 
     }
     

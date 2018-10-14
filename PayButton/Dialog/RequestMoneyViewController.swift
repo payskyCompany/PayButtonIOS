@@ -35,18 +35,37 @@ class RequestMoneyViewController: BasePaymentViewController {
         
         MobileNumber.setTextFieldStyle( NSLocalizedString("mobile_number",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
 
-        
+        self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
+
         // Do any additional setup after loading the view.
     }
     
 
     
     @IBAction func okAction(_ sender: Any) {
-        if SendHandler == nil {
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            SendHandler!()
+        
+        if (self.MobileNumber.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast(
+                NSLocalizedString("mobile_number_valid",bundle :  self.bandle,comment: "") )
+            
+            return
         }
+        
+        
+        
+        ApiManger.requestToPay( MobileNumber: (self.MobileNumber.text)!) { (base) in
+            if base.Success {
+                if self.SendHandler == nil {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.SendHandler!()
+                }
+                
+            }else{
+                UIApplication.topViewController()?.showAlert( NSLocalizedString("Error",bundle :  self.bandle,comment: ""), message:  base.Message)
+            }
+        }
+        
     }
 
     

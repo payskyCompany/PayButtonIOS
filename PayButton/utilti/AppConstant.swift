@@ -23,15 +23,21 @@ public class PaymentParams {
 
 
 public class ApiURL {
-    static var MAIN_API_LINK = "http://197.50.37.116:5050/api/";
-    static var REGISTER = MAIN_API_LINK + "Account/Register";
-    static var LOGIN = MAIN_API_LINK + "Account/Login";
-    static var CARD_LIST = MAIN_API_LINK + "tokenization/GetPaymentToken";
-    static var ADD_CARD = MAIN_API_LINK + "tokenization/CreatePaymentToken";
-    static var DELETE_CARD = MAIN_API_LINK + "tokenization/RemovePaymentToken/";
-    static var PARSQR = MAIN_API_LINK + "tokenization/ParseISOQR";
-    static var PAY = MAIN_API_LINK + "tokenization/PayByToken";
-      static var SET_AS_DEFAULT = MAIN_API_LINK + "tokenization/ChangePaymentTokenDefault/";
+    //    static var MAIN_API_LINK = "https://197.50.37.116/Cube/PayLink.svc/api/";
+
+    static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
+    static var GenerateQR = MAIN_API_LINK + "GenerateQR";
+    static var CheckTxnStatus = MAIN_API_LINK + "CheckTxnStatus";
+    static var SendReceiptToEmail = MAIN_API_LINK + "SendReceiptToEmail";
+    static var RequestToPay = MAIN_API_LINK + "RequestToPay";
+    static var PayByCard = MAIN_API_LINK + "PayByCard";
+    static var CheckPaymentMethod = MAIN_API_LINK + "CheckPaymentMethod";
+    static var Compose3DSTransaction = MAIN_API_LINK + "Compose3DSTransaction";
+    static var Process3DSTransaction = MAIN_API_LINK + "Process3DSTransaction";
+
+    
+
+    
 
 }
 
