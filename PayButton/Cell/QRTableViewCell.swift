@@ -22,23 +22,16 @@ class QRTableViewCell: BaseUITableViewCell {
     
     @IBOutlet weak var requestBtn: UIButton!
     
-    var bandle :Bundle!
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
        
         self.backgroundColor = UIColor.clear
             
-        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
         
         
-        if path != nil {
-            bandle = Bundle(path: path!) ?? Bundle.main
-        }else {
-            bandle = Bundle.main
-            
-        }
         requestBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         QrLabelCenter.text =  NSLocalizedString("or",bundle :  self.bandle,comment: "")
 
@@ -72,6 +65,24 @@ class QRTableViewCell: BaseUITableViewCell {
         
         let popupVC = RequestMoneyViewController(nibName: "RequestMoneyViewController", bundle: nil)
  
+        
+        popupVC.SendHandler = { (base) in
+            
+            if base.Success {
+                popupVC.dismiss(animated: true, completion: {
+                    UIApplication.topViewController()?.view.makeToast(
+                        NSLocalizedString("request_send_to_mobile",bundle :  self.bandle,comment: "")
+                    )
+                })
+                
+  
+
+            }
+
+            
+        }
+        
+
         
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, preferredWidth: 600, gestureDismissal: true)
         

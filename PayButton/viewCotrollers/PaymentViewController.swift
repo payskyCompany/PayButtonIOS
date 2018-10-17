@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 public class PaymentViewController  {
-    public  var amount = 0
+    public  var amount = ""
     public  var tId = ""
     public   var mId = ""
     public   var Key = ""
@@ -29,8 +29,19 @@ public class PaymentViewController  {
     public func pushViewController()  {
         
         
+        if  ( self.amount.isEmpty ){
+            print("Please enter all  data ");
+            return
+        }
+        
+        
+        
+        var DoubleAmount = Double(""+self.amount) ??  0
+        DoubleAmount = DoubleAmount * 100.00
+        
         let paymentData = PaymentData()
-        paymentData.amount = amount
+        paymentData.amount = Int(DoubleAmount)
+
         paymentData.merchantId = mId
         paymentData.terminalId = tId
         paymentData.KEY = Key
@@ -71,7 +82,7 @@ public class PaymentViewController  {
     
     private func RegiserOrGetOldToken(paymentData : PaymentData)  {
         MainScanViewController.paymentData = paymentData
-        MainScanViewController.paymentData.amount = ( MainScanViewController.paymentData.amount  * 100)
+        MainScanViewController.paymentData.amount = ( MainScanViewController.paymentData.amount )
         
         ApiManger.CheckPaymentMethod { (paymentresponse) in
             

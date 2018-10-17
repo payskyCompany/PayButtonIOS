@@ -36,7 +36,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
     @IBOutlet weak var TryBtn: UIButton!
     
     @IBOutlet weak var EmailLabel: UILabel!
-    var bandle :Bundle!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,15 +44,8 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         self.backgroundColor = UIColor.clear
         
-        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
+   
         
-        
-        if path != nil {
-            bandle = Bundle(path: path!) ?? Bundle.main
-        }else {
-            bandle = Bundle.main
-            
-        }
         
         TextStatus.text =  NSLocalizedString("transaction_success",bundle :  self.bandle,comment: "")
  TransNumber.text =  NSLocalizedString("trx_id",bundle :  self.bandle,comment: "")
@@ -64,7 +57,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         SendMail.setTitle(NSLocalizedString("send",bundle :  self.bandle,comment: ""), for: .normal)
         TryBtn.setTitle(NSLocalizedString("try_again",bundle :  self.bandle,comment: ""), for: .normal)
-        EmailED.setTextFieldStyle( NSLocalizedString("email_hint",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10,keyboardType: UIKeyboardType.default)
+        EmailED.setTextFieldStyle( NSLocalizedString("email_hint",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 30,padding: 10,keyboardType: UIKeyboardType.default)
         CloseBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         TryBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         

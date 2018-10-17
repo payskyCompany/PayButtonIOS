@@ -11,7 +11,7 @@ import UIKit
 class RequestMoneyViewController: BasePaymentViewController {
 
     
-    var SendHandler: (()->Void)? = nil
+    var SendHandler: ((BaseResponse)->Void)? = nil
 
     
     @IBOutlet weak var HeaderLabel: UILabel!
@@ -55,10 +55,13 @@ class RequestMoneyViewController: BasePaymentViewController {
         
         ApiManger.requestToPay( MobileNumber: (self.MobileNumber.text)!) { (base) in
             if base.Success {
+                
                 if self.SendHandler == nil {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.SendHandler!()
+
+                    
+                    self.SendHandler!(base)
                 }
                 
             }else{

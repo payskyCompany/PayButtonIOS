@@ -112,19 +112,10 @@ ScanCardtDelegate {
     
 
     
-       var bandle :Bundle!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
-     
         
-        if path != nil {
-            bandle = Bundle(path: path!) ?? Bundle.main
-        }else {
-            bandle = Bundle.main
-            
-        }
         
         SaveCardBtn.setTitle(NSLocalizedString("proceed",bundle :  self.bandle,comment: ""), for: .normal)
         EnterCardData.text = NSLocalizedString("enter_card_data",bundle :  self.bandle,comment: "")
@@ -227,7 +218,8 @@ ScanCardtDelegate {
                     self.BackgroundImage.image = #imageLiteral(resourceName: "Mir")
                     
                 }else {
-                    
+                    self.validCard = false
+
                     self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
                 }
                 
@@ -235,7 +227,8 @@ ScanCardtDelegate {
                 
                 
             }else {
-                
+                self.validCard = false
+
                 self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
             }
             
@@ -253,6 +246,9 @@ ScanCardtDelegate {
                 
                 
                 
+            }else {
+                self.validCard = false
+
             }
             
             
@@ -293,14 +289,20 @@ ScanCardtDelegate {
     @IBAction func SendMoneyByCard(_ sender: Any) {
 
         
-        if (self.CVCTF.text?.isEmpty)! {
+        if self.cardNumber.isEmpty {
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_NOTVALID",bundle :  self.bandle,comment: "") )
             
-             UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CVCTF_NOTVALID",bundle :  self.bandle,comment: "") )
-
             return;
         }
         
         
+        
+        if   !self.validCard {
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_١VALID",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+
         
         if (self.CardHolderName.text?.isEmpty)! {
             
@@ -309,11 +311,7 @@ ScanCardtDelegate {
             return;
         }
         
-        if self.cardNumber.isEmpty {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_NOTVALID",bundle :  self.bandle,comment: "") )
-            
-            return;
-        }
+
         
         if (self.DateTF.text?.isEmpty)! || !validDate {
             UIApplication.topViewController()?.view.makeToast(
@@ -321,6 +319,17 @@ ScanCardtDelegate {
             
             return;
         }
+        
+        
+        
+        
+        if (self.CVCTF.text?.isEmpty)! {
+            
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CVCTF_NOTVALID",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+        
         
         var YearMonth = self.year + self.month
 

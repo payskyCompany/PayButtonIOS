@@ -9,14 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController, PaymentDelegate  {
+    
+    @IBAction func CopyResponse(_ sender: Any) {
+        UIPasteboard.general.string =  receipt.toJsonString()
+        UIApplication.topViewController()?.view.makeToast("Response has been copied")
+    }
+    var receipt: TransactionStatusResponse = TransactionStatusResponse()
     func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-        
+        self.receipt = receipt
         if receipt.Success {
-            LabeResoinse.text = receipt.toJsonString()
 
+            LabeResoinse.setTitle("Transaction has been sccusses clcik to copy responce ", for: .normal)
+            
+        }else {
+            LabeResoinse.setTitle("Transaction has been faild clcik to copy responce ", for: .normal)
+
+
+            
         }
     }
-    @IBOutlet weak var LabeResoinse: UILabel!
+    @IBOutlet weak var LabeResoinse: UIButton!
     @IBOutlet weak var ChangeLang: UIButton!
     
     @IBOutlet weak var PayBtn: UIButton!
@@ -85,9 +97,32 @@ class ViewController: UIViewController, PaymentDelegate  {
 
     @IBAction func PayAction(_ sender: Any) {
         
+     
+        if (MerchantIdEd.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please entre merchant")
+            return
+        }
+        
+        if (TerminalIDTF.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please entre terminal")
+            return
+        }
+        
+        if (AmountEd.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please entre amount")
+            return
+        }
+        
+        
+        if (CurrencyEd.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please entre currency")
+            return
+        }
+        
+        
         
         let paymentViewController = PaymentViewController ()
-        paymentViewController.amount = Int(AmountEd.text!)!
+        paymentViewController.amount =  AmountEd.text!  
         paymentViewController.delegate = self
         
         paymentViewController.mId = MerchantIdEd.text!

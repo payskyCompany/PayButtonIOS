@@ -12,8 +12,13 @@
 "change_lang" = "تغير اللغة";
 
 "Done" = "تاكيد";
+"request_send_to_mobile" = "تم ارسال الطلب بنجاح";
+
+
+
 "scanCard" = "افحص بيانات الكارت";
 "pay_now"="ادفع ألان";
+"card_information_wrong"="بيانات الكارت غير صحيحة";
 "quick_payment_from"="الدفع السريع";
 "merchant"="التاجر";
 
@@ -89,7 +94,9 @@
 "mobile_number_valid"="من فضلك ادخل رقم الهاتف";
 
 "DateTF_NOTVALID"="من فضلك ادخل التاريخ";
-"cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت";
+"cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت ";
+"cardNumber_VALID"="من فضلك ادخل رقم الكارت صحيح";
+
 "CVCTF_NOTVALID"="من فضلك ادخل الكود السري";
 "please_entre_your_mail"="من فضلك ادخل البريد الالكتروني";
 "please_entre_valid_mail"= " من فضلك ادخل البريد الالكتروني صحيح";

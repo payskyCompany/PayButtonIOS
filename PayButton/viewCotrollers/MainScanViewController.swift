@@ -164,9 +164,14 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
 
         
         self.MerchantLabel.text =  NSLocalizedString("merchant",bundle :  self.bandle,comment: "")
+        
+     
+        
+        var currncy =  cleanDollars(String(MainScanViewController.paymentData.amount / 100))
+        
         self.AmountLabel.text =  NSLocalizedString("amount",bundle :  self.bandle,comment: "")
 
-        self.AmountValue.text = String (MainScanViewController.paymentData.amount / 100) + " " +  NSLocalizedString("egp",bundle :  self.bandle,comment: "")
+        self.AmountValue.text =   NSLocalizedString("egp",bundle :  self.bandle,comment: "") + " " + currncy
         self.MerchantId.text = String (MainScanViewController.paymentData.merchant_name)
         
         

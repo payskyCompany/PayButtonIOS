@@ -31,15 +31,47 @@ class WebViewTableViewCell: BaseUITableViewCell , WKNavigationDelegate ,WKUIDele
         
 
 
-        
+        self.backgroundColor = UIColor.clear
    
         
         webView.uiDelegate = self
           webView.navigationDelegate = self
-
+webView.isHidden = true
         
     }
     
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIApplication.topViewController()?.view.showLoadingIndicator()
+
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+      
+        UIApplication.topViewController()?.view.hideLoadingIndicator()
+
+
+        self.webView.isHidden = false
+
+        webView.evaluateJavaScript("document.documentElement.outerHTML.toString()",
+                                   completionHandler: { (html: Any?, error: Error?) in
+
+                                    var htmlAsString =   String(describing: html)
+                                  
+                        
+                                    if htmlAsString.contains("HTTP Status - 400"){
+                                        UIApplication.topViewController()?.view.makeToast(NSLocalizedString("card_information_wrong",bundle :  self.bandle,comment: ""))
+
+                                        
+
+                                        
+                                        self.delegateActions?.tryAgin()
+
+                                    }
+                                    
+        })
+        
+    }
 
     
  
@@ -47,6 +79,8 @@ class WebViewTableViewCell: BaseUITableViewCell , WKNavigationDelegate ,WKUIDele
     override  func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
                                manualPaymentRequest : ManualPaymentRequest
         ){
+        self.webView.isHidden = true
+
         self.compose3DSTransactionResponse = compose3DSTransactionResponse
         self.manualPaymentRequest = manualPaymentRequest
 
@@ -91,7 +125,8 @@ class WebViewTableViewCell: BaseUITableViewCell , WKNavigationDelegate ,WKUIDele
             
             if self.webView.url != nil {
               
-                
+           
+
 
                 if (self.webView.url?.absoluteString.contains("localhost"))! {
                     

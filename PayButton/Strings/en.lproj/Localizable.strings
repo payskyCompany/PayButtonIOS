@@ -33,7 +33,7 @@
 "wallet"="Wallet";
 "enter_card_data"="Please enter card data";
 "card_number"="Card number";
-"name_on_card"="Name on card";
+"name_on_card"="Card holder name";
 "expire_date"="Expiry date";
 "cvc"="CVC";
 "proceed"="Proceed";
@@ -63,13 +63,16 @@
 "enter_send_money"="1-Enter send money";
 "help"="Help?";
 "qr_code"="QR Code";
+"card_information_wrong"="Invalid card information";
+
+"request_send_to_mobile" =  "The payment has been requested";
 "sms"="SMS";
 "quick_payment_form"="Quick Payment form";
 "select_send_money"="2-Select send money";
 "select_qr_code"="3-Select QR code";
 "scan_qr_code"="4-Scan QR code on the left";
 "enter_pin"="5-Then enter m-PIN";
-"enter_mobile_number"="Enter your wallet mobil number";
+"enter_mobile_number"="Enter your wallet mobile number";
 "mobile_number"="Mobile number";
 "send_otp"="Send";
 "invalid_mobile_number"="invalid mobile number.";
@@ -103,8 +106,10 @@
 "mobile_number_valid"="please enter mobile number ";
 
 
-"DateTF_NOTVALID"="Please enter your date";
-"cardNumber_NOTVALID"="Please enter card number";
+"DateTF_NOTVALID"="Please enter your expiry date";
+"cardNumber_NOTVALID"="Please enter  card number";
+"cardNumber_VALID"="Please enter valid card number";
+
 "CVCTF_NOTVALID"="please enter CVC";
 "Error" = "Error";
 "validation_card"="Card validation";

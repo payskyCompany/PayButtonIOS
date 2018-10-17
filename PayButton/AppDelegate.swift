@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        IQKeyboardManager.shared.enable = true
+        IQToolbar.appearance().isTranslucent = false
+        IQToolbar.appearance().barTintColor = UIColor.white
+        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
+        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText =  NSLocalizedString("Done",comment: "")
+        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
+        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.mainBtnColor
+        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
+        
+        
         return true
     }
 

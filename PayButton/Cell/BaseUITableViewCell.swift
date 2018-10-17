@@ -10,10 +10,20 @@ import UIKit
 
 class BaseUITableViewCell: UITableViewCell {
     weak var delegateActions: ActionCellActionDelegate?
+    var bandle :Bundle!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
+        
+        
+        if path != nil {
+            bandle = Bundle(path: path!) ?? Bundle.main
+        }else {
+            bandle = Bundle.main
+            
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

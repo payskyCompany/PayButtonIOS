@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -27,29 +27,29 @@ Pod::Spec.new do |s|
           #s.platform = :osx, '10.7'
           #s.platform = :ios, '8.0'
 
-          s.ios.deployment_target = '9.0'
+          s.ios.deployment_target = '11.0'
     	s.framework = "UIKit"
 
-    s.dependency 'Alamofire' 
+    s.dependency 'Alamofire' , '~> 4.7.3'
 
-     s.dependency 'IQKeyboardManagerSwift' 
-     s.dependency "EVReflection"
-     s.dependency 'Toast-Swift' 
-      s.dependency 'EVReflection/Alamofire' 
+     s.dependency 'IQKeyboardManagerSwift'  , '~> 6.1.0'
+     s.dependency "EVReflection"  , '~> 5.6.2'
+     s.dependency 'Toast-Swift' , '~> 3.0.1'
+      s.dependency 'EVReflection/Alamofire'  , '~> 5.6.2'
 
-         s.dependency 'PayCardsRecognizer' 
+         s.dependency 'PayCardsRecognizer'   , '~> 1.1.4'
 
 
 
     # s.dependency  'Localize-Swift'
-      s.dependency 'PopupDialog'
-      s.dependency 'QRCode'
+      s.dependency 'PopupDialog' , '~> 0.7.1'  
+      s.dependency 'QRCode' , '~> 2.0'  
 
 
       
-        s.dependency 'swiftScan' 
-       s.dependency 'InputMask' 
-    s.dependency "CreditCardValidator" 
+
+       s.dependency 'InputMask' , '~> 3.4.1'
+    s.dependency "CreditCardValidator"  , '~> 0.4'
      s.static_framework = true
 s.requires_arc = true
       # 8

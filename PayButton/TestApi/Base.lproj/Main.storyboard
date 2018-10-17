@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +15,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PayButton" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -32,7 +32,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o14-d0-jlL">
-                                                <rect key="frame" x="166.33333333333334" y="158.00000000000003" width="41.666666666666657" height="40"/>
+                                                <rect key="frame" x="166.33333333333334" y="158" width="41.666666666666657" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -179,25 +179,30 @@
                                     <action selector="ChangeLangAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kec-xi-oso"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-tn-kPx">
-                                <rect key="frame" x="8" y="28.000000000000007" width="398" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5M8-Fy-nMv">
+                                <rect key="frame" x="20" y="44.000000000000007" width="374" height="35.999999999999993"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="CopyResponse:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UfY-Y4-l37"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mlj-iR-mJl" secondAttribute="trailing" constant="8" id="1Qg-Sq-AaL"/>
                             <constraint firstItem="Leo-Ud-dm0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="3jY-rf-kFR"/>
-                            <constraint firstItem="lW8-tn-kPx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="50a-jY-tcz"/>
                             <constraint firstItem="3qL-NJ-t0T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="DJB-0x-RcZ"/>
+                            <constraint firstItem="5M8-Fy-nMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Klt-qw-3tv"/>
                             <constraint firstItem="Leo-Ud-dm0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="MQw-Aa-Z9l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3qL-NJ-t0T" secondAttribute="bottom" constant="10" id="NJS-U4-9YE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Leo-Ud-dm0" secondAttribute="trailing" constant="20" id="NfJ-Sb-Gpo"/>
-                            <constraint firstItem="lW8-tn-kPx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="fQl-yF-cuh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5M8-Fy-nMv" secondAttribute="trailing" constant="20" id="R7g-1u-G86"/>
+                            <constraint firstItem="5M8-Fy-nMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="Te9-Qo-mLi"/>
+                            <constraint firstItem="5M8-Fy-nMv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cEc-Z2-Foe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mlj-iR-mJl" secondAttribute="bottom" constant="8" id="jeq-DC-o7K"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lW8-tn-kPx" secondAttribute="trailing" constant="8" id="nwP-uQ-8Ou"/>
                             <constraint firstItem="mlj-iR-mJl" firstAttribute="top" secondItem="Leo-Ud-dm0" secondAttribute="bottom" constant="28" id="omY-7F-QzQ"/>
                             <constraint firstItem="Leo-Ud-dm0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xAQ-I2-key"/>
                         </constraints>
@@ -215,7 +220,7 @@
                         <outlet property="ChangeLang" destination="3qL-NJ-t0T" id="TlS-1q-fWS"/>
                         <outlet property="CurrencyEd" destination="CT9-pB-x9v" id="wCx-bJ-Ikw"/>
                         <outlet property="CurrencyLabel" destination="sdA-CS-SZe" id="oaq-jS-LbW"/>
-                        <outlet property="LabeResoinse" destination="lW8-tn-kPx" id="MwL-qi-jvf"/>
+                        <outlet property="LabeResoinse" destination="5M8-Fy-nMv" id="He7-U3-e53"/>
                         <outlet property="MerchantIdEd" destination="G0C-bp-xal" id="9Dx-1t-uLv"/>
                         <outlet property="MerchantIdLabel" destination="zl3-iS-gQv" id="9Ad-bC-paO"/>
                         <outlet property="PayBtn" destination="QWH-vC-nnY" id="syp-hB-XFS"/>

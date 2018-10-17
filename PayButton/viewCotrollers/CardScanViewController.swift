@@ -20,10 +20,12 @@ class CardScanViewController: BasePaymentViewController ,PayCardsRecognizerPlatf
     @IBOutlet weak var CameraView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-       recognizer = PayCardsRecognizer(delegate: self, resultMode: .sync, container: self.CameraView, frameColor: .green)
+       recognizer = PayCardsRecognizer(delegate: self, resultMode: .async, container: self.CameraView, frameColor: .green)
         // Do any additional setup after loading the view.
         
         let tap3 = UITapGestureRecognizer(target: self, action: #selector(close(sender:)))
+        
+        recognizer.delegate = self
         
         HeaderView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         HeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
