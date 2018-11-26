@@ -16,5 +16,6 @@ target 'PayButton' do
     pod "CreditCardValidator"
     pod 'PayCardsRecognizer'
     pod 'QRCode'
+    use_frameworks!
 
 end

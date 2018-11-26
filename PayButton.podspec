@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.0.9'
+  s.version          = '0.1.0'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -9,29 +9,19 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/payskyCompany/payButtonIOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'payskyCompany' => 'ahmed.agamy@paysky.io' }
-  s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version  }
+  s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version.to_s }
  
 
-   
-   
+       #   s.xcconfig =  {'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h}
 
           #s.platform = :osx, '10.7'
         
-        s.xcconfig = { 
-          "APPLY_RULES_IN_COPY_FILES" => "YES", 
-        "STRINGS_FILE_OUTPUT_ENCODING" => "binary" ,
-        "OTHER_LDFLAGS" => "-lz" ,
-        'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h'
-        }
+        s.xcconfig = { "APPLY_RULES_IN_COPY_FILES" => "YES", "STRINGS_FILE_OUTPUT_ENCODING" => "binary" ,"OTHER_LDFLAGS" => "-lz" }
 
           s.exclude_files = [
    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
      'PayButton/TestApi/Base.lproj/Main.storyboard',
-     'PayButton/TestApi/ViewController.swift',
-     'PayButton/AppDelegate.swift'
-
-
-     
+     'PayButton/TestApi/ViewController.swift'
     
                          ]
           #s.platform = :osx, '10.7'
@@ -39,9 +29,6 @@ Pod::Spec.new do |s|
 
           s.ios.deployment_target = '11.0'
     	s.framework = "UIKit"
-
-
-    s.public_header_files = 'PayButton/PayButton-Bridging-Header.h'
 
     s.dependency 'Alamofire' , '~> 4.7.3'
 
