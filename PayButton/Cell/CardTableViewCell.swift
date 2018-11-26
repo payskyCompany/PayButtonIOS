@@ -298,7 +298,7 @@ ScanCardtDelegate {
         
         
         if   !self.validCard {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_١VALID",bundle :  self.bandle,comment: "") )
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_VALID",bundle :  self.bandle,comment: "") )
             
             return;
         }
@@ -323,6 +323,15 @@ ScanCardtDelegate {
         
         
         
+        if  !validDate {
+            UIApplication.topViewController()?.view.makeToast(
+                NSLocalizedString("DateTF_NOTVALID_AC",bundle :  self.bandle,comment: "") )
+            
+            return;
+        }
+        
+        
+        
         if (self.CVCTF.text?.isEmpty)! {
             
             UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CVCTF_NOTVALID",bundle :  self.bandle,comment: "") )
@@ -331,7 +340,7 @@ ScanCardtDelegate {
         }
         
         
-        var YearMonth = self.year + self.month
+        let YearMonth = self.year + self.month
 
         let addcardRequest = ManualPaymentRequest()
         addcardRequest.PAN = self.cardNumber

@@ -14,9 +14,9 @@
 
 "Done" = "Done";
 
-"scanCard" = "Scan card date ";
+"scanCard" = "Scan card data ";
 
-"change_lang" = "Change langauage";
+"change_lang" = "Change Language";
 
 
 
@@ -42,11 +42,11 @@
 "ok"="OK";
 "invalid_card_number_length"="Please re-enter 16 card number.";
 "enter_valid_owner"="Enter valid owner name.";
-"invalid_expire_date"="Expire date should be 4 digits.";
+"invalid_expire_date"="Card expiry date should be 4 digits.";
 "invalid_ccv"="CCV should be 3 digits length.";
 "please_wait"="Please wait…";
-"error_try_again"="Error in connection,try again.";
-"auth_number"="Auth Code:";
+"error_try_again"="Error in connection, try again.";
+"auth_number"="Auth code:";
 "trx_id"="Transaction No:";
 "close"="Close";
 "send_receipt"="Send Receipt";
@@ -78,22 +78,22 @@
 "invalid_mobile_number"="invalid mobile number.";
 "enter_pin_code"="Enter PIN";
 "pin"="PIN";
-"sms_received_within"="Sms should be received within";
+"sms_received_within"="SMS should be received within";
 "seconds"="Seconds";
-"terms_conditions_text"="This is terms and conditions to use pay sky payment service integeration.";
+"terms_conditions_text"="This is the terms and conditions to use pay sky payment service integration.";
 "swipe"="Read Card";
-"send_sms_success"="Send sms success.";
+"send_sms_success"="Send SMS success.";
 "or"="OR";
 "cant_scan_code"="Can\'t scan Qr code? \nSend payment request to the entered mobile number.";
 "request_payment"="Request Payment";
-"invalid_expire_date_date"="Invalid expire date";
+"invalid_expire_date_date"="Invalid expiry date";
 "egp"="EGP";
 "print"="Print receipt";
-"accepted_operation"="Accepted Operation";
+"accepted_operation"="Accepted operation";
 "confirm_receipt_info"="Confirm receipt info";
 "enter_manual"="Enter card data";
 "no_payment_selected"="No payment method selected.";
-"read_qr"="Read Qr code";
+"read_qr"="Read QR code";
 "magnetic"="Read card";
 "device_not_support_magnetic"="Device not support magnetic card payment.";
 "merchant_copy__"="---Merchant copy---";
@@ -101,21 +101,33 @@
 "merchant_copy"="Merchant copy";
 "customer_copy"="Customer copy";
 "powered_paysky"="Powered by PaySky.io";
-"qr"="Qr Scan";
+"qr"="Qr scan";
 
 "mobile_number_valid"="please enter mobile number ";
 
 
 "DateTF_NOTVALID"="Please enter your expiry date";
+"DateTF_NOTVALID_AC"="Expiry date not valid";
+
 "cardNumber_NOTVALID"="Please enter  card number";
 "cardNumber_VALID"="Please enter valid card number";
+
+
 
 "CVCTF_NOTVALID"="please enter CVC";
 "Error" = "Error";
 "validation_card"="Card validation";
 
-"please_entre_your_mail"= "please entre your mail";
-"please_entre_valid_mail"= "please entre valid mail";
+"please_entre_your_mail"= "please enter your email";
+"please_entre_valid_mail"= "please enter valid email";
 "email_send_to"=  "Email sent to";
 
-"CardHolderNameRequird" = "Card Holder Name Requird";
+"CardHolderNameRequird" = "Card holder name is required";
+"please entre merchant" = "please enter merchant";
+"please entre terminal" = "please enter terminal";
+"please entre amount" = "please enter amount";
+"please entre currency" = "please enter currency";
+
+"please entre your mail" = "please entre your mail";
+
+"please entre valid mail" = "please entre valid mail";

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="465" height="691.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oou-Xq-iKB">
+                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oou-Xq-iKB">
                         <rect key="frame" x="0.0" y="0.0" width="465" height="691.5"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

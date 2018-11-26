@@ -403,18 +403,18 @@ extension String {
         let cData = self.cString(using: String.Encoding.utf8)
         var result = [CUnsignedChar](repeating: 0, count: Int(algorithm.digestLength()))
         CCHmac(algorithm.toCCHmacAlgorithm(), cKey!, strlen(cKey!), cData!, strlen(cData!), &result)
-        var hmacData:NSData = NSData(bytes: result, length: (Int(algorithm.digestLength())))
+        let hmacData:NSData = NSData(bytes: result, length: (Int(algorithm.digestLength())))
         
         let datafroNS = Data(referencing: hmacData)
         //var hmacBase64 =  hmacData.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
         //return String(hmacBase64)
-        var hexSecureHash = datafroNS.hexEncodedString(options: .upperCase)
+        let hexSecureHash = datafroNS.hexEncodedString(options: .upperCase)
         return hexSecureHash
     }
 }
 
 func hexStringToBytes(_ string: String) -> [UInt8]? {
-    let length = string.characters.count
+    let length = string.count
     if length & 1 != 0 {
         return nil
     }
@@ -456,7 +456,7 @@ extension UIView {
     
     func hideLoadingIndicator() {
          self.hideToastActivity()
-      self.isUserInteractionEnabled = true
+     self.isUserInteractionEnabled = true
     }
  
    

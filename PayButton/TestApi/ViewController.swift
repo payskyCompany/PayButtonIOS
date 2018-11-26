@@ -19,10 +19,10 @@ class ViewController: UIViewController, PaymentDelegate  {
         self.receipt = receipt
         if receipt.Success {
 
-            LabeResoinse.setTitle("Transaction has been sccusses clcik to copy responce ", for: .normal)
+            LabeResoinse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
             
         }else {
-            LabeResoinse.setTitle("Transaction has been faild clcik to copy responce ", for: .normal)
+            LabeResoinse.setTitle("Transaction has been failed click to callback callback ", for: .normal)
 
 
             
@@ -99,23 +99,23 @@ class ViewController: UIViewController, PaymentDelegate  {
         
      
         if (MerchantIdEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please entre merchant")
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre merchant",comment: ""))
             return
         }
         
         if (TerminalIDTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please entre terminal")
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre terminal",comment: ""))
             return
         }
         
         if (AmountEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please entre amount")
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre amount",comment: ""))
             return
         }
         
         
         if (CurrencyEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please entre currency")
+            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre currency",comment: ""))
             return
         }
         

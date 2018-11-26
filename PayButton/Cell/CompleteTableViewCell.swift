@@ -78,12 +78,12 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         
         if (EmailED.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please entre your mail")
+            UIApplication.topViewController()?.view.makeToast( NSLocalizedString("please entre your mail",bundle :  self.bandle,comment: ""))
             return
         }
         
         if !(EmailED.text?.isValidEmail())! {
-            UIApplication.topViewController()?.view.makeToast("please entre valid mail")
+            UIApplication.topViewController()?.view.makeToast( NSLocalizedString("please entre valid mail",bundle :  self.bandle,comment: ""))
             return
         }
         
@@ -105,7 +105,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         self.StackComplete.isHidden = false
         self.TryBtn.isHidden = true
   
-        var string = NSLocalizedString("transaction_success",bundle :  self.bandle,comment: "")
+        let string = NSLocalizedString("transaction_success",bundle :  self.bandle,comment: "")
         var stringArr = string.components(separatedBy: " ")
         let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
         myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value:  Global.hexStringToUIColor("#00BFA5"),
@@ -128,6 +128,10 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         
         
+        if Auth.count > 30 {
+       
+          Auth =   String ( Auth.suffix(6) )
+        }
         
         
         TransNumber.text =  NSLocalizedString("trx_id",bundle :  self.bandle,comment: "")  + " #" + TranNumber

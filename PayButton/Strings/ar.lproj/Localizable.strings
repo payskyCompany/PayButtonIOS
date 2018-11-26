@@ -5,19 +5,19 @@
 "app_name"="زر الدفع";
 
 "Merchant ID" = "رقم التاجر";
-"Terminal ID" = "رقم الجهاز";
+"Terminal ID" = "نقطة البيع";
 "Amount" = "المبلغ";
 "Currency" = "العملة";
 
-"change_lang" = "تغير اللغة";
+"change_lang" = "تغيير اللغة";
 
-"Done" = "تاكيد";
+"Done" = "تأكيد";
 "request_send_to_mobile" = "تم ارسال الطلب بنجاح";
 
 
 
 "scanCard" = "افحص بيانات الكارت";
-"pay_now"="ادفع ألان";
+"pay_now"="ادفع الآن";
 "card_information_wrong"="بيانات الكارت غير صحيحة";
 "quick_payment_from"="الدفع السريع";
 "merchant"="التاجر";
@@ -35,25 +35,25 @@
 "cvc"="رمز الحماية";
 "proceed"="تأكيد";
 "error"="خطأ";
-"check_internet_connection"="تحقق من الاتصال بالانترنت,وحاول مرة أخرى.";
+"check_internet_connection"="تحقق من الاتصال بالانترنت,وحاول مرة أخرى";
 "ok"="موافق";
 "invalid_card_number_length"="تحقق من ادخال 16 رقم للبطاقة";
-"enter_valid_owner"="اسم صاحب البطاقة غير صحيح.";
+"enter_valid_owner"="اسم صاحب البطاقة غير صحيح";
 "invalid_expire_date"="تاريخ الانتهاء يجب الا يزيد عن اربع ارقام";
-"invalid_ccv"="رمز الحماية يجب ان يكون 3 ارقام.";
+"invalid_ccv"="رمز الحماية يجب ان يكون 3 ارقام";
 "please_wait"="برجاء الانتظار…";
-"error_try_again"="خطأ فى الاتصال,حاول مرة أخرى.";
-"auth_number"="رقم الموافقة ";
-"trx_id"="رقم المعاملة ";
+"error_try_again"="خطأ فى الاتصال,حاول مرة أخرى";
+"auth_number"="رقم الموافقة";
+"trx_id"="رقم المعاملة";
 "close"="اغلاق";
 "send_receipt"="ارسل نسخة";
 "send_notification"="ارسال إيصال";
 "email_hint"="البريد الالكترونى";
 "send"="ارسال";
 "transaction_success"="عملية مقبولة";
-"invalid_mail"="البريد الالكترونى غير صحيح.";
+"invalid_mail"="البريد الالكترونى غير صحيح";
 "mail_sent_to"="تم إرسال بريد الكترونى الى ";
-"cannot_send_mail"="تعذر ارسال الايميل";
+"cannot_send_mail"="تعذر ارسال البريد الالكترونى";
 "transaction_declined"="عملية مرفوضة";
 "try_again"="حاول مرة أخرى";
 "open_wallet_app"="قم بفتح تطبيق المحفظة لتتمكن من اتمام المعاملة";
@@ -69,38 +69,45 @@
 "enter_mobile_number"="ادخل رقم الهاتف للمحفظة";
 "mobile_number"="رقم الهاتف";
 "send_otp"="ارسال";
-"invalid_mobile_number"="رقم الهاتف غير صحيح.";
+"invalid_mobile_number"="رقم الهاتف غير صحيح";
 "enter_pin_code"="ادخل ال PIN";
 "pin"="PIN";
 "sms_received_within"="ستصلك رسالة فى غضون ";
-"seconds"="ثانية";
+"seconds"="ثوانى";
 "terms_conditions_text"="شروط واحكام شركة باى سكاى لاستخدام خدماتها";
 "swipe"="اسحب البطاقة";
 "send_sms_success"="تم ارسال الرسالة.";
 "or"="أو";
-"cant_scan_code"="لا تستطيع فحص الصور؟ \n قم بارسال المعاملة عن طريق رقم التليفون.";
+"cant_scan_code"="لا تستطيع فحص الصور؟ \n قم بارسال المعاملة عن طريق رقم التليفون";
 "request_payment"="طلب اموال";
-"invalid_expire_date_date"="تاريخ الانتهاء غير صحيح.";
+"invalid_expire_date_date"="تاريخ الانتهاء غير صحيح";
 "egp"="جنية";
 "print"="إطبع الفاتوره";
 "accepted_operation"="عمليه مقبوله";
 "confirm_receipt_info"="تأكيد بيانات الايصال";
 "enter_manual"="ادخل بيانات الكارت";
-"no_payment_selected"="لم يتم اختيار طريقه الدفع.";
+"no_payment_selected"="لم يتم اختيار طريقه الدفع";
 "read_qr"="إقرأ كود الدفع";
 "magnetic"="إقرأ البطاقة";
-"device_not_support_magnetic"="الجهاز لا يدعم خاصيه قرأه البطاقة";
+"device_not_support_magnetic"="الجهاز لا يدعم خاصيه قراءة البطاقة";
 "powered_paysky"="Powered by PaySky.io";
 "mobile_number_valid"="من فضلك ادخل رقم الهاتف";
 
-"DateTF_NOTVALID"="من فضلك ادخل التاريخ";
-"cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت ";
+"DateTF_NOTVALID"="من فضلك ادخل تاريخ انتهاء صلاحية البطاقة";
+"cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت";
 "cardNumber_VALID"="من فضلك ادخل رقم الكارت صحيح";
+"DateTF_NOTVALID_AC"=" تاريخ انتهاء صلاحية البطاقة غير صيحيح";
 
-"CVCTF_NOTVALID"="من فضلك ادخل الكود السري";
+"CVCTF_NOTVALID"="من فضلك ادخل رمز الحماية";
 "please_entre_your_mail"="من فضلك ادخل البريد الالكتروني";
 "please_entre_valid_mail"= " من فضلك ادخل البريد الالكتروني صحيح";
-"email_send_to"= "تم ارسال رسال الي ";
+"email_send_to"= "تم ارسال بريد الكترونى الي";
 "Error" = "حدث خطأ";
 "validation_card"="التحقق من البطاقة";
-"CardHolderNameRequird" = "من فضلك ادخر اسم صاحب البطاقة";
+"CardHolderNameRequird" = "من فضلك ادخل اسم صاحب البطاقة";
+"please entre merchant" = "من فضلك ادخل رقم التاجر";
+"please entre terminal" = "من فضلك ادخل رقم نقطة البيع";
+"please entre amount" = "من فضلك ادخل المبلغ";
+"please entre currency" = "من فضلك ادخل رقم العملة";
+"please entre your mail" = "من فضلك ادخل بريدك الالكتروني";
+"please entre valid mail" = "من فضلك ادخل بريدك الالكتروني صحيح";

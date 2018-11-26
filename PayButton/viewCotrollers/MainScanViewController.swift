@@ -91,6 +91,10 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         self.transactionStatusResponse = transactionStatusResponse
         selectedCell = 3
         self.TableViews.reloadData()
+        
+        if transactionStatusResponse.Success {
+            self.MethodTypeStackView.isHidden = true
+        }
     }
     
     
@@ -167,7 +171,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         
      
         
-        var currncy =  cleanDollars(String(MainScanViewController.paymentData.amount / 100))
+        let currncy =  cleanDollars(String(MainScanViewController.paymentData.amount / 100))
         
         self.AmountLabel.text =  NSLocalizedString("amount",bundle :  self.bandle,comment: "")
 
@@ -343,7 +347,9 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
                     self.transactionStatusResponse = transactionStatus
                     self.selectedCell = 3
                     self.TableViews.reloadData()
-
+                    
+                    self.MethodTypeStackView.isHidden = true
+                    
 
                 }
                 
