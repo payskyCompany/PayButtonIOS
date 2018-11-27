@@ -14,6 +14,7 @@ public class PaymentViewController  {
     public   var mId = ""
     public   var Key = ""
     public   var Currency = ""
+    public   var refnumber = ""
 
     
 
