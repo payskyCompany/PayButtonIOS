@@ -121,8 +121,8 @@ in your project, encrypt them before save them in project.
 
 ## Built With
 
-* [Alamofire](https://github.com/Alamofire/Alamofire) - Android Networking library.
-* [EVReflection](https://github.com/evermeer/EVReflection) - Event bus send events between your classes.
+* [Alamofire](https://github.com/Alamofire/Alamofire)  
+* [EVReflection](https://github.com/evermeer/EVReflection)  
 
 
 ## Authors
