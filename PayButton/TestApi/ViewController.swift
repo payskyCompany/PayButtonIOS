@@ -138,6 +138,20 @@ class ViewController: UIViewController, PaymentDelegate  {
   
         
         
+        
+//        let paymentViewController = PaymentViewController ()
+//        paymentViewController.amount =  "20"
+//        paymentViewController.delegate = self
+//        
+//        paymentViewController.mId = "11400000001"
+//        paymentViewController.tId = "10002000"
+//        paymentViewController.Currency = "826"
+//        
+//        
+//        
+//        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
+//        
+//        paymentViewController.pushViewController()
 
         
     }

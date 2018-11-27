@@ -49,7 +49,12 @@ class BasePaymentViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if self.navigationController != nil {
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+            
+        }
     }
 
     

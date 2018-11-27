@@ -42,7 +42,12 @@ class CardScanViewController: BasePaymentViewController ,PayCardsRecognizerPlatf
     @objc func close(sender: UITapGestureRecognizer? = nil) {
         
         
-        self.dismiss(animated: true, completion: nil)
+        if self.navigationController != nil {
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+            
+        }
     }
     
 
