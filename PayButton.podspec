@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -17,6 +17,8 @@ Pod::Spec.new do |s|
           #s.platform = :osx, '10.7'
         
         s.xcconfig = { "APPLY_RULES_IN_COPY_FILES" => "YES", "STRINGS_FILE_OUTPUT_ENCODING" => "binary" ,"OTHER_LDFLAGS" => "-lz" }
+          # 'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h'}
+           s.public_header_files = 'PayButton/PayButton-Bridging-Header.h'
 
           s.exclude_files = [
    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
