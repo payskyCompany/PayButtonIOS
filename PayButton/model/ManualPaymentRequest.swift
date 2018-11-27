@@ -34,8 +34,14 @@ public class ManualPaymentRequest: BaseResponse {
     var MerchantReference = getRandom()
     
     public static  func getRandom() -> String  {
-        let myVar: Int = Int(arc4random())
-        return String (myVar)
+        if PaymentViewController.refnumber == "" ||
+            PaymentViewController.refnumber.isEmpty {
+            let myVar: Int = Int(arc4random())
+            return String (myVar)
+        }else{
+            return PaymentViewController.refnumber
+        }
+     
     }
 
     

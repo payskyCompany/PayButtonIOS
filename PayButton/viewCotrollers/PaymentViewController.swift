@@ -14,7 +14,7 @@ public class PaymentViewController  {
     public   var mId = ""
     public   var Key = ""
     public   var Currency = ""
-    public   var refnumber = ""
+    public static  var refnumber = ""
 
     
 
@@ -93,13 +93,7 @@ public class PaymentViewController  {
                 MainScanViewController.paymentData.currencyCode = Int ( self.Currency )!
                     MainScanViewController.paymentData.PaymentMethod = paymentresponse.PaymentMethod
                 MainScanViewController.paymentData.Is3DS = paymentresponse.Is3DS
-
-
                 self.getSatatiQr()
-                
-                
-               
-                
             }else {
                 UIApplication.topViewController()?.view.makeToast(  paymentresponse.Message)
             }
