@@ -66,12 +66,15 @@ Example:-
        
 2 - in order to create transaction call back in deleget PaymentDelegate:-
 
-    func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-         if receipt.Success   // will be true if transaction success 
-         {
-          print(receipt.NetworkReference)
-         }
+    implete deleget on your ViewController
+    class ViewController: UIViewController, PaymentDelegate  {
+        func finishSdkPayment(_ receipt: TransactionStatusResponse) {
+        
+        
+        }
+
     }
+
 
 to create transaction in our sdk you just call createTransaction method and pass to it
 PaymentTransactionCallback listener to call it after transaction.
