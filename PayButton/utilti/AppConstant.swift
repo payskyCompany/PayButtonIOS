@@ -10,7 +10,11 @@ import Foundation
 
 class AppConstant {
     static var registrationUserActive1 = "userid"
-  
+ 
+    static func setPayBtnLiveMode(){
+        ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
+    }
+
 }
 public class PaymentParams {
     static var MERCHANT_ID = "merchant_id";
@@ -25,6 +29,9 @@ public class PaymentParams {
 public class ApiURL {
     //    static var MAIN_API_LINK = "https://197.50.37.116/Cube/PayLink.svc/api/";
 
+    
+    
+    
     static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
     static var GenerateQR = MAIN_API_LINK + "GenerateQR";
     static var CheckTxnStatus = MAIN_API_LINK + "CheckTxnStatus";

@@ -15,6 +15,7 @@ public class PaymentViewController  {
     public   var Key = ""
     public   var Currency = ""
     public static  var refnumber = ""
+    public   var isProduction = false
 
     
 
@@ -36,6 +37,10 @@ public class PaymentViewController  {
         }
         
         
+        
+        if isProduction {
+            AppConstant.setPayBtnLiveMode()
+        }
         
         var DoubleAmount = Double(""+self.amount) ??  0
         DoubleAmount = DoubleAmount * 100.00

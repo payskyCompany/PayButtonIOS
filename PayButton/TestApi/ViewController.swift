@@ -128,6 +128,7 @@ class ViewController: UIViewController, PaymentDelegate  {
         paymentViewController.mId = MerchantIdEd.text!
         paymentViewController.tId = TerminalIDTF.text!
         paymentViewController.Currency = CurrencyEd.text!
+        paymentViewController.isProduction = false   // set it true if you want to go live 
 
         
         
