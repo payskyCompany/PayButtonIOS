@@ -1,13 +1,19 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
 
 
   s.homepage         = 'https://github.com/payskyCompany/payButtonIOS'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+ 
+  s.license = { :type => 'MIT', :text => <<-LICENSE
+    Copyright 2019
+    Permission is granted to customer of paysky
+  LICENSE
+}
+
   s.author           = { 'payskyCompany' => 'ahmed.agamy@paysky.io' }
   s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version.to_s }
  
