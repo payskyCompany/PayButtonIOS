@@ -1,20 +1,20 @@
 PODS:
-  - Alamofire (4.7.3)
+  - Alamofire (4.8.1)
   - CreditCardValidator (0.4)
-  - DynamicBlurView (2.0.2)
-  - EVReflection (5.6.2):
-    - EVReflection/Core (= 5.6.2)
-  - EVReflection/Alamofire (5.6.2):
+  - DynamicBlurView (3.0.1)
+  - EVReflection (5.9.0):
+    - EVReflection/Core (= 5.9.0)
+  - EVReflection/Alamofire (5.9.0):
     - Alamofire
     - EVReflection/Core
-  - EVReflection/Core (5.6.2)
-  - InputMask (3.4.1)
-  - IQKeyboardManagerSwift (6.1.0)
+  - EVReflection/Core (5.9.0)
+  - InputMask (4.0.2)
+  - IQKeyboardManagerSwift (6.2.0)
   - PayCardsRecognizer (1.1.4)
-  - PopupDialog (0.7.1):
-    - DynamicBlurView (~> 2.0)
+  - PopupDialog (0.9.2):
+    - DynamicBlurView (~> 3.0.1)
   - QRCode (2.0)
-  - Toast-Swift (3.0.1)
+  - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -42,17 +42,17 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   CreditCardValidator: 9f0814dd61682c004071a250d89327ca83514a48
-  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
-  EVReflection: 640322f8a3aaf78cbc3c23892476b6adb636ebf0
-  InputMask: 2c7d3faddbc724a8356a6ea269d60d9d6d7d2423
-  IQKeyboardManagerSwift: f5004f5860d9a8ed23a7ef7a156ae168828eb018
+  DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
+  EVReflection: 52aa00a9035145b1fcf99acae01b782ecc4adad7
+  InputMask: b9df7a44c044f59485b2d596661e6bd4334bddb4
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   PayCardsRecognizer: b939eec21c6890d57c9f22cb8856517922b097a2
-  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
-  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 12909fe3292cc8d5534ee3b13a0040d66e7c1d1e
+PODFILE CHECKSUM: 85401518c382f7f77196c2be5f32c7feb1aefb78
 
 COCOAPODS: 1.5.3

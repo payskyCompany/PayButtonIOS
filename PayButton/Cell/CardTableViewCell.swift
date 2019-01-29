@@ -158,8 +158,8 @@ ScanCardtDelegate {
         
         CardHolderName.setTextFieldStyle(NSLocalizedString("name_on_card",bundle :  self.bandle,comment: "")  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
-        MaskedCreditCard = MaskedTextFieldDelegate(format: "[0000] [0000] [0000] [0000]")
-        MaskedDateExpired = MaskedTextFieldDelegate(format: "[00]/[00]")
+        MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
+        MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[00]/[00]")
         
         
         

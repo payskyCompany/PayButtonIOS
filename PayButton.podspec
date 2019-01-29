@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -8,11 +8,8 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/payskyCompany/payButtonIOS'
  
-  s.license = { :type => 'MIT', :text => <<-LICENSE
-    Copyright 2019
-    Permission is granted to customer of paysky
-  LICENSE
-}
+  s.license = { :type => 'MIT', :file => 'README.md' }
+
 
   s.author           = { 'payskyCompany' => 'ahmed.agamy@paysky.io' }
   s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version.to_s }
@@ -38,25 +35,25 @@ Pod::Spec.new do |s|
           s.ios.deployment_target = '11.0'
     	s.framework = "UIKit"
 
-    s.dependency 'Alamofire' , '~> 4.7.3'
+    s.dependency 'Alamofire' , '~> 4.8.1'
 
-     s.dependency 'IQKeyboardManagerSwift'  , '~> 6.1.0'
-     s.dependency "EVReflection"  , '~> 5.6.2'
+     s.dependency 'IQKeyboardManagerSwift'  , '~> 6.2.0'
+     s.dependency "EVReflection"  , '~> 5.9.0'
      s.dependency 'Toast-Swift' , '~> 3.0.1'
-      s.dependency 'EVReflection/Alamofire'  , '~> 5.6.2'
+      s.dependency 'EVReflection/Alamofire'  , '~> 5.9.0'
 
          s.dependency 'PayCardsRecognizer'   , '~> 1.1.4'
 
 
 
     # s.dependency  'Localize-Swift'
-      s.dependency 'PopupDialog' , '~> 0.7.1'  
+      s.dependency 'PopupDialog' , '~> 0.9.2'  
       s.dependency 'QRCode' , '~> 2.0'  
 
 
       
 
-       s.dependency 'InputMask' , '~> 3.4.1'
+       s.dependency 'InputMask' , '~> 4.0.2'
     s.dependency "CreditCardValidator"  , '~> 0.4'
      s.static_framework = true
 s.requires_arc = true

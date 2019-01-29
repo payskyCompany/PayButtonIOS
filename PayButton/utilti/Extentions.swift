@@ -131,7 +131,7 @@ extension UIViewController: UIAlertViewDelegate {
         popupVC.okHandler = okHandler
         popupVC.cancelHandler = cancelHandler
         // Create the dialog
-        let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, preferredWidth: 600, gestureDismissal: true)
+        let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, preferredWidth: 600, tapGestureDismissal: true)
         
         // Present dialog
         present(popup, animated: true, completion: nil)
