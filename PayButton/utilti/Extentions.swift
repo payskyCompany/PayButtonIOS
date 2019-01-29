@@ -9,8 +9,7 @@
 //import Foundation
 import UIKit
 import ObjectiveC
-import Toast_Swift
-import PopupDialog
+ import PopupDialog
 
 // Swift 3:
 
@@ -98,7 +97,7 @@ public extension UITextField {
         imageView.contentMode = .center
         self.leftView = imageView
         self.leftView?.frame.size = CGSize(width: image.size.width + padding, height: image.size.height)
-        self.leftViewMode = UITextFieldViewMode.always
+        self.leftViewMode = UITextField.ViewMode.always
     }
     
     
@@ -174,7 +173,7 @@ extension UITextView {
    
         
 
-        self.contentInset = UIEdgeInsetsMake(0, paddingLeft, 0, paddingRight)
+        self.contentInset = UIEdgeInsets.init(top: 0, left: paddingLeft, bottom: 0, right: paddingRight)
 
 //        self.attributedPlaceholder = myMutableStringTitle
 //        self.text = NSLocalizedString("placholder",bundle :  self.bandle,comment: "")
@@ -182,7 +181,7 @@ extension UITextView {
         self.textColor =  UIColor.lightGray
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8
-        let attributes = [NSAttributedStringKey.paragraphStyle : style]
+        let attributes = [NSAttributedString.Key.paragraphStyle : style]
         self.attributedText = NSAttributedString(string: title, attributes: attributes)
 
         self.text = title
@@ -239,8 +238,8 @@ extension UITextField: UITextFieldDelegate {
         
         var myMutableStringTitle = NSMutableAttributedString()
         
-        myMutableStringTitle = NSMutableAttributedString(string: placholder, attributes: [NSAttributedStringKey.font:font]) // Font
-        myMutableStringTitle.addAttribute(NSAttributedStringKey.foregroundColor, value: placeholderColor, range:NSRange(location:0, length: placholder.count))    // Color
+        myMutableStringTitle = NSMutableAttributedString(string: placholder, attributes: [NSAttributedString.Key.font:font]) // Font
+        myMutableStringTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: placeholderColor, range:NSRange(location:0, length: placholder.count))    // Color
         
         
         self.attributedPlaceholder = myMutableStringTitle
@@ -268,10 +267,10 @@ extension UIButton{
     func setButtonStyle(_ title:String ,backgroundColor:UIColor,cornerRadius:CGFloat,borderWidth:CGFloat,borderColor:UIColor,font: UIFont,textColor:UIColor, paddingLeft:CGFloat? = 0.0, paddingRight:CGFloat? = 0.0, underline:Bool = false) {
         
         
-        let yourAttributes : [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font : font.italic,
-            NSAttributedStringKey.foregroundColor : textColor,
-            NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue]
+        let yourAttributes : [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : font.italic,
+            NSAttributedString.Key.foregroundColor : textColor,
+            NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
 
         
         
@@ -280,13 +279,13 @@ extension UIButton{
         if underline {
             self.setAttributedTitle(attributeString, for: .normal)
         } else {
-            self.setTitle(title, for: UIControlState())
+            self.setTitle(title, for: UIControl.State())
         }
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = cornerRadius
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor.cgColor
-        self.setTitleColor(textColor, for: UIControlState())
+        self.setTitleColor(textColor, for: UIControl.State())
         self.titleLabel?.font =  font
 //        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: paddingLeft!, bottom: 0.0, right: paddingRight!)
 
@@ -311,7 +310,7 @@ extension UIFont {
     } // boldItalic
     
     
-    func with(traits: UIFontDescriptorSymbolicTraits) -> UIFont {
+    func with(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         guard let descriptor = self.fontDescriptor.withSymbolicTraits(traits) else {
             return self
         } // guard

@@ -8,8 +8,7 @@
 
 import UIKit
 import Alamofire
-import Toast_Swift
-
+ 
 
 public  class PaySkySDKColor {
 
@@ -87,7 +86,7 @@ class Global: NSObject {
         UIGraphicsBeginImageContext(rect.size)
         image.draw(in: rect)
         let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        let imageData: NSData = UIImageJPEGRepresentation(img, compressionQuality)! as NSData
+        let imageData: NSData = img.jpegData(compressionQuality: compressionQuality)! as NSData
         UIGraphicsEndImageContext()
         return  UIImage(data: imageData as Data)!
     }

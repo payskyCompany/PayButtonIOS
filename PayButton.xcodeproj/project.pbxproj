@@ -29,6 +29,7 @@
 		C5A4164C21650280008A93B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164A21650280008A93B3 /* Main.storyboard */; };
 		C5A4164E21650280008A93B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164D21650280008A93B3 /* Assets.xcassets */; };
 		C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164F21650280008A93B3 /* LaunchScreen.storyboard */; };
+		C5B1E7F7220058FF00C09D13 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1E7F6220058FF00C09D13 /* Toast.swift */; };
 		C5B900E72168E7F000301C13 /* QRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900E52168E7F000301C13 /* QRTableViewCell.swift */; };
 		C5B900E82168E7F000301C13 /* QRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B900E62168E7F000301C13 /* QRTableViewCell.xib */; };
 		C5B900EB2168F0B500301C13 /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900E92168F0B500301C13 /* CompleteTableViewCell.swift */; };
@@ -81,6 +82,7 @@
 		C5A4164D21650280008A93B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A4165021650280008A93B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5A4165221650280008A93B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B1E7F6220058FF00C09D13 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C5B900E52168E7F000301C13 /* QRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTableViewCell.swift; sourceTree = "<group>"; };
 		C5B900E62168E7F000301C13 /* QRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRTableViewCell.xib; sourceTree = "<group>"; };
 		C5B900E92168F0B500301C13 /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		C5A4164521650280008A93B3 /* PayButton */ = {
 			isa = PBXGroup;
 			children = (
+				C5B1E7F52200588300C09D13 /* 3rdParty */,
 				C5B900FB216A478700301C13 /* TestApi */,
 				C5B900F221691CBA00301C13 /* Dialog */,
 				C5B900F121691C2B00301C13 /* Cell */,
@@ -222,6 +225,14 @@
 				C5DB9148216B9CB700C69497 /* PayButton-Bridging-Header.h */,
 			);
 			path = PayButton;
+			sourceTree = "<group>";
+		};
+		C5B1E7F52200588300C09D13 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				C5B1E7F6220058FF00C09D13 /* Toast.swift */,
+			);
+			path = 3rdParty;
 			sourceTree = "<group>";
 		};
 		C5B900F121691C2B00301C13 /* Cell */ = {
@@ -300,6 +311,7 @@
 				TargetAttributes = {
 					C5A416422165027F008A93B3 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -378,7 +390,6 @@
 				"${PODS_ROOT}/PayCardsRecognizer/Source/PayCardsRecognizer.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -391,7 +402,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayCardsRecognizer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -422,6 +432,7 @@
 				C5378886216CEFC10058CAC8 /* PaymentMethodResponse.swift in Sources */,
 				C5DB913B216B76BA00C69497 /* QrGenratorRequest.swift in Sources */,
 				C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */,
+				C5B1E7F7220058FF00C09D13 /* Toast.swift in Sources */,
 				C5B900FA216A44A200301C13 /* BasePaymentViewController.swift in Sources */,
 				C5A4164921650280008A93B3 /* ViewController.swift in Sources */,
 				C537888E216CF6470058CAC8 /* Process3DSTransactionResonse.swift in Sources */,
@@ -602,7 +613,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.payskey.PayButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -621,7 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.payskey.PayButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

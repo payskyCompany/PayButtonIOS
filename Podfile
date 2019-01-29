@@ -9,7 +9,6 @@ target 'PayButton' do
     pod 'IQKeyboardManagerSwift'
     pod 'Alamofire'
     pod "EVReflection"
-    pod 'Toast-Swift'
     pod 'EVReflection/Alamofire'
     pod 'PopupDialog'
     pod 'InputMask'

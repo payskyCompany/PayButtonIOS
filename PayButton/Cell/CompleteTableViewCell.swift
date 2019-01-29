@@ -108,7 +108,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         let string = NSLocalizedString("transaction_success",bundle :  self.bandle,comment: "")
         var stringArr = string.components(separatedBy: " ")
         let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value:  Global.hexStringToUIColor("#00BFA5"),
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  Global.hexStringToUIColor("#00BFA5"),
                                      range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
         TextStatus.attributedText = myMutableString
         
@@ -148,7 +148,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         let string = NSLocalizedString("transaction_declined",bundle :  self.bandle,comment: "")
         var stringArr = string.components(separatedBy: " ")
         let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-        myMutableString.addAttribute(NSAttributedStringKey.foregroundColor , value:  Global.hexStringToUIColor("#C23A2C"),
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  Global.hexStringToUIColor("#C23A2C"),
                                      range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
         TextStatus.attributedText = myMutableString
 ErrorMessage.isHidden = false

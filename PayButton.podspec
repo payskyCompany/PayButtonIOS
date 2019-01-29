@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.1.6'
+  s.version          = '0.1.7'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -39,7 +39,6 @@ Pod::Spec.new do |s|
 
      s.dependency 'IQKeyboardManagerSwift'  , '~> 6.2.0'
      s.dependency "EVReflection"  , '~> 5.9.0'
-     s.dependency 'Toast-Swift' , '~> 3.0.1'
       s.dependency 'EVReflection/Alamofire'  , '~> 5.9.0'
 
          s.dependency 'PayCardsRecognizer'   , '~> 1.1.4'

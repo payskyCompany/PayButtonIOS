@@ -14,7 +14,6 @@ PODS:
   - PopupDialog (0.9.2):
     - DynamicBlurView (~> 3.0.1)
   - QRCode (2.0)
-  - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -26,7 +25,6 @@ DEPENDENCIES:
   - PayCardsRecognizer
   - PopupDialog
   - QRCode
-  - Toast-Swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -39,7 +37,6 @@ SPEC REPOS:
     - PayCardsRecognizer
     - PopupDialog
     - QRCode
-    - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -51,8 +48,7 @@ SPEC CHECKSUMS:
   PayCardsRecognizer: b939eec21c6890d57c9f22cb8856517922b097a2
   PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
-  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 85401518c382f7f77196c2be5f32c7feb1aefb78
+PODFILE CHECKSUM: e35256a426c6aa78bd37e339df0e44ebcae69848
 
 COCOAPODS: 1.5.3

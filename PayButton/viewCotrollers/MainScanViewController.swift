@@ -247,13 +247,13 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         
         self.CardView.backgroundColor = PaySkySDKColor.mainBtnColor
         self.CardImage.image = #imageLiteral(resourceName: "card")
-        self.CardBtn.setTitleColor(UIColor.white, for: UIControlState())
+        self.CardBtn.setTitleColor(UIColor.white, for: UIControl.State())
         
         
         
         self.WalletView.backgroundColor = UIColor.white
         self.WalletImage.image = #imageLiteral(resourceName: "wallet")
-        self.WalletBtn.setTitleColor(UIColor.black, for: UIControlState())
+        self.WalletBtn.setTitleColor(UIColor.black, for: UIControl.State())
         
         selectedCell = 1;
         self.TableViews.reloadData()
@@ -267,13 +267,13 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         
         self.WalletView.backgroundColor = PaySkySDKColor.mainBtnColor
         self.WalletImage.image =  #imageLiteral(resourceName: "selected_wallet")
-        self.WalletBtn.setTitleColor(UIColor.white, for: UIControlState())
+        self.WalletBtn.setTitleColor(UIColor.white, for: UIControl.State())
         
         
         
         self.CardView.backgroundColor = UIColor.white
         self.CardImage.image = #imageLiteral(resourceName: "un_selected_card")
-        self.CardBtn.setTitleColor(UIColor.black, for: UIControlState())
+        self.CardBtn.setTitleColor(UIColor.black, for: UIControl.State())
      
         
         selectedCell = 2;
