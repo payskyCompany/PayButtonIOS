@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
           #s.platform = :osx, '10.7'
           #s.platform = :ios, '8.0'
 
-          s.ios.deployment_target = '11.0'
+         # s.ios.deployment_target = '11.0'
     	s.framework = "UIKit"
 
     s.dependency 'Alamofire' , '~> 4.8.1'

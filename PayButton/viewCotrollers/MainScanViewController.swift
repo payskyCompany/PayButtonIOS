@@ -83,7 +83,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     func completeRequest(transactionStatusResponse: TransactionStatusResponse) {
         delegate?.finishSdkPayment(transactionStatusResponse)
         if self.navigationController != nil {
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }else{
             self.dismiss(animated: true, completion: nil)
             
@@ -234,7 +234,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
 
         
         if self.navigationController != nil {
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }else{
             self.dismiss(animated: true, completion: nil)
 
