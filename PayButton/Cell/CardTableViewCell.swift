@@ -14,6 +14,7 @@ import PayCardsRecognizer
 //CardIOPaymentViewControllerDelegate
 import IQKeyboardManagerSwift
 import PopupDialog
+import AVFoundation
 class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
 ScanCardtDelegate {
     
@@ -120,6 +121,13 @@ ScanCardtDelegate {
         SaveCardBtn.setTitle(NSLocalizedString("proceed",bundle :  self.bandle,comment: ""), for: .normal)
         EnterCardData.text = NSLocalizedString("enter_card_data",bundle :  self.bandle,comment: "")
 
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            self.ScanBtn.isHidden = false
+            
+        } else if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.notDetermined {
+            self.ScanBtn.isHidden = true
+        }
+        
         
         
         
