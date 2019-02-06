@@ -603,7 +603,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C8C91EF7BD8E01215BC5133 /* Pods-PayButton.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2D5764FY5;
 				INFOPLIST_FILE = PayButton/Info.plist;
@@ -622,7 +622,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C60CAADA98BBEF2BEFDBED1 /* Pods-PayButton.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2D5764FY5;
 				INFOPLIST_FILE = PayButton/Info.plist;

@@ -20,7 +20,7 @@ class PaymentData: EVObject {
     var amount = 0 
     var terminalId = ""
     var KEY = ""
-    var currencyCode = 818
+    var currencyCode = 0
     var merchant_name = ""
 
     var PaymentMethod = 0

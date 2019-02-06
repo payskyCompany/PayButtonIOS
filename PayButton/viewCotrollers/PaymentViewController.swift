@@ -99,6 +99,8 @@ public class PaymentViewController  {
                     MainScanViewController.paymentData.PaymentMethod = paymentresponse.PaymentMethod
                 MainScanViewController.paymentData.Is3DS = paymentresponse.Is3DS
                 self.getSatatiQr()
+                
+                
             }else {
                 UIApplication.topViewController()?.view.makeToast(  paymentresponse.Message)
             }
