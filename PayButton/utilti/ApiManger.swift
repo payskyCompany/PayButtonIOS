@@ -19,6 +19,9 @@ public class ApiManger {
         let addcardRequest = ManualPaymentRequest()
         addcardRequest.PAN = PAN
         addcardRequest.cvv2 = cvv2
+        
+        
+        
         addcardRequest.DateExpiration = DateExpiration
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
         executePOST(path: ApiURL.PayByCard,parameters: addcardRequest, completion: { (value) in

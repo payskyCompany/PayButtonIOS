@@ -14,7 +14,7 @@ public class PaymentViewController  {
     public   var mId = ""
     public   var Key = ""
     public   var Currency = ""
-    public static  var refnumber = ""
+    public   var refnumber = ""
     public   var isProduction = false
 
     
@@ -31,8 +31,12 @@ public class PaymentViewController  {
     public func pushViewController()  {
         
         
-        if  ( self.amount.isEmpty ){
+        if  ( self.amount.isEmpty  || self.Currency.isEmpty){
             print("Please enter all  data ");
+            return
+        }
+        if  ( self.refnumber.isEmpty){
+            print("Please enter refnumber   ");
             return
         }
         
@@ -46,7 +50,11 @@ public class PaymentViewController  {
         DoubleAmount = DoubleAmount * 100.00
         
         let paymentData = PaymentData()
+        
+        
+       
         paymentData.amount = Int(DoubleAmount)
+        paymentData.refnumber = refnumber
 
         paymentData.merchantId = mId
         paymentData.terminalId = tId

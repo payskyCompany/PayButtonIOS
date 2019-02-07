@@ -31,19 +31,9 @@ public class ManualPaymentRequest: BaseResponse {
     var IsWebRequest = true
     var ReturnURL = "http://localhost.com/"
 
-    var MerchantReference = getRandom()
+    var MerchantReference = MainScanViewController.paymentData.refnumber
     
-    public static  func getRandom() -> String  {
-        if PaymentViewController.refnumber == "" ||
-            PaymentViewController.refnumber.isEmpty {
-            let myVar: Int = Int(arc4random())
-            return String (myVar)
-        }else{
-            return PaymentViewController.refnumber
-        }
-     
-    }
-
+    var SystemTraceNr = MainScanViewController.paymentData.refnumber
     
    
     

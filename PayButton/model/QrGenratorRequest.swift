@@ -16,6 +16,6 @@ public class QrGenratorRequest: BaseResponse {
     var AmountTrxn = 0
     var TahweelQR: Bool = true
     var mVisaQR: Bool = true
-    
+    var MerchantReference = MainScanViewController.paymentData.refnumber
 
 }

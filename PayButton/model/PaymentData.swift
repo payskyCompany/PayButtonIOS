@@ -22,6 +22,8 @@ class PaymentData: EVObject {
     var KEY = ""
     var currencyCode = 0
     var merchant_name = ""
+    var refnumber = ""
+
 
     var PaymentMethod = 0
 

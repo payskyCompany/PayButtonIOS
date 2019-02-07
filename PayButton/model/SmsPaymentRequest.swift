@@ -15,7 +15,7 @@ public class SmsPaymentRequest: BaseResponse {
     var MobileNumber = ""
     var ISOQR = ""
 
-    
+    var MerchantReference = MainScanViewController.paymentData.refnumber
     
     
     
