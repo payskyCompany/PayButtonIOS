@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.2.5'
+  s.version          = '0.2.7'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
      'PayButton/TestApi/ViewController.swift',
      'PayButton/AppDelegate.swift',
      'PayButton/Info.plist',
+     'PayButton/Assets.xcassets/AppIcon.appiconset/**',
                          ]
            s.platform = :osx, '10.7'
            s.platform = :ios, '8.0'
