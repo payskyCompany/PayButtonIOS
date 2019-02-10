@@ -1,16 +1,9 @@
-/* 
-  LocalizableAR.strings
-  Mzadkm
-
-  Created by Raghda Ramadan on 3/17/17.
-  Copyright © 2017 Amr Saied. All rights reserved.
-*/
 
 
-"Merchant ID" = "Merchant ID";
-"Terminal ID" = "Terminal ID";
+"Merchant ID_paysky" = "Merchant ID";
+"Terminal ID_paysky" = "Terminal ID";
 "Amount" = "Amount";
-"Currency" = "Currency";
+"Currency_paysky" = "Currency";
 
 "Done" = "Done";
 
@@ -21,7 +14,7 @@
 
 
 
-"app_name"="PayButton";
+"app_name_paysky"="PayButton";
 "pay_now"="Pay Now";
 "quick_payment_from"="Quick Payment form";
 "merchant"="MERCHANT";

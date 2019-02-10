@@ -13,6 +13,26 @@ import ObjectiveC
 
 // Swift 3:
 
+
+extension String {
+    func localizedPaySky(bundle: Bundle = .main, tableName: String = "LocalizablePaySKy") -> String {
+//        var bandle :Bundle!
+//
+//        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
+//
+//
+//        if path != nil {
+//            bandle = Bundle(path: path!) ?? Bundle.main
+//        }else {
+//            bandle = Bundle.main
+//
+//        }
+    
+        
+        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+    }
+}
+
 public extension UITextField {
     
     /// SwifterSwift: UITextField text type.
@@ -176,8 +196,8 @@ extension UITextView {
         self.contentInset = UIEdgeInsets.init(top: 0, left: paddingLeft, bottom: 0, right: paddingRight)
 
 //        self.attributedPlaceholder = myMutableStringTitle
-//        self.text = NSLocalizedString("placholder",bundle :  self.bandle,comment: "")
-//        self.placeholderText = NSLocalizedString("placholder",bundle :  self.bandle,comment: "")
+//        self.text = "placholder".localizedPaySky()
+//        self.placeholderText = "placholder".localizedPaySky()
         self.textColor =  UIColor.lightGray
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8

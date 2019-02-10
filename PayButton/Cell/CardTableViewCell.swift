@@ -118,8 +118,8 @@ ScanCardtDelegate {
         super.awakeFromNib()
         
         
-        SaveCardBtn.setTitle(NSLocalizedString("proceed",bundle :  self.bandle,comment: ""), for: .normal)
-        EnterCardData.text = NSLocalizedString("enter_card_data",bundle :  self.bandle,comment: "")
+        SaveCardBtn.setTitle("proceed".localizedPaySky(), for: .normal)
+        EnterCardData.text = "enter_card_data".localizedPaySky()
 
         if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
             self.ScanBtn.isHidden = false
@@ -139,7 +139,7 @@ ScanCardtDelegate {
         IQToolbar.appearance().barTintColor = UIColor.white
         IQToolbar.appearance().shouldHideToolbarPlaceholder = false
         
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = NSLocalizedString("Done",bundle :  self.bandle,comment: "")
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedPaySky()
         IQKeyboardManager.shared.toolbarTintColor = UIColor.white
         IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.NavColor
         IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
@@ -154,17 +154,17 @@ ScanCardtDelegate {
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( NSLocalizedString("card_number",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
-        CVCTF.setTextFieldStyle( NSLocalizedString("cvc",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
+        CVCTF.setTextFieldStyle( "cvc".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
         
 
         
-        DateTF.setTextFieldStyle(NSLocalizedString("expire_date",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
+        DateTF.setTextFieldStyle("expire_date".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
         
         
-        CardHolderName.setTextFieldStyle(NSLocalizedString("name_on_card",bundle :  self.bandle,comment: "")  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
+        CardHolderName.setTextFieldStyle("name_on_card".localizedPaySky()  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
         MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
         MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[00]/[00]")
@@ -298,7 +298,7 @@ ScanCardtDelegate {
 
         
         if self.cardNumber.isEmpty {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_NOTVALID",bundle :  self.bandle,comment: "") )
+            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedPaySky() )
             
             return;
         }
@@ -306,7 +306,7 @@ ScanCardtDelegate {
         
         
         if   !self.validCard {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("cardNumber_VALID",bundle :  self.bandle,comment: "") )
+            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky() )
             
             return;
         }
@@ -314,7 +314,7 @@ ScanCardtDelegate {
         
         if (self.CardHolderName.text?.isEmpty)! {
             
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CardHolderNameRequird",bundle :  self.bandle,comment: "") )
+            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedPaySky() )
             
             return;
         }
@@ -323,7 +323,7 @@ ScanCardtDelegate {
         
         if (self.DateTF.text?.isEmpty)! || !validDate {
             UIApplication.topViewController()?.view.makeToast(
-                NSLocalizedString("DateTF_NOTVALID",bundle :  self.bandle,comment: "") )
+                "DateTF_NOTVALID".localizedPaySky() )
             
             return;
         }
@@ -333,7 +333,7 @@ ScanCardtDelegate {
         
         if  !validDate {
             UIApplication.topViewController()?.view.makeToast(
-                NSLocalizedString("DateTF_NOTVALID_AC",bundle :  self.bandle,comment: "") )
+                "DateTF_NOTVALID_AC".localizedPaySky() )
             
             return;
         }
@@ -342,7 +342,7 @@ ScanCardtDelegate {
         
         if (self.CVCTF.text?.isEmpty)! {
             
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("CVCTF_NOTVALID",bundle :  self.bandle,comment: "") )
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedPaySky() )
             
             return;
         }

@@ -2,12 +2,12 @@
 
 
 
-"app_name"="زر الدفع";
+"app_name_paysky"="زر الدفع";
 
-"Merchant ID" = "رقم التاجر";
-"Terminal ID" = "نقطة البيع";
+"Merchant ID_paysky" = "رقم التاجر";
+"Terminal ID_paysky" = "نقطة البيع";
 "Amount" = "المبلغ";
-"Currency" = "العملة";
+"Currency_paysky" = "العملة";
 
 "change_lang" = "تغيير اللغة";
 

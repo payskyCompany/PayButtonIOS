@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQToolbar.appearance().barTintColor = UIColor.white
         IQToolbar.appearance().shouldHideToolbarPlaceholder = false
         
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText =  NSLocalizedString("Done",comment: "")
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText =  "Done".localizedPaySky()
         IQKeyboardManager.shared.toolbarTintColor = UIColor.white
         IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.mainBtnColor
         IQKeyboardManager.shared.placeholderFont = Global.setFont(13)

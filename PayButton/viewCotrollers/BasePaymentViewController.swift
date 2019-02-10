@@ -13,25 +13,17 @@ class BasePaymentViewController: UIViewController {
     @IBOutlet weak var TermsAndCondition: UILabel!
     
 
-    var bandle : Bundle!
-    var fromNav = false
+     var fromNav = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            let path = Bundle(for: BasePaymentViewController.self).path(forResource:"PayButton", ofType: "bundle")
-        if path == nil {
-            bandle = Bundle.main
-        }else {
-            bandle = Bundle(path: path!) ?? Bundle.main
+          
+        
+        TermsAndCondition?.text = "terms_conditions".localizedPaySky()
 
-        }
-        
-        
-   
         self.navigationController?.isNavigationBarHidden = true
         
         
-     TermsAndCondition?.text = NSLocalizedString("terms_conditions",bundle :  self.bandle,comment: "")
         
         
         

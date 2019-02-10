@@ -41,6 +41,11 @@ class ViewController: UIViewController, PaymentDelegate  {
     @IBOutlet weak var MerchantIdEd: UITextField!
     @IBOutlet weak var MerchantIdLabel: UILabel!
     @IBOutlet weak var AppName: UILabel!
+    
+    @IBOutlet weak var RefLabel: UILabel!
+    
+    @IBOutlet weak var RefValue: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -48,35 +53,36 @@ class ViewController: UIViewController, PaymentDelegate  {
         
         
         
-        ChangeLang.setTitle(NSLocalizedString("change_lang",comment: ""), for: .normal)
-          PayBtn.setTitle(NSLocalizedString("pay_now",comment: ""), for: .normal)
+        ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
+          PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
           PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
-        MerchantIdLabel.text = NSLocalizedString("Merchant ID",comment: "")
-        MerchantIdEd.setTextFieldStyle(NSLocalizedString("Merchant ID",comment: ""), title: "11400000001", textColor: UIColor.black, font:Global.setFont(14) ,
+        MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "45374", textColor: UIColor.black, font:Global.setFont(14) ,
                                         borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
         
         
   
+        RefLabel.text = "ref_number".localizedPaySky()
+        RefValue.setTextFieldStyle("ref_number".localizedPaySky(), title: "3424324234", textColor: UIColor.black, font:Global.setFont(14) ,
+                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
-        
-        
-        TerminalIDLabel.text = NSLocalizedString("Terminal ID",comment: "")
-        TerminalIDTF.setTextFieldStyle(NSLocalizedString("Terminal ID",comment: ""), title: "10002000", textColor: UIColor.black, font:Global.setFont(14) ,
+        TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
+        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "84949616", textColor: UIColor.black, font:Global.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
      
         
-        AmountLabel.text = NSLocalizedString("Amount",comment: "")
-        AmountEd.setTextFieldStyle(NSLocalizedString("Amount",comment: ""), title: "20", textColor: UIColor.black, font:Global.setFont(14) ,
+        AmountLabel.text = "Amount".localizedPaySky()
+        AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "20", textColor: UIColor.black, font:Global.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
-        CurrencyLabel.text = NSLocalizedString("Currency",comment: "")
-        AppName.text = NSLocalizedString("app_name",comment: "")
-        CurrencyEd.setTextFieldStyle(NSLocalizedString("Currency",comment: ""), title: "826", textColor: UIColor.black, font:Global.setFont(14) ,
+        CurrencyLabel.text = "Currency_paysky".localizedPaySky()
+        AppName.text = "app_name_paysky".localizedPaySky()
+        CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "784", textColor: UIColor.black, font:Global.setFont(14) ,
                                    borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
@@ -99,60 +105,61 @@ class ViewController: UIViewController, PaymentDelegate  {
         
      
         if (MerchantIdEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre merchant",comment: ""))
+            UIApplication.topViewController()?.view.makeToast( "please entre merchant".localizedPaySky())
             return
         }
         
         if (TerminalIDTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre terminal",comment: ""))
+            UIApplication.topViewController()?.view.makeToast( "please entre terminal".localizedPaySky())
             return
         }
         
         if (AmountEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre amount",comment: ""))
+            UIApplication.topViewController()?.view.makeToast( "please entre amount".localizedPaySky())
             return
         }
         
         
         if (CurrencyEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(NSLocalizedString("please entre currency",comment: ""))
+            UIApplication.topViewController()?.view.makeToast( "please entre currency".localizedPaySky())
             return
         }
         
         
         
+        let paymentViewController = PaymentViewController ()
+        paymentViewController.amount =  AmountEd.text!
+        paymentViewController.delegate = self
+        paymentViewController.refnumber = RefValue.text ?? ""
+
+        paymentViewController.mId = MerchantIdEd.text!
+        paymentViewController.tId = TerminalIDTF.text!
+        paymentViewController.Currency = CurrencyEd.text!
+        paymentViewController.isProduction = false   // set it true if you want to go live
+
+
+
+        paymentViewController.Key = "34376635346431302D353564662D346334652D623965302D656239653030306637323161"
+
+        paymentViewController.pushViewController()
+
+
+        
+        
+//
 //        let paymentViewController = PaymentViewController ()
-//        paymentViewController.amount =  AmountEd.text!
+//        paymentViewController.amount =  "20"
 //        paymentViewController.delegate = self
 //
-//        paymentViewController.mId = MerchantIdEd.text!
-//        paymentViewController.tId = TerminalIDTF.text!
-//        paymentViewController.Currency = CurrencyEd.text!
-//        paymentViewController.isProduction = false   // set it true if you want to go live
+//        paymentViewController.mId = "45374"
+//        paymentViewController.tId = "84949616"
+//        paymentViewController.Currency = "784"
 //
 //
-//
-//        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
+//        paymentViewController.refnumber = "123456789";
+//        paymentViewController.Key = "34376635346431302D353564662D346334652D623965302D656239653030306637323161"
 //
 //        paymentViewController.pushViewController()
-//
-//
-        
-        
-        
-        let paymentViewController = PaymentViewController ()
-        paymentViewController.amount =  "20"
-        paymentViewController.delegate = self
-        
-        paymentViewController.mId = "45374"
-        paymentViewController.tId = "84949616"
-        paymentViewController.Currency = "784"
-        
-        
-        
-        paymentViewController.Key = "34376635346431302D353564662D346334652D623965302D656239653030306637323161"
-        
-        paymentViewController.pushViewController()
 
         
     }

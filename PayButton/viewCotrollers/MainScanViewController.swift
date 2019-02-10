@@ -166,22 +166,22 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         self.CardView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         self.CardView.dropShadow()
         self.WalletView.dropShadow()
-        self.HeaderLabel.text =  NSLocalizedString("quick_payment_form",bundle :  self.bandle,comment: "")
+        self.HeaderLabel.text =  "quick_payment_form".localizedPaySky()
         
-        self.CardBtn.setTitle( NSLocalizedString("card",bundle :  self.bandle,comment: ""), for: .normal)
-        self.WalletBtn.setTitle( NSLocalizedString("wallet",bundle :  self.bandle,comment: ""), for: .normal)
+        self.CardBtn.setTitle( "card".localizedPaySky(), for: .normal)
+        self.WalletBtn.setTitle( "wallet".localizedPaySky(), for: .normal)
 
         
-        self.MerchantLabel.text =  NSLocalizedString("merchant",bundle :  self.bandle,comment: "")
+        self.MerchantLabel.text =  "merchant".localizedPaySky()
         
      
         
         let currncy =  cleanDollars(String(MainScanViewController.paymentData.amount / 100))
         
-        self.AmountLabel.text =  NSLocalizedString("amount",bundle :  self.bandle,comment: "")
+        self.AmountLabel.text =  "amount".localizedPaySky()
 
-        self.AmountValue.text =   NSLocalizedString("\(MainScanViewController.paymentData.currencyCode )"  
-            ,bundle :  self.bandle,comment: "") + " " + currncy
+        self.AmountValue.text =    "\(MainScanViewController.paymentData.currencyCode )"  .localizedPaySky()
+           + " " + currncy
         self.MerchantId.text = String (MainScanViewController.paymentData.merchant_name)
         
         

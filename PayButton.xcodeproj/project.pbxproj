@@ -16,7 +16,6 @@
 		C528E2542166129000CAFBC4 /* AlertDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */; };
 		C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2562166130700CAFBC4 /* BaseResponse.swift */; };
 		C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */; };
-		C528E25F216621B600CAFBC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C528E25C216621B600CAFBC4 /* Localizable.strings */; };
 		C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */; };
 		C5378886216CEFC10058CAC8 /* PaymentMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5378885216CEFC10058CAC8 /* PaymentMethodResponse.swift */; };
 		C5378888216CF01C0058CAC8 /* PaymentMethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5378887216CF01C0058CAC8 /* PaymentMethodRequest.swift */; };
@@ -24,6 +23,7 @@
 		C537888C216CF5B80058CAC8 /* Process3DSTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537888B216CF5B80058CAC8 /* Process3DSTransactionRequest.swift */; };
 		C537888E216CF6470058CAC8 /* Process3DSTransactionResonse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537888D216CF6470058CAC8 /* Process3DSTransactionResonse.swift */; };
 		C5378890216D06650058CAC8 /* WebViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537888F216D06640058CAC8 /* WebViewTableViewCell.swift */; };
+		C5A1C9B62210351200D9F663 /* LocalizablePaySKy.strings in Resources */ = {isa = PBXBuildFile; fileRef = C5A1C9B42210351200D9F663 /* LocalizablePaySKy.strings */; };
 		C5A4164721650280008A93B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4164621650280008A93B3 /* AppDelegate.swift */; };
 		C5A4164921650280008A93B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4164821650280008A93B3 /* ViewController.swift */; };
 		C5A4164C21650280008A93B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164A21650280008A93B3 /* Main.storyboard */; };
@@ -66,8 +66,6 @@
 		C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertDialogViewController.xib; sourceTree = "<group>"; };
 		C528E2562166130700CAFBC4 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDialogViewController.swift; sourceTree = "<group>"; };
-		C528E25D216621B600CAFBC4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C528E25E216621B600CAFBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PayButtonBoard.storyboard; sourceTree = "<group>"; };
 		C5378885216CEFC10058CAC8 /* PaymentMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResponse.swift; sourceTree = "<group>"; };
 		C5378887216CF01C0058CAC8 /* PaymentMethodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodRequest.swift; sourceTree = "<group>"; };
@@ -75,6 +73,8 @@
 		C537888B216CF5B80058CAC8 /* Process3DSTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process3DSTransactionRequest.swift; sourceTree = "<group>"; };
 		C537888D216CF6470058CAC8 /* Process3DSTransactionResonse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process3DSTransactionResonse.swift; sourceTree = "<group>"; };
 		C537888F216D06640058CAC8 /* WebViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTableViewCell.swift; sourceTree = "<group>"; };
+		C5A1C9B52210351200D9F663 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LocalizablePaySKy.strings; sourceTree = "<group>"; };
+		C5A1C9B72210351800D9F663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizablePaySKy.strings; sourceTree = "<group>"; };
 		C5A4164321650280008A93B3 /* PayButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A4164621650280008A93B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5A4164821650280008A93B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		C528E25B216621B600CAFBC4 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				C528E25C216621B600CAFBC4 /* Localizable.strings */,
+				C5A1C9B42210351200D9F663 /* LocalizablePaySKy.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -345,8 +345,8 @@
 				C5F5D81D216650C70090E5FF /* CardTableViewCell.xib in Resources */,
 				C5190553216FA17600664149 /* WebViewTableViewCell.xib in Resources */,
 				C5B900E82168E7F000301C13 /* QRTableViewCell.xib in Resources */,
-				C528E25F216621B600CAFBC4 /* Localizable.strings in Resources */,
 				C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */,
+				C5A1C9B62210351200D9F663 /* LocalizablePaySKy.strings in Resources */,
 				C528E2542166129000CAFBC4 /* AlertDialogViewController.xib in Resources */,
 				C5A4164E21650280008A93B3 /* Assets.xcassets in Resources */,
 				C5A4164C21650280008A93B3 /* Main.storyboard in Resources */,
@@ -453,13 +453,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C528E25C216621B600CAFBC4 /* Localizable.strings */ = {
+		C5A1C9B42210351200D9F663 /* LocalizablePaySKy.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C528E25D216621B600CAFBC4 /* ar */,
-				C528E25E216621B600CAFBC4 /* en */,
+				C5A1C9B52210351200D9F663 /* ar */,
+				C5A1C9B72210351800D9F663 /* en */,
 			);
-			name = Localizable.strings;
+			name = LocalizablePaySKy.strings;
 			sourceTree = "<group>";
 		};
 		C5A4164A21650280008A93B3 /* Main.storyboard */ = {

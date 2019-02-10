@@ -33,11 +33,11 @@ class QRTableViewCell: BaseUITableViewCell {
         
         
         requestBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        QrLabelCenter.text =  NSLocalizedString("or",bundle :  self.bandle,comment: "")
+        QrLabelCenter.text =  "or".localizedPaySky()
 
-        ScanQrLabel.text =  NSLocalizedString("open_wallet_app",bundle :  self.bandle,comment: "")
-        CantScanLabel.text =  NSLocalizedString("cant_scan_code",bundle :  self.bandle,comment: "")
-        requestBtn.setTitle(NSLocalizedString("request_payment",bundle :  self.bandle,comment: ""), for: .normal)
+        ScanQrLabel.text =  "open_wallet_app".localizedPaySky()
+        CantScanLabel.text =  "cant_scan_code".localizedPaySky()
+        requestBtn.setTitle("request_payment".localizedPaySky(), for: .normal)
         
         let qrCode = QRCode( MainScanViewController.paymentData.staticQR )
         self.QrImage.image =  qrCode?.image
@@ -71,7 +71,7 @@ class QRTableViewCell: BaseUITableViewCell {
             if base.Success {
                 popupVC.dismiss(animated: true, completion: {
                     UIApplication.topViewController()?.view.makeToast(
-                        NSLocalizedString("request_send_to_mobile",bundle :  self.bandle,comment: "")
+                        "request_send_to_mobile".localizedPaySky()
                     )
                 })
                 

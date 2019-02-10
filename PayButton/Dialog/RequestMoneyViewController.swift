@@ -30,10 +30,10 @@ class RequestMoneyViewController: BasePaymentViewController {
         super.viewDidLoad()
         
         self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        HeaderLabel.text = NSLocalizedString("request_payment",bundle :  self.bandle,comment: "")
-        MessageLabel.text =  NSLocalizedString("enter_mobile_number",bundle :  self.bandle,comment: "")
+        HeaderLabel.text = "request_payment".localizedPaySky()
+        MessageLabel.text =  "enter_mobile_number".localizedPaySky()
         
-        MobileNumber.setTextFieldStyle( NSLocalizedString("mobile_number",bundle :  self.bandle,comment: "") , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        MobileNumber.setTextFieldStyle( "mobile_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
 
         self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
 
@@ -46,7 +46,7 @@ class RequestMoneyViewController: BasePaymentViewController {
         
         if (self.MobileNumber.text?.isEmpty)! {
             UIApplication.topViewController()?.view.makeToast(
-                NSLocalizedString("mobile_number_valid",bundle :  self.bandle,comment: "") )
+                "mobile_number_valid".localizedPaySky() )
             
             return
         }
@@ -65,7 +65,7 @@ class RequestMoneyViewController: BasePaymentViewController {
                 }
                 
             }else{
-                UIApplication.topViewController()?.showAlert( NSLocalizedString("Error",bundle :  self.bandle,comment: ""), message:  base.Message)
+                UIApplication.topViewController()?.showAlert( "Error".localizedPaySky(), message:  base.Message)
             }
         }
         

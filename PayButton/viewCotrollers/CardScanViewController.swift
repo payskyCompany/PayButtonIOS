@@ -31,7 +31,7 @@ class CardScanViewController: BasePaymentViewController ,PayCardsRecognizerPlatf
         HeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.CloseImage.isUserInteractionEnabled = true
         self.CloseImage.addGestureRecognizer(tap3)
-        HeaderLabel.text = NSLocalizedString("scanCard",bundle :  self.bandle,comment: "")
+        HeaderLabel.text = "scanCard".localizedPaySky()
     }
 
     override func didReceiveMemoryWarning() {
