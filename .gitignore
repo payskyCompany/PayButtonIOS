@@ -2,6 +2,7 @@
 build/
 DerivedData
 build.xcarchive
+PayButton/Assets.xcassets/AppIcon.appiconset/
 
 
 ## Various settings
