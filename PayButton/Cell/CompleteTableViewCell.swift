@@ -80,7 +80,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         if (EmailED.text?.isEmpty)! {
             UIApplication.topViewController()?.view.makeToast(  "please entre your mail".localizedPaySky()  )
             return
-        }
+        } 
         
         if !(EmailED.text?.isValidEmail())! {
             UIApplication.topViewController()?.view.makeToast(  "please entre valid mail".localizedPaySky())
