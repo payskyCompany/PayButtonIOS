@@ -16,20 +16,22 @@ import ObjectiveC
 
 extension String {
     func localizedPaySky(bundle: Bundle = .main, tableName: String = "LocalizablePaySKy") -> String {
-//        var bandle :Bundle!
-//
-//        let path = Bundle(for: CardTableViewCell.self).path(forResource:"PayButton", ofType: "bundle")
-//
-//
-//        if path != nil {
-//            bandle = Bundle(path: path!) ?? Bundle.main
-//        }else {
-//            bandle = Bundle.main
-//
-//        }
-    
+        var bandle :Bundle!
         
-        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+        
+        
+        let path = Bundle(for: BasePaymentViewController.self).path(forResource:"PayButton", ofType: "bundle")
+         
+        
+        if path != nil {
+            bandle = Bundle(path: path!) ?? Bundle.main
+        }else {
+            bandle = Bundle.main
+            
+        }
+        
+        
+        return NSLocalizedString(self, tableName: tableName,bundle: bandle, value: "**\(self)**", comment: "")
     }
 }
 
