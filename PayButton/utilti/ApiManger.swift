@@ -13,12 +13,13 @@ public class ApiManger {
 
     
     
-     static func  PayByCard( PAN:String,  cvv2:String,
+     static func  PayByCard( CardHolderName :String ,PAN:String,  cvv2:String,
                              DateExpiration:String,
                              completion: @escaping (TransactionStatusResponse) -> ()){
         let addcardRequest = ManualPaymentRequest()
         addcardRequest.PAN = PAN
         addcardRequest.cvv2 = cvv2
+        addcardRequest.CardHolderName = CardHolderName
         
         
         

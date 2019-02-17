@@ -53,7 +53,7 @@ class RequestMoneyViewController: BasePaymentViewController {
         
         
         
-        ApiManger.requestToPay( MobileNumber: (self.MobileNumber.text)!) { (base) in
+        ApiManger.requestToPay( MobileNumber: (self.MobileNumber.text?.replacedArabicDigitsWithEnglish)!) { (base) in
             if base.Success {
                 
                 if self.SendHandler == nil {

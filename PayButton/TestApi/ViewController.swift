@@ -126,40 +126,40 @@ class ViewController: UIViewController, PaymentDelegate  {
         }
         
         
-        
-        let paymentViewController = PaymentViewController ()
-        paymentViewController.amount =  AmountEd.text!
-        paymentViewController.delegate = self
-        paymentViewController.refnumber = RefValue.text ?? ""
-
-        paymentViewController.mId = MerchantIdEd.text!
-        paymentViewController.tId = TerminalIDTF.text!
-        paymentViewController.Currency = CurrencyEd.text!
-        paymentViewController.isProduction = false   // set it true if you want to go live
-
-
-
-        paymentViewController.Key = "34376635346431302D353564662D346334652D623965302D656239653030306637323161"
-
-        paymentViewController.pushViewController()
-
-
-        
-        
 //
 //        let paymentViewController = PaymentViewController ()
-//        paymentViewController.amount =  "20"
+//        paymentViewController.amount =  AmountEd.text!
 //        paymentViewController.delegate = self
+//        paymentViewController.refnumber = RefValue.text ?? ""
 //
-//        paymentViewController.mId = "45374"
-//        paymentViewController.tId = "84949616"
-//        paymentViewController.Currency = "784"
+//        paymentViewController.mId = MerchantIdEd.text!
+//        paymentViewController.tId = TerminalIDTF.text!
+//        paymentViewController.Currency = CurrencyEd.text!
+//        paymentViewController.isProduction = false   // set it true if you want to go live
 //
 //
-//        paymentViewController.refnumber = "123456789";
-//        paymentViewController.Key = "34376635346431302D353564662D346334652D623965302D656239653030306637323161"
+//
+//        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
 //
 //        paymentViewController.pushViewController()
+//
+//
+//
+        
+
+        let paymentViewController = PaymentViewController ()
+        paymentViewController.amount =  "20"
+        paymentViewController.delegate = self
+
+        paymentViewController.mId = "43808"
+        paymentViewController.tId = "222222"
+        paymentViewController.Currency = "818"
+
+
+        paymentViewController.refnumber = "123456789";
+        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
+
+        paymentViewController.pushViewController()
 
         
     }

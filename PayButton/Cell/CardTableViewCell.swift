@@ -90,6 +90,9 @@ ScanCardtDelegate {
     var isChecked = true
     var MaskedCreditCard: MaskedTextFieldDelegate!
     var MaskedDateExpired: MaskedTextFieldDelegate!
+    var MaskedCVC: MaskedTextFieldDelegate!
+
+    
     
     
     var cardNumber = ""
@@ -168,15 +171,18 @@ ScanCardtDelegate {
         
         MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
         MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[00]/[00]")
-        
+        MaskedCVC = MaskedTextFieldDelegate(primaryFormat: "[000]")
+
         
         
         MaskedCreditCard.listener = self
         MaskedDateExpired.listener = self
-        
+        MaskedCVC.listener = self
+
         CardNumbeTV.delegate = MaskedCreditCard
         CardNumbeTV.tag = 1
         DateTF.delegate = MaskedDateExpired
+        CVCTF.delegate = MaskedCVC
         DateTF.tag = 2
         //        CardIOUtilities.preload()
         
@@ -199,11 +205,13 @@ ScanCardtDelegate {
         didFillMandatoryCharacters complete: Bool,
         didExtractValue value: String
         ) {
-        if  textField.tag  == 1 {
+        
+         textField.text = textField.text?.replacedArabicDigitsWithEnglish
+         if  textField.tag  == 1 {
 
-            self.cardNumber = value
+            self.cardNumber = value.replacedArabicDigitsWithEnglish
             
-            if let type = creditCardValidator.type(from: value) {
+            if let type = creditCardValidator.type(from: value.replacedArabicDigitsWithEnglish) {
 
                 
                 if type.name == "Visa" {
@@ -240,7 +248,7 @@ ScanCardtDelegate {
                 self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
             }
             
-            if self.creditCardValidator.validate(string:value) {
+            if self.creditCardValidator.validate(string:value.replacedArabicDigitsWithEnglish) {
                 // Card number is valid
                 
                 
@@ -263,8 +271,8 @@ ScanCardtDelegate {
         }else if  textField.tag  == 2 {
             
             if value.count == 4 {
-                self.year  = String(value.suffix(2))
-                self.month  = String(value.prefix(2))
+                self.year  = String(value.replacedArabicDigitsWithEnglish.suffix(2))
+                self.month  = String(value.replacedArabicDigitsWithEnglish.prefix(2))
                 
                 if Int ( self.year)! > 18 && Int ( self.month)! < 13  {
                     validDate = true;
@@ -352,6 +360,8 @@ ScanCardtDelegate {
 
         let addcardRequest = ManualPaymentRequest()
         addcardRequest.PAN = self.cardNumber
+        addcardRequest.CardHolderName = self.CardHolderName.text ?? ""
+
         addcardRequest.CVV2 =  self.CVCTF.text!
         addcardRequest.DateExpiration = YearMonth
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
@@ -368,16 +378,6 @@ ScanCardtDelegate {
                     
                     self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse, manualPaymentRequest: addcardRequest)
                
-//                let popupVC = DsWebViewViewController(nibName: "DsWebViewViewController", bundle: nil)
-                
-//                    popupVC.manualPaymentRequest = addcardRequest
-//                    popupVC.compose3DSTransactionResponse = transactionStatusResponse
-//                    popupVC.SendHandler = {(value) in
-//
-
-//
-        
-                    
                 
                 }else {
                     UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
@@ -388,7 +388,7 @@ ScanCardtDelegate {
             }
             
         }else {
-            ApiManger.PayByCard(PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
+            ApiManger.PayByCard(CardHolderName : self.CardHolderName.text! , PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
                 
                 
                 transactionStatusResponse.FROMWHERE = "Card"

@@ -24,6 +24,8 @@ public class ManualPaymentRequest: BaseResponse {
     
     var CurrencyCodeTrxn = MainScanViewController.paymentData.currencyCode
     var cvv2 = ""
+    var CardHolderName = ""
+    
     var CVV2 = ""
     var DateExpiration = ""
     var PAN = ""
