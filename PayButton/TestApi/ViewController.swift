@@ -151,13 +151,13 @@ class ViewController: UIViewController, PaymentDelegate  {
         paymentViewController.amount =  "20"
         paymentViewController.delegate = self
 
-        paymentViewController.mId = "43808"
-        paymentViewController.tId = "222222"
-        paymentViewController.Currency = "818"
+        paymentViewController.mId = "44067"
+        paymentViewController.tId = "4400068"
+        paymentViewController.Currency = "826"
 
 
         paymentViewController.refnumber = "123456789";
-        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
+        paymentViewController.Key = "61616564366361622D323762632D343134642D613637652D613532656439663136343339"
 
         paymentViewController.pushViewController()
 

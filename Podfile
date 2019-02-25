@@ -11,10 +11,7 @@ target 'PayButton' do
     pod "EVReflection"
     pod 'EVReflection/Alamofire'
     pod 'PopupDialog'
-    pod 'InputMask'
-    pod "CreditCardValidator"
     pod 'PayCardsRecognizer'
-    pod 'QRCode'
     use_frameworks!
 
 end

@@ -106,6 +106,8 @@ public class PaymentViewController  {
                 MainScanViewController.paymentData.currencyCode = Int ( self.Currency )!
                     MainScanViewController.paymentData.PaymentMethod = paymentresponse.PaymentMethod
                 MainScanViewController.paymentData.Is3DS = paymentresponse.Is3DS
+                
+            
                 self.getSatatiQr()
                 
                 
@@ -138,16 +140,30 @@ public class PaymentViewController  {
             MainScanViewController.paymentData.staticQR = qrResponse.ISOQR
             MainScanViewController.paymentData.orderId = qrResponse.TxnId
             
-      
+            self.gotoNextPage()
             
         }
         
-         }
+         }else{
+            
+            
+            self.gotoNextPage()
+
+        }
         
         
         
      
         
+      
+        
+        
+        
+    }
+
+    public func gotoNextPage(){
+        UIApplication.topViewController()?.view.hideLoadingIndicator()
+
         let psb = UIStoryboard.init(name: "PayButtonBoard", bundle: nil)
         let vc :MainScanViewController = psb.instantiateViewController(withIdentifier: "MainScanViewController") as! MainScanViewController
         vc.delegate = self.delegate
@@ -160,12 +176,7 @@ public class PaymentViewController  {
             vc.fromNav = false
             
         }
-        
-        
-        
     }
-
-    
 }
 public protocol PaymentDelegate: class {
     func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse )

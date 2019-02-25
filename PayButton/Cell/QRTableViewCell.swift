@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QRCode
 import PopupDialog
 class QRTableViewCell: BaseUITableViewCell {
 

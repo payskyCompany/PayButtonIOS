@@ -43,6 +43,8 @@ func executePOST(path:String,method:HTTPMethod? = .post,
             if !path.contains(ApiURL.GenerateQR)
                 &&
                 !path.contains(ApiURL.CheckTxnStatus)
+                &&
+                !path.contains(ApiURL.CheckPaymentMethod)
             {
             UIApplication.topViewController()?.view.hideLoadingIndicator()
             }

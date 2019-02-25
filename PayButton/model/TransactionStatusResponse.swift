@@ -20,7 +20,7 @@ public class TransactionStatusResponse: BaseResponse {
     
     
  public    var SystemReference = ""
-   public var NetworkReference = ""
+ public var NetworkReference = ""
 
   public  var FROMWHERE = "Card"
 

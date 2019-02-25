@@ -50,6 +50,35 @@
 		C5F5D81F216655D40090E5FF /* CardScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D81E216655D40090E5FF /* CardScanViewController.swift */; };
 		C5F5D821216664490090E5FF /* MainScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D820216664490090E5FF /* MainScanViewController.swift */; };
 		C5F5D823216668680090E5FF /* BaseUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D822216668680090E5FF /* BaseUITableViewCell.swift */; };
+		C5FD73FA22240168008BD2AE /* CreditCardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD73F822240168008BD2AE /* CreditCardValidator.swift */; };
+		C5FD73FB22240168008BD2AE /* CreditCardValidationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD73F922240168008BD2AE /* CreditCardValidationType.swift */; };
+		C5FD7424222405D3008BD2AE /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7408222405D3008BD2AE /* Mask.swift */; };
+		C5FD7425222405D3008BD2AE /* Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD740A222405D3008BD2AE /* Next.swift */; };
+		C5FD7426222405D3008BD2AE /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD740B222405D3008BD2AE /* State.swift */; };
+		C5FD7427222405D3008BD2AE /* Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD740C222405D3008BD2AE /* Notation.swift */; };
+		C5FD7428222405D3008BD2AE /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD740E222405D3008BD2AE /* ValueState.swift */; };
+		C5FD7429222405D3008BD2AE /* EOLState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD740F222405D3008BD2AE /* EOLState.swift */; };
+		C5FD742A222405D3008BD2AE /* FixedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7410222405D3008BD2AE /* FixedState.swift */; };
+		C5FD742B222405D3008BD2AE /* OptionalValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7411222405D3008BD2AE /* OptionalValueState.swift */; };
+		C5FD742C222405D3008BD2AE /* FreeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7412222405D3008BD2AE /* FreeState.swift */; };
+		C5FD742D222405D3008BD2AE /* CaretString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7413222405D3008BD2AE /* CaretString.swift */; };
+		C5FD742E222405D3008BD2AE /* MaskedTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7415222405D3008BD2AE /* MaskedTextViewDelegate.swift */; };
+		C5FD742F222405D3008BD2AE /* MaskedTextInputListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7416222405D3008BD2AE /* MaskedTextInputListener.swift */; };
+		C5FD7430222405D3008BD2AE /* UITextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7417222405D3008BD2AE /* UITextInput.swift */; };
+		C5FD7431222405D3008BD2AE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7418222405D3008BD2AE /* UITextField.swift */; };
+		C5FD7432222405D3008BD2AE /* ReversedMaskTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7419222405D3008BD2AE /* ReversedMaskTextFieldDelegate.swift */; };
+		C5FD7433222405D3008BD2AE /* MaskedTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD741A222405D3008BD2AE /* MaskedTextFieldDelegate.swift */; };
+		C5FD7434222405D3008BD2AE /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD741B222405D3008BD2AE /* UITextView.swift */; };
+		C5FD7435222405D3008BD2AE /* CaretStringIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD741D222405D3008BD2AE /* CaretStringIterator.swift */; };
+		C5FD7436222405D3008BD2AE /* AffinityCalculationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD741E222405D3008BD2AE /* AffinityCalculationStrategy.swift */; };
+		C5FD7437222405D3008BD2AE /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD741F222405D3008BD2AE /* Compiler.swift */; };
+		C5FD7438222405D3008BD2AE /* FormatSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7420222405D3008BD2AE /* FormatSanitizer.swift */; };
+		C5FD7439222405D3008BD2AE /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7421222405D3008BD2AE /* NSCharacterSet.swift */; };
+		C5FD743A222405D3008BD2AE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD7422222405D3008BD2AE /* String.swift */; };
+		C5FD7440222406D8008BD2AE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743C222406D8008BD2AE /* UIImageViewExtension.swift */; };
+		C5FD7441222406D8008BD2AE /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743D222406D8008BD2AE /* CIImageExtension.swift */; };
+		C5FD7442222406D8008BD2AE /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743E222406D8008BD2AE /* CIColorExtension.swift */; };
+		C5FD7443222406D8008BD2AE /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743F222406D8008BD2AE /* QRCode.swift */; };
 		F4C20C485D8C709F583B58F6 /* Pods_PayButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2E035F9718A143F416A97F /* Pods_PayButton.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +133,36 @@
 		C5F5D81E216655D40090E5FF /* CardScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScanViewController.swift; sourceTree = "<group>"; };
 		C5F5D820216664490090E5FF /* MainScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanViewController.swift; sourceTree = "<group>"; };
 		C5F5D822216668680090E5FF /* BaseUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewCell.swift; sourceTree = "<group>"; };
+		C5FD73F822240168008BD2AE /* CreditCardValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardValidator.swift; sourceTree = "<group>"; };
+		C5FD73F922240168008BD2AE /* CreditCardValidationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardValidationType.swift; sourceTree = "<group>"; };
+		C5FD7408222405D3008BD2AE /* Mask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		C5FD740A222405D3008BD2AE /* Next.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Next.swift; sourceTree = "<group>"; };
+		C5FD740B222405D3008BD2AE /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		C5FD740C222405D3008BD2AE /* Notation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notation.swift; sourceTree = "<group>"; };
+		C5FD740E222405D3008BD2AE /* ValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
+		C5FD740F222405D3008BD2AE /* EOLState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EOLState.swift; sourceTree = "<group>"; };
+		C5FD7410222405D3008BD2AE /* FixedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedState.swift; sourceTree = "<group>"; };
+		C5FD7411222405D3008BD2AE /* OptionalValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalValueState.swift; sourceTree = "<group>"; };
+		C5FD7412222405D3008BD2AE /* FreeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreeState.swift; sourceTree = "<group>"; };
+		C5FD7413222405D3008BD2AE /* CaretString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretString.swift; sourceTree = "<group>"; };
+		C5FD7415222405D3008BD2AE /* MaskedTextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextViewDelegate.swift; sourceTree = "<group>"; };
+		C5FD7416222405D3008BD2AE /* MaskedTextInputListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextInputListener.swift; sourceTree = "<group>"; };
+		C5FD7417222405D3008BD2AE /* UITextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextInput.swift; sourceTree = "<group>"; };
+		C5FD7418222405D3008BD2AE /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		C5FD7419222405D3008BD2AE /* ReversedMaskTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReversedMaskTextFieldDelegate.swift; sourceTree = "<group>"; };
+		C5FD741A222405D3008BD2AE /* MaskedTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldDelegate.swift; sourceTree = "<group>"; };
+		C5FD741B222405D3008BD2AE /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		C5FD741D222405D3008BD2AE /* CaretStringIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretStringIterator.swift; sourceTree = "<group>"; };
+		C5FD741E222405D3008BD2AE /* AffinityCalculationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffinityCalculationStrategy.swift; sourceTree = "<group>"; };
+		C5FD741F222405D3008BD2AE /* Compiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compiler.swift; sourceTree = "<group>"; };
+		C5FD7420222405D3008BD2AE /* FormatSanitizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatSanitizer.swift; sourceTree = "<group>"; };
+		C5FD7421222405D3008BD2AE /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCharacterSet.swift; sourceTree = "<group>"; };
+		C5FD7422222405D3008BD2AE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C5FD7423222405D3008BD2AE /* InputMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputMask.h; sourceTree = "<group>"; };
+		C5FD743C222406D8008BD2AE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		C5FD743D222406D8008BD2AE /* CIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageExtension.swift; sourceTree = "<group>"; };
+		C5FD743E222406D8008BD2AE /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
+		C5FD743F222406D8008BD2AE /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +289,9 @@
 		C5B1E7F52200588300C09D13 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C5FD743B222406D8008BD2AE /* QRCode */,
+				C5FD7405222405D3008BD2AE /* InputMask */,
+				C5FD73F722240168008BD2AE /* CreditCard */,
 				C5B1E7F6220058FF00C09D13 /* Toast.swift */,
 			);
 			path = 3rdParty;
@@ -266,6 +328,105 @@
 				C5A4164821650280008A93B3 /* ViewController.swift */,
 			);
 			path = TestApi;
+			sourceTree = "<group>";
+		};
+		C5FD73F722240168008BD2AE /* CreditCard */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD73F822240168008BD2AE /* CreditCardValidator.swift */,
+				C5FD73F922240168008BD2AE /* CreditCardValidationType.swift */,
+			);
+			path = CreditCard;
+			sourceTree = "<group>";
+		};
+		C5FD7405222405D3008BD2AE /* InputMask */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD7406222405D3008BD2AE /* InputMask */,
+			);
+			path = InputMask;
+			sourceTree = "<group>";
+		};
+		C5FD7406222405D3008BD2AE /* InputMask */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD7407222405D3008BD2AE /* Classes */,
+			);
+			path = InputMask;
+			sourceTree = "<group>";
+		};
+		C5FD7407222405D3008BD2AE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD7408222405D3008BD2AE /* Mask.swift */,
+				C5FD7409222405D3008BD2AE /* Model */,
+				C5FD7414222405D3008BD2AE /* View */,
+				C5FD741C222405D3008BD2AE /* Helper */,
+				C5FD7423222405D3008BD2AE /* InputMask.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C5FD7409222405D3008BD2AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD740A222405D3008BD2AE /* Next.swift */,
+				C5FD740B222405D3008BD2AE /* State.swift */,
+				C5FD740C222405D3008BD2AE /* Notation.swift */,
+				C5FD740D222405D3008BD2AE /* State */,
+				C5FD7413222405D3008BD2AE /* CaretString.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5FD740D222405D3008BD2AE /* State */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD740E222405D3008BD2AE /* ValueState.swift */,
+				C5FD740F222405D3008BD2AE /* EOLState.swift */,
+				C5FD7410222405D3008BD2AE /* FixedState.swift */,
+				C5FD7411222405D3008BD2AE /* OptionalValueState.swift */,
+				C5FD7412222405D3008BD2AE /* FreeState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		C5FD7414222405D3008BD2AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD7415222405D3008BD2AE /* MaskedTextViewDelegate.swift */,
+				C5FD7416222405D3008BD2AE /* MaskedTextInputListener.swift */,
+				C5FD7417222405D3008BD2AE /* UITextInput.swift */,
+				C5FD7418222405D3008BD2AE /* UITextField.swift */,
+				C5FD7419222405D3008BD2AE /* ReversedMaskTextFieldDelegate.swift */,
+				C5FD741A222405D3008BD2AE /* MaskedTextFieldDelegate.swift */,
+				C5FD741B222405D3008BD2AE /* UITextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5FD741C222405D3008BD2AE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD741D222405D3008BD2AE /* CaretStringIterator.swift */,
+				C5FD741E222405D3008BD2AE /* AffinityCalculationStrategy.swift */,
+				C5FD741F222405D3008BD2AE /* Compiler.swift */,
+				C5FD7420222405D3008BD2AE /* FormatSanitizer.swift */,
+				C5FD7421222405D3008BD2AE /* NSCharacterSet.swift */,
+				C5FD7422222405D3008BD2AE /* String.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C5FD743B222406D8008BD2AE /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				C5FD743C222406D8008BD2AE /* UIImageViewExtension.swift */,
+				C5FD743D222406D8008BD2AE /* CIImageExtension.swift */,
+				C5FD743E222406D8008BD2AE /* CIColorExtension.swift */,
+				C5FD743F222406D8008BD2AE /* QRCode.swift */,
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		D835301CA94E8EE65D846DCF /* Pods */ = {
@@ -382,26 +543,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CreditCardValidator/CreditCardValidator.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
 				"${PODS_ROOT}/PayCardsRecognizer/Source/PayCardsRecognizer.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
-				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CreditCardValidator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayCardsRecognizer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -415,36 +570,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FD743A222405D3008BD2AE /* String.swift in Sources */,
 				C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */,
+				C5FD7433222405D3008BD2AE /* MaskedTextFieldDelegate.swift in Sources */,
 				C537888C216CF5B80058CAC8 /* Process3DSTransactionRequest.swift in Sources */,
 				C5378888216CF01C0058CAC8 /* PaymentMethodRequest.swift in Sources */,
+				C5FD7434222405D3008BD2AE /* UITextView.swift in Sources */,
 				C5F5D821216664490090E5FF /* MainScanViewController.swift in Sources */,
 				C5B900EB2168F0B500301C13 /* CompleteTableViewCell.swift in Sources */,
 				C537888A216CF24B0058CAC8 /* Compose3DSTransactionResponse.swift in Sources */,
+				C5FD7436222405D3008BD2AE /* AffinityCalculationStrategy.swift in Sources */,
+				C5FD7426222405D3008BD2AE /* State.swift in Sources */,
 				C5F5D81F216655D40090E5FF /* CardScanViewController.swift in Sources */,
+				C5FD742F222405D3008BD2AE /* MaskedTextInputListener.swift in Sources */,
 				C5DB9141216B7F5200C69497 /* TransactionStatusResponse.swift in Sources */,
+				C5FD742B222405D3008BD2AE /* OptionalValueState.swift in Sources */,
 				C5B900F6216A416F00301C13 /* PaymentData.swift in Sources */,
+				C5FD7424222405D3008BD2AE /* Mask.swift in Sources */,
 				C5F5D81C216650C70090E5FF /* CardTableViewCell.swift in Sources */,
+				C5FD7428222405D3008BD2AE /* ValueState.swift in Sources */,
+				C5FD742C222405D3008BD2AE /* FreeState.swift in Sources */,
 				C528E24F2166118F00CAFBC4 /* ApiManger.swift in Sources */,
+				C5FD7425222405D3008BD2AE /* Next.swift in Sources */,
 				C5378890216D06650058CAC8 /* WebViewTableViewCell.swift in Sources */,
 				C528E24D2166118F00CAFBC4 /* Global.swift in Sources */,
 				C5B900F4216A404F00301C13 /* PaymentViewController.swift in Sources */,
+				C5FD7427222405D3008BD2AE /* Notation.swift in Sources */,
 				C5378886216CEFC10058CAC8 /* PaymentMethodResponse.swift in Sources */,
+				C5FD742E222405D3008BD2AE /* MaskedTextViewDelegate.swift in Sources */,
 				C5DB913B216B76BA00C69497 /* QrGenratorRequest.swift in Sources */,
+				C5FD7437222405D3008BD2AE /* Compiler.swift in Sources */,
 				C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */,
+				C5FD73FA22240168008BD2AE /* CreditCardValidator.swift in Sources */,
 				C5B1E7F7220058FF00C09D13 /* Toast.swift in Sources */,
 				C5B900FA216A44A200301C13 /* BasePaymentViewController.swift in Sources */,
+				C5FD7432222405D3008BD2AE /* ReversedMaskTextFieldDelegate.swift in Sources */,
 				C5A4164921650280008A93B3 /* ViewController.swift in Sources */,
+				C5FD7429222405D3008BD2AE /* EOLState.swift in Sources */,
+				C5FD742A222405D3008BD2AE /* FixedState.swift in Sources */,
+				C5FD7430222405D3008BD2AE /* UITextInput.swift in Sources */,
 				C537888E216CF6470058CAC8 /* Process3DSTransactionResonse.swift in Sources */,
 				C5A4164721650280008A93B3 /* AppDelegate.swift in Sources */,
+				C5FD7442222406D8008BD2AE /* CIColorExtension.swift in Sources */,
+				C5FD7431222405D3008BD2AE /* UITextField.swift in Sources */,
+				C5FD7439222405D3008BD2AE /* NSCharacterSet.swift in Sources */,
+				C5FD7438222405D3008BD2AE /* FormatSanitizer.swift in Sources */,
+				C5FD7440222406D8008BD2AE /* UIImageViewExtension.swift in Sources */,
 				C5F5D823216668680090E5FF /* BaseUITableViewCell.swift in Sources */,
+				C5FD7443222406D8008BD2AE /* QRCode.swift in Sources */,
 				C528E24C2166118F00CAFBC4 /* Extentions.swift in Sources */,
 				C5DB913D216B7CA900C69497 /* QrGenratorResponse.swift in Sources */,
 				C5B900E72168E7F000301C13 /* QRTableViewCell.swift in Sources */,
 				C5B900F0216918F500301C13 /* RequestMoneyViewController.swift in Sources */,
+				C5FD7435222405D3008BD2AE /* CaretStringIterator.swift in Sources */,
+				C5FD7441222406D8008BD2AE /* CIImageExtension.swift in Sources */,
 				C528E2502166118F00CAFBC4 /* Networking.swift in Sources */,
+				C5FD742D222405D3008BD2AE /* CaretString.swift in Sources */,
 				C5DB9147216B8F7A00C69497 /* ManualPaymentRequest.swift in Sources */,
 				C5DB9143216B864A00C69497 /* SendReceiptByMailRequest.swift in Sources */,
+				C5FD73FB22240168008BD2AE /* CreditCardValidationType.swift in Sources */,
 				C528E2512166118F00CAFBC4 /* AppConstant.swift in Sources */,
 				C5DB9145216B890500C69497 /* SmsPaymentRequest.swift in Sources */,
 			);

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.3.6'
+  s.version          = '0.3.7'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -49,14 +49,11 @@ Pod::Spec.new do |s|
 
     # s.dependency  'Localize-Swift'
       s.dependency 'PopupDialog' , '~> 0.9.2'  
-      s.dependency 'QRCode' , '~> 2.0'  
-
+ 
 
       
 
-       s.dependency 'InputMask' , '~> 4.0.2'
-    s.dependency "CreditCardValidator"  , '~> 0.4'
-     s.static_framework = true
+      s.static_framework = true
 s.requires_arc = true
       # 8
   s.source_files = "PayButton/**/*.{swift,h,m}"

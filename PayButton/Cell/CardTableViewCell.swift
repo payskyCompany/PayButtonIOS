@@ -8,8 +8,6 @@
 
 
 import UIKit
-import InputMask
-import CreditCardValidator
 import PayCardsRecognizer
 //CardIOPaymentViewControllerDelegate
 import IQKeyboardManagerSwift
@@ -157,7 +155,7 @@ ScanCardtDelegate {
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "4987654321098769", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
         CVCTF.setTextFieldStyle( "cvc".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
@@ -233,7 +231,13 @@ ScanCardtDelegate {
                 }else if type.name == "Mir"  {
                     self.BackgroundImage.image = #imageLiteral(resourceName: "Mir")
                     
-                }else {
+                }else  if type.name == "Meza"{
+                    self.BackgroundImage.image =  #imageLiteral(resourceName: "miza_logo")
+                    
+                
+                
+                
+                } else {
                     self.validCard = false
 
                     self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
@@ -247,24 +251,19 @@ ScanCardtDelegate {
 
                 self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
             }
-            
+               if value.count == 16 {
             if self.creditCardValidator.validate(string:value.replacedArabicDigitsWithEnglish) {
                 // Card number is valid
                 
-                
-                if value.count == 16 {
-                    self.validCard = true
-                    
-                }else{
-                    self.validCard = false
-                    
-                }
-                
+                self.validCard = true
+
                 
                 
             }else {
                 self.validCard = false
+                UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky() )
 
+            }
             }
             
             

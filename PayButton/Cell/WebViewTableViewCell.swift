@@ -40,7 +40,17 @@ webView.isHidden = true
         
     }
     
+
     
+   
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIApplication.topViewController()?.view.showLoadingIndicator()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        UIApplication.topViewController()?.view.hideLoadingIndicator()
+    }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         if error._code == -1001 { // TIMED OUT:
@@ -64,10 +74,7 @@ webView.isHidden = true
 
     }
     
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        UIApplication.topViewController()?.view.showLoadingIndicator()
-
-    }
+ 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
       
