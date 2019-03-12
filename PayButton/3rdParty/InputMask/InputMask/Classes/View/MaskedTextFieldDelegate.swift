@@ -39,6 +39,9 @@ import UIKit
 @IBDesignable
 open class MaskedTextFieldDelegate: NSObject, UITextFieldDelegate {
 
+    
+ 
+
     open weak var listener: MaskedTextFieldDelegateListener?
     open var onMaskedTextChangedCallback: ((_ textField: UITextField, _ value: String, _ complete: Bool) -> ())?
     
@@ -193,6 +196,8 @@ open class MaskedTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        UIApplication.topViewController()?.view.endEditing(true)
+
         return listener?.textFieldShouldReturn?(textField) ?? true
     }
     

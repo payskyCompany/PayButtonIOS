@@ -6,7 +6,6 @@ target 'PayButton' do
   use_frameworks!
 
   # Pods for PayButton
-    pod 'IQKeyboardManagerSwift'
     pod 'Alamofire'
     pod "EVReflection"
     pod 'EVReflection/Alamofire'

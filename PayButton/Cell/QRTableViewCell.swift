@@ -85,8 +85,8 @@ class QRTableViewCell: BaseUITableViewCell {
         
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, preferredWidth: 600, tapGestureDismissal: true)
         
-        self.viewContainingController()?.present(popup, animated: true, completion: nil)
-     
+   
+        UIApplication.topViewController()?.present(popup, animated: true, completion: nil)
         
         
 

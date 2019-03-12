@@ -10,11 +10,11 @@
 import UIKit
 import PayCardsRecognizer
 //CardIOPaymentViewControllerDelegate
-import IQKeyboardManagerSwift
+
 import PopupDialog
 import AVFoundation
 class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
-ScanCardtDelegate {
+ScanCardtDelegate  {
     
     func cardResult(_ result: PayCardsRecognizerResult) {
         
@@ -89,6 +89,7 @@ ScanCardtDelegate {
     var MaskedCreditCard: MaskedTextFieldDelegate!
     var MaskedDateExpired: MaskedTextFieldDelegate!
     var MaskedCVC: MaskedTextFieldDelegate!
+    var HolderName: MaskedTextFieldDelegate!
 
     
     
@@ -107,17 +108,15 @@ ScanCardtDelegate {
 
     
 
-    
+ 
     
     
 
-    
-
+ 
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         
         SaveCardBtn.setTitle("proceed".localizedPaySky(), for: .normal)
         EnterCardData.text = "enter_card_data".localizedPaySky()
@@ -135,16 +134,16 @@ ScanCardtDelegate {
         
         
         
-        IQKeyboardManager.shared.enable = true
-        IQToolbar.appearance().isTranslucent = false
-        IQToolbar.appearance().barTintColor = UIColor.white
-        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
-        
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedPaySky()
-        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
-        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.NavColor
-        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
-        
+//        IQKeyboardManager.shared.enable = true
+//        IQToolbar.appearance().isTranslucent = false
+//        IQToolbar.appearance().barTintColor = UIColor.white
+//        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
+//
+//        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedPaySky()
+//        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
+//        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.NavColor
+//        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
+//
         
         
         SaveCardBtn.backgroundColor = PaySkySDKColor.mainBtnColor
@@ -155,7 +154,7 @@ ScanCardtDelegate {
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "4987654321098769", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
         CVCTF.setTextFieldStyle( "cvc".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
@@ -170,9 +169,12 @@ ScanCardtDelegate {
         MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
         MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[00]/[00]")
         MaskedCVC = MaskedTextFieldDelegate(primaryFormat: "[000]")
+        HolderName  = MaskedTextFieldDelegate(primaryFormat: "[A][-----------------------------------------------------]")
+        
+        CardHolderName.delegate =  HolderName
+        
+        HolderName.listener = self
 
-        
-        
         MaskedCreditCard.listener = self
         MaskedDateExpired.listener = self
         MaskedCVC.listener = self
