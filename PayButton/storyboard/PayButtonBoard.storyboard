@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -438,11 +438,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="card" width="27" height="17"/>
+        <image name="card" width="27" height="17.666666030883789"/>
         <image name="close" width="15" height="30"/>
         <image name="fab_trans" width="16" height="16"/>
-        <image name="power_by_paysky" width="79" height="33"/>
+        <image name="power_by_paysky" width="79.666664123535156" height="33.333332061767578"/>
         <image name="three_dots" width="5" height="17"/>
-        <image name="wallet" width="20" height="19"/>
+        <image name="wallet" width="20.666666030883789" height="19.666666030883789"/>
     </resources>
 </document>

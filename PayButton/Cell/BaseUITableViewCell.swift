@@ -29,7 +29,7 @@ class BaseUITableViewCell: UITableViewCell {
         
     }
 
-    func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+    func openWebView(compose3DSTransactionResponse:TransactionStatusResponse ,
                      manualPaymentRequest : ManualPaymentRequest
         ){
         
@@ -40,12 +40,11 @@ protocol ActionCellActionDelegate: class {
     func completeRequest(transactionStatusResponse:TransactionStatusResponse)
     
     
-    func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+    func openWebView(compose3DSTransactionResponse:TransactionStatusResponse ,
                          manualPaymentRequest : ManualPaymentRequest
                          )
    
-    func closeWebView(encodeData:String ,compose3DSTransactionResponse:Compose3DSTransactionResponse ,
-                      manualPaymentRequest : ManualPaymentRequest
+    func closeWebView(compose3DSTransactionResponse:TransactionStatusResponse 
     )
      func tryAgin()
 

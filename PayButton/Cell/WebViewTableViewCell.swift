@@ -21,7 +21,7 @@ class WebViewTableViewCell: BaseUITableViewCell , WKNavigationDelegate ,WKUIDele
   
     
 
-    var compose3DSTransactionResponse = Compose3DSTransactionResponse()
+    var compose3DSTransactionResponse = TransactionStatusResponse()
     var manualPaymentRequest = ManualPaymentRequest()
     override func awakeFromNib() {
 
@@ -113,7 +113,7 @@ webView.isHidden = true
     
  
     
-    override  func openWebView(compose3DSTransactionResponse:Compose3DSTransactionResponse ,
+    override  func openWebView(compose3DSTransactionResponse:TransactionStatusResponse ,
                                manualPaymentRequest : ManualPaymentRequest
         ){
          self.webView.isHidden = true
@@ -123,39 +123,16 @@ webView.isHidden = true
 
         self.webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
         self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+ 
         
+        let request = URLRequest(url: URL(string:compose3DSTransactionResponse.ThreeDSUrl)!)
         
-        var request = URLRequest(url: URL(string:compose3DSTransactionResponse.paymentServerURL)!)
-        request.httpMethod = "POST"
-        
-        let str = String(format:"vpc_AccessCode=%@&vpc_Amount=%@&vpc_Card=%@&vpc_CardExp=%@&vpc_CardNum=%@&vpc_CardSecurityCode=%@&vpc_Command=%@&vpc_Currency=%@&vpc_Gateway=%@&vpc_MerchTxnRef=%@&vpc_Merchant=%@&vpc_ReturnURL=%@&vpc_Version=%@&vpc_SecureHash=%@&vpc_SecureHashType=%@",
-                         compose3DSTransactionResponse.AccessCode,
-                         manualPaymentRequest.AmountTrxn   ,
-                         compose3DSTransactionResponse.CardType,
-                         manualPaymentRequest.DateExpiration,
-                         manualPaymentRequest.PAN,
-                         manualPaymentRequest.CVV2,
-                         compose3DSTransactionResponse.Command,
-                         compose3DSTransactionResponse.Currency,
-                         compose3DSTransactionResponse.Gateway,
-                         manualPaymentRequest.MerchantReference,
-                         compose3DSTransactionResponse.MerchantAccount,
-                         manualPaymentRequest.ReturnURL,
-                         compose3DSTransactionResponse.Version,
-                         compose3DSTransactionResponse.SecureHash,
-                         compose3DSTransactionResponse.SecureHashType
-            
-        )
-        
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        request.httpBody = str.data(using: .utf8)
         webView.load(request) //if your `webView` is `UIWebView`
         
     }
     
 
-
+    var  finalResponse : TransactionStatusResponse =  TransactionStatusResponse ()
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(WKWebView.url) {
@@ -165,7 +142,9 @@ webView.isHidden = true
            
 
 
-                if (self.webView.url?.absoluteString.contains("localhost"))! {
+                if (self.webView.url?.absoluteString.contains(ApiURL.MAIN_API_LINK))! &&
+                    ((self.webView.url?.absoluteString.contains("Success"))!)
+                {
                     
                 //self.webView.value(forKey: "Status")
                
@@ -185,16 +164,19 @@ webView.isHidden = true
                      
 
                         let convertedString = String(data: jsonData, encoding: String.Encoding.utf8) // the data will be converted to the string
-                        print(convertedString ?? "") // <-- here is ur string
+                    
+                        if finalResponse.IsPaid  {
+                            return
+                        }
+
+                        print(convertedString)
                         
-                        let data = (convertedString)?.data(using: String.Encoding.utf8)
-                        let base64 = data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+                    finalResponse =  TransactionStatusResponse(json: convertedString)
+                        
+                        finalResponse.IsPaid = true
 
                         
-                        
-                        
-                        
-                        self.delegateActions?.closeWebView(encodeData: base64, compose3DSTransactionResponse: self.compose3DSTransactionResponse, manualPaymentRequest: self.manualPaymentRequest)
+                        self.delegateActions?.closeWebView(compose3DSTransactionResponse:  finalResponse)
 
 
                     }
@@ -231,6 +213,9 @@ webView.isHidden = true
                 .filter({ (item) in item.name == param }).first?
                 .value
     }
+    
+    
+    
 }
 
 

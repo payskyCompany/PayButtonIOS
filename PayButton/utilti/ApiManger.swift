@@ -23,6 +23,8 @@ public class ApiManger {
         
         
         
+        
+        
         addcardRequest.DateExpiration = DateExpiration
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
         executePOST(path: ApiURL.PayByCard,parameters: addcardRequest, completion: { (value) in
@@ -38,33 +40,14 @@ public class ApiManger {
         } )
     }
     
-    static func  Compose3DSTransaction( addcardRequest:ManualPaymentRequest,
-                            completion: @escaping (Compose3DSTransactionResponse) -> ()){
-        
-        
-        executePOST(path: ApiURL.Compose3DSTransaction,parameters: addcardRequest, completion: { (value) in
-            completion(   Compose3DSTransactionResponse(json: value))
-        } )
-    }
-    
+   
     
     
 
     
 
     
-    
-    static func  Process3DSTransaction( ThreeDSResponseData : String , GatewayType : Int,
-                                        completion: @escaping (Process3DSTransactionResonse) -> ()){
-        let addcardRequest = Process3DSTransactionRequest()
-    addcardRequest.GatewayType = GatewayType
-        addcardRequest.ThreeDSResponseData = ThreeDSResponseData
-        executePOST(path: ApiURL.Process3DSTransaction,parameters: addcardRequest, completion: { (value) in
-            completion(   Process3DSTransactionResonse(json: value))
-        } )
-    }
-    
-    
+   
     
     
     

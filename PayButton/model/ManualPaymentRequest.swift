@@ -31,7 +31,7 @@ public class ManualPaymentRequest: BaseResponse {
     var PAN = ""
     var  AmountTrxn  = ""
     var IsWebRequest = true
-    var ReturnURL = "http://localhost.com/"
+    var ReturnURL = ApiURL.MAIN_API_LINK
 
     var MerchantReference = MainScanViewController.paymentData.refnumber
     

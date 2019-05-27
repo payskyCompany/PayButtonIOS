@@ -13,4 +13,7 @@ target 'PayButton' do
     pod 'PayCardsRecognizer'
     use_frameworks!
 
+    
+    # pod 'PayButton'
+
 end

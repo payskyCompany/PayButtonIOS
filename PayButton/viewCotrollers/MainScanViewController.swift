@@ -9,60 +9,37 @@
 import UIKit
 
 class MainScanViewController: BasePaymentViewController , UITableViewDataSource, UITableViewDelegate ,ActionCellActionDelegate {
-
     
     
+     var compose3DSTransactionResponse: TransactionStatusResponse = TransactionStatusResponse()
+      var manualPaymentRequest: ManualPaymentRequest = ManualPaymentRequest()
     
     
-    
-    func closeWebView(encodeData: String, compose3DSTransactionResponse: Compose3DSTransactionResponse, manualPaymentRequest: ManualPaymentRequest) {
+    func openWebView(compose3DSTransactionResponse: TransactionStatusResponse, manualPaymentRequest: ManualPaymentRequest) {
         
         
-        
-                                ApiManger.Process3DSTransaction(ThreeDSResponseData: encodeData,
-                                                                GatewayType: compose3DSTransactionResponse.GatewayType
-                                                                ,completion: { (process3d) in
-        
-                                    if process3d.Success {
-                                        manualPaymentRequest.ThreeDSECI = process3d.ThreeDSECI
-                                        manualPaymentRequest.ThreeDSXID = process3d.ThreeDSXID
-                                        manualPaymentRequest.ThreeDSenrolled = process3d.ThreeDSenrolled
-                                        manualPaymentRequest.ThreeDSstatus = process3d.ThreeDSstatus
-                                        manualPaymentRequest.VerToken = process3d.VerToken
-                                        manualPaymentRequest.VerType = process3d.VerType
-                                         manualPaymentRequest.DateTimeLocalTrxn = BaseResponse.getDate()
-        
-                                        ApiManger.PayByCard(addcardRequest: manualPaymentRequest, completion: { (transStatus) in
-                                            transStatus.FROMWHERE = "Card"
-                                            self.SaveCard(transactionStatusResponse: transStatus)
-        
-        
-                                        })
-        
-        
-                                    }else {
-                                        
-                                        self.selectedCell = 1
-                                        
-                                        self.TableViews.reloadData()
-                                        UIApplication.topViewController()?.view.makeToast(process3d.Message)
-        
-                                    }
-                                })
-        
-                            }
-    
-    
-    
-    var compose3DSTransactionResponse: Compose3DSTransactionResponse = Compose3DSTransactionResponse()
-    var manualPaymentRequest: ManualPaymentRequest = ManualPaymentRequest()
-    func openWebView(compose3DSTransactionResponse: Compose3DSTransactionResponse, manualPaymentRequest: ManualPaymentRequest) {
         self.compose3DSTransactionResponse = compose3DSTransactionResponse
         self.manualPaymentRequest = manualPaymentRequest
-
+        
         selectedCell = 4
         
         self.TableViews.reloadData()
+    }
+    
+ 
+    
+    
+    func closeWebView( compose3DSTransactionResponse: TransactionStatusResponse) {
+        
+       
+        
+        transactionStatusResponse = compose3DSTransactionResponse
+        transactionStatusResponse.FROMWHERE = "Card"
+
+        self.SaveCard(transactionStatusResponse: compose3DSTransactionResponse)
+        
+        
+        
     }
     
    
@@ -305,10 +282,10 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
             cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTableViewCell") as! CompleteTableViewCell
             cell.setData(transactionStatusResponse: self.transactionStatusResponse)
 
-        }else if selectedCell == 4{
+        }else if selectedCell == 4 {
             cell = tableView.dequeueReusableCell(withIdentifier: "WebViewTableViewCell") as! WebViewTableViewCell
             cell.openWebView(compose3DSTransactionResponse: self.compose3DSTransactionResponse, manualPaymentRequest: self.manualPaymentRequest)
-            
+ 
         }
         
         

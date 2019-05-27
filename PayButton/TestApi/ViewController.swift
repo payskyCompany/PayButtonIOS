@@ -132,14 +132,14 @@ class ViewController: UIViewController, PaymentDelegate  {
         paymentViewController.delegate = self
         paymentViewController.refnumber = RefValue.text ?? ""
 
-        paymentViewController.mId = MerchantIdEd.text!
-        paymentViewController.tId = TerminalIDTF.text!
-        paymentViewController.Currency = CurrencyEd.text!
+        paymentViewController.mId = "11826922250"
+        paymentViewController.tId = "19504640"
+        paymentViewController.Currency = "818"
         paymentViewController.isProduction = false   // set it true if you want to go live
 
 
 
-        paymentViewController.Key = "35393434313266342D636662392D343334612D613765332D646365626337663334386363"
+        paymentViewController.Key = "37653331373535352D663165652D343836302D383330352D313164626439393561336433"
 
         paymentViewController.pushViewController()
 

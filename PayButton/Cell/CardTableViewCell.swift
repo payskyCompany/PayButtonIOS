@@ -150,11 +150,11 @@ ScanCardtDelegate  {
  
         
         
-        //4987654321098769
+        //4987 6543 2109 8769
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "4987654321098769", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
         CVCTF.setTextFieldStyle( "cvc".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
@@ -213,7 +213,8 @@ ScanCardtDelegate  {
             
             if let type = creditCardValidator.type(from: value.replacedArabicDigitsWithEnglish) {
 
-                
+                self.validCard = true
+
                 if type.name == "Visa" {
                     self.BackgroundImage.image = #imageLiteral(resourceName: "vi")
                 }else if type.name == "Amex"  {
@@ -254,7 +255,7 @@ ScanCardtDelegate  {
                 self.BackgroundImage.image = #imageLiteral(resourceName: "card_icon")
             }
                if value.count == 16 {
-            if self.creditCardValidator.validate(string:value.replacedArabicDigitsWithEnglish) {
+                if self.creditCardValidator.validate(number:value.replacedArabicDigitsWithEnglish) {
                 // Card number is valid
                 
                 self.validCard = true
@@ -366,40 +367,33 @@ ScanCardtDelegate  {
         addcardRequest.CVV2 =  self.CVCTF.text!
         addcardRequest.DateExpiration = YearMonth
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
-        
-        
-        if MainScanViewController.paymentData.Is3DS {
-            ApiManger.Compose3DSTransaction(addcardRequest: addcardRequest) { (transactionStatusResponse) in
+ 
+            ApiManger.PayByCard(CardHolderName : self.CardHolderName.text! , PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
                 
-    
+                      if transactionStatusResponse.Success {
                 
-                
-                if transactionStatusResponse.Success {
+                if transactionStatusResponse.ChallengeRequired {
                     
                     
                     self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse, manualPaymentRequest: addcardRequest)
-               
-                
+                    
+                    
                 }else {
-                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
+                    
+                    
+                    transactionStatusResponse.FROMWHERE = "Card"
+                    self.delegateActions?.SaveCard(transactionStatusResponse: transactionStatusResponse)
                 }
-                
-                
-                
-            }
-            
-        }else {
-            ApiManger.PayByCard(CardHolderName : self.CardHolderName.text! , PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
-                
-                
-                transactionStatusResponse.FROMWHERE = "Card"
-                self.delegateActions?.SaveCard(transactionStatusResponse: transactionStatusResponse)
+                      }else {
+                                     UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
+                           }
+          
                 
                 
             }
             
             
-        }
+     //   }
         
 
         

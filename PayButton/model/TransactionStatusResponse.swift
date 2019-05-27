@@ -13,6 +13,10 @@ import EVReflection
 public class TransactionStatusResponse: BaseResponse {
 
   public  var  IsPaid  = false
+    public  var  ChallengeRequired  = false
+
+    public var ThreeDSUrl = ""
+    
   public  var TransactionNo = ""
   public  var AuthCode = ""
   public  var ReceiptNumber = ""

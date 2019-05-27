@@ -29,7 +29,7 @@ public class PaymentParams {
 public class ApiURL {
     //    static var MAIN_API_LINK = "https://197.50.37.116/Cube/PayLink.svc/api/";
 
-    
+ //   http://192.168.1.140:4006
     
     
     static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
@@ -39,9 +39,7 @@ public class ApiURL {
     static var RequestToPay = MAIN_API_LINK + "RequestToPay";
     static var PayByCard = MAIN_API_LINK + "PayByCard";
     static var CheckPaymentMethod = MAIN_API_LINK + "CheckPaymentMethod";
-    static var Compose3DSTransaction = MAIN_API_LINK + "Compose3DSTransaction";
-    static var Process3DSTransaction = MAIN_API_LINK + "Process3DSTransaction";
-
+ 
     
 
     
