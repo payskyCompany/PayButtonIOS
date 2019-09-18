@@ -164,14 +164,14 @@ webView.isHidden = true
                      
 
                         let convertedString = String(data: jsonData, encoding: String.Encoding.utf8) // the data will be converted to the string
-                    
+                        finalResponse =  TransactionStatusResponse(json: convertedString)
+
                         if finalResponse.IsPaid  {
                             return
                         }
 
                         print(convertedString)
                         
-                    finalResponse =  TransactionStatusResponse(json: convertedString)
                         
                         finalResponse.IsPaid = true
 

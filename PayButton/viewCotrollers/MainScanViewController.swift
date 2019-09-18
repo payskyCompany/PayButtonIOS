@@ -32,7 +32,8 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     func closeWebView( compose3DSTransactionResponse: TransactionStatusResponse) {
         
        
-        
+        UIApplication.topViewController()?.view.hideLoadingIndicator()
+
         transactionStatusResponse = compose3DSTransactionResponse
         transactionStatusResponse.FROMWHERE = "Card"
 
@@ -60,7 +61,9 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     func completeRequest(transactionStatusResponse: TransactionStatusResponse) {
         delegate?.finishSdkPayment(transactionStatusResponse)
         if self.navigationController != nil {
-            self.navigationController?.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.isNavigationBarHidden = false
+
         }else{
             self.dismiss(animated: true, completion: nil)
             
@@ -212,7 +215,8 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
 
         
         if self.navigationController != nil {
-            self.navigationController?.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+            
         }else{
             self.dismiss(animated: true, completion: nil)
 

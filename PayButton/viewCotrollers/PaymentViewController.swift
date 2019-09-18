@@ -171,8 +171,7 @@ public class PaymentViewController  {
             UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
             vc.fromNav = true
         }else{
-            let nv = UINavigationController(rootViewController: vc)
-            UIApplication.topViewController()?.present(nv, animated: true, completion: nil)
+            UIApplication.topViewController()?.present(vc, animated: true, completion: nil)
             vc.fromNav = false
             
         }

@@ -17,6 +17,7 @@
 		C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2562166130700CAFBC4 /* BaseResponse.swift */; };
 		C528E25A2166135D00CAFBC4 /* AlertDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */; };
 		C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */; };
+		C52CDFEF2327BFAC00E0EC74 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52CDFEE2327BFAC00E0EC74 /* WebKit.framework */; };
 		C5378886216CEFC10058CAC8 /* PaymentMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5378885216CEFC10058CAC8 /* PaymentMethodResponse.swift */; };
 		C5378888216CF01C0058CAC8 /* PaymentMethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5378887216CF01C0058CAC8 /* PaymentMethodRequest.swift */; };
 		C537888A216CF24B0058CAC8 /* Compose3DSTransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5378889216CF24B0058CAC8 /* Compose3DSTransactionResponse.swift */; };
@@ -96,6 +97,7 @@
 		C528E2562166130700CAFBC4 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDialogViewController.swift; sourceTree = "<group>"; };
 		C528E2602166377700CAFBC4 /* PayButtonBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PayButtonBoard.storyboard; sourceTree = "<group>"; };
+		C52CDFEE2327BFAC00E0EC74 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C5378885216CEFC10058CAC8 /* PaymentMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResponse.swift; sourceTree = "<group>"; };
 		C5378887216CF01C0058CAC8 /* PaymentMethodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodRequest.swift; sourceTree = "<group>"; };
 		C5378889216CF24B0058CAC8 /* Compose3DSTransactionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose3DSTransactionResponse.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C52CDFEF2327BFAC00E0EC74 /* WebKit.framework in Frameworks */,
 				F4C20C485D8C709F583B58F6 /* Pods_PayButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +183,7 @@
 		1ACEE1A58393684F51D11D74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C52CDFEE2327BFAC00E0EC74 /* WebKit.framework */,
 				7B2E035F9718A143F416A97F /* Pods_PayButton.framework */,
 			);
 			name = Frameworks;

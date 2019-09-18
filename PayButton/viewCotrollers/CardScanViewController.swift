@@ -43,11 +43,15 @@ class CardScanViewController: BasePaymentViewController ,PayCardsRecognizerPlatf
         
         
         if self.navigationController != nil {
-            self.navigationController?.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.isNavigationBarHidden = false
+
         }else{
             self.dismiss(animated: true, completion: nil)
             
         }
+        
+        
     }
     
 
