@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.4.1'
+  s.version          = '0.4.2'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -37,11 +37,11 @@ Pod::Spec.new do |s|
            s.ios.deployment_target = '11.0'
     	s.framework = "UIKit"
 
-    s.dependency 'Alamofire' , '~> 4.8.1'
+    s.dependency 'Alamofire' , '~> 4.8.2'
 
      #   s.dependency 'IQKeyboardManagerSwift'  , '~> 6.2.0'
-     s.dependency "EVReflection"  , '~> 5.9.0'
-      s.dependency 'EVReflection/Alamofire'  , '~> 5.9.0'
+     s.dependency "EVReflection"  , '~> 5.10.1'
+      s.dependency 'EVReflection/Alamofire'  , '~> 5.10.1'
 
          s.dependency 'PayCardsRecognizer'   , '~> 1.1.4'
 

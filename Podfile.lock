@@ -19,7 +19,7 @@ DEPENDENCIES:
   - PopupDialog
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - DynamicBlurView
     - EVReflection
@@ -35,4 +35,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d7a69e5f39eebcb7c7ada62be800e167ef630b95
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
