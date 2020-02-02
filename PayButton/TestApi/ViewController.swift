@@ -45,12 +45,34 @@ class ViewController: UIViewController, PaymentDelegate  {
     @IBOutlet weak var RefLabel: UILabel!
     
     @IBOutlet weak var RefValue: UITextField!
-    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+   
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+              //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+              //tap.cancelsTouchesInView = false
+
+              view.addGestureRecognizer(tap)
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                   NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         
         
         ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
@@ -58,7 +80,7 @@ class ViewController: UIViewController, PaymentDelegate  {
           PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "45374", textColor: UIColor.black, font:Global.setFont(14) ,
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
                                         borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
@@ -71,18 +93,18 @@ class ViewController: UIViewController, PaymentDelegate  {
         
         
         TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "84949616", textColor: UIColor.black, font:Global.setFont(14) ,
+        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
      
         
         AmountLabel.text = "Amount".localizedPaySky()
         AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "20", textColor: UIColor.black, font:Global.setFont(14) ,
-                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
+                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
         
         
         CurrencyLabel.text = "Currency_paysky".localizedPaySky()
         AppName.text = "app_name_paysky".localizedPaySky()
-        CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "784", textColor: UIColor.black, font:Global.setFont(14) ,
+        CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "818", textColor: UIColor.black, font:Global.setFont(14) ,
                                    borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
@@ -132,14 +154,14 @@ class ViewController: UIViewController, PaymentDelegate  {
         paymentViewController.delegate = self
         paymentViewController.refnumber = RefValue.text ?? ""
 
-        paymentViewController.mId = "11400000002"
-        paymentViewController.tId = "96559270"
-        paymentViewController.Currency = "826"
+        paymentViewController.mId = MerchantIdEd.text!
+        paymentViewController.tId = TerminalIDTF.text!
+        paymentViewController.Currency = CurrencyEd.text!
         paymentViewController.isProduction = false   // set it true if you want to go live
 
 
 
-        paymentViewController.Key = "33653936666261362D353863392D343730652D613834322D326137613864623836613665"
+        paymentViewController.Key = "31623434616334632D306463612D343036632D613563362D653239653263633439303765"
 
         paymentViewController.pushViewController()
 

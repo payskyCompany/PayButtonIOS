@@ -16,6 +16,34 @@ import AVFoundation
 class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
 ScanCardtDelegate  {
     
+    
+    @IBAction func ExDateChanges(_ sender: UITextField) {
+        validDate = false;
+
+        if DateTF.text!.count == 1 && Int(DateTF.text!)! > 2 {
+            DateTF.text! = "0" + DateTF.text! + "/"
+        }
+        if DateTF.text!.count == 2 && !DateTF.text!.contains("/") {
+            if Int(DateTF.text!)! > 12 {
+                DateTF.text! = "12/"
+            }
+            else {
+                DateTF.text! = DateTF.text! + "/"
+            }
+        }
+        let val = DateTF.text!.split(separator: "/")
+        if DateTF.text!.count == 5 && val.count > 1 {
+            if Int(String(val[1] + ""))! > 19 {
+                validDate = true;
+                                  
+            }else{
+                validDate = false;
+                
+            }
+        }
+       
+    }
+    
     func cardResult(_ result: PayCardsRecognizerResult) {
         
         CardHolderName.text =   result.recognizedHolderName
@@ -65,7 +93,7 @@ ScanCardtDelegate  {
 
         let vc :CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
         vc.delegate = self.delegate
-        
+        vc.modalPresentationStyle = .fullScreen
         UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
     }
     
@@ -87,7 +115,7 @@ ScanCardtDelegate  {
     
     var isChecked = true
     var MaskedCreditCard: MaskedTextFieldDelegate!
-    var MaskedDateExpired: MaskedTextFieldDelegate!
+//    var MaskedDateExpired: MaskedTextFieldDelegate!
     var MaskedCVC: MaskedTextFieldDelegate!
     var HolderName: MaskedTextFieldDelegate!
 
@@ -167,7 +195,7 @@ ScanCardtDelegate  {
         CardHolderName.setTextFieldStyle("name_on_card".localizedPaySky()  , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
         MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
-        MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[00]/[00]")
+//        MaskedDateExpired = MaskedTextFieldDelegate(primaryFormat: "[0,12]/[00]")
         MaskedCVC = MaskedTextFieldDelegate(primaryFormat: "[000]")
         HolderName  = MaskedTextFieldDelegate(primaryFormat: "[A][--------] [A][---------] [A][---------]")
         
@@ -176,12 +204,12 @@ ScanCardtDelegate  {
         HolderName.listener = self
 
         MaskedCreditCard.listener = self
-        MaskedDateExpired.listener = self
+//        MaskedDateExpired.listener = self
         MaskedCVC.listener = self
 
         CardNumbeTV.delegate = MaskedCreditCard
         CardNumbeTV.tag = 1
-        DateTF.delegate = MaskedDateExpired
+//        DateTF.delegate = MaskedDateExpired
         CVCTF.delegate = MaskedCVC
         DateTF.tag = 2
         //        CardIOUtilities.preload()
@@ -357,18 +385,18 @@ ScanCardtDelegate  {
             return;
         }
         
-        
-        let YearMonth = self.year + self.month
+        let val = DateTF.text!.split(separator: "/")
+        let YearMonth = val[1] + val[0]
 
         let addcardRequest = ManualPaymentRequest()
         addcardRequest.PAN = self.cardNumber
         addcardRequest.CardHolderName = self.CardHolderName.text ?? ""
 
         addcardRequest.CVV2 =  self.CVCTF.text!
-        addcardRequest.DateExpiration = YearMonth
+        addcardRequest.DateExpiration = String(YearMonth)
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
  
-            ApiManger.PayByCard(CardHolderName : self.CardHolderName.text! , PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: YearMonth) { (transactionStatusResponse) in
+        ApiManger.PayByCard(CardHolderName : self.CardHolderName.text! , PAN: self.cardNumber, cvv2: self.CVCTF.text!, DateExpiration: String(YearMonth)) { (transactionStatusResponse) in
                 
                       if transactionStatusResponse.Success {
                 

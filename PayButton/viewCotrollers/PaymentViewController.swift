@@ -100,7 +100,7 @@ public class PaymentViewController  {
         
         ApiManger.CheckPaymentMethod { (paymentresponse) in
             
-            
+            print(paymentresponse)
             if paymentresponse.Success {
                 MainScanViewController.paymentData.merchant_name = paymentresponse.MerchantName
                 MainScanViewController.paymentData.currencyCode = Int ( self.Currency )!
@@ -171,6 +171,7 @@ public class PaymentViewController  {
             UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
             vc.fromNav = true
         }else{
+            vc.modalPresentationStyle = .fullScreen
             UIApplication.topViewController()?.present(vc, animated: true, completion: nil)
             vc.fromNav = false
             

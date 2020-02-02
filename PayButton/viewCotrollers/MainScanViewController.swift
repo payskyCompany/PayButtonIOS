@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension UITableView {
+
+    func setBottomInset(to value: CGFloat) {
+        let edgeInset = UIEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
+
+        self.contentInset = edgeInset
+        self.scrollIndicatorInsets = edgeInset
+    }
+}
+
 class MainScanViewController: BasePaymentViewController , UITableViewDataSource, UITableViewDelegate ,ActionCellActionDelegate {
     
     
@@ -134,14 +144,37 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     
     
     @IBOutlet weak var MethodTypeStackView: UIStackView!
+    @IBOutlet weak var scroller: UIScrollView!
     var selectedCell = 1;
     
     
     override func viewWillDisappear(_ animated: Bool) {
         self.stopTimerTest()
     }
+    
+  @objc func keyboardWillShow(notification: NSNotification) {
+      if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+          if self.view.frame.origin.y == 0 {
+              self.view.frame.origin.y -= keyboardSize.height
+          }
+      }
+  }
+
+  @objc func keyboardWillHide(notification: NSNotification) {
+      if self.view.frame.origin.y != 0 {
+          self.view.frame.origin.y = 0
+      }
+  }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.TableViews.isScrollEnabled = false
+        self.TableViews.isPagingEnabled = false
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        
+
+        
         self.WalletView.layer.cornerRadius =  PaySkySDKColor.RaduisNumber
         self.CardView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         self.CardView.dropShadow()

@@ -23,7 +23,7 @@
 "terms_conditions"="Terms and conditions";
 "hello_blank_fragment"="Hello blank fragment";
 "card"="Card";
-"wallet"="Wallet";
+"wallet"="Meeza Digital";
 "enter_card_data"="Please enter card data";
 "card_number"="Card number";
 "name_on_card"="Card holder name";
@@ -52,7 +52,7 @@
 "cannot_send_mail"="Cannot send email, try again.";
 "transaction_declined"="Transaction declined";
 "try_again"="Try again";
-"open_wallet_app"="Please Scan the QR code with your Wallet app. to make payment.";
+"open_wallet_app"="Please Scan the QR code with your Meeza Digital app. to make payment.";
 "enter_send_money"="1-Enter send money";
 "help"="Help?";
 "qr_code"="QR Code";
@@ -65,8 +65,8 @@
 "select_qr_code"="3-Select QR code";
 "scan_qr_code"="4-Scan QR code on the left";
 "enter_pin"="5-Then enter m-PIN";
-"enter_mobile_number"="Enter your wallet mobile number";
-"mobile_number"="Mobile number";
+"enter_mobile_number"="Enter MeezaDigital ID or Consumer Mobile";
+"mobile_number"="MeezaDigital ID/Mobile Number";
 "send_otp"="Send";
 "invalid_mobile_number"="invalid mobile number.";
 "enter_pin_code"="Enter PIN";
@@ -77,7 +77,7 @@
 "swipe"="Read Card";
 "send_sms_success"="Send SMS success.";
 "or"="OR";
-"cant_scan_code"="Can\'t scan Qr code? \nSend payment request to the entered mobile number.";
+"cant_scan_code"="Can\'t scan Qr code? \nSend payment request to MeezaDigital ID/Mobile Number";
 "request_payment"="Request Payment";
 "invalid_expire_date_date"="Invalid expiry date";
 "egp"="EGP";

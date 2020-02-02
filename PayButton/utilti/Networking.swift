@@ -64,6 +64,7 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                         let res = BaseResponse(json: response.result.value!)
                         res.Success = false
                         res.Message = res.ModelState
+                        UIApplication.topViewController()?.view.hideLoadingIndicator()
                         completion(res.toJsonString())
                         return
                     }
@@ -74,7 +75,7 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                 res.Success = false
                   res.Message = error.localizedDescription
                 
-                
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
                 completion(res.toJsonString())
 
                 print(error)

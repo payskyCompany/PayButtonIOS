@@ -33,6 +33,7 @@ public class ApiURL {
     
     
     static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
+//    static var MAIN_API_LINK = "http://192.168.1.140:4006/Cube/PayLink.svc/api/";
     static var GenerateQR = MAIN_API_LINK + "GenerateQR";
     static var CheckTxnStatus = MAIN_API_LINK + "CheckTxnStatus";
     static var SendReceiptToEmail = MAIN_API_LINK + "SendReceiptToEmail";

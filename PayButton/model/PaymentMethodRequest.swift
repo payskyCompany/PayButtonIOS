@@ -10,7 +10,6 @@ import Foundation
 import Foundation
 public class PaymentMethodRequest: BaseResponse {
     
-    
         
     
     
