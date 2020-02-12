@@ -31,15 +31,13 @@ public class ManualPaymentRequest: BaseResponse {
     var PAN = ""
     var  AmountTrxn  = ""
     var IsWebRequest = true
-    var ReturnURL = ApiURL.MAIN_API_LINK
+    var ReturnURL = "https://cube.paysky.io/"
 
     var MerchantReference = MainScanViewController.paymentData.refnumber
     
     var SystemTraceNr = MainScanViewController.paymentData.refnumber
     
    
-    
-    
-    
+
     
 }

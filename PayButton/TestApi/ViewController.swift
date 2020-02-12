@@ -80,7 +80,7 @@ class ViewController: UIViewController, PaymentDelegate  {
           PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "51513", textColor: UIColor.black, font:Global.setFont(14) ,
                                         borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
         
         
@@ -93,7 +93,7 @@ class ViewController: UIViewController, PaymentDelegate  {
         
         
         TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "36661607", textColor: UIColor.black, font:Global.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
      
         

@@ -142,7 +142,7 @@ webView.isHidden = true
            
 
 
-                if (self.webView.url?.absoluteString.contains(ApiURL.MAIN_API_LINK))! &&
+                if (self.webView.url?.absoluteString.contains("https://cube.paysky.io/"))! &&
                     ((self.webView.url?.absoluteString.contains("Success"))!)
                 {
                     
