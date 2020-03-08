@@ -39,6 +39,7 @@ func executePOST(path:String,method:HTTPMethod? = .post,
 
     Alamofire.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
         .responseString { response  in
+
             if !path.contains(ApiURL.GenerateQR)
                 &&
                 !path.contains(ApiURL.CheckTxnStatus)
@@ -71,8 +72,8 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                 }
             case .failure(let error):
                 let res = BaseResponse();
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
                 res.Success = false
-                  res.Message = error.localizedDescription
                 
                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 completion(res.toJsonString())

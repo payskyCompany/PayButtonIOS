@@ -107,7 +107,6 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
         MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "10454665972", textColor: UIColor.black, font:Global.setFont(14) ,
                                         borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
-        
   
 //        RefLabel.text = "ref_number".localizedPaySky()
 //        RefValue.setTextFieldStyle("ref_number".localizedPaySky(), title: "3424324234", textColor: UIColor.black, font:Global.setFont(14) ,
@@ -116,8 +115,7 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         
         TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
         TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "78175142", textColor: UIColor.black, font:Global.setFont(14) ,
-                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
-     
+                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)     
         
         AmountLabel.text = "Amount".localizedPaySky()
         AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "20", textColor: UIColor.black, font:Global.setFont(14) ,

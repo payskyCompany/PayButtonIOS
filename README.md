@@ -24,10 +24,12 @@ A step by step that tell you how to get our SDK in your project.
 1- open your xcode project.
 2- in your project in Podfile in project level  add :-
 pod 'PayButton'
-
-
-4- Sync your project.(pod install)
-
+3- open your terminal in project path and write this command:-
+(for first try)
+- pod deintegrate
+- pod update
+(for second try)
+- pod install
 
 
 ### Using SDK
@@ -60,18 +62,30 @@ Example:-
         paymentViewController.tId = "terminalId" // Terminal  id
         paymentViewController.Currency = "currencyCode" // Currency Code [Optional]
         paymentViewController.refnumber = "reference number""  // unique transaction reference number.
-        paymentViewController.Key = "Merchant secure hash"
+        paymentViewController.Key = "Merchant secure hash" // merchant secrue hash
         paymentViewController.pushViewController()
 
        
 2 - in order to create transaction call back in deleget PaymentDelegate:-
 
     implete deleget on your ViewController
-    class ViewController: UIViewController, PaymentDelegate  {
+    class ViewController: UIViewController, PaymentDelegate  {\
+        var receipt: TransactionStatusResponse = TransactionStatusResponse()
+
         func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-        
-        
+        self.receipt = receipt
+        if receipt.Success {
+
+            LabeResoinse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
+            
+        }else {
+            LabeResoinse.setTitle("Transaction has been failed click to callback callback ", for: .normal)
+
+
+            
         }
+    }
+
 
     }
 
