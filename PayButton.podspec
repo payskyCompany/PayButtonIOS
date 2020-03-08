@@ -3,16 +3,9 @@ Pod::Spec.new do |s|
 # 1
 s.platform = :ios
 s.ios.deployment_target = '12.0'
-  s.name             = 'PayButton'
-<<<<<<< HEAD
-=======
-  s.version          = '0.4.5'
-  s.summary          = 'PayButton'
- 
->>>>>>> 76dce6e4e17177ccbfbd55c49908ec26f6805ed0
-  s.description      = "PayButton PayButton PayButton"
-  s.summary          = 'PayButton'
-
+ s.name             = 'PayButton'
+ s.description      = "PayButton PayButton PayButton"
+ s.summary          = 'PayButton'
 s.requires_arc = true
 
 # 2
