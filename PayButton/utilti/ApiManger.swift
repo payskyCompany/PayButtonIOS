@@ -108,7 +108,6 @@ public class ApiManger {
                               completion: @escaping (PaymentMethodResponse) -> ()){
         let addcardRequest =  PaymentMethodRequest()
         print(PaymentMethodRequest())
-        
         executePOST(path: ApiURL.CheckPaymentMethod,parameters: addcardRequest, completion: { (value) in
             completion(   PaymentMethodResponse(json: value))
         } )

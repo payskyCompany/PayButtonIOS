@@ -1,29 +1,28 @@
 Pod::Spec.new do |s|
+
+# 1
+s.platform = :ios
+s.ios.deployment_target = '12.0'
   s.name             = 'PayButton'
-  s.version          = '0.4.2'
-  s.summary          = 'PayButton'
- 
   s.description      = "PayButton PayButton PayButton"
+  s.summary          = 'PayButton'
 
+s.requires_arc = true
 
-  s.homepage         = 'https://github.com/payskyCompany/payButtonIOS'
- 
-  s.license = { :type => 'MIT', :file => 'README.md' }
+# 2
+s.version = "0.4.6"
 
+# 3
+s.license = { :type => "MIT", :file => "LICENSE" }
 
+# 4 - Replace with your name and e-mail address
   s.author           = { 'payskyCompany' => 'ahmed.agamy@paysky.io' }
-  s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version.to_s }
- 
+# 5 - Replace this URL with your own GitHub page's URL (from the address bar)
+s.homepage = "https://github.com/payskyCompany/payButtonIOS"
 
-       #   s.xcconfig =  {'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h}
-
-          #s.platform = :osx, '10.7'
-        
-        s.xcconfig = { "APPLY_RULES_IN_COPY_FILES" => "YES", "STRINGS_FILE_OUTPUT_ENCODING" => "binary" ,"OTHER_LDFLAGS" => "-lz" }
-          # 'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h'}
-           s.public_header_files = 'PayButton/PayButton-Bridging-Header.h'
-
-          s.exclude_files = [
+# 6 - Replace this URL with your own Git URL from "Quick Setup"
+s.source = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => s.version.to_s }
+ s.exclude_files = [
    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
      'PayButton/TestApi/Base.lproj/Main.storyboard',
      'PayButton/TestApi/ViewController.swift',
@@ -31,32 +30,26 @@ Pod::Spec.new do |s|
      'PayButton/Info.plist',
      'PayButton/Assets.xcassets/AppIcon.appiconset/**',
                          ]
-           s.platform = :osx, '10.7'
-           s.platform = :ios, '8.0'
+ s.xcconfig = { "APPLY_RULES_IN_COPY_FILES" => "YES", "STRINGS_FILE_OUTPUT_ENCODING" => "binary" ,"OTHER_LDFLAGS" => "-lz" }
+          # 'SWIFT_OBJC_BRIDGING_HEADER' => 'PayButton/PayButton-Bridging-Header.h'}
+           s.public_header_files = 'PayButton/PayButton-Bridging-Header.h'
 
-           s.ios.deployment_target = '11.0'
-    	s.framework = "UIKit"
 
-    s.dependency 'Alamofire' , '~> 4.8.2'
+# 7
+s.framework = "UIKit"
+  s.dependency 'Alamofire' , '~> 4.9.1'
 
-     #   s.dependency 'IQKeyboardManagerSwift'  , '~> 6.2.0'
      s.dependency "EVReflection"  , '~> 5.10.1'
-      s.dependency 'EVReflection/Alamofire'  , '~> 5.10.1'
+     s.dependency "DynamicBlurView"  , '~> 4.0.0'
 
-         s.dependency 'PayCardsRecognizer'   , '~> 1.1.4'
+         s.dependency 'PayCardsRecognizer'   , '~> 1.1.7'
 
-
-
-    # s.dependency  'Localize-Swift'
-      s.dependency 'PopupDialog' , '~> 0.9.2'  
+      s.dependency 'PopupDialog' , '~> 1.1.1'  
  
 
       
-
-      s.static_framework = true
-s.requires_arc = true
-      # 8
-  s.source_files = "PayButton/**/*.{swift,h,m}"
+# 8
+ s.source_files = "PayButton/**/*.{swift,h,m}"
 
   # 9
   s.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"

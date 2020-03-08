@@ -17,14 +17,13 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                  parameters: BaseResponse? = BaseResponse(), completion: @escaping (String) -> () ) {
     
 
-    
-
     parameters?.SecureHash  = "DateTimeLocalTrxn=" + (parameters?.DateTimeLocalTrxn)! + "&MerchantId=" + (parameters?.MerchantId)!
     parameters?.SecureHash =    (parameters?.SecureHash)! + "&TerminalId=" + (parameters?.TerminalId)!
     
     parameters?.SecureHash = (parameters?.SecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: MainScanViewController.paymentData.KEY))!
 
-  
+  print("  URL: \(path)")
+
     if !path.contains(ApiURL.GenerateQR)
         &&
         !path.contains(ApiURL.CheckTxnStatus)
@@ -38,13 +37,13 @@ func executePOST(path:String,method:HTTPMethod? = .post,
         print(" REQUEST: \(String(describing: parameters?.toJsonString()))")
     }
 
-    Alamofire.request(path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
+    Alamofire.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
         .responseString { response  in
             if !path.contains(ApiURL.GenerateQR)
                 &&
                 !path.contains(ApiURL.CheckTxnStatus)
                 &&
-                !path.contains(ApiURL.CheckPaymentMethod)
+                (path.contains(ApiURL.CheckPaymentMethod) && !(response.result.value?.contains("internal server"))!)
             {
             UIApplication.topViewController()?.view.hideLoadingIndicator()
             }

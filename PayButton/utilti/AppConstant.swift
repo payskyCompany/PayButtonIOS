@@ -10,11 +10,21 @@ import Foundation
 
 class AppConstant {
     static var registrationUserActive1 = "userid"
- 
     static func setPayBtnLiveMode(){
         ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
     }
-
+    static func setPayBtnTestMode(){
+        ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
+        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    }
+    static func setPayBtnUPGStaggingMode(){
+        ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
+        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    }
+    static func setPayBtnUPGProductionMode(){
+        ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
+        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    }
 }
 public class PaymentParams {
     static var MERCHANT_ID = "merchant_id";
@@ -27,19 +37,13 @@ public class PaymentParams {
 
 
 public class ApiURL {
-    //    static var MAIN_API_LINK = "https://197.50.37.116/Cube/PayLink.svc/api/";
-
- //   http://192.168.1.140:4006
-    
-    
     static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
-//    static var MAIN_API_LINK = "http://192.168.1.140:4006/Cube/PayLink.svc/api/";
-    static var GenerateQR = MAIN_API_LINK + "GenerateQR";
-    static var CheckTxnStatus = MAIN_API_LINK + "CheckTxnStatus";
-    static var SendReceiptToEmail = MAIN_API_LINK + "SendReceiptToEmail";
-    static var RequestToPay = MAIN_API_LINK + "RequestToPay";
-    static var PayByCard = MAIN_API_LINK + "PayByCard";
-    static var CheckPaymentMethod = MAIN_API_LINK + "CheckPaymentMethod";
+    static var GenerateQR = "GenerateQR";
+    static var CheckTxnStatus = "CheckTxnStatus";
+    static var SendReceiptToEmail = "SendReceiptToEmail";
+    static var RequestToPay = "RequestToPay";
+    static var PayByCard = "PayByCard";
+    static var CheckPaymentMethod = "CheckPaymentMethod";
  
     
 
