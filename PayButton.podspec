@@ -9,11 +9,7 @@ s.ios.deployment_target = '12.0'
 s.requires_arc = true
 
 # 2
-<<<<<<< HEAD
-s.version = "0.4.7"
-=======
-s.version = "0.4.6"
->>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
+s.version = "0.4.9"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -40,11 +36,7 @@ s.source = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag =
 
 # 7
 s.framework = "UIKit"
-<<<<<<< HEAD
   s.dependency 'Alamofire' , '~> 5.0.0-rc.3'
-=======
-  s.dependency 'Alamofire' , '~> 4.9.1'
->>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
 
      s.dependency "EVReflection"  , '~> 5.10.1'
      s.dependency "DynamicBlurView"  , '~> 4.0.0'
