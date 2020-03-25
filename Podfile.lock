@@ -1,9 +1,5 @@
 PODS:
-<<<<<<< HEAD
-  - Alamofire (5.0.0-rc.3)
-=======
-  - Alamofire (4.9.1)
->>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
+  - Alamofire (5.0.2)
   - DynamicBlurView (4.0.0)
   - EVReflection (5.10.1):
     - EVReflection/Core (= 5.10.1)
@@ -27,11 +23,7 @@ SPEC REPOS:
     - PopupDialog
 
 SPEC CHECKSUMS:
-<<<<<<< HEAD
-  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
-=======
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
->>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   DynamicBlurView: ccf9acd2b20c883cc2c72e3524a04d8d3ee20533
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   PayCardsRecognizer: 2e4d1b2fdd5f1528fb56064a91e1d58a1af7a2db
@@ -39,8 +31,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b9d8f0b41701ff18b7510385e1a8ab030122667d
 
-<<<<<<< HEAD
 COCOAPODS: 1.9.0
-=======
-COCOAPODS: 1.9.0.beta.3
->>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
