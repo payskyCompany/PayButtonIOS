@@ -34,9 +34,23 @@ func executePOST(path:String,method:HTTPMethod? = .post,
         print(" REQUEST: \(String(describing: parameters?.toJsonString()))")
     }
 
+<<<<<<< HEAD
     AF.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
         .responseString { response  in
 
+=======
+    Alamofire.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
+        .responseString { response  in
+
+            if !path.contains(ApiURL.GenerateQR)
+                &&
+                !path.contains(ApiURL.CheckTxnStatus)
+                &&
+                (path.contains(ApiURL.CheckPaymentMethod) && !(response.result.value?.contains("internal server"))!)
+            {
+            UIApplication.topViewController()?.view.hideLoadingIndicator()
+            }
+>>>>>>> fa47dc897d821214d2caf10678648cb32fa49943
             
             switch response.result {
             case .success(let value):
