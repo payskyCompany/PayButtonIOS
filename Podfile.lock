@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.2)
+  - Alamofire (5.0.5)
   - DynamicBlurView (4.0.0)
   - EVReflection (5.10.1):
     - EVReflection/Core (= 5.10.1)
@@ -23,7 +23,7 @@ SPEC REPOS:
     - PopupDialog
 
 SPEC CHECKSUMS:
-  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   DynamicBlurView: ccf9acd2b20c883cc2c72e3524a04d8d3ee20533
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   PayCardsRecognizer: 2e4d1b2fdd5f1528fb56064a91e1d58a1af7a2db
