@@ -12,7 +12,6 @@ import EVReflection
 public class ManualPaymentRequest: BaseResponse {
 
     
-    
     var ThreeDSECI = ""
     var ThreeDSXID = ""
     var ThreeDSenrolled = ""
@@ -31,15 +30,11 @@ public class ManualPaymentRequest: BaseResponse {
     var PAN = ""
     var  AmountTrxn  = ""
     var IsWebRequest = true
-    var ReturnURL = ApiURL.MAIN_API_LINK
-
+    var ReturnURL = ApiURL.MAIN_API_LINK.replacingOccurrences(of: "/Cube/PayLink.svc/api/", with: "")
     var MerchantReference = MainScanViewController.paymentData.refnumber
     
     var SystemTraceNr = MainScanViewController.paymentData.refnumber
     
    
-    
-    
-    
     
 }

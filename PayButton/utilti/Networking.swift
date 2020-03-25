@@ -10,13 +10,8 @@ import Foundation
 import Alamofire
 import UIKit
 
-
-
-
 func executePOST(path:String,method:HTTPMethod? = .post,
                  parameters: BaseResponse? = BaseResponse(), completion: @escaping (String) -> () ) {
-    
-
     
 
     parameters?.SecureHash  = "DateTimeLocalTrxn=" + (parameters?.DateTimeLocalTrxn)! + "&MerchantId=" + (parameters?.MerchantId)!
@@ -24,7 +19,8 @@ func executePOST(path:String,method:HTTPMethod? = .post,
     
     parameters?.SecureHash = (parameters?.SecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: MainScanViewController.paymentData.KEY))!
 
-  
+  print("  URL: \(path)")
+
     if !path.contains(ApiURL.GenerateQR)
         &&
         !path.contains(ApiURL.CheckTxnStatus)
@@ -38,42 +34,44 @@ func executePOST(path:String,method:HTTPMethod? = .post,
         print(" REQUEST: \(String(describing: parameters?.toJsonString()))")
     }
 
-    Alamofire.request(path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
+    AF.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
         .responseString { response  in
-            if !path.contains(ApiURL.GenerateQR)
-                &&
-                !path.contains(ApiURL.CheckTxnStatus)
-                &&
-                !path.contains(ApiURL.CheckPaymentMethod)
-            {
-            UIApplication.topViewController()?.view.hideLoadingIndicator()
-            }
+
             
             switch response.result {
-            case .success:
-                if response.result.value != nil {
+            case .success(let value):
+                if !path.contains(ApiURL.GenerateQR)
+                    &&
+                    !path.contains(ApiURL.CheckTxnStatus)
+                    &&
+                    (path.contains(ApiURL.CheckPaymentMethod) && !(value.contains("internal server")))
+                {
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
+                }
+                
+                if value != nil {
                     let statusCode = response.response?.statusCode
                     if !path.contains(ApiURL.GenerateQR)
                         &&
                         !path.contains(ApiURL.CheckTxnStatus)
                     {
                         
-                      print("RESPONSE: \(String(describing: response.result.value))")
+                      print("RESPONSE: \(String(describing: value))")
                     }
                     if (statusCode == 400){
-                        let res = BaseResponse(json: response.result.value!)
+                        let res = BaseResponse(json: value)
                         res.Success = false
                         res.Message = res.ModelState
                         UIApplication.topViewController()?.view.hideLoadingIndicator()
                         completion(res.toJsonString())
                         return
                     }
-                    completion(response.result.value!)
+                    completion(value)
                 }
             case .failure(let error):
                 let res = BaseResponse();
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
                 res.Success = false
-                  res.Message = error.localizedDescription
                 
                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 completion(res.toJsonString())

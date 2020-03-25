@@ -6,9 +6,8 @@ target 'PayButton' do
   use_frameworks!
 
   # Pods for PayButton
-    pod 'Alamofire'
+    pod 'Alamofire', '~> 5.0.0-rc.3'
     pod "EVReflection"
-    pod 'EVReflection/Alamofire'
     pod 'PopupDialog'
     pod 'PayCardsRecognizer'
     use_frameworks!

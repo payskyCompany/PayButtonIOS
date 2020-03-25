@@ -102,6 +102,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
 
     
     
+    @IBOutlet weak var LOGO: UIImageView!
 
     
     @IBOutlet weak var CardImage: UIImageView!
@@ -170,10 +171,15 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         self.TableViews.isScrollEnabled = false
         self.TableViews.isPagingEnabled = false
          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-
+        if AppDelegate.UrlTypeRow == 0 || AppDelegate.UrlTypeRow == 1 {
+            LOGO.image = UIImage(named:"power_by_paysky")
+        }
+        else {
+            LOGO.image = UIImage(named:"upg_orange_logo")
+        }
+        
         
         self.WalletView.layer.cornerRadius =  PaySkySDKColor.RaduisNumber
         self.CardView.layer.cornerRadius = PaySkySDKColor.RaduisNumber

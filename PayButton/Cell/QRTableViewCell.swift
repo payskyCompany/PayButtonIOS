@@ -39,14 +39,9 @@ class QRTableViewCell: BaseUITableViewCell {
         requestBtn.setTitle("request_payment".localizedPaySky(), for: .normal)
         
         let qrCode = QRCode( MainScanViewController.paymentData.staticQR )
+        print(MainScanViewController.paymentData.staticQR)
         self.QrImage.image =  qrCode?.image
         requestBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-        
-        
-        
-        
-
 
     }
     

@@ -6,6 +6,11 @@
 //  Copyright © 2018 Paysky. All rights reserved.
 //
 
+
+enum UrlTypes {
+    case Production, Testing, UPG_Staging, UPG_Production
+}
+
 import Foundation
 import UIKit
 public class PaymentViewController  {
@@ -16,6 +21,7 @@ public class PaymentViewController  {
     public   var Currency = ""
     public   var refnumber = ""
     public   var isProduction = false
+    var AppStatus = UrlTypes.UPG_Staging // production,testing,gray,upg
 
     
 
@@ -35,16 +41,28 @@ public class PaymentViewController  {
             print("Please enter all  data ");
             return
         }
-        if  ( self.refnumber.isEmpty){
-            print("Please enter refnumber   ");
-            return
+//        if  ( self.refnumber.isEmpty){
+//            print("Please enter refnumber   ");
+//            return
+//        }
+        
+        
+        
+//        if isProduction {
+//            AppConstant.setPayBtnLiveMode()
+//        }
+        
+        switch AppStatus {
+        case .Production:                        AppConstant.setPayBtnLiveMode()
+        case .Testing:
+            AppConstant.setPayBtnTestMode() 
+        case .UPG_Staging:
+            AppConstant.setPayBtnUPGStaggingMode()
+        case .UPG_Production:
+            AppConstant.setPayBtnUPGProductionMode()
         }
         
         
-        
-        if isProduction {
-            AppConstant.setPayBtnLiveMode()
-        }
         
         var DoubleAmount = Double(""+self.amount) ??  0
         DoubleAmount = DoubleAmount * 100.00
@@ -77,6 +95,7 @@ public class PaymentViewController  {
                     paymentData.currencyCode != 0 &&
             !paymentData.terminalId.isEmpty)
         {
+            print(ApiURL.MAIN_API_LINK)
             RegiserOrGetOldToken(paymentData: paymentData)
        
             
@@ -97,7 +116,6 @@ public class PaymentViewController  {
     private func RegiserOrGetOldToken(paymentData : PaymentData)  {
         MainScanViewController.paymentData = paymentData
         MainScanViewController.paymentData.amount = ( MainScanViewController.paymentData.amount )
-        
         ApiManger.CheckPaymentMethod { (paymentresponse) in
             
             print(paymentresponse)
@@ -150,15 +168,6 @@ public class PaymentViewController  {
             self.gotoNextPage()
 
         }
-        
-        
-        
-     
-        
-      
-        
-        
-        
     }
 
     public func gotoNextPage(){

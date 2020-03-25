@@ -16,13 +16,9 @@ public    var Success = false;
  public   var TerminalId = MainScanViewController.paymentData.terminalId
     public   var MerchantId = MainScanViewController.paymentData.merchantId
     public   var DateTimeLocalTrxn = BaseResponse.getDate()
-    public   var SecureHash = "35666437383237622D626132312D346366312D613163662D363136343233343563353266"
+    public   var SecureHash = "32303763346235342D316635392D346232642D396366652D653036623935366630346438"
     public   var TxnId = 0
     public   var ModelState = ""
-
-
-    
-
 
   public static  func getDate() -> String  {
 
