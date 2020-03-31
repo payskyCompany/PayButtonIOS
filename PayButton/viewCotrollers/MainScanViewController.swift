@@ -154,7 +154,7 @@ var UrlTypeRow = 0
     }
     
   @objc func keyboardWillShow(notification: NSNotification) {
-      if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+    if let keyboardSize = (notification.userInfo?[UIResponder.UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
           if self.view.frame.origin.y == 0 {
               self.view.frame.origin.y -= keyboardSize.height
           }
@@ -170,8 +170,8 @@ var UrlTypeRow = 0
         super.viewDidLoad()
         self.TableViews.isScrollEnabled = false
         self.TableViews.isPagingEnabled = false
-         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if UrlTypeRow == 0 {
             LOGO.image = UIImage(named:"power_by_paysky")
