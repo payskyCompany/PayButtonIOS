@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.5.3'
+  s.version          = '0.5.4'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
    
 
 
-  spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
+  spec.dependency 'Alamofire', '~> 5.0.5'
   spec.dependency 'EVReflection', '~> 5.10.1'
   spec.dependency 'PayCardsRecognizer', '~> 1.1.7'
   spec.dependency 'PopupDialog', '~> 1.1.1' 
