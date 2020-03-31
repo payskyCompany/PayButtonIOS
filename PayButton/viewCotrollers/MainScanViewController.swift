@@ -96,7 +96,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
 
     var delegate: PaymentDelegate?
    public static  var paymentData = PaymentData()
-
+var UrlTypeRow = 0
 
     
 
@@ -173,7 +173,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        if AppDelegate.UrlTypeRow == 0 || AppDelegate.UrlTypeRow == 1 {
+        if UrlTypeRow == 0 {
             LOGO.image = UIImage(named:"power_by_paysky")
         }
         else {

@@ -7,9 +7,6 @@
 //
 
 
-enum UrlTypes {
-    case Production, Testing, UPG_Staging, UPG_Production
-}
 
 import Foundation
 import UIKit
@@ -21,7 +18,7 @@ public class PaymentViewController  {
     public   var Currency = ""
     public   var refnumber = ""
     public   var isProduction = false
-    var AppStatus = UrlTypes.UPG_Staging // production,testing,gray,upg
+    public   var AppStatus : UrlTypes = UrlTypes.UPG_Staging // production,testing,gray,upg
 
     
 
@@ -35,7 +32,6 @@ public class PaymentViewController  {
     
     
     public func pushViewController()  {
-        
         
         if  ( self.amount.isEmpty  || self.Currency.isEmpty){
             print("Please enter all  data ");
@@ -175,6 +171,12 @@ public class PaymentViewController  {
 
         let psb = UIStoryboard.init(name: "PayButtonBoard", bundle: nil)
         let vc :MainScanViewController = psb.instantiateViewController(withIdentifier: "MainScanViewController") as! MainScanViewController
+        if AppStatus == .Production || AppStatus == .Testing {
+        vc.UrlTypeRow = 0
+        }
+        else {
+            vc.UrlTypeRow = 1
+        }
         vc.delegate = self.delegate
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)

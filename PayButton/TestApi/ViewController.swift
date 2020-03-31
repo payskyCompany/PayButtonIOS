@@ -21,7 +21,6 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedOne = row
-        AppDelegate.UrlTypeRow = row
     }
     var DataToShow: [String] = [String]()
    var DataToSend: [UrlTypes] = [UrlTypes]()
