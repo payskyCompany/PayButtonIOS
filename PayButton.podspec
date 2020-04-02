@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.5.6'
+  s.version          = '0.5.7'
   s.summary          = 'PayButton'
  
   s.description      = "PayButton PayButton PayButton"

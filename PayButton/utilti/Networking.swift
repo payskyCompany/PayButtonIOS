@@ -40,11 +40,13 @@ func executePOST(path:String,method:HTTPMethod? = .post,
             
             switch response.result {
             case .success(let value):
-                if !path.contains(ApiURL.GenerateQR)
-                    &&
-                    !path.contains(ApiURL.CheckTxnStatus)
-                    &&
-                    (path.contains(ApiURL.CheckPaymentMethod) && !(value.contains("internal server")))
+                if path.contains(ApiURL.CheckPaymentMethod) {
+                  if value.contains("internal server") {          UIApplication.topViewController()?.view.hideLoadingIndicator()
+                  }
+                }
+                else if !path.contains(ApiURL.GenerateQR)
+                  &&
+                  !path.contains(ApiURL.CheckTxnStatus)
                 {
                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 }
