@@ -69,7 +69,7 @@ public class ApiManger {
     static func  generateQrCode(
                            completion: @escaping (QrGenratorResponse) -> ()){
         let addcardRequest = QrGenratorRequest()
-        addcardRequest.AmountTrxn = MainScanViewController.paymentData.amount
+        addcardRequest.AmountTrxn = Int(MainScanViewController.paymentData.amount)
         executePOST(path: ApiURL.GenerateQR,parameters: addcardRequest, completion: { (value) in
             completion(   QrGenratorResponse(json: value))
         } )

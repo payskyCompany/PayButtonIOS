@@ -8,5 +8,9 @@
 
 import Foundation
 public enum UrlTypes {
-    case Production, Testing, UPG_Staging, UPG_Production
+    case Production, Testing
+}
+
+public enum UPGUrlTypes {
+    case UPG_Staging, UPG_Production
 }

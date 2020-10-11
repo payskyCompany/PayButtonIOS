@@ -96,9 +96,10 @@
 "DateTF_NOTVALID"="من فضلك ادخل تاريخ انتهاء صلاحية البطاقة";
 "cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت";
 "cardNumber_VALID"="من فضلك ادخل رقم الكارت صحيح";
-"DateTF_NOTVALID_AC"=" تاريخ انتهاء صلاحية البطاقة غير صيحيح";
+"DateTF_NOTVALID_AC"=" تاريخ انتهاء صلاحية البطاقة يجب ان يكون 4 ارقام";
 
 "CVCTF_NOTVALID"="من فضلك ادخل رمز الحماية";
+"CVCTF_NOTVALID_LENGTH"="رمز الحماية يجب ان يكون مكون من 3 ارقام";
 "please_entre_your_mail"="من فضلك ادخل البريد الالكتروني";
 "please_entre_valid_mail"= " من فضلك ادخل البريد الالكتروني صحيح";
 "email_send_to"= "تم ارسال بريد الكترونى الي";
@@ -112,6 +113,8 @@
 "please entre your mail" = "من فضلك ادخل بريدك الالكتروني";
 "please entre valid mail" = "من فضلك ادخل بريدك الالكتروني صحيح";
 "ref_number" = "الرقم المرجعي";
+"please entre secure hash value" = "من فضلك ادخل secure hash";
+"please entre valid secure hash value" = "من فضلك ادخل secure hash صحيح";
 
 
 "818" = "جنية";

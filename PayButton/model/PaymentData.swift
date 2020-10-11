@@ -17,7 +17,7 @@ class PaymentData: EVObject {
 
     var Is3DS = true
     
-    var amount = 0 
+    var amount = 0.0
     var terminalId = ""
     var KEY = ""
     var currencyCode = 0

@@ -8,6 +8,7 @@
 
 
 import UIKit
+import MOLH
 import PayCardsRecognizer
 //CardIOPaymentViewControllerDelegate
 
@@ -16,10 +17,13 @@ import AVFoundation
 class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
 ScanCardtDelegate  {
     
-    
+    var PreviousLength = 0
     @IBAction func ExDateChanges(_ sender: UITextField) {
         validDate = false;
-
+        if PreviousLength > DateTF.text!.count {
+            PreviousLength = DateTF.text!.count
+            return
+        }
         if DateTF.text!.count == 1 && Int(DateTF.text!)! > 2 {
             DateTF.text! = "0" + DateTF.text! + "/"
         }
@@ -41,6 +45,8 @@ ScanCardtDelegate  {
                 
             }
         }
+        
+        PreviousLength = DateTF.text!.count
        
     }
     
@@ -153,7 +159,7 @@ ScanCardtDelegate  {
             self.ScanBtn.isHidden = false
             
         } else if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.notDetermined {
-            self.ScanBtn.isHidden = true
+//            self.ScanBtn.isHidden = true
         }
         
         
@@ -221,6 +227,20 @@ ScanCardtDelegate  {
         delegate = self
         
         // Initialization code
+        
+
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+            CVCTF.textAlignment = .left
+            CardHolderName.textAlignment = .left
+            DateTF.textAlignment = .left
+            CardNumbeTV.textAlignment = .left
+        }
+        else {
+            CVCTF.textAlignment = .right
+            CardHolderName.textAlignment = .right
+            DateTF.textAlignment = .right
+            CardNumbeTV.textAlignment = .right
+        }
     }
     
     
@@ -292,7 +312,9 @@ ScanCardtDelegate  {
                 
             }else {
                 self.validCard = false
+                UIApplication.topViewController()?.view.endEditing(true)
                 UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky() )
+
 
             }
             }
@@ -333,8 +355,8 @@ ScanCardtDelegate  {
 
     
     @IBAction func SendMoneyByCard(_ sender: Any) {
+        UIApplication.topViewController()?.view.endEditing(true)
 
-        
         if self.cardNumber.isEmpty {
             UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedPaySky() )
             
@@ -348,6 +370,11 @@ ScanCardtDelegate  {
             
             return;
         }
+        if   cardNumber.replacingOccurrences(of: " ", with: "").count != 16 && cardNumber.replacingOccurrences(of: " ", with: "").count != 19 {
+                   UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky() )
+                   
+                   return;
+               }
 
         
         if (self.CardHolderName.text?.isEmpty)! {
@@ -359,17 +386,13 @@ ScanCardtDelegate  {
         
 
         
-        if (self.DateTF.text?.isEmpty)! || !validDate {
+        if (self.DateTF.text?.isEmpty)! {
             UIApplication.topViewController()?.view.makeToast(
                 "DateTF_NOTVALID".localizedPaySky() )
-            
             return;
         }
         
-        
-        
-        
-        if  !validDate {
+        if  self.DateTF.text?.count != 5 {
             UIApplication.topViewController()?.view.makeToast(
                 "DateTF_NOTVALID_AC".localizedPaySky() )
             
@@ -378,9 +401,23 @@ ScanCardtDelegate  {
         
         
         
+        if  !validDate {
+            UIApplication.topViewController()?.view.makeToast(
+                "invalid_expire_date_date".localizedPaySky() )
+            return;
+        }
+        
+        
+        
         if (self.CVCTF.text?.isEmpty)! {
             
             UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedPaySky() )
+            
+            return;
+        }
+        if self.CVCTF.text!.count != 3 {
+            
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedPaySky() )
             
             return;
         }

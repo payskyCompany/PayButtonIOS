@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import MOLH
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , MOLHResetable {
+    func reset() {
+        print("rr")
+    }
+    
 
     var window: UIWindow?
 //    public static var UrlTypeRow = 0
@@ -29,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.mainBtnColor
 //        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
 //        
-//        
+//
+        
+        MOLH.shared.activate(true)
         return true
     }
 

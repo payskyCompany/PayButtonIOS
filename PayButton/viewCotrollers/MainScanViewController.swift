@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import  MOLH
 extension UITableView {
 
     func setBottomInset(to value: CGFloat) {
@@ -19,7 +19,41 @@ extension UITableView {
 }
 
 class MainScanViewController: BasePaymentViewController , UITableViewDataSource, UITableViewDelegate ,ActionCellActionDelegate {
-    
+    let PaySkyTitle = "PAYSKY"
+    let upgTitle = "UPG"
+    @IBOutlet weak var imageLogo: UIImageView!
+    let selectedTitle = "PAYSKY"
+    @IBAction func ChangeLangAction(_ sender: Any) {
+      
+
+        
+        
+        
+            
+            UIView.appearance().semanticContentAttribute = MOLHLanguage.currentAppleLanguage() == "ar" ? .forceRightToLeft : .forceLeftToRight
+            
+            MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
+            if (MOLHLanguage.currentAppleLanguage()=="en"){
+                UserDefaults.standard.set("en", forKey: "AppLanguage")
+            }else{
+                UserDefaults.standard.set("ar", forKey: "AppLanguage")
+            }
+            
+            MOLH.reset()
+            Bundle.swizzleLocalization()
+        let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
+
+               let vc :MainScanViewController = st.instantiateViewController(withIdentifier: "MainScanViewController") as! MainScanViewController
+        vc.delegate = self.delegate
+
+               vc.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.dismiss(animated: true, completion: {
+            UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
+            vc.fromNav = self.fromNav
+            })
+             
+
+    }
     
      var compose3DSTransactionResponse: TransactionStatusResponse = TransactionStatusResponse()
       var manualPaymentRequest: ManualPaymentRequest = ManualPaymentRequest()
@@ -102,7 +136,6 @@ var UrlTypeRow = 0
 
     
     
-    @IBOutlet weak var LOGO: UIImageView!
 
     
     @IBOutlet weak var CardImage: UIImageView!
@@ -168,18 +201,18 @@ var UrlTypeRow = 0
   }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if selectedTitle == PaySkyTitle {
+            imageLogo.image = UIImage(named:"power_by_paysky")
+              }
+              else {
+                imageLogo.image = UIImage(named:"upg_orange_logo")
+              }
+
+        
         self.TableViews.isScrollEnabled = false
         self.TableViews.isPagingEnabled = false
-         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        if UrlTypeRow == 0 {
-            LOGO.image = UIImage(named:"power_by_paysky")
-        }
-        else {
-            LOGO.image = UIImage(named:"upg_orange_logo")
-        }
-        
+//         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.WalletView.layer.cornerRadius =  PaySkySDKColor.RaduisNumber
         self.CardView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
@@ -394,3 +427,19 @@ var UrlTypeRow = 0
     }
     
 }
+
+
+extension Bundle {
+    static func swizzleLocalization() {
+        let orginalSelector = #selector(localizedString(forKey:value:table:))
+        guard let orginalMethod = class_getInstanceMethod(self, orginalSelector) else { return }
+
+        let mySelector = #selector(myLocaLizedString(forKey:value:table:))
+        guard let myMethod = class_getInstanceMethod(self, mySelector) else { return }
+
+        if class_addMethod(self, orginalSelector, method_getImplementation(myMethod), method_getTypeEncoding(myMethod)) {
+            class_replaceMethod(self, mySelector, method_getImplementation(orginalMethod), method_getTypeEncoding(orginalMethod))
+        } else {
+            method_exchangeImplementations(orginalMethod, myMethod)
+        }
+    }

@@ -156,7 +156,10 @@ ErrorMessage.isHidden = false
 
         
     }
-        
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
+//        self.delegateActions?.completeRequest(transactionStatusResponse: self.transactionStatusResponse)
+//
+//    })
     }
     
     @IBAction func Close(_ sender: Any) {

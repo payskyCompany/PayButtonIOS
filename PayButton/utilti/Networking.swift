@@ -41,8 +41,7 @@ func executePOST(path:String,method:HTTPMethod? = .post,
             switch response.result {
             case .success(let value):
                 if path.contains(ApiURL.CheckPaymentMethod) {
-                  if value.contains("internal server") {          UIApplication.topViewController()?.view.hideLoadingIndicator()
-                  }
+                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 }
                 else if !path.contains(ApiURL.GenerateQR)
                   &&
@@ -74,8 +73,6 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                 let res = BaseResponse();
                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 res.Success = false
-                
-                UIApplication.topViewController()?.view.hideLoadingIndicator()
                 completion(res.toJsonString())
 
                 print(error)

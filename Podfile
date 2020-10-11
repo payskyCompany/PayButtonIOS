@@ -10,6 +10,7 @@ target 'PayButton' do
     pod "EVReflection"
     pod 'PopupDialog'
     pod 'PayCardsRecognizer'
+    pod 'MOLH'
     use_frameworks!
 
     

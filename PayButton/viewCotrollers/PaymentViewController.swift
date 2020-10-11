@@ -18,9 +18,10 @@ public class PaymentViewController  {
     public   var Currency = ""
     public   var refnumber = ""
     public   var isProduction = false
-    public   var AppStatus : UrlTypes = UrlTypes.UPG_Staging // production,testing,gray,upg
+    public   var AppStatus : UrlTypes = .Testing
 
-    
+
+//    public   var AppStatus : UPGUrlTypes = .UPG_Staging
 
     
     
@@ -49,25 +50,27 @@ public class PaymentViewController  {
 //        }
         
         switch AppStatus {
-        case .Production:                        AppConstant.setPayBtnLiveMode()
-        case .Testing:
-            AppConstant.setPayBtnTestMode() 
-        case .UPG_Staging:
-            AppConstant.setPayBtnUPGStaggingMode()
-        case .UPG_Production:
-            AppConstant.setPayBtnUPGProductionMode()
+            case .Production:                        AppConstant.setPayBtnLiveMode()
+            case .Testing:
+                AppConstant.setPayBtnTestMode()
         }
         
+//        switch AppStatus {
+//        case .UPG_Staging:                        AppConstant.setPayBtnUPGStaggingMode()
+//            case .UPG_Production:
+//                AppConstant.setPayBtnUPGProductionMode()
+//        }
         
         
-        var DoubleAmount = Double(""+self.amount) ??  0
+        
+        var DoubleAmount = Double(self.amount) ??  0.0
         DoubleAmount = DoubleAmount * 100.00
         
         let paymentData = PaymentData()
         
         
        
-        paymentData.amount = Int(DoubleAmount)
+        paymentData.amount = DoubleAmount
         paymentData.refnumber = refnumber
 
         paymentData.merchantId = mId
@@ -114,7 +117,6 @@ public class PaymentViewController  {
         MainScanViewController.paymentData.amount = ( MainScanViewController.paymentData.amount )
         ApiManger.CheckPaymentMethod { (paymentresponse) in
             
-            print(paymentresponse)
             if paymentresponse.Success {
                 MainScanViewController.paymentData.merchant_name = paymentresponse.MerchantName
                 MainScanViewController.paymentData.currencyCode = Int ( self.Currency )!
@@ -126,7 +128,12 @@ public class PaymentViewController  {
                 
                 
             }else {
+                if paymentresponse.Message == "" {
+                     UIApplication.topViewController()?.view.makeToast(  "Authentication failed")
+                }
+                else {
                 UIApplication.topViewController()?.view.makeToast(  paymentresponse.Message)
+                }
             }
             
         }
@@ -171,12 +178,6 @@ public class PaymentViewController  {
 
         let psb = UIStoryboard.init(name: "PayButtonBoard", bundle: nil)
         let vc :MainScanViewController = psb.instantiateViewController(withIdentifier: "MainScanViewController") as! MainScanViewController
-        if AppStatus == .Production || AppStatus == .Testing {
-        vc.UrlTypeRow = 0
-        }
-        else {
-            vc.UrlTypeRow = 1
-        }
         vc.delegate = self.delegate
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)

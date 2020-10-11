@@ -4,6 +4,8 @@
 "Terminal ID_paysky" = "Terminal ID";
 "Amount" = "Amount";
 "Currency_paysky" = "Currency";
+"please entre secure hash value" = "please entre secure hash value";
+"please entre valid secure hash value" = "please entre valid secure hash value";
 
 "Done" = "Done";
 
@@ -79,7 +81,7 @@
 "or"="OR";
 "cant_scan_code"="Can\'t scan Qr code? \nSend payment request to MeezaDigital ID/Mobile Number";
 "request_payment"="Request Payment";
-"invalid_expire_date_date"="Invalid expiry date";
+"invalid_expire_date_date"="Invalid Expiry date";
 "egp"="EGP";
 "print"="Print receipt";
 "accepted_operation"="Accepted operation";
@@ -99,21 +101,23 @@
 "mobile_number_valid"="please enter mobile number ";
 
 
-"DateTF_NOTVALID"="Please enter your expiry date";
-"DateTF_NOTVALID_AC"="Expiry date not valid";
+"DateTF_NOTVALID"="Please enter Expiry date";
+"DateTF_NOTVALID_AC"="Card expiry date should be 4 digits";
 
 "cardNumber_NOTVALID"="Please enter  card number";
 "cardNumber_VALID"="Please enter valid card number";
 
 
 
-"CVCTF_NOTVALID"="please enter CVC";
+"CVCTF_NOTVALID"="CVC is required";
+"CVCTF_NOTVALID_LENGTH"="CVC should be 3 digits length";
+
 "Error" = "Error";
 "validation_card"="Card validation";
 
 "please_entre_your_mail"= "please enter your email";
 "please_entre_valid_mail"= "please enter valid email";
-"email_send_to"=  "Email sent to";
+"email_send_to"=  "Email sent to ";
 
 "CardHolderNameRequird" = "Card holder name is required";
 "please entre merchant" = "please enter merchant";
