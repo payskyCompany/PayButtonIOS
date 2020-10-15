@@ -7,9 +7,25 @@
 //
 
 import UIKit
+import MOLH
 
 class CompleteTableViewCell: BaseUITableViewCell {
-    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.frame.origin.y == 0 {
+                self.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+   
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.frame.origin.y != 0 {
+            self.frame.origin.y = 0
+        }
+    }
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
     
     @IBOutlet weak var StackComplete: UIStackView!
     
@@ -41,11 +57,17 @@ class CompleteTableViewCell: BaseUITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+       
+
         self.backgroundColor = UIColor.clear
         
    
-        
+        if MOLHLanguage.currentAppleLanguage() != "ar" {
+            EmailED.textAlignment = .left
+        }
+        else {
+            EmailED.textAlignment = .right
+        }
         
         TextStatus.text =  "transaction_success".localizedPaySky()
  TransNumber.text =  "trx_id".localizedPaySky()
@@ -75,7 +97,8 @@ class CompleteTableViewCell: BaseUITableViewCell {
     
     
     @IBAction func SendEmailAction(_ sender: Any) {
-        
+        self.endEditing(true)
+
         
         if (EmailED.text?.isEmpty)! {
             UIApplication.topViewController()?.view.makeToast(  "please entre your mail".localizedPaySky()  )
@@ -100,6 +123,10 @@ class CompleteTableViewCell: BaseUITableViewCell {
     
     var transactionStatusResponse: TransactionStatusResponse =  TransactionStatusResponse()
   override  func setData(transactionStatusResponse: TransactionStatusResponse) {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    self.addGestureRecognizer(tap)
+     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     self.transactionStatusResponse = transactionStatusResponse
     if transactionStatusResponse.Success {
         self.StackComplete.isHidden = false
@@ -163,7 +190,7 @@ ErrorMessage.isHidden = false
     }
     
     @IBAction func Close(_ sender: Any) {
-        
+        self.endEditing(true)
         
         delegateActions?.completeRequest(transactionStatusResponse: self.transactionStatusResponse)
     }
@@ -177,3 +204,9 @@ ErrorMessage.isHidden = false
     
     
 }
+
+
+
+
+
+

@@ -124,6 +124,7 @@
 "please entre terminal" = "please enter terminal";
 "please entre amount" = "please enter amount";
 "please entre currency" = "please enter currency";
+"please entre amount greater" = "Amount should be greater than 0";
 
 "please entre your mail" = "please entre your mail";
 "ref_number" = "Ref #";

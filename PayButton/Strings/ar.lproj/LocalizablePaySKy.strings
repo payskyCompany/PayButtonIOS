@@ -115,6 +115,7 @@
 "ref_number" = "الرقم المرجعي";
 "please entre secure hash value" = "من فضلك ادخل secure hash";
 "please entre valid secure hash value" = "من فضلك ادخل secure hash صحيح";
+"please entre amount greater" = "يجب ان يكون المبلغ اكبر من 0";
 
 
 "818" = "جنية";

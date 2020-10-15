@@ -10,7 +10,7 @@ import UIKit
 
 class BaseUITableViewCell: UITableViewCell {
     weak var delegateActions: ActionCellActionDelegate?
- 
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -56,11 +56,12 @@ public class PaymentViewController  {
         }
         
 //        switch AppStatus {
-//        case .UPG_Staging:                        AppConstant.setPayBtnUPGStaggingMode()
+//            case .UPG_Staging:
+//                AppConstant.setPayBtnUPGStaggingMode()
 //            case .UPG_Production:
 //                AppConstant.setPayBtnUPGProductionMode()
 //        }
-        
+//        
         
         
         var DoubleAmount = Double(self.amount) ??  0.0

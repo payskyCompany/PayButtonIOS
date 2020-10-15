@@ -147,38 +147,40 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         
         
         ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
-          PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
-          PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
+        PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
+        PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "46815", textColor: UIColor.black, font:Global.setFont(14) ,
-                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
-  
-//        RefLabel.text = "ref_number".localizedPaySky()
-//        RefValue.setTextFieldStyle("ref_number".localizedPaySky(), title: "3424324234", textColor: UIColor.black, font:Global.setFont(14) ,
-//                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
-        
-        
-        TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-        TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "30863927", textColor: UIColor.black, font:Global.setFont(14) ,
-                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)     
-        
-        AmountLabel.text = "Amount".localizedPaySky()
-        AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "20", textColor: UIColor.black, font:Global.setFont(14) ,
-                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
-        
-        
-        CurrencyLabel.text = "Currency_paysky".localizedPaySky()
-        AppName.text = "app_name_paysky".localizedPaySky()
-        CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "818", textColor: UIColor.black, font:Global.setFont(14) ,
-                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
-        
-        
-        
-        
-   
-        SecureHash.setTextFieldStyle("Secure Hash", title: "34373530393937652D373236652D343536392D386630612D613637376234393866633134", textColor: UIColor.black, font:Global.setFont(14) ,
-                                     borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
+               MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                               borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
+         
+       //        RefLabel.text = "ref_number".localizedPaySky()
+       //        RefValue.setTextFieldStyle("ref_number".localizedPaySky(), title: "3424324234", textColor: UIColor.black, font:Global.setFont(14) ,
+       //                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
+               
+               
+               TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
+               TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                              borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
+               
+               AmountLabel.text = "Amount".localizedPaySky()
+               AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                          borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
+               
+               
+               CurrencyLabel.text = "Currency_paysky".localizedPaySky()
+               AppName.text = "app_name_paysky".localizedPaySky()
+               CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                          borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
+               
+               
+               
+               
+          
+               SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                            borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
+               
+
         
         if MOLHLanguage.currentAppleLanguage() != "ar" {
             CurrencyEd.textAlignment = .left
@@ -217,8 +219,12 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             return
         }
         
-        if (AmountEd.text!.isEmpty || Int(AmountEd.text!) == 0 ) {
+        if (AmountEd.text!.isEmpty ) {
             UIApplication.topViewController()?.view.makeToast( "please entre amount".localizedPaySky())
+            return
+        }
+        if (Float(AmountEd.text!) == 0.0 ) {
+            UIApplication.topViewController()?.view.makeToast( "please entre amount greater".localizedPaySky())
             return
         }
         
