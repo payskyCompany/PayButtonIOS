@@ -137,4 +137,4 @@ Example:
 **PaySky Company** - (https://www.paysky.io)
 
 ### Sample Project
-**https://github.com/payskyCompany/payButtonIOS.git**
+**https://github.com/payskyCompany/PayButtonIOSExample.git**
