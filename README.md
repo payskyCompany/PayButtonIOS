@@ -23,7 +23,7 @@ pod init
 pod install
 ```
 
-### Installation
+## 💻 Installation
 
 1. Add the pod to your Podfile:
 ```
@@ -37,14 +37,14 @@ pod clean
 pod install
 ```
 
-### Deployment
+## 🚀 Deployment
 1. Before deploying your project live, you should get a merchant ID and terminal ID from our company.
 2. You should keep your merchant ID and terminal ID secured in your project, encrypt them before save them in project.
 
-### Usage
-
+## 🛠 How to use
 In order to use the SDK you should get a Merchant ID, a Terminal ID and Secure Hash from PaySky company.
 
+### 👉 Import
 In the class you want to intiate the payment from, you should import the framework
 ```swift
 import PayButton
@@ -74,6 +74,7 @@ paymentViewController.Currency = "currencyCode"       // Currency Code [Optional
 paymentViewController.pushViewController()
 ```
 
+### 🧳 Features
 In order to create transaction callback in delegate PaymentDelegate:-
 
 Implement delegate on your ViewController.
@@ -127,14 +128,13 @@ Example:
     }
 ```
 
-### Built With
+## 🛠️ Built With
 * [Alamofire](https://github.com/Alamofire/Alamofire)  
 * [EVReflection](https://github.com/evermeer/EVReflection)  
 
 
-### Authors
-
+## ✍️ Authors
 **PaySky Company** - (https://www.paysky.io)
 
-### Sample Project
+## 👀 Sample Project
 **https://github.com/payskyCompany/PayButtonIOSExample.git**
