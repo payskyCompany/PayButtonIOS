@@ -1,3 +1,5 @@
+<p align="center"><a href="https://paysky.io/" target="_blank"><img width="440" src="https://paysky.io/wp-content/uploads/2021/05/PaySky-logo.svg"></a></p>
+
 # PaySky PayButton SDK
 The PayButton helps make the integration of card acceptance into your app easy.
 
