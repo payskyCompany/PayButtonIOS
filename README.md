@@ -77,56 +77,19 @@ paymentViewController.pushViewController()
 ```
 
 ### 🧳 Features
-In order to create transaction callback in delegate PaymentDelegate:-
+In order to create transaction callback in delegate PaymentDelegate, implement delegate on your ViewController.
 
-Implement delegate on your ViewController.
 ```swift 
     class ViewController: UIViewController, PaymentDelegate  {
-        var receipt: TransactionStatusResponse = TransactionStatusResponse()
-
         func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-           self.receipt = receipt
-           if receipt.Success {
-               labelResponse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
+           if receipt.Success {                  // if transaction success is true
+               print("Transaction completed successfully")
+               print(receipt.NetworkReference)           // reference number of transaction.
            } else {
-               labelResponse.setTitle("Transaction has been failed click to callback callback ", for: .normal)
+               print("Transaction failed")
+               print(receipt.Message)           // response error
            }
         }
-    }
-```
-
-To create transaction in our sdk you just call createTransaction method and pass to it PaymentTransactionCallback listener to call it after transaction.
-
-This listener has 2 methods:
-
-1. `finishSdkPayment` method
-
-This method called in case transaction success by card payment with `SuccessfulCardTransaction` object.
-
-SuccessfulCardTransaction object from create transaction listener contains:
-* NetworkReference variable that is reference number of transaction.
-* AuthCode variable
-* ActionCode variable.
-* ReceiptNumber variable.
-* Amount variable.
-
-2. `finishSdkPayment` method
-
-This method is called if customer make a wallet transaction with `SuccessfulWalletTransaction` object.
-
-SuccessfulWalletTransaction object from create transaction listener contains:
-* NetworkReference variable that is reference number of transaction.
-* Amount variable.
-
-
-Example:
-```swift
-   func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-         if receipt.Success {                  // will be true if transaction success 
-              print(receipt.NetworkReference)
-         } else {
-              print(receipt.Message)           // response error
-         }
     }
 ```
 
