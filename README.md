@@ -43,14 +43,14 @@ pod install
 1. Before deploying your project live, you should get a merchant ID and terminal ID from our company.
 2. You should keep your merchant ID and terminal ID secured in your project, encrypt them before save them in project.
 
+## 🛠 How to use
+In order to use the SDK you should get a Merchant ID, a Terminal ID and Secure Hash from PaySky company.
+
 ### 👉 Import
 In the class you want to intiate the payment from, you should import the framework
 ```swift
 import PayButton
 ```
-
-## 🛠 How to use
-In order to use the SDK you should get a Merchant ID, a Terminal ID and Secure Hash from PaySky company.
 
 After the import, create a new instance from PayButton
 ```swift
