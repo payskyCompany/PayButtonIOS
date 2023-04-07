@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.6.2'
+  s.version          = '0.6.3'
   s.summary          = 'PayButton'
  
   s.description      = "PaySky PayButton SDK"
@@ -24,6 +24,9 @@ Pod::Spec.new do |s|
   s.framework = "UIKit"
 
   s.swift_version = '5'
+  
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency 'Alamofire', '~> 5.0.5'
   s.dependency 'EVReflection', '~> 5.10.1'
