@@ -97,10 +97,8 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
     @IBOutlet weak var MerchantIdEd: UITextField!
     @IBOutlet weak var MerchantIdLabel: UILabel!
     @IBOutlet weak var AppName: UILabel!
-//
-//    @IBOutlet weak var RefLabel: UILabel!
-//
-//    @IBOutlet weak var RefValue: UITextField!
+    @IBOutlet weak var picker: UIPickerView!
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -114,14 +112,15 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             self.view.frame.origin.y = 0
         }
     }
+    
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    @IBOutlet weak var picker: UIPickerView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.picker.delegate = self
                self.picker.dataSource = self
         
@@ -136,52 +135,36 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         }
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-
-              //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-              //tap.cancelsTouchesInView = false
-
-              view.addGestureRecognizer(tap)
-//         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//                   NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
         
+        view.addGestureRecognizer(tap)
         
         ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
         PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
         PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-               MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
-                                               borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
-         
-       //        RefLabel.text = "ref_number".localizedPaySky()
-       //        RefValue.setTextFieldStyle("ref_number".localizedPaySky(), title: "3424324234", textColor: UIColor.black, font:Global.setFont(14) ,
-       //                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
-               
-               
-               TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-               TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
-                                              borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
-               
-               AmountLabel.text = "Amount".localizedPaySky()
-               AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
-                                          borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
-               
-               
-               CurrencyLabel.text = "Currency_paysky".localizedPaySky()
-               AppName.text = "app_name_paysky".localizedPaySky()
-               CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
-                                          borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
-               
-               
-               
-               
-          
-               SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:Global.setFont(14) ,
-                                            borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
-               
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
 
-        
+       TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
+       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                      borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
+       
+       AmountLabel.text = "Amount".localizedPaySky()
+       AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
+       
+       
+       CurrencyLabel.text = "Currency_paysky".localizedPaySky()
+       AppName.text = "app_name_paysky".localizedPaySky()
+       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
+       
+  
+       SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+                                    borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
+       
+
         if MOLHLanguage.currentAppleLanguage() != "ar" {
             CurrencyEd.textAlignment = .left
             SecureHash.textAlignment = .left
@@ -197,6 +180,12 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             MerchantIdEd.textAlignment = .right
             urltest.text = "الرابط"
         }
+        
+        MerchantIdEd.text = "17685499712"
+        TerminalIDTF.text = "92539221"
+        AmountEd.text = "50"
+        CurrencyEd.text = "784"
+        SecureHash.text = "63616133323632652D636439312D346435312D623832312D643665666539653633626638"
 
     }
 
@@ -251,32 +240,11 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         paymentViewController.tId = TerminalIDTF.text!
         paymentViewController.Currency = CurrencyEd.text!
         paymentViewController.isProduction = false
-//        paymentViewController.AppStatus = DataToSendUPG[selectedOne]
         paymentViewController.AppStatus = DataToSend[selectedOne]
         
         paymentViewController.Key = SecureHash.text!
 
         paymentViewController.pushViewController()
-
-
-
-        
-
-//        let paymentViewController = PaymentViewController ()
-//        paymentViewController.amount =  "20"
-//        paymentViewController.delegate = self
-//
-//        paymentViewController.mId = "42143"
-//        paymentViewController.tId = "73299056"
-//        paymentViewController.Currency = "826"
-//
-//
-//        paymentViewController.refnumber = "123456789";
-//        paymentViewController.Key = "63616133323632652D636439312D346435312D623832312D643665666539653633626638"
-//
-//        paymentViewController.pushViewController()
-
-        
     }
     
     

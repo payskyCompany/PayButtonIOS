@@ -18,7 +18,7 @@
 
 "app_name_paysky"="PayButton";
 "pay_now"="Pay Now";
-"quick_payment_from"="Quick Payment form";
+"quick_payment_from"="Quick Payment Form";
 "merchant"="MERCHANT";
 "amount"="AMOUNT";
 "arabic"="عربى";
@@ -62,7 +62,7 @@
 
 "request_send_to_mobile" =  "The payment has been requested";
 "sms"="SMS";
-"quick_payment_form"="Quick Payment form";
+"quick_payment_form"="Quick Payment Form";
 "select_send_money"="2-Select send money";
 "select_qr_code"="3-Select QR code";
 "scan_qr_code"="4-Scan QR code on the left";

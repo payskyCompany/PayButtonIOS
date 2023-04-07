@@ -13,51 +13,34 @@ import UIKit
 func executePOST(path:String,method:HTTPMethod? = .post,
                  parameters: BaseResponse? = BaseResponse(), completion: @escaping (String) -> () ) {
     
-
     parameters?.SecureHash  = "DateTimeLocalTrxn=" + (parameters?.DateTimeLocalTrxn)! + "&MerchantId=" + (parameters?.MerchantId)!
     parameters?.SecureHash =    (parameters?.SecureHash)! + "&TerminalId=" + (parameters?.TerminalId)!
-    
     parameters?.SecureHash = (parameters?.SecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: MainScanViewController.paymentData.KEY))!
-
-  print("  URL: \(path)")
-
-    if !path.contains(ApiURL.GenerateQR)
-        &&
-        !path.contains(ApiURL.CheckTxnStatus)
     
-    {
-        
+    print("  URL: \(path)")
+    
+    if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
         UIApplication.topViewController()?.view.showLoadingIndicator()
-        
-    }else {
+    } else {
         print("  URL: \(path)")
         print(" REQUEST: \(String(describing: parameters?.toJsonString()))")
     }
-
+    
     AF.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
         .responseString { response  in
-
-            
             switch response.result {
             case .success(let value):
                 if path.contains(ApiURL.CheckPaymentMethod) {
-                 UIApplication.topViewController()?.view.hideLoadingIndicator()
+                    UIApplication.topViewController()?.view.hideLoadingIndicator()
                 }
-                else if !path.contains(ApiURL.GenerateQR)
-                  &&
-                  !path.contains(ApiURL.CheckTxnStatus)
-                {
-                UIApplication.topViewController()?.view.hideLoadingIndicator()
+                else if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
+                    UIApplication.topViewController()?.view.hideLoadingIndicator()
                 }
                 
                 if value != nil {
                     let statusCode = response.response?.statusCode
-                    if !path.contains(ApiURL.GenerateQR)
-                        &&
-                        !path.contains(ApiURL.CheckTxnStatus)
-                    {
-                        
-                      print("RESPONSE: \(String(describing: value))")
+                    if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
+                        print("RESPONSE: \(String(describing: value))")
                     }
                     if (statusCode == 400){
                         let res = BaseResponse(json: value)
@@ -74,21 +57,15 @@ func executePOST(path:String,method:HTTPMethod? = .post,
                 UIApplication.topViewController()?.view.hideLoadingIndicator()
                 res.Success = false
                 completion(res.toJsonString())
-
+                
                 print(error)
             }
-    }
-    
-    
-    
-    
-    }
+        }
+
+}
 
 
-
-
-
- func convertToDictionary(text: String) -> [String: Any]? {
+func convertToDictionary(text: String) -> [String: Any]? {
     if let data = text.data(using: .utf8) {
         do {
             return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]

@@ -6,14 +6,22 @@ target 'PayButton' do
   use_frameworks!
 
   # Pods for PayButton
-    pod 'Alamofire', '~> 5.0.0-rc.3'
-    pod "EVReflection"
-    pod 'PopupDialog'
-    pod 'PayCardsRecognizer'
-    pod 'MOLH'
-    use_frameworks!
+  pod 'Alamofire', '~> 5.0.0-rc.3'
+  pod "EVReflection"
+  pod 'PopupDialog'
+  pod 'PayCardsRecognizer'
+  pod 'MOLH'
+  
+  # pod 'PayButton'
 
-    
-    # pod 'PayButton'
-
+  post_install do |installer|
+      installer.generated_projects.each do |project|
+            project.targets.each do |target|
+                target.build_configurations.each do |config|
+                    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+                 end
+            end
+     end
+  end
+  
 end

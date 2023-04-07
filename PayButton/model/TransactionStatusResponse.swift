@@ -10,24 +10,17 @@
 
 import Foundation
 import EVReflection
+
 public class TransactionStatusResponse: BaseResponse {
-
-  public  var  IsPaid  = false
-    public  var  ChallengeRequired  = false
-
+    
+    public var IsPaid  = false
+    public var ChallengeRequired  = false
     public var ThreeDSUrl = ""
-    
-  public  var TransactionNo = ""
-  public  var AuthCode = ""
-  public  var ReceiptNumber = ""
-    
-    
-    
- public    var SystemReference = ""
- public var NetworkReference = ""
-
-  public  var FROMWHERE = "Card"
-
-
-
+    public var TransactionNo = ""
+    public var AuthCode = ""
+    public var ReceiptNumber = ""
+    public var SystemReference = ""
+    public var NetworkReference = ""
+    public var FROMWHERE = "Card"
+    public var ErrorDetail = ""
 }
