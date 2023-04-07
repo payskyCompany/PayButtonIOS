@@ -21,15 +21,6 @@ Pod::Spec.new do |s|
  
   s.public_header_files = 'PayButton/PayButton-Bridging-Header.h'
   
-  s.exclude_files = [
-    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
-    'PayButton/TestApi/Base.lproj/Main.storyboard',
-    'PayButton/TestApi/ViewController.swift',
-    'PayButton/AppDelegate.swift',
-    'PayButton/Info.plist',
-    'PayButton/Assets.xcassets/AppIcon.appiconset/**',
-  ]
-          
   s.framework = "UIKit"
 
   s.swift_version = '5'
@@ -47,4 +38,13 @@ Pod::Spec.new do |s|
   s.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
   s.resource_bundle = { "PayButton" => ["PayButton/Strings/*.lproj/*.strings"] }
   
+  s.exclude_files = [
+    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
+    'PayButton/TestApi/Base.lproj/Main.storyboard',
+    'PayButton/TestApi/ViewController.swift',
+    'PayButton/AppDelegate.swift',
+    'PayButton/Info.plist',
+    'PayButton/Assets.xcassets/AppIcon.appiconset/**',
+  ]
+        
 end
