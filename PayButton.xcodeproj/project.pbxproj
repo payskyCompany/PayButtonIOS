@@ -81,12 +81,13 @@
 		C5FD7441222406D8008BD2AE /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743D222406D8008BD2AE /* CIImageExtension.swift */; };
 		C5FD7442222406D8008BD2AE /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743E222406D8008BD2AE /* CIColorExtension.swift */; };
 		C5FD7443222406D8008BD2AE /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743F222406D8008BD2AE /* QRCode.swift */; };
-		C72890BA463D758E6A33164F /* Pods_PayButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5700D27AB93181D59EFEF60 /* Pods_PayButton.framework */; };
+		D0CD86339C5238823D80AEFE /* Pods_PayButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA925739E1912FA31C5EAC3D /* Pods_PayButton.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		044B99F8243242E700522B1F /* UrlTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlTypes.swift; sourceTree = "<group>"; };
-		A84B4B52899DF72C9618B2ED /* Pods-PayButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.release.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.release.xcconfig"; sourceTree = "<group>"; };
+		BA925739E1912FA31C5EAC3D /* Pods_PayButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFA84BA0D6EE2CD57C31BACC /* Pods-PayButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.release.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.release.xcconfig"; sourceTree = "<group>"; };
 		C5190552216FA17600664149 /* WebViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewTableViewCell.xib; sourceTree = "<group>"; };
 		C528E2462166118F00CAFBC4 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		C528E2472166118F00CAFBC4 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		C537888B216CF5B80058CAC8 /* Process3DSTransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process3DSTransactionRequest.swift; sourceTree = "<group>"; };
 		C537888D216CF6470058CAC8 /* Process3DSTransactionResonse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process3DSTransactionResonse.swift; sourceTree = "<group>"; };
 		C537888F216D06640058CAC8 /* WebViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTableViewCell.swift; sourceTree = "<group>"; };
-		C5700D27AB93181D59EFEF60 /* Pods_PayButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A1C9B52210351200D9F663 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LocalizablePaySKy.strings; sourceTree = "<group>"; };
 		C5A1C9B72210351800D9F663 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizablePaySKy.strings; sourceTree = "<group>"; };
 		C5A4164321650280008A93B3 /* PayButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +166,7 @@
 		C5FD743D222406D8008BD2AE /* CIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageExtension.swift; sourceTree = "<group>"; };
 		C5FD743E222406D8008BD2AE /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
 		C5FD743F222406D8008BD2AE /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
-		DA2524BE1AA52D9237CABE46 /* Pods-PayButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.debug.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.debug.xcconfig"; sourceTree = "<group>"; };
+		EB2C0A0DCF6ED65C93367600 /* Pods-PayButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.debug.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C52CDFEF2327BFAC00E0EC74 /* WebKit.framework in Frameworks */,
-				C72890BA463D758E6A33164F /* Pods_PayButton.framework in Frameworks */,
+				D0CD86339C5238823D80AEFE /* Pods_PayButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				C52CDFEE2327BFAC00E0EC74 /* WebKit.framework */,
-				C5700D27AB93181D59EFEF60 /* Pods_PayButton.framework */,
+				BA925739E1912FA31C5EAC3D /* Pods_PayButton.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,8 +194,8 @@
 		56D5EB78218E2F9E901EE8F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DA2524BE1AA52D9237CABE46 /* Pods-PayButton.debug.xcconfig */,
-				A84B4B52899DF72C9618B2ED /* Pods-PayButton.release.xcconfig */,
+				EB2C0A0DCF6ED65C93367600 /* Pods-PayButton.debug.xcconfig */,
+				BFA84BA0D6EE2CD57C31BACC /* Pods-PayButton.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -452,11 +452,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5A4165521650280008A93B3 /* Build configuration list for PBXNativeTarget "PayButton" */;
 			buildPhases = (
-				5563712EA0D10B00A1DF5167 /* [CP] Check Pods Manifest.lock */,
+				8C401B457AE36613DD64EB85 /* [CP] Check Pods Manifest.lock */,
 				C5A4163F2165027F008A93B3 /* Sources */,
 				C5A416402165027F008A93B3 /* Frameworks */,
 				C5A416412165027F008A93B3 /* Resources */,
-				69C83D7F374BE60A63EA95B9 /* [CP] Embed Pods Frameworks */,
+				5422ED6D080304F4D249951D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -525,7 +525,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5563712EA0D10B00A1DF5167 /* [CP] Check Pods Manifest.lock */ = {
+		5422ED6D080304F4D249951D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C401B457AE36613DD64EB85 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -545,23 +562,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69C83D7F374BE60A63EA95B9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayButton/Pods-PayButton-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -789,7 +789,7 @@
 		};
 		C5A4165621650280008A93B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA2524BE1AA52D9237CABE46 /* Pods-PayButton.debug.xcconfig */;
+			baseConfigurationReference = EB2C0A0DCF6ED65C93367600 /* Pods-PayButton.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
@@ -813,7 +813,7 @@
 		};
 		C5A4165721650280008A93B3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A84B4B52899DF72C9618B2ED /* Pods-PayButton.release.xcconfig */;
+			baseConfigurationReference = BFA84BA0D6EE2CD57C31BACC /* Pods-PayButton.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
