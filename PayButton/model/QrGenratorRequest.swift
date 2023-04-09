@@ -8,11 +8,10 @@
 
 import Foundation
 import EVReflection
+
 public class QrGenratorRequest: BaseResponse {
 
-    
-    
-    var Amount: Double = 0.0
+    var Amount: Double = 0.00
     var AmountTrxn = 0
     var TahweelQR: Bool = true
     var mVisaQR: Bool = true

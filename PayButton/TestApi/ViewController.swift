@@ -199,21 +199,21 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         
      
         if (MerchantIdEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please entre merchant".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter merchant".localizedPaySky())
             return
         }
         
         if (TerminalIDTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please entre terminal".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter terminal".localizedPaySky())
             return
         }
         
         if (AmountEd.text!.isEmpty ) {
-            UIApplication.topViewController()?.view.makeToast( "please entre amount".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter amount".localizedPaySky())
             return
         }
-        if (Float(AmountEd.text!) == 0.0 ) {
-            UIApplication.topViewController()?.view.makeToast( "please entre amount greater".localizedPaySky())
+        if (Float(AmountEd.text!) == 0.0) {
+            UIApplication.topViewController()?.view.makeToast( "please enter amount greater".localizedPaySky())
             return
         }
         
@@ -223,11 +223,11 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         }
         
         if (SecureHash.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please entre secure hash value".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter secure hash value".localizedPaySky())
             return
         }
         if SecureHash.text!.count != 72 {
-           UIApplication.topViewController()?.view.makeToast( "please entre valid secure hash value".localizedPaySky())
+           UIApplication.topViewController()?.view.makeToast( "please enter valid secure hash value".localizedPaySky())
             return
         }
 

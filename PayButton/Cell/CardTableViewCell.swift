@@ -336,7 +336,7 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
         addcardRequest.PAN = self.cardNumber
         addcardRequest.CardHolderName = self.CardHolderName.text ?? ""
         
-        addcardRequest.CVV2 =  self.CVCTF.text!
+        addcardRequest.cvv2 =  self.CVCTF.text!
         addcardRequest.DateExpiration = String(YearMonth)
         addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
         

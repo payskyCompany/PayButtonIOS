@@ -354,23 +354,16 @@ var UrlTypeRow = 0
         }else if selectedCell == 2 {
              cell = tableView.dequeueReusableCell(withIdentifier: "QRTableViewCell") as! QRTableViewCell
 
-        }else if selectedCell == 3{
+        }else if selectedCell == 3 {
             cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTableViewCell") as! CompleteTableViewCell
             cell.setData(transactionStatusResponse: self.transactionStatusResponse)
-
-        }else if selectedCell == 4 {
+        } else if selectedCell == 4 {
             cell = tableView.dequeueReusableCell(withIdentifier: "WebViewTableViewCell") as! WebViewTableViewCell
             cell.openWebView(compose3DSTransactionResponse: self.compose3DSTransactionResponse, manualPaymentRequest: self.manualPaymentRequest)
- 
         }
-        
-        
-        
-        
         
         cell.delegateActions = self
       
-        
         return cell
     }
     

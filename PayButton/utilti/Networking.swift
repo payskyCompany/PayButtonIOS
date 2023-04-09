@@ -26,42 +26,52 @@ func executePOST(path:String,method:HTTPMethod? = .post,
         print(" REQUEST: \(String(describing: parameters?.toJsonString()))")
     }
     
-    AF.request(ApiURL.MAIN_API_LINK + path, method: method!, parameters: convertToDictionary(text: (parameters?.toJsonString())!), encoding: JSONEncoding.default)
-        .responseString { response  in
-            switch response.result {
-            case .success(let value):
-                if path.contains(ApiURL.CheckPaymentMethod) {
-                    UIApplication.topViewController()?.view.hideLoadingIndicator()
-                }
-                else if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
-                    UIApplication.topViewController()?.view.hideLoadingIndicator()
-                }
-                
-                if value != nil {
-                    let statusCode = response.response?.statusCode
-                    if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
-                        print("RESPONSE: \(String(describing: value))")
-                    }
-                    if (statusCode == 400){
-                        let res = BaseResponse(json: value)
-                        res.Success = false
-                        res.Message = res.ModelState
-                        UIApplication.topViewController()?.view.hideLoadingIndicator()
-                        completion(res.toJsonString())
-                        return
-                    }
-                    completion(value)
-                }
-            case .failure(let error):
-                let res = BaseResponse();
-                UIApplication.topViewController()?.view.hideLoadingIndicator()
-                res.Success = false
-                completion(res.toJsonString())
-                
-                print(error)
-            }
+    let headers: HTTPHeaders = ["Content-Type": "application/json"]
+    AF.request(ApiURL.MAIN_API_LINK + path,
+               method: method!,
+               parameters: convertToDictionary(text: (parameters?.toJsonString())!),
+               encoding: JSONEncoding.default,
+               headers: headers)
+    .responseString { response  in
+        if let requestHeaders = response.request?.allHTTPHeaderFields {
+            debugPrint("Headers: \(requestHeaders)")
         }
-
+        else { debugPrint("No headers found.") }
+        
+        switch response.result {
+        case .success(let value):
+            if path.contains(ApiURL.CheckPaymentMethod) {
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
+            }
+            else if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
+                UIApplication.topViewController()?.view.hideLoadingIndicator()
+            }
+            
+            if value != nil {
+                let statusCode = response.response?.statusCode
+                if !path.contains(ApiURL.GenerateQR) && !path.contains(ApiURL.CheckTxnStatus) {
+                    print("RESPONSE: \(String(describing: value))")
+                }
+                if (statusCode == 400){
+                    let res = BaseResponse(json: value)
+                    res.Success = false
+                    res.Message = res.ModelState
+                    UIApplication.topViewController()?.view.hideLoadingIndicator()
+                    completion(res.toJsonString())
+                    return
+                }
+                completion(value)
+            }
+        case .failure(let error):
+            let res = BaseResponse();
+            UIApplication.topViewController()?.view.hideLoadingIndicator()
+            res.Success = false
+            completion(res.toJsonString())
+            
+            print(error)
+        }
+    }
+    
 }
 
 

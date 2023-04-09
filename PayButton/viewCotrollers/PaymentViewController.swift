@@ -6,11 +6,14 @@
 //  Copyright © 2018 Paysky. All rights reserved.
 //
 
-
-
-import Foundation
 import UIKit
+
+public protocol PaymentDelegate: class {
+    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse)
+}
+
 public class PaymentViewController  {
+    
     public  var amount = ""
     public  var tId = ""
     public   var mId = ""
@@ -20,30 +23,22 @@ public class PaymentViewController  {
     public   var isProduction = false
     public   var AppStatus : UrlTypes = .Testing
 
-
-//    public   var AppStatus : UPGUrlTypes = .UPG_Staging
-
-    
-    
     public  var delegate: PaymentDelegate?
     
-    public init(){
+    public init() {
         
     }
     
-    
     public func pushViewController()  {
         
-        if  ( self.amount.isEmpty  || self.Currency.isEmpty){
+        if  (self.amount.isEmpty  || self.Currency.isEmpty) {
             print("Please enter all  data ");
             return
         }
-//        if  ( self.refnumber.isEmpty){
-//            print("Please enter refnumber   ");
+//        if  (self.refnumber.isEmpty) {
+//            print("Please enter ref number")
 //            return
 //        }
-        
-        
         
 //        if isProduction {
 //            AppConstant.setPayBtnLiveMode()
@@ -61,16 +56,12 @@ public class PaymentViewController  {
 //            case .UPG_Production:
 //                AppConstant.setPayBtnUPGProductionMode()
 //        }
-//        
         
-        
-        var DoubleAmount = Double(self.amount) ??  0.0
+        var DoubleAmount = Double(self.amount) ??  0.00
         DoubleAmount = DoubleAmount * 100.00
         
         let paymentData = PaymentData()
         
-        
-       
         paymentData.amount = DoubleAmount
         paymentData.refnumber = refnumber
 
@@ -80,38 +71,22 @@ public class PaymentViewController  {
         paymentData.currencyCode = Int (Currency)!
 
         if delegate == nil {
-            
-            print("Please implement Delaget ");
+            print("Please implement SDK Delegate ")
             return
         }
         
-        
-     
-        if  (paymentData.amount != 0
-            &&
-            !paymentData.merchantId.isEmpty &&
-            
-               !paymentData.KEY.isEmpty &&
-                    paymentData.currencyCode != 0 &&
-            !paymentData.terminalId.isEmpty)
-        {
+        if(paymentData.amount != 0
+           && !paymentData.merchantId.isEmpty
+           && !paymentData.KEY.isEmpty
+           && paymentData.currencyCode != 0
+           && !paymentData.terminalId.isEmpty) {
             print(ApiURL.MAIN_API_LINK)
             RegiserOrGetOldToken(paymentData: paymentData)
-       
-            
-        }else{
-            print("Please enter all  data ");
-            return
-        }
-        
-        
-        
-        
+       } else {
+           print("Please enter all  data ")
+           return
+       }
     }
-    
-    
- 
-    
     
     private func RegiserOrGetOldToken(paymentData : PaymentData)  {
         MainScanViewController.paymentData = paymentData
@@ -138,43 +113,24 @@ public class PaymentViewController  {
             }
             
         }
-        
-        
-        
-        
-        
-        
-     
-        
     }
     
-
-    
-    
-    func getSatatiQr(){
-        
-         if  MainScanViewController.paymentData.PaymentMethod == 1 ||
-            MainScanViewController.paymentData.PaymentMethod == 2 {
+    func getSatatiQr() {
+        if  MainScanViewController.paymentData.PaymentMethod == 1 ||
+                MainScanViewController.paymentData.PaymentMethod == 2 {
+            
+            ApiManger.generateQrCode { (qrResponse) in
+                MainScanViewController.paymentData.staticQR = qrResponse.ISOQR
+                MainScanViewController.paymentData.orderId = qrResponse.TxnId
                 
-                
-       
-        ApiManger.generateQrCode { (qrResponse) in
-            MainScanViewController.paymentData.staticQR = qrResponse.ISOQR
-            MainScanViewController.paymentData.orderId = qrResponse.TxnId
-            
+                self.gotoNextPage()
+            }
+        } else {
             self.gotoNextPage()
-            
-        }
-        
-         }else{
-            
-            
-            self.gotoNextPage()
-
         }
     }
 
-    public func gotoNextPage(){
+    public func gotoNextPage() {
         UIApplication.topViewController()?.view.hideLoadingIndicator()
 
         let psb = UIStoryboard.init(name: "PayButtonBoard", bundle: nil)
@@ -190,7 +146,4 @@ public class PaymentViewController  {
             
         }
     }
-}
-public protocol PaymentDelegate: class {
-    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse )
 }
