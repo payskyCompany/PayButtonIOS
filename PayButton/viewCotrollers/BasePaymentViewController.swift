@@ -1,6 +1,6 @@
 //
 //  BasePaymentViewController.swift
-//  tokenization
+//  PayButton
 //
 //  Created by AMR on 7/3/18.
 //  Copyright © 2018 Paysky. All rights reserved.
