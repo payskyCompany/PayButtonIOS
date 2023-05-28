@@ -10,9 +10,10 @@ import Foundation
 import Alamofire
 import UIKit
 
-func executePOST(path:String,method:HTTPMethod? = .post,
-                 parameters: BaseResponse? = BaseResponse(), completion: @escaping (String) -> () ) {
-    
+func executePOST(path: String,
+                 method: HTTPMethod? = .post,
+                 parameters: BaseResponse? = BaseResponse(),
+                 completion: @escaping (String) -> ()) {
     parameters?.SecureHash  = "DateTimeLocalTrxn=" + (parameters?.DateTimeLocalTrxn)! + "&MerchantId=" + (parameters?.MerchantId)!
     parameters?.SecureHash =    (parameters?.SecureHash)! + "&TerminalId=" + (parameters?.TerminalId)!
     parameters?.SecureHash = (parameters?.SecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: MainScanViewController.paymentData.KEY))!

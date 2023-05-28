@@ -32,4 +32,3 @@ public struct CreditCardValidationType: Equatable {
     }
     
 }
-

@@ -11,24 +11,6 @@ import MOLH
 
 class CompleteTableViewCell: BaseUITableViewCell {
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.frame.origin.y == 0 {
-                self.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.frame.origin.y != 0 {
-            self.frame.origin.y = 0
-        }
-    }
-    
-    @objc func dismissKeyboard() {
-        self.endEditing(true)
-    }
-    
     @IBOutlet weak var StackComplete: UIStackView!
     
     @IBOutlet weak var SendReciptLabel: UILabel!
@@ -74,13 +56,9 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         SendMail.setTitle("send".localizedPaySky(), for: .normal)
         TryBtn.setTitle("try_again".localizedPaySky(), for: .normal)
-        EmailED.setTextFieldStyle( "email_hint".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 30,padding: 10,keyboardType: UIKeyboardType.default)
-        CloseBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        TryBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        
-        
-        
-        
+        EmailED.setTextFieldStyle( "email_hint".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 30,padding: 10,keyboardType: UIKeyboardType.default)
+        CloseBtn.layer.cornerRadius = UIColor.radiusNumber
+        TryBtn.layer.cornerRadius = UIColor.radiusNumber
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -89,9 +67,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    
-    @IBAction func SendEmailAction(_ sender: Any) {
+    @IBAction func sendEmailAction(_ sender: Any) {
         self.endEditing(true)
         
         
@@ -105,7 +81,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
             return
         }
         
-        ApiManger.sendEmail(EmailTo: EmailED.text!, externalReceiptNo: self.transactionStatusResponse.ReceiptNumber, transactionChannel:  self.transactionStatusResponse.FROMWHERE, transactionId: self.transactionStatusResponse.SystemReference) { (baseresponse) in
+        ApiManger.sendEmail(emailTo: EmailED.text!, externalReceiptNo: self.transactionStatusResponse.ReceiptNumber, transactionChannel:  self.transactionStatusResponse.FROMWHERE, transactionId: self.transactionStatusResponse.SystemReference) { (baseresponse) in
             if baseresponse.Success {
                 self.EmailLabel.isHidden = false
                 self.EmailLabel.text = "email_send_to".localizedPaySky() + self.EmailED.text!
@@ -116,10 +92,28 @@ class CompleteTableViewCell: BaseUITableViewCell {
         }
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.frame.origin.y == 0 {
+                self.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.frame.origin.y != 0 {
+            self.frame.origin.y = 0
+        }
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
+    
     var transactionStatusResponse: TransactionStatusResponse =  TransactionStatusResponse()
     
     override  func setData(transactionStatusResponse: TransactionStatusResponse) {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -131,7 +125,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
             let string = "transaction_success".localizedPaySky()
             var stringArr = string.components(separatedBy: " ")
             let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-            myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  Global.hexStringToUIColor("#00BFA5"),
+            myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  UIColor.hexStringToUIColor("#00BFA5"),
                                          range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
             TextStatus.attributedText = myMutableString
             
@@ -166,7 +160,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
             let string = "transaction_declined".localizedPaySky()
             var stringArr = string.components(separatedBy: " ")
             let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
-            myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  Global.hexStringToUIColor("#C23A2C"),
+            myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  UIColor.hexStringToUIColor("#C23A2C"),
                                          range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
             TextStatus.attributedText = myMutableString
             ErrorMessage.isHidden = false

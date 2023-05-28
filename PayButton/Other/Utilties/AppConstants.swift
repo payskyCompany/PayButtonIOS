@@ -1,5 +1,5 @@
 //
-//  AppConstant.swift
+//  AppConstants.swift
 //  PayButton
 //
 //  Created by AMR on 7/3/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppConstant {
+class AppConstants {
     static var registrationUserActive1 = "userid"
     static func setPayBtnLiveMode(){
         ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
@@ -26,6 +26,7 @@ class AppConstant {
         print("uuuur\(ApiURL.MAIN_API_LINK)")
     }
 }
+
 public class PaymentParams {
     static var MERCHANT_ID = "merchant_id";
     static var TERMINAL_ID = "terminal_id";

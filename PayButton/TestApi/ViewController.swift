@@ -143,25 +143,25 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
         
         MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
 
        TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
        
        AmountLabel.text = "Amount".localizedPaySky()
-       AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+       AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
        
        
        CurrencyLabel.text = "Currency_paysky".localizedPaySky()
        AppName.text = "app_name_paysky".localizedPaySky()
-       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
        
   
-       SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:Global.setFont(14) ,
+       SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                     borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
        
 

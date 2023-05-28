@@ -41,13 +41,13 @@ public class ApiManger {
         })
     }
                     
-    static func sendEmail(EmailTo:String,
+    static func sendEmail(emailTo:String,
                           externalReceiptNo:String,
                           transactionChannel:String,
                           transactionId: String,
                           completion: @escaping (BaseResponse) -> ()) {
         let sendEmailRequest = SendReceiptByMailRequest()
-        sendEmailRequest.EmailTo = EmailTo
+        sendEmailRequest.EmailTo = emailTo
         sendEmailRequest.TransactionChannel = transactionChannel
         sendEmailRequest.ExternalReceiptNo = externalReceiptNo
         sendEmailRequest.TransactionId = transactionId

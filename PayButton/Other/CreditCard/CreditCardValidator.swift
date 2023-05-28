@@ -15,7 +15,7 @@ public class CreditCardValidator {
             types.append(CreditCardValidationType(dict: object))
         }
         return types
-        }()
+    }()
     
     public init() { }
     
@@ -128,9 +128,6 @@ public class CreditCardValidator {
             "name": "Meza",
             "regex":"^9818\\d*"
         ]
-          
-          
-        
     ]
     
 }

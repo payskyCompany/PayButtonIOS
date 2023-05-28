@@ -32,7 +32,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>${PRODUCT_NAME} We need to access your camera to scan QR</string>
 	<key>NSCameraUsageDescription - 2</key>
-	<string>Allow to cupture ad photo</string>
+	<string>Allow to capture ad photo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -1,7 +1,3 @@
-
-
-
-
 "app_name_paysky"="زر الدفع";
 
 "Merchant ID_paysky" = "رقم التاجر";
@@ -13,8 +9,6 @@
 
 "Done" = "تأكيد";
 "request_send_to_mobile" = "تم ارسال الطلب بنجاح";
-
-
 
 "scanCard" = "افحص بيانات الكارت";
 "pay_now"="ادفع الآن";

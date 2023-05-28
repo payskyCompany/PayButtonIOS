@@ -33,7 +33,7 @@ class RequestMoneyViewController: BasePaymentViewController {
         HeaderLabel.text = "request_payment".localizedPaySky()
         MessageLabel.text =  "enter_mobile_number".localizedPaySky()
         
-        MobileNumber.setTextFieldStyle( "mobile_number".localizedPaySky() , title: "", textColor: UIColor.black, font:Global.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        MobileNumber.setTextFieldStyle( "mobile_number".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
 
         self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
 

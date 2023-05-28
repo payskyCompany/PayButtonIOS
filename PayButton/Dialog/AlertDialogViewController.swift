@@ -40,22 +40,22 @@ class AlertDialogViewController: UIViewController {
         titleLabel.text = titleText
         titleLabel.lineBreakMode = .byWordWrapping // notice the 'b' instead of 'B'
         titleLabel.numberOfLines = 0
-        titleLabel.font = Global.setFont(15)
+        titleLabel.font = GlobalManager.setFont(15)
         titleLabel.textColor = .white
         MainImage.image = imageMainParamter
         messageTextView.textColor =  PaySkySDKColor.fontColor
         messageTextView.text = messageText
-        messageTextView.font = Global.setFont(15, isLight: true)
+        messageTextView.font = GlobalManager.setFont(15, isLight: true)
         
         HeaderView.backgroundColor = PaySkySDKColor.NavColor
         
         //        messageTextView.scrollRangeToVisible(NSMakeRange(0, 0))
         //        messageTextView.setContentOffset(CGPoint.zero, animated: false)
         
-        okButton.setButtonStyle(okText, backgroundColor: PaySkySDKColor.mainBtnColor, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: Global.setFont(15), textColor: .white)
+        okButton.setButtonStyle(okText, backgroundColor: PaySkySDKColor.mainBtnColor, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: GlobalManager.setFont(15), textColor: .white)
         if cancelText != "" {
 
-        cancelButton.setButtonStyle(cancelText, backgroundColor: PaySkySDKColor.secondColorBtn, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: Global.setFont(15), textColor: .white)
+        cancelButton.setButtonStyle(cancelText, backgroundColor: PaySkySDKColor.secondColorBtn, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: GlobalManager.setFont(15), textColor: .white)
         }else{
             cancelButton.isHidden = true
 
