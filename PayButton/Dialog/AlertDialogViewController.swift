@@ -9,11 +9,13 @@
 import UIKit
 
 class AlertDialogViewController: UIViewController {
+    
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageTextView: UILabel!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var MainImage: UIImageView!
+    @IBOutlet weak var mainImage: UIImageView!
     
     var titleText = ""
     var messageText = ""
@@ -25,67 +27,46 @@ class AlertDialogViewController: UIViewController {
     var okHandler: (()->Void)? = nil
     var cancelHandler: (()->Void)? = nil
     
-    
-    
-    
-    
-    
-    
-    @IBOutlet weak var HeaderView: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        messageTextView.setTextViewStyle("", title: messageText, textColor: Colors.fontColor, font: Global.setFont(15), borderWidth: 0, borderColor: .clear, backgroundColor: .clear, cornerRadius: 0, placeholderColor: .clear)
+        self.view.layer.cornerRadius = AppConstants.radiusNumber
+        
         titleLabel.text = titleText
-        titleLabel.lineBreakMode = .byWordWrapping // notice the 'b' instead of 'B'
+        titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
         titleLabel.font = GlobalManager.setFont(15)
         titleLabel.textColor = .white
-        MainImage.image = imageMainParamter
-        messageTextView.textColor =  PaySkySDKColor.fontColor
+        mainImage.image = imageMainParamter
+        messageTextView.textColor =  UIColor.fontColor
         messageTextView.text = messageText
         messageTextView.font = GlobalManager.setFont(15, isLight: true)
         
-        HeaderView.backgroundColor = PaySkySDKColor.NavColor
+        headerView.backgroundColor = UIColor.NavColor
         
-        //        messageTextView.scrollRangeToVisible(NSMakeRange(0, 0))
-        //        messageTextView.setContentOffset(CGPoint.zero, animated: false)
-        
-        okButton.setButtonStyle(okText, backgroundColor: PaySkySDKColor.mainBtnColor, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: GlobalManager.setFont(15), textColor: .white)
+        okButton.setButtonStyle(okText,
+                                backgroundColor: UIColor.mainBtnColor,
+                                cornerRadius: 5,
+                                borderWidth: 0,
+                                borderColor: .clear,
+                                font: GlobalManager.setFont(15),
+                                textColor: .white)
         if cancelText != "" {
-
-        cancelButton.setButtonStyle(cancelText, backgroundColor: PaySkySDKColor.secondColorBtn, cornerRadius: 5, borderWidth: 0, borderColor: .clear, font: GlobalManager.setFont(15), textColor: .white)
-        }else{
+            cancelButton.setButtonStyle(cancelText,
+                                        backgroundColor: UIColor.secondColorBtn,
+                                        cornerRadius: 5,
+                                        borderWidth: 0,
+                                        borderColor: .clear,
+                                        font: GlobalManager.setFont(15),
+                                        textColor: .white)
+        } else {
             cancelButton.isHidden = true
-
         }
         
         if showImage {
-            MainImage.isHidden = false
-        }else{
-            MainImage.isHidden = true
-
-        }
-        
-        self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        // Do any additional setup after loading the view.
-    }
-    
-
-    
-    @IBAction func okAction(_ sender: Any) {
-        if okHandler == nil {
-            self.dismiss(animated: true, completion: nil)
+            mainImage.isHidden = false
         } else {
-            okHandler!()
-        }
-    }
-    @IBAction func cancelAction(_ sender: Any) {
-        if cancelHandler == nil {
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            cancelHandler!()
+            mainImage.isHidden = true
         }
     }
     
@@ -93,9 +74,22 @@ class AlertDialogViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    @IBAction func okAction(_ sender: Any) {
+        if okHandler == nil {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            okHandler!()
+        }
+    }
     
-    
-    
+    @IBAction func cancelAction(_ sender: Any) {
+        if cancelHandler == nil {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            cancelHandler!()
+        }
+    }
     
 }
 

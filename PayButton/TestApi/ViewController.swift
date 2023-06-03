@@ -9,12 +9,18 @@
 import UIKit
 import MOLH
 
-class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, UIPickerViewDataSource  {
-    let PaySkyTitle = "PAYSKY"
+class ViewController: UIViewController, PaymentDelegate {
+    
+    let payskyTitle = "PAYSKY"
     let upgTitle = "UPG"
     let selectedTitle = "PAYSKY"
 
-
+    var selectedOne = 0
+    var DataToShow: [String] = [String]()
+    var DataToSend: [UrlTypes] = [UrlTypes]()
+    var DataToSendUPG: [UPGUrlTypes] = [UPGUrlTypes]()
+    
+    var receipt: TransactionStatusResponse = TransactionStatusResponse()
     
     override func viewWillAppear(_ animated: Bool) {
         if MOLHLanguage.currentAppleLanguage() != "ar" {
@@ -33,54 +39,31 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             MerchantIdEd.textAlignment = .right
             urltest.text = "الرابط"
         }
-        ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
-        PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
-        MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-        AmountLabel.text = "Amount".localizedPaySky()
-        CurrencyLabel.text = "Currency_paysky".localizedPaySky()
-        AppName.text = "app_name_paysky".localizedPaySky()
+        ChangeLang.setTitle("change_lang".localizedString(), for: .normal)
+        PayBtn.setTitle("pay_now".localizedString(), for: .normal)
+        MerchantIdLabel.text = "Merchant ID_paysky".localizedString()
+        TerminalIDLabel.text =  "Terminal ID_paysky".localizedString()
+        AmountLabel.text = "Amount".localizedString()
+        CurrencyLabel.text = "Currency_paysky".localizedString()
+        AppName.text = "app_name_paysky".localizedString()
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    
+    func finishSdkPayment(_ receipt: TransactionStatusResponse) {
+        self.receipt = receipt
+        if receipt.Success {
+            LabeResoinse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
+        } else {
+            LabeResoinse.setTitle("Transaction has been failed click to callback callback ", for: .normal)
+        }
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DataToShow.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DataToShow[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedOne = row
-    }
-    var DataToShow: [String] = [String]()
-    var DataToSend: [UrlTypes] = [UrlTypes]()
-
-    var DataToSendUPG: [UPGUrlTypes] = [UPGUrlTypes]()
-    
-    
-    var selectedOne = 0
-
     @IBAction func CopyResponse(_ sender: Any) {
         UIPasteboard.general.string =  receipt.toJsonString()
         UIApplication.topViewController()?.view.makeToast("Response has been copied")
     }
-    var receipt: TransactionStatusResponse = TransactionStatusResponse()
-    func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-        self.receipt = receipt
-        if receipt.Success {
-
-            LabeResoinse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
-            
-        }else {
-            LabeResoinse.setTitle("Transaction has been failed click to callback callback ", for: .normal)
-
-
-            
-        }
-    }
+    
+    
     @IBOutlet weak var LabeResoinse: UIButton!
     @IBOutlet weak var ChangeLang: UIButton!
     @IBOutlet weak var urltest: UILabel!
@@ -124,7 +107,7 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         self.picker.delegate = self
                self.picker.dataSource = self
         
-        if selectedTitle != PaySkyTitle {
+        if selectedTitle != payskyTitle {
             imageLogo.image = UIImage(named: "upg_orange_logo")
             DataToShow = ["UPG Stagging", "UPG Production"]
             DataToSendUPG = [.UPG_Staging,.UPG_Production]
@@ -134,35 +117,36 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             DataToSend = [.Production,.Testing]
         }
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(BasePaymentViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
-        ChangeLang.setTitle("change_lang".localizedPaySky(), for: .normal)
-        PayBtn.setTitle("pay_now".localizedPaySky(), for: .normal)
-        PayBtn.layer.cornerRadius = PaySkySDKColor.RaduisNumber
+        ChangeLang.setTitle("change_lang".localizedString(), for: .normal)
+        PayBtn.setTitle("pay_now".localizedString(), for: .normal)
+        PayBtn.layer.cornerRadius = AppConstants.radiusNumber
         
-        MerchantIdLabel.text = "Merchant ID_paysky".localizedPaySky()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
-                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
+        MerchantIdLabel.text = "Merchant ID_paysky".localizedString()
+        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
 
-       TerminalIDLabel.text =  "Terminal ID_paysky".localizedPaySky()
-       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
-                                      borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
+       TerminalIDLabel.text =  "Terminal ID_paysky".localizedString()
+       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+                                      borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
        
-       AmountLabel.text = "Amount".localizedPaySky()
-       AmountEd.setTextFieldStyle("Amount".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
-                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
+       AmountLabel.text = "Amount".localizedString()
+       AmountEd.setTextFieldStyle("Amount".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
        
        
-       CurrencyLabel.text = "Currency_paysky".localizedPaySky()
-       AppName.text = "app_name_paysky".localizedPaySky()
-       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedPaySky(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
-                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
+       CurrencyLabel.text = "Currency_paysky".localizedString()
+       AppName.text = "app_name_paysky".localizedString()
+       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+                                  borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
        
   
        SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
-                                    borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: PaySkySDKColor.RaduisNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
+                                    borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
        
 
         if MOLHLanguage.currentAppleLanguage() != "ar" {
@@ -181,11 +165,11 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
             urltest.text = "الرابط"
         }
         
-        MerchantIdEd.text = "17685499712"
-        TerminalIDTF.text = "92539221"
-        AmountEd.text = "50"
-        CurrencyEd.text = "784"
-        SecureHash.text = "63616133323632652D636439312D346435312D623832312D643665666539653633626638"
+        MerchantIdEd.text = "41565"
+        TerminalIDTF.text = "1583826"
+        AmountEd.text = "20.55"
+        CurrencyEd.text = "\(AppConstants.selectedCountryCode)"
+        SecureHash.text = "09a90e81140dcb0d686c09f0036ef910"
 
     }
 
@@ -199,37 +183,37 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         
      
         if (MerchantIdEd.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please enter merchant".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter merchant".localizedString())
             return
         }
         
         if (TerminalIDTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please enter terminal".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter terminal".localizedString())
             return
         }
         
         if (AmountEd.text!.isEmpty ) {
-            UIApplication.topViewController()?.view.makeToast( "please enter amount".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter amount".localizedString())
             return
         }
         if (Float(AmountEd.text!) == 0.0) {
-            UIApplication.topViewController()?.view.makeToast( "please enter amount greater".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter amount greater".localizedString())
             return
         }
         
         
         if (CurrencyEd.text?.isEmpty)! {
-            CurrencyEd.text = "818"
+            CurrencyEd.text = "\(AppConstants.selectedCountryCode)"
         }
         
         if (SecureHash.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast( "please enter secure hash value".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast( "please enter secure hash value".localizedString())
             return
         }
-        if SecureHash.text!.count != 72 {
-           UIApplication.topViewController()?.view.makeToast( "please enter valid secure hash value".localizedPaySky())
-            return
-        }
+//        if SecureHash.text!.count != 72 {
+//           UIApplication.topViewController()?.view.makeToast( "please enter valid secure hash value".localizedString())
+//            return
+//        }
 
         let paymentViewController = PaymentViewController ()
         paymentViewController.amount =  AmountEd.text!
@@ -247,26 +231,43 @@ class ViewController: UIViewController, PaymentDelegate, UIPickerViewDelegate, U
         paymentViewController.pushViewController()
     }
     
-    
     @IBAction func ChangeLangAction(_ sender: Any) {
-            
-            UIView.appearance().semanticContentAttribute = MOLHLanguage.currentAppleLanguage() == "ar" ? .forceRightToLeft : .forceLeftToRight
-            
-            MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
-            if (MOLHLanguage.currentAppleLanguage()=="en"){
-                UserDefaults.standard.set("en", forKey: "AppLanguage")
-            }else{
-                UserDefaults.standard.set("ar", forKey: "AppLanguage")
-            }
-            
-            MOLH.reset()
-            Bundle.swizzleLocalization()
+        UIView.appearance().semanticContentAttribute = MOLHLanguage.currentAppleLanguage() == "ar" ? .forceRightToLeft : .forceLeftToRight
+        
+        MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
+        if (MOLHLanguage.currentAppleLanguage() == "en") {
+            UserDefaults.standard.set("en", forKey: "AppLanguage")
+        } else {
+            UserDefaults.standard.set("ar", forKey: "AppLanguage")
+        }
+        
+        MOLH.reset()
+        Bundle.swizzleLocalization()
+        
         let st = UIStoryboard(name: "Main", bundle: nil)
-
-               let vc :ViewController = st.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-               vc.modalPresentationStyle = .fullScreen
-               UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
+        let vc: ViewController = st.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        vc.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
     }
     
 }
 
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource  {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return DataToShow.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return DataToShow[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedOne = row
+    }
+    
+}

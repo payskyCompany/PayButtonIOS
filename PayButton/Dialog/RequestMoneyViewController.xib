@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestMoneyViewController" customModule="PayButton" customModuleProvider="target">
             <connections>
-                <outlet property="HeaderLabel" destination="PpB-rh-nQy" id="dsn-gT-oJ7"/>
-                <outlet property="HeaderView" destination="wbz-nJ-Sn9" id="gaT-vR-hd2"/>
-                <outlet property="MessageLabel" destination="Hbw-dS-SUL" id="Cac-T4-VuB"/>
-                <outlet property="MobileNumber" destination="dWu-Jl-y8D" id="beA-YF-r2y"/>
+                <outlet property="headerLabel" destination="PpB-rh-nQy" id="dsn-gT-oJ7"/>
+                <outlet property="headerView" destination="wbz-nJ-Sn9" id="gaT-vR-hd2"/>
+                <outlet property="messageLabel" destination="Hbw-dS-SUL" id="Cac-T4-VuB"/>
+                <outlet property="mobileNumber" destination="dWu-Jl-y8D" id="beA-YF-r2y"/>
                 <outlet property="view" destination="iN0-l3-epB" id="57J-16-0pl"/>
             </connections>
         </placeholder>
@@ -86,7 +84,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="I0H-MU-SW7"/>
                                             </constraints>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <variation key="heightClass=regular-widthClass=regular">
@@ -118,7 +115,7 @@
                                 <constraint firstAttribute="trailing" secondItem="NEE-2n-gZ7" secondAttribute="trailing" constant="10" id="dIj-Hh-ieb"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtU-o5-IY5">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtU-o5-IY5">
                             <rect key="frame" x="0.0" y="246.5" width="336" height="60"/>
                             <color key="backgroundColor" red="0.0" green="0.74901960779999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -140,6 +137,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5bU-8W-spU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="CzV-lh-hHn"/>
@@ -148,8 +146,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5bU-8W-spU" secondAttribute="bottom" constant="0.5" id="kNo-a1-uGb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="18" y="-99.5"/>
+            <point key="canvasLocation" x="10.546875" y="-43.704245973645676"/>
         </view>
     </objects>
 </document>

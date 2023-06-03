@@ -38,7 +38,7 @@ struct PayByCardParameters {
          tokenCardId: Int? = 0,
          customerEmail: String) {
         self.amountTrxn = amountTrxn
-        currencyCodeTrxn = "\(Constants.QATAR_CURRENCY_CODE)"
+        currencyCodeTrxn = "\(AppConstants.selectedCountryCode)"
         self.merchantId = merchantId
         self.terminalId = terminalId
         dateTimeLocalTrxn = FormattedDate.getDate()

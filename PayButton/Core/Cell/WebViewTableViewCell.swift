@@ -11,11 +11,7 @@ import WebKit
 
 class WebViewTableViewCell: BaseUITableViewCell , WKNavigationDelegate ,WKUIDelegate{
 
-    
 
-    
-    
-    
     @IBOutlet weak var webView: WKWebView!
     
   
@@ -68,7 +64,7 @@ webView.isHidden = true
         }
         UIApplication.topViewController()?.view.hideLoadingIndicator()
 
-        UIApplication.topViewController()?.view.makeToast("Error".localizedPaySky())
+        UIApplication.topViewController()?.view.makeToast("Error".localizedString())
 
         self.delegateActions?.tryAgin()
 
@@ -170,7 +166,7 @@ webView.isHidden = true
                             return
                         }
 
-                        print(convertedString)
+                        print(convertedString ?? "")
                         
                         
                         finalResponse.IsPaid = true

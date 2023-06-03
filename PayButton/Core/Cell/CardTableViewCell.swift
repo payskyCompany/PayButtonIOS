@@ -9,13 +9,11 @@
 
 import UIKit
 import MOLH
-import PayCardsRecognizer
-//CardIOPaymentViewControllerDelegate
+//import PayCardsRecognizer
 
 import PopupDialog
 import AVFoundation
-class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
-                         ScanCardtDelegate  {
+class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { //, ScanCardtDelegate {
     
     @IBOutlet weak var CVCTF: UITextField!
     @IBOutlet weak var CardNumbeTV: UITextField!
@@ -45,14 +43,14 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
     
     var PreviousLength = 0
     
-    var delegate: ScanCardtDelegate?
+//    var delegate: ScanCardtDelegate?
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        SaveCardBtn.setTitle("proceed".localizedPaySky(), for: .normal)
-        EnterCardData.text = "enter_card_data".localizedPaySky()
+        SaveCardBtn.setTitle("proceed".localizedString(), for: .normal)
+        EnterCardData.text = "enter_card_data".localizedString()
         
         if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
             self.ScanBtn.isHidden = false
@@ -66,24 +64,24 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
         //        IQToolbar.appearance().barTintColor = UIColor.white
         //        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
         //
-        //        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedPaySky()
+        //        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedString()
         //        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
         //        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.NavColor
         //        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
         //
         
-        SaveCardBtn.backgroundColor = PaySkySDKColor.mainBtnColor
+        SaveCardBtn.backgroundColor = UIColor.mainBtnColor
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
-        CardNumbeTV.setTextFieldStyle( "card_number".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        CardNumbeTV.setTextFieldStyle( "card_number".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
-        CVCTF.setTextFieldStyle( "cvc".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
+        CVCTF.setTextFieldStyle( "cvc".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
-        DateTF.setTextFieldStyle("expire_date".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
+        DateTF.setTextFieldStyle("expire_date".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
         
         
-        CardHolderName.setTextFieldStyle("name_on_card".localizedPaySky()  , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
+        CardHolderName.setTextFieldStyle("name_on_card".localizedString()  , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
         MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
         
@@ -104,7 +102,7 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
         CVCTF.delegate = MaskedCVC
         DateTF.tag = 2
         
-        delegate = self
+//        delegate = self
         
         // Initialization code
         if MOLHLanguage.currentAppleLanguage() == "en" {
@@ -122,12 +120,12 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
     }
     
     @IBAction func ScanCard(_ sender: Any) {
-        let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
-        
-        let vc :CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
-        vc.delegate = self.delegate
-        vc.modalPresentationStyle = .fullScreen
-        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
+//        let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
+//
+//        let vc: CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
+//        vc.delegate = self.delegate
+//        vc.modalPresentationStyle = .fullScreen
+//        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
     }
     
     @IBAction func ExDateChanges(_ sender: UITextField) {
@@ -162,46 +160,38 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
         
     }
     
-    func cardResult(_ result: PayCardsRecognizerResult) {
-        
-        CardHolderName.text =   result.recognizedHolderName
-        
-        
-        
-        let mask: Mask = try! Mask(format: "[0000] [0000] [0000] [0000]")
-        let input: String = result.recognizedNumber!
-        let maskResult: Mask.Result = mask.apply(
-            toText: CaretString(
-                string: input,
-                caretPosition: input.endIndex
-            ),
-            autocomplete: true // you may consider disabling autocompletion for your case
-        )
-        CardNumbeTV.text = maskResult.formattedText.string
-        
-        self.textField(
-            CardNumbeTV,
-            didFillMandatoryCharacters : true,
-            didExtractValue: result.recognizedNumber ?? ""
-        )
-        
-        
-        let data = (result.recognizedExpireDateMonth ?? "") + "/" + (result.recognizedExpireDateYear ?? "")
-        let valuedate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
-        
-        DateTF.text = data
-        self.textField(
-            DateTF,
-            didFillMandatoryCharacters : true,
-            didExtractValue: valuedate
-        )
-        
-        // CVCTF.text = info.cvv
-        
-        
-        
-    }
-    
+//    func cardResult(_ result: PayCardsRecognizerResult) {
+//        CardHolderName.text =   result.recognizedHolderName
+//
+//        let mask: Mask = try! Mask(format: "[0000] [0000] [0000] [0000]")
+//        let input: String = result.recognizedNumber!
+//        let maskResult: Mask.Result = mask.apply(
+//            toText: CaretString(
+//                string: input,
+//                caretPosition: input.endIndex
+//            ),
+//            autocomplete: true // you may consider disabling autocompletion for your case
+//        )
+//        CardNumbeTV.text = maskResult.formattedText.string
+//
+//        self.textField(
+//            CardNumbeTV,
+//            didFillMandatoryCharacters : true,
+//            didExtractValue: result.recognizedNumber ?? ""
+//        )
+//
+//
+//        let data = (result.recognizedExpireDateMonth ?? "") + "/" + (result.recognizedExpireDateYear ?? "")
+//        let valuedate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
+//
+//        DateTF.text = data
+//        self.textField(
+//            DateTF,
+//            didFillMandatoryCharacters : true,
+//            didExtractValue: valuedate
+//        )
+//    }
+
     open func textField(
         _ textField: UITextField,
         didFillMandatoryCharacters complete: Bool,
@@ -256,7 +246,7 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
                 } else {
                     self.validCard = false
                     UIApplication.topViewController()?.view.endEditing(true)
-                    UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky())
+                    UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
                 }
             }
         } else if  textField.tag  == 2 {
@@ -284,48 +274,48 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
         UIApplication.topViewController()?.view.endEditing(true)
         
         if self.cardNumber.isEmpty {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedString())
             return;
         }
         
         if  !self.validCard {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
             return;
         }
         
         if cardNumber.replacingOccurrences(of: " ", with: "").count != 16
                 && cardNumber.replacingOccurrences(of: " ", with: "").count != 19 {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
             return;
         }
         
         if (self.CardHolderName.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedString())
             return;
         }
         
         if (self.DateTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID".localizedString())
             return;
         }
         
         if  self.DateTF.text?.count != 5 {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID_AC".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID_AC".localizedString())
             return;
         }
         
         if  !validDate {
-            UIApplication.topViewController()?.view.makeToast("invalid_expire_date_date".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("invalid_expire_date_date".localizedString())
             return;
         }
         
         if (self.CVCTF.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedString())
             return;
         }
         
         if self.CVCTF.text!.count != 3 {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedString())
             return;
         }
         
@@ -350,7 +340,7 @@ class CardTableViewCell: BaseUITableViewCell , MaskedTextFieldDelegateListener ,
                                                       manualPaymentRequest: addcardRequest)
                 } else {
                     transactionStatusResponse.FROMWHERE = "Card"
-                    self.delegateActions?.SaveCard(transactionStatusResponse: transactionStatusResponse)
+                    self.delegateActions?.saveCard(transactionStatusResponse: transactionStatusResponse)
                 }
             } else {
                 if(transactionStatusResponse.Message.isEmpty) {

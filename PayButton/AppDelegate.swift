@@ -10,31 +10,12 @@ import UIKit
 import MOLH
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate , MOLHResetable {
-    func reset() {
-        print("rr")
-    }
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
-
     var window: UIWindow?
-//    public static var UrlTypeRow = 0
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-//        
-//        IQKeyboardManager.shared.enable = true
-//        IQToolbar.appearance().isTranslucent = false
-//        IQToolbar.appearance().barTintColor = UIColor.white
-//        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
-//        
-//        IQKeyboardManager.shared.toolbarDoneBarButtonItemText =  "Done".localizedPaySky()
-//        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
-//        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.mainBtnColor
-//        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
-//        
-//
         
         MOLH.shared.activate(true)
         return true
@@ -64,3 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , MOLHResetable {
 
 }
 
+extension AppDelegate: MOLHResetable {
+    func reset() {
+        print("MOLHResetable Reset")
+    }
+}

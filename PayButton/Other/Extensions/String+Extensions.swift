@@ -26,7 +26,7 @@ extension String {
         return str
     }
     
-    func localizedPaySky(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+    func localizedString(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         var bundle: Bundle!
         let path = Bundle(for: BasePaymentViewController.self).path(forResource:"PayButton", ofType: "bundle")
         if path != nil {

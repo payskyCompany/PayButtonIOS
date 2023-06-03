@@ -23,7 +23,7 @@ struct MerchantDataModel {
         self.merchantId = merchantId
         self.terminalId = terminalId
         self.amount = amount
-        self.currencyCode = Constants.QATAR_CURRENCY_CODE
+        self.currencyCode = AppConstants.selectedCountryCode
         self.secureHashKey = secureHashKey
         self.customerId = customerId
         self.customerName = customerName

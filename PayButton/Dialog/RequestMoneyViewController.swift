@@ -10,78 +10,54 @@ import UIKit
 
 class RequestMoneyViewController: BasePaymentViewController {
 
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var mobileNumber: UITextField!
     
-    var SendHandler: ((BaseResponse)->Void)? = nil
+    var sendHandler: ((BaseResponse)->Void)? = nil
 
-    
-    @IBOutlet weak var HeaderLabel: UILabel!
-    
-    @IBOutlet weak var MessageLabel: UILabel!
-    
-    @IBOutlet weak var MobileNumber: UITextField!
-    
-    
-
-    
-    
-    @IBOutlet weak var HeaderView: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-        HeaderLabel.text = "request_payment".localizedPaySky()
-        MessageLabel.text =  "enter_mobile_number".localizedPaySky()
-        
-        MobileNumber.setTextFieldStyle( "mobile_number".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
-
-        self.view.layer.cornerRadius = PaySkySDKColor.RaduisNumber
-
-        // Do any additional setup after loading the view.
+        self.view.layer.cornerRadius = AppConstants.radiusNumber
+        headerLabel.text = "request_payment".localizedString()
+        messageLabel.text = "enter_mobile_number".localizedString()
+        mobileNumber.setTextFieldStyle("mobile_number".localizedString(),
+                                       title: "",
+                                       textColor: UIColor.black,
+                                       font: GlobalManager.setFont(14),
+                                       borderWidth: 0,
+                                       borderColor: UIColor.clear,
+                                       backgroundColor: UIColor.white,
+                                       cornerRadius: 0,
+                                       placeholderColor: UIColor.gray,
+                                       maxLength: 18,
+                                       padding: 10)
     }
-    
-
-    
-    @IBAction func okAction(_ sender: Any) {
-        
-        if (self.MobileNumber.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(
-                "mobile_number_valid".localizedPaySky() )
-            
-            return
-        }
-        
-        
-        
-        ApiManger.requestToPay( MobileNumber: (self.MobileNumber.text?.replacedArabicDigitsWithEnglish)!) { (base) in
-            if base.Success {
-                
-                if self.SendHandler == nil {
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-
-                    
-                    self.SendHandler!(base)
-                }
-                
-            }else{
-                UIApplication.topViewController()?.showAlert( "Error".localizedPaySky(), message:  base.Message)
-            }
-        }
-        
-    }
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    
-    
+    @IBAction func okAction(_ sender: Any) {
+        if (self.mobileNumber.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("mobile_number_valid".localizedString())
+            return
+        }
+        
+        ApiManger.requestToPay(mobileNumber: (self.mobileNumber.text?.replacedArabicDigitsWithEnglish)!) { (base) in
+            if base.Success {
+                if self.sendHandler == nil {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.sendHandler!(base)
+                }
+            } else {
+                UIApplication.topViewController()?.showAlert( "Error".localizedString(), message:  base.Message)
+            }
+        }
+    }
+
     
 }
-
-
-

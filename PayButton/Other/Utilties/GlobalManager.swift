@@ -25,7 +25,7 @@ class GlobalManager: NSObject {
         }
     }
     
-    func cleanDollars(_ value: String?) -> String {
+    static func cleanDollars(_ value: String?) -> String {
         guard value != nil else { return "$0.00" }
         let doubleValue = Double(value!) ?? 0.0
         let formatter = NumberFormatter()

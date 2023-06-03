@@ -8,20 +8,43 @@
 
 import Foundation
 
+enum CountryCodes {
+    case egypt
+    case uae
+    case qatar
+    
+    func getCode() -> Int {
+        switch self {
+        case .egypt:
+            return 818
+        case .uae:
+            return 784
+        case .qatar:
+            return 634
+        }
+    }
+}
+
 class AppConstants {
+    
+    static let selectedCountryCode = CountryCodes.uae.getCode()
+    
+    static let radiusNumber = CGFloat(4)
+    
     static var registrationUserActive1 = "userid"
-    static func setPayBtnLiveMode(){
+    
+    static func setPayBtnLiveMode() {
         ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
     }
-    static func setPayBtnTestMode(){
+    static func setPayBtnTestMode() {
         ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
         print("uuuur\(ApiURL.MAIN_API_LINK)")
     }
-    static func setPayBtnUPGStaggingMode(){
+    static func setPayBtnUPGStaggingMode() {
         ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
         print("uuuur\(ApiURL.MAIN_API_LINK)")
     }
-    static func setPayBtnUPGProductionMode(){
+    static func setPayBtnUPGProductionMode() {
         ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
         print("uuuur\(ApiURL.MAIN_API_LINK)")
     }

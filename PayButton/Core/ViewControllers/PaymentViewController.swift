@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol PaymentDelegate: class {
+public protocol PaymentDelegate: AnyObject {
     func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse)
 }
 
@@ -35,29 +35,16 @@ public class PaymentViewController  {
             print("Please enter all  data ");
             return
         }
-//        if  (self.refnumber.isEmpty) {
-//            print("Please enter ref number")
-//            return
-//        }
-        
-//        if isProduction {
-//            AppConstant.setPayBtnLiveMode()
-//        }
         
         switch AppStatus {
-            case .Production:                        AppConstant.setPayBtnLiveMode()
-            case .Testing:
-                AppConstant.setPayBtnTestMode()
+        case .Production:
+            AppConstants.setPayBtnLiveMode()
+        case .Testing:
+            AppConstants.setPayBtnTestMode()
         }
         
-//        switch AppStatus {
-//            case .UPG_Staging:
-//                AppConstant.setPayBtnUPGStaggingMode()
-//            case .UPG_Production:
-//                AppConstant.setPayBtnUPGProductionMode()
-//        }
         
-        var DoubleAmount = Double(self.amount) ??  0.00
+        var DoubleAmount = Double(self.amount) ?? 0.00
         DoubleAmount = DoubleAmount * 100.00
         
         let paymentData = PaymentData()

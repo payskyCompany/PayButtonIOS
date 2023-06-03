@@ -24,8 +24,8 @@ extension UITextView {
                           paddingRight: CGFloat = 0) {
         self.contentInset = UIEdgeInsets.init(top: 0, left: paddingLeft, bottom: 0, right: paddingRight)
 //        self.attributedPlaceholder = myMutableStringTitle
-//        self.text = "placholder".localizedPaySky()
-//        self.placeholderText = "placholder".localizedPaySky()
+//        self.text = "placholder".localizedString()
+//        self.placeholderText = "placholder".localizedString()
         self.textColor =  UIColor.lightGray
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8

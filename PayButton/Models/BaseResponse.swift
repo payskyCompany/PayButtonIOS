@@ -10,7 +10,7 @@ import EVReflection
 import Foundation
 
 public class BaseResponse: EVObject {
-    
+
     let IsMobileSDK = true
     public var Success = false
     public var Message = ""
@@ -20,7 +20,7 @@ public class BaseResponse: EVObject {
     public var SecureHash = "32303763346235342D316635392D346232642D396366652D653036623935366630346438"
     public var TxnId = 0
     public var ModelState = ""
-    
+
     public static  func getDate() -> String  {
         let date : Date = Date()
         let dateFormatter = DateFormatter()
@@ -28,5 +28,5 @@ public class BaseResponse: EVObject {
         let todaysDate = dateFormatter.string(from: date)
         return  todaysDate
     }
-    
+
 }

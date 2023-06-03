@@ -8,6 +8,7 @@
 
 import UIKit
 import  MOLH
+
 extension UITableView {
 
     func setBottomInset(to value: CGFloat) {
@@ -81,7 +82,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         transactionStatusResponse = compose3DSTransactionResponse
         transactionStatusResponse.FROMWHERE = "Card"
 
-        self.SaveCard(transactionStatusResponse: compose3DSTransactionResponse)
+        self.saveCard(transactionStatusResponse: compose3DSTransactionResponse)
         
         
         
@@ -116,7 +117,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     
  
     var transactionStatusResponse = TransactionStatusResponse ()
-    func SaveCard(transactionStatusResponse: TransactionStatusResponse) {
+    func saveCard(transactionStatusResponse: TransactionStatusResponse) {
         self.transactionStatusResponse = transactionStatusResponse
         selectedCell = 3
         self.TableViews.reloadData()
@@ -129,8 +130,8 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     
 
     var delegate: PaymentDelegate?
-   public static  var paymentData = PaymentData()
-var UrlTypeRow = 0
+    public static var paymentData = PaymentData()
+    var UrlTypeRow = 0
 
     
 
@@ -214,25 +215,23 @@ var UrlTypeRow = 0
 //         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        self.WalletView.layer.cornerRadius =  PaySkySDKColor.RaduisNumber
-        self.CardView.layer.cornerRadius = PaySkySDKColor.RaduisNumber
+        self.WalletView.layer.cornerRadius = AppConstants.radiusNumber
+        self.CardView.layer.cornerRadius = AppConstants.radiusNumber
         self.CardView.dropShadow()
         self.WalletView.dropShadow()
-        self.HeaderLabel.text =  "quick_payment_form".localizedPaySky()
+        self.HeaderLabel.text =  "quick_payment_form".localizedString()
         
-        self.CardBtn.setTitle( "card".localizedPaySky(), for: .normal)
-        self.WalletBtn.setTitle( "wallet".localizedPaySky(), for: .normal)
+        self.CardBtn.setTitle( "card".localizedString(), for: .normal)
+        self.WalletBtn.setTitle( "wallet".localizedString(), for: .normal)
 
         
-        self.MerchantLabel.text =  "merchant".localizedPaySky()
+        self.MerchantLabel.text =  "merchant".localizedString()
         
-     
+        let currncy = GlobalManager.cleanDollars(String(MainScanViewController.paymentData.amount / 100))
         
-        let currncy =  cleanDollars(String(MainScanViewController.paymentData.amount / 100))
-        
-        self.AmountLabel.text =  "amount".localizedPaySky()
+        self.AmountLabel.text =  "amount".localizedString()
 
-        self.AmountValue.text =    "\(MainScanViewController.paymentData.currencyCode )"  .localizedPaySky()
+        self.AmountValue.text =    "\(MainScanViewController.paymentData.currencyCode)".localizedString()
            + " " + currncy
         self.MerchantId.text = String (MainScanViewController.paymentData.merchant_name)
         
@@ -241,7 +240,7 @@ var UrlTypeRow = 0
         // Do any additional setup after loading the view.
         
         
-        HeaderView.layer.cornerRadius = PaySkySDKColor.RaduisNumber 
+        HeaderView.layer.cornerRadius = AppConstants.radiusNumber
         HeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
         
@@ -295,11 +294,8 @@ var UrlTypeRow = 0
         }
     }
     
-    
     @IBAction func CardAction(_ sender: Any) {
-   
-        
-        self.CardView.backgroundColor = PaySkySDKColor.mainBtnColor
+        self.CardView.backgroundColor = UIColor.mainBtnColor
         self.CardImage.image = #imageLiteral(resourceName: "card")
         self.CardBtn.setTitleColor(UIColor.white, for: UIControl.State())
         
@@ -313,48 +309,33 @@ var UrlTypeRow = 0
         self.TableViews.reloadData()
     }
     
-    
-
-    
-    
     @IBAction func WalletAction(_ sender: Any) {
-        
-        self.WalletView.backgroundColor = PaySkySDKColor.mainBtnColor
+        self.WalletView.backgroundColor = UIColor.mainBtnColor
         self.WalletImage.image =  #imageLiteral(resourceName: "selected_wallet")
         self.WalletBtn.setTitleColor(UIColor.white, for: UIControl.State())
-        
-        
         
         self.CardView.backgroundColor = UIColor.white
         self.CardImage.image = #imageLiteral(resourceName: "un_selected_card")
         self.CardBtn.setTitleColor(UIColor.black, for: UIControl.State())
      
-        
         selectedCell = 2;
         self.TableViews.reloadData()
     }
-    
- 
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    var cell = BaseUITableViewCell()
     
-    var cell = BaseUITableViewCell();
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        
-   
-        
         if selectedCell == 1 {
              cell = tableView.dequeueReusableCell(withIdentifier: "CardTableViewCell") as! CardTableViewCell
 
-        }else if selectedCell == 2 {
+        } else if selectedCell == 2 {
              cell = tableView.dequeueReusableCell(withIdentifier: "QRTableViewCell") as! QRTableViewCell
 
-        }else if selectedCell == 3 {
+        } else if selectedCell == 3 {
             cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTableViewCell") as! CompleteTableViewCell
             cell.setData(transactionStatusResponse: self.transactionStatusResponse)
         } else if selectedCell == 4 {
@@ -368,35 +349,28 @@ var UrlTypeRow = 0
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         if selectedCell == 2 {
             startTimer ()
-
-        }else{
+        } else {
             stopTimerTest()
         }
     }
     
-  
+    var timerTest: Timer = Timer()
     
-    
+    func startTimer() {
+        if !timerTest.isValid {
+            timerTest = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(MainScanViewController.checkRequestStatus), userInfo: nil, repeats: true)
+        }
+    }
     
     func stopTimerTest() {
         if  self.timerTest.isValid {
             self.timerTest.invalidate()
-            
         }
     }
-    
-    func startTimer () {
-        
-        if !timerTest.isValid {
-            timerTest = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(MainScanViewController.CheckRequestStatus), userInfo: nil, repeats: true)
-        }
-    }
-    var timerTest : Timer = Timer()
-    @objc func CheckRequestStatus()
-    {
+
+    @objc func checkRequestStatus() {
         if timerTest.isValid  {
             ApiManger.checkTransactionPaymentStatus(transactionId: MainScanViewController.paymentData.orderId) { (transactionStatus) in
                 if transactionStatus.IsPaid {
@@ -407,45 +381,9 @@ var UrlTypeRow = 0
                     self.TableViews.reloadData()
                     
                     self.MethodTypeStackView.isHidden = true
-                    
-
                 }
-                
-                
             }
-            
         }
-        
-        
     }
     
-}
-
-
-
-
-
-
-extension Bundle {
-    static func swizzleLocalization() {
-        let orginalSelector = #selector(localizedString(forKey:value:table:))
-        guard let orginalMethod = class_getInstanceMethod(self, orginalSelector) else { return }
-
-        let mySelector = #selector(myLocaLizedString(forKey:value:table:))
-        guard let myMethod = class_getInstanceMethod(self, mySelector) else { return }
-
-        if class_addMethod(self, orginalSelector, method_getImplementation(myMethod), method_getTypeEncoding(myMethod)) {
-            class_replaceMethod(self, mySelector, method_getImplementation(orginalMethod), method_getTypeEncoding(orginalMethod))
-        } else {
-            method_exchangeImplementations(orginalMethod, myMethod)
-        }
-    }
-
-    @objc private func myLocaLizedString(forKey key: String,value: String?, table: String?) -> String {
-        guard let bundlePath = Bundle.main.path(forResource: MOLHLanguage.currentAppleLanguage(), ofType: "lproj"),
-            let bundle = Bundle(path: bundlePath) else {
-                return Bundle.main.myLocaLizedString(forKey: key, value: value, table: table)
-        }
-        return bundle.myLocaLizedString(forKey: key, value: value, table: table)
-    }
 }

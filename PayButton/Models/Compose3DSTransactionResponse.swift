@@ -8,39 +8,24 @@
 
 import Foundation
 
-
 public class Compose3DSTransactionResponse: BaseResponse {
-    
 
-    
-        var AccessCode: String = ""
-        var Amount: Int = 0
-        var CardExp = ""
+    var AccessCode: String = ""
+    var Amount: Int = 0
+    var CardExp = ""
     var CardNum = ""
     var CardSecurityCode = ""
     var CardType = ""
-        var  Command = ""
-    var  Currency = ""
+    var Command = ""
+    var Currency = ""
     var Gateway = ""
-        var GatewayType: Int = 0
-        var MerchTxnRef = ""
-    var   MerchantAccount = ""
-    var   MerchantName  = ""
+    var GatewayType: Int = 0
+    var MerchTxnRef = ""
+    var MerchantAccount = ""
+    var MerchantName  = ""
     var OrderInfo: String = ""
-        var paymentServerURL  = ""
+    var paymentServerURL  = ""
     var ReturnURL = ""
-
     var SecureHashType = ""
-        var Version: String = ""
-    
-    
-   
-    
-
-    
-    
-    
-    
-    
-    
+    var Version: String = ""
 }

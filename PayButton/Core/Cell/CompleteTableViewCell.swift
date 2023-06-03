@@ -46,19 +46,19 @@ class CompleteTableViewCell: BaseUITableViewCell {
             EmailED.textAlignment = .right
         }
         
-        TextStatus.text =  "transaction_success".localizedPaySky()
-        TransNumber.text =  "trx_id".localizedPaySky()
-        AuthCode.text =  "auth_number".localizedPaySky()
+        TextStatus.text =  "transaction_success".localizedString()
+        TransNumber.text =  "trx_id".localizedString()
+        AuthCode.text =  "auth_number".localizedString()
         
-        SendReciptLabel.text =  "send_notification".localizedPaySky()
+        SendReciptLabel.text =  "send_notification".localizedString()
         
-        CloseBtn.setTitle("close".localizedPaySky(), for: .normal)
+        CloseBtn.setTitle("close".localizedString(), for: .normal)
         
-        SendMail.setTitle("send".localizedPaySky(), for: .normal)
-        TryBtn.setTitle("try_again".localizedPaySky(), for: .normal)
-        EmailED.setTextFieldStyle( "email_hint".localizedPaySky() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 30,padding: 10,keyboardType: UIKeyboardType.default)
-        CloseBtn.layer.cornerRadius = UIColor.radiusNumber
-        TryBtn.layer.cornerRadius = UIColor.radiusNumber
+        SendMail.setTitle("send".localizedString(), for: .normal)
+        TryBtn.setTitle("try_again".localizedString(), for: .normal)
+        EmailED.setTextFieldStyle( "email_hint".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 30,padding: 10,keyboardType: UIKeyboardType.default)
+        CloseBtn.layer.cornerRadius = AppConstants.radiusNumber
+        TryBtn.layer.cornerRadius = AppConstants.radiusNumber
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -72,19 +72,19 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         
         if (EmailED.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(  "please entre your mail".localizedPaySky()  )
+            UIApplication.topViewController()?.view.makeToast(  "please entre your mail".localizedString()  )
             return
         }
         
         if !(EmailED.text?.isValidEmail())! {
-            UIApplication.topViewController()?.view.makeToast(  "please entre valid mail".localizedPaySky())
+            UIApplication.topViewController()?.view.makeToast(  "please entre valid mail".localizedString())
             return
         }
         
         ApiManger.sendEmail(emailTo: EmailED.text!, externalReceiptNo: self.transactionStatusResponse.ReceiptNumber, transactionChannel:  self.transactionStatusResponse.FROMWHERE, transactionId: self.transactionStatusResponse.SystemReference) { (baseresponse) in
             if baseresponse.Success {
                 self.EmailLabel.isHidden = false
-                self.EmailLabel.text = "email_send_to".localizedPaySky() + self.EmailED.text!
+                self.EmailLabel.text = "email_send_to".localizedString() + self.EmailED.text!
             }else{
                 
                 UIApplication.topViewController()?.view.makeToast(baseresponse.Message)
@@ -122,8 +122,8 @@ class CompleteTableViewCell: BaseUITableViewCell {
             self.StackComplete.isHidden = false
             self.TryBtn.isHidden = true
             
-            let string = "transaction_success".localizedPaySky()
-            var stringArr = string.components(separatedBy: " ")
+            let string = "transaction_success".localizedString()
+            let stringArr = string.components(separatedBy: " ")
             let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
             myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  UIColor.hexStringToUIColor("#00BFA5"),
                                          range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))
@@ -147,8 +147,8 @@ class CompleteTableViewCell: BaseUITableViewCell {
                 Auth =   String ( Auth.suffix(6) )
             }
             
-            TransNumber.text =  "trx_id".localizedPaySky()  + " #" + TranNumber
-            AuthCode.text =  "auth_number".localizedPaySky() + " #"  + Auth
+            TransNumber.text =  "trx_id".localizedString()  + " #" + TranNumber
+            AuthCode.text =  "auth_number".localizedString() + " #"  + Auth
             self.ImageSucces.image = #imageLiteral(resourceName: "TransactionApproved")
             ErrorMessage.isHidden = true
         } else {
@@ -157,8 +157,8 @@ class CompleteTableViewCell: BaseUITableViewCell {
             self.ImageSucces.image = #imageLiteral(resourceName: "TransactionDeclined")
             
             
-            let string = "transaction_declined".localizedPaySky()
-            var stringArr = string.components(separatedBy: " ")
+            let string = "transaction_declined".localizedString()
+            let stringArr = string.components(separatedBy: " ")
             let   myMutableString = NSMutableAttributedString(string: string, attributes:nil)
             myMutableString.addAttribute(NSAttributedString.Key.foregroundColor , value:  UIColor.hexStringToUIColor("#C23A2C"),
                                          range: NSRange(location:stringArr[0].count,length: stringArr[1].count+1))

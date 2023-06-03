@@ -24,14 +24,14 @@ public class ApiManger {
         addcardRequest.AmountTrxn = NSDecimalNumber(decimal: Decimal(MainScanViewController.paymentData.amount)).stringValue
         addcardRequest.CardAcceptorIDcode = String(MainScanViewController.paymentData.merchantId)
         addcardRequest.CardAcceptorTerminalID = String(MainScanViewController.paymentData.terminalId)
-        
+
         debugPrint(addcardRequest)
-        
+
         executePOST(path: ApiURL.PayByCard, parameters: addcardRequest, completion: { (value) in
             completion(TransactionStatusResponse(json: value))
         })
     }
-                    
+
     static func PayByCard(addcardRequest: ManualPaymentRequest,
                             completion: @escaping (TransactionStatusResponse) -> ()) {
         addcardRequest.CardAcceptorIDcode = String(MainScanViewController.paymentData.merchantId)
@@ -74,10 +74,10 @@ public class ApiManger {
         })
     }
     
-    static func requestToPay(MobileNumber:String, completion: @escaping (BaseResponse) -> ()) {
+    static func requestToPay(mobileNumber:String, completion: @escaping (BaseResponse) -> ()) {
         let smsPaymentRequest = SmsPaymentRequest()
         smsPaymentRequest.TxnId = MainScanViewController.paymentData.orderId
-        smsPaymentRequest.MobileNumber = MobileNumber
+        smsPaymentRequest.MobileNumber = mobileNumber
         smsPaymentRequest.ISOQR = MainScanViewController.paymentData.staticQR
         executePOST(path: ApiURL.RequestToPay, parameters: smsPaymentRequest, completion: { (value) in
             completion(BaseResponse(json: value))

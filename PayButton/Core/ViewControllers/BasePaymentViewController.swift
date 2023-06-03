@@ -19,7 +19,7 @@ class BasePaymentViewController: UIViewController {
         
           
         
-        TermsAndCondition?.text = "terms_conditions".localizedPaySky()
+        TermsAndCondition?.text = "terms_conditions".localizedString()
 
         self.navigationController?.isNavigationBarHidden = true
         
