@@ -201,7 +201,6 @@ class ViewController: UIViewController, PaymentDelegate {
             return
         }
         
-        
         if (CurrencyEd.text?.isEmpty)! {
             CurrencyEd.text = "\(AppConstants.selectedCountryCode)"
         }
