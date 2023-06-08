@@ -68,10 +68,4 @@ public class ApiURL {
     static var RequestToPay = "RequestToPay";
     static var PayByCard = "PayByCard";
     static var CheckPaymentMethod = "CheckPaymentMethod";
- 
-    
-
-    
-
 }
-

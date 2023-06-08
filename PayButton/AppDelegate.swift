@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         MOLH.shared.activate(true)
+        
+        var mainView = MainViewController(nibName: "MainViewController", bundle: nil)
+        self.window?.rootViewController = mainView
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

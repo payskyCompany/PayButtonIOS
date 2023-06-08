@@ -229,7 +229,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         
         let currncy = GlobalManager.cleanDollars(String(MainScanViewController.paymentData.amount / 100))
         
-        self.AmountLabel.text =  "amount".localizedString()
+        self.AmountLabel.text =  "amount".localizedString().uppercased()
 
         self.AmountValue.text =    "\(MainScanViewController.paymentData.currencyCode)".localizedString()
            + " " + currncy

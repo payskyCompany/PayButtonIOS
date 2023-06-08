@@ -41,10 +41,10 @@ class ViewController: UIViewController, PaymentDelegate {
         }
         ChangeLang.setTitle("change_lang".localizedString(), for: .normal)
         PayBtn.setTitle("pay_now".localizedString(), for: .normal)
-        MerchantIdLabel.text = "Merchant ID_paysky".localizedString()
-        TerminalIDLabel.text =  "Terminal ID_paysky".localizedString()
-        AmountLabel.text = "Amount".localizedString()
-        CurrencyLabel.text = "Currency_paysky".localizedString()
+        MerchantIdLabel.text = "merchantID".localizedString()
+        TerminalIDLabel.text = "terminalID".localizedString()
+        AmountLabel.text = "amount".localizedString()
+        CurrencyLabel.text = "currency_code".localizedString()
         AppName.text = "app_name_paysky".localizedString()
     }
     
@@ -82,24 +82,24 @@ class ViewController: UIViewController, PaymentDelegate {
     @IBOutlet weak var AppName: UILabel!
     @IBOutlet weak var picker: UIPickerView!
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-   
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-    }
-    
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0 {
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//   
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if self.view.frame.origin.y != 0 {
+//            self.view.frame.origin.y = 0
+//        }
+//    }
+//    
+//    @objc func dismissKeyboard() {
+//        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+//        view.endEditing(true)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,28 +126,27 @@ class ViewController: UIViewController, PaymentDelegate {
         PayBtn.setTitle("pay_now".localizedString(), for: .normal)
         PayBtn.layer.cornerRadius = AppConstants.radiusNumber
         
-        MerchantIdLabel.text = "Merchant ID_paysky".localizedString()
-        MerchantIdEd.setTextFieldStyle( "Merchant ID_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+        MerchantIdLabel.text = "merchantID".localizedString()
+        MerchantIdEd.setTextFieldStyle("merchantID".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                        borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
 
-       TerminalIDLabel.text =  "Terminal ID_paysky".localizedString()
-       TerminalIDTF.setTextFieldStyle( "Terminal ID_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+       TerminalIDLabel.text =  "terminalID".localizedString()
+       TerminalIDTF.setTextFieldStyle("terminalID".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                       borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 20,padding: 20)
        
-       AmountLabel.text = "Amount".localizedString()
-       AmountEd.setTextFieldStyle("Amount".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+       AmountLabel.text = "amount".localizedString()
+       AmountEd.setTextFieldStyle("amount".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20, keyboardType: .decimalPad)
        
-       
-       CurrencyLabel.text = "Currency_paysky".localizedString()
-       AppName.text = "app_name_paysky".localizedString()
-       CurrencyEd.setTextFieldStyle("Currency_paysky".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+       CurrencyLabel.text = "currency_code".localizedString()
+       CurrencyEd.setTextFieldStyle("currency_code".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                   borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 10,padding: 20)
        
   
-       SecureHash.setTextFieldStyle("Secure Hash", title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
+        SecureHash.setTextFieldStyle("secure_hash_key".localizedString(), title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) ,
                                     borderWidth: 1, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: AppConstants.radiusNumber , placeholderColor: UIColor.gray,maxLength: 100,padding: 20, keyboardType: .alphabet)
        
+        AppName.text = "app_name_paysky".localizedString()
 
         if MOLHLanguage.currentAppleLanguage() != "ar" {
             CurrencyEd.textAlignment = .left

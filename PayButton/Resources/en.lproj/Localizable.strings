@@ -1,13 +1,16 @@
 "app_name_paysky"="PayButton";
 
-"Merchant ID_paysky" = "Merchant ID";
-"Terminal ID_paysky" = "Terminal ID";
-"Amount" = "Amount";
-"Currency_paysky" = "Currency";
+"merchantID" = "Merchant ID";
+"terminalID" = "Terminal ID";
+"amount" = "Amount";
+"currency_code" = "Currency Code";
+"secure_hash_key" = "Secure Hash Key";
+
 "please entre secure hash value" = "please entre secure hash value";
 "please entre valid secure hash value" = "please entre valid secure hash value";
 
 "Done" = "Done";
+"submit" = "Submit";
 
 "scanCard" = "Scan card data ";
 
@@ -16,7 +19,6 @@
 "pay_now"="Pay Now";
 "quick_payment_from"="Quick Payment Form";
 "merchant"="MERCHANT";
-"amount"="AMOUNT";
 "arabic"="عربى";
 "terms_conditions"="Terms and conditions";
 "hello_blank_fragment"="Hello blank fragment";

@@ -36,11 +36,11 @@ class BasePaymentViewController: UIViewController {
     }
 
 
-//Calls this function when the tap is recognized.
-    @objc func dismissKeyboard() {
-    //Causes the view (or one of its embedded text fields) to resign the first responder status.
-    view.endEditing(true)
-}
+////Calls this function when the tap is recognized.
+//    @objc func dismissKeyboard() {
+//    //Causes the view (or one of its embedded text fields) to resign the first responder status.
+//    view.endEditing(true)
+//}
     
     override func viewDidAppear(_ animated: Bool) {
 

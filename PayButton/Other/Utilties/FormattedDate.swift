@@ -18,6 +18,4 @@ public class FormattedDate {
         let todaysDate = dateFormatter.string(from: date)
         return  todaysDate
    }
-    
-    
 }

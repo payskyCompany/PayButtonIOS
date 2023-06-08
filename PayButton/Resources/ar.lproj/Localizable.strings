@@ -1,13 +1,16 @@
 "app_name_paysky"="زر الدفع";
 
-"Merchant ID_paysky" = "رقم التاجر";
-"Terminal ID_paysky" = "نقطة البيع";
-"Amount" = "المبلغ";
-"Currency_paysky" = "العملة";
+"merchantID" = "رقم التاجر";
+"terminalID" = "نقطة البيع";
+"amount"="المبلغ";
+"currency_code" = "كود العملة";
+"secure_hash_key" = "Secure Hash رمز";
 
 "change_lang" = "تغيير اللغة";
 
 "Done" = "تأكيد";
+"submit" = "إرسال";
+
 "request_send_to_mobile" = "تم ارسال الطلب بنجاح";
 
 "scanCard" = "افحص بيانات الكارت";
@@ -16,7 +19,6 @@
 "quick_payment_from"="الدفع السريع";
 "merchant"="التاجر";
 
-"amount"="المبلغ";
 "arabic"="English";
 "terms_conditions"="الشروط والاحكام";
 "hello_blank_fragment"="Hello blank fragment";
