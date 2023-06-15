@@ -9,7 +9,7 @@ target 'PayButton' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
   pod "EVReflection"
   pod 'PopupDialog'
-#  pod 'PayCardsRecognizer'
+  pod 'PayCardsRecognizer'
   pod 'MOLH'
   
 #  post_install do |installer|

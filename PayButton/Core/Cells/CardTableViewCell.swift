@@ -9,11 +9,11 @@
 
 import UIKit
 import MOLH
-//import PayCardsRecognizer
-
+import PayCardsRecognizer
 import PopupDialog
 import AVFoundation
-class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { //, ScanCardtDelegate {
+
+class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener, ScanCardDelegate {
     
     @IBOutlet weak var CVCTF: UITextField!
     @IBOutlet weak var CardNumbeTV: UITextField!
@@ -43,7 +43,7 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { 
     
     var PreviousLength = 0
     
-//    var delegate: ScanCardtDelegate?
+    var delegate: ScanCardDelegate?
     
     
     override func awakeFromNib() {
@@ -102,7 +102,7 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { 
         CVCTF.delegate = MaskedCVC
         DateTF.tag = 2
         
-//        delegate = self
+        delegate = self
         
         // Initialization code
         if MOLHLanguage.currentAppleLanguage() == "en" {
@@ -120,12 +120,12 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { 
     }
     
     @IBAction func ScanCard(_ sender: Any) {
-//        let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
-//
-//        let vc: CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
-//        vc.delegate = self.delegate
-//        vc.modalPresentationStyle = .fullScreen
-//        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
+        let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
+
+        let vc: CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
+        vc.delegate = self.delegate
+        vc.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
     }
     
     @IBAction func ExDateChanges(_ sender: UITextField) {
@@ -160,37 +160,37 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener { 
         
     }
     
-//    func cardResult(_ result: PayCardsRecognizerResult) {
-//        CardHolderName.text =   result.recognizedHolderName
-//
-//        let mask: Mask = try! Mask(format: "[0000] [0000] [0000] [0000]")
-//        let input: String = result.recognizedNumber!
-//        let maskResult: Mask.Result = mask.apply(
-//            toText: CaretString(
-//                string: input,
-//                caretPosition: input.endIndex
-//            ),
-//            autocomplete: true // you may consider disabling autocompletion for your case
-//        )
-//        CardNumbeTV.text = maskResult.formattedText.string
-//
-//        self.textField(
-//            CardNumbeTV,
-//            didFillMandatoryCharacters : true,
-//            didExtractValue: result.recognizedNumber ?? ""
-//        )
-//
-//
-//        let data = (result.recognizedExpireDateMonth ?? "") + "/" + (result.recognizedExpireDateYear ?? "")
-//        let valuedate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
-//
-//        DateTF.text = data
-//        self.textField(
-//            DateTF,
-//            didFillMandatoryCharacters : true,
-//            didExtractValue: valuedate
-//        )
-//    }
+    func cardResult(_ result: PayCardsRecognizerResult) {
+        CardHolderName.text =   result.recognizedHolderName
+
+        let mask: Mask = try! Mask(format: "[0000] [0000] [0000] [0000]")
+        let input: String = result.recognizedNumber!
+        let maskResult: Mask.Result = mask.apply(
+            toText: CaretString(
+                string: input,
+                caretPosition: input.endIndex
+            ),
+            autocomplete: true // you may consider disabling autocompletion for your case
+        )
+        CardNumbeTV.text = maskResult.formattedText.string
+
+        self.textField(
+            CardNumbeTV,
+            didFillMandatoryCharacters : true,
+            didExtractValue: result.recognizedNumber ?? ""
+        )
+
+
+        let data = (result.recognizedExpireDateMonth ?? "") + "/" + (result.recognizedExpireDateYear ?? "")
+        let valuedate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
+
+        DateTF.text = data
+        self.textField(
+            DateTF,
+            didFillMandatoryCharacters : true,
+            didExtractValue: valuedate
+        )
+    }
 
     open func textField(
         _ textField: UITextField,

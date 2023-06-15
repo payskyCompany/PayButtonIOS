@@ -5,6 +5,7 @@ PODS:
     - EVReflection/Core (= 5.10.1)
   - EVReflection/Core (5.10.1)
   - MOLH (1.4.3)
+  - PayCardsRecognizer (1.1.7)
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
 
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - EVReflection
   - MOLH
+  - PayCardsRecognizer
   - PopupDialog
 
 SPEC REPOS:
@@ -20,6 +22,7 @@ SPEC REPOS:
     - DynamicBlurView
     - EVReflection
     - MOLH
+    - PayCardsRecognizer
     - PopupDialog
 
 SPEC CHECKSUMS:
@@ -27,8 +30,9 @@ SPEC CHECKSUMS:
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   MOLH: e45827d200aeb1310641090fd8cd03ad2b42ae72
+  PayCardsRecognizer: 2e4d1b2fdd5f1528fb56064a91e1d58a1af7a2db
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
 
-PODFILE CHECKSUM: 29b26e8bff5f907ed84e64c7722355722b9d4efa
+PODFILE CHECKSUM: b3260439a5b1ed30b63afff0e7c4d944128f4d56
 
 COCOAPODS: 1.12.0

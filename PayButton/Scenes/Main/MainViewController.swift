@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var changeLangBtn: UIButton!
     @IBOutlet weak var submitBtn: UIButton!
     
-    let selectChannelpickerView = UIPickerView()
+    let selectChannelPickerView = UIPickerView()
     private let subscriptionTypes = ["Mobile number", "Email address"]
     private let environmentTypes = ["Production", "Testing"]
     
@@ -74,6 +74,8 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupViewOutlets()
+        
         if MOLHLanguage.currentAppleLanguage() != "ar" {
             merchantIdTextfield.textAlignment = .left
             terminalIdTextfield.textAlignment = .left
@@ -90,86 +92,14 @@ class MainViewController: UIViewController {
             currencyCodeTextfield.textAlignment = .right
             selectUrlLabel.text = "اختر الرابط"
         }
-        merchantIdLabel.text = "merchantID".localizedString()
-        terminalIdLabel.text = "terminalID".localizedString()
-        secureHashKeyLabel.text = "secure_hash_key".localizedString()
-        amountLabel.text = "amount".localizedString()
-        currencyCodeLabel.text = "currency_code".localizedString()
-        changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
-        submitBtn.setTitle("pay_now".localizedString(), for: .normal)
     }
     
     private func setupViewOutlets() {
         merchantIdLabel.text = "merchantID".localizedString()
-        merchantIdTextfield.setTextFieldStyle("merchantID".localizedString(),
-                                              title: "",
-                                              textColor: UIColor.black,
-                                              font:GlobalManager.setFont(14),
-                                              borderWidth: 1,
-                                              borderColor: UIColor.gray,
-                                              backgroundColor: UIColor.white,
-                                              cornerRadius: AppConstants.radiusNumber,
-                                              placeholderColor: UIColor.gray,
-                                              maxLength: 20,
-                                              padding: 5,
-                                              keyboardType: .numberPad)
-
-       terminalIdLabel.text =  "terminalID".localizedString()
-       terminalIdTextfield.setTextFieldStyle("terminalID".localizedString(),
-                                             title: "",
-                                             textColor: UIColor.black,
-                                             font:GlobalManager.setFont(14),
-                                             borderWidth: 1,
-                                             borderColor: UIColor.gray,
-                                             backgroundColor: UIColor.white,
-                                             cornerRadius: AppConstants.radiusNumber,
-                                             placeholderColor: UIColor.gray,
-                                             maxLength: 20,
-                                             padding: 5,
-                                             keyboardType: .numberPad)
-       
-       amountLabel.text = "amount".localizedString()
-       amountTextfield.setTextFieldStyle("amount".localizedString(),
-                                         title: "",
-                                         textColor: UIColor.black,
-                                         font:GlobalManager.setFont(14),
-                                         borderWidth: 1,
-                                         borderColor: UIColor.gray,
-                                         backgroundColor: UIColor.white,
-                                         cornerRadius: AppConstants.radiusNumber,
-                                         placeholderColor: UIColor.gray,
-                                         maxLength: 10,
-                                         padding: 5,
-                                         keyboardType: .decimalPad)
-        
+        terminalIdLabel.text =  "terminalID".localizedString()
+        amountLabel.text = "amount".localizedString()
         currencyCodeLabel.text = "currency_code".localizedString()
-        currencyCodeTextfield.setTextFieldStyle("currency_code".localizedString(),
-                                                title: "",
-                                                textColor: UIColor.black,
-                                                font:GlobalManager.setFont(14),
-                                                borderWidth: 1,
-                                                borderColor: UIColor.gray,
-                                                backgroundColor: UIColor.white,
-                                                cornerRadius: AppConstants.radiusNumber,
-                                                placeholderColor: UIColor.gray,
-                                                maxLength: 10,
-                                                padding: 5,
-                                                keyboardType: .numberPad)
-        
         secureHashKeyLabel.text = "secure_hash_key".localizedString()
-        secureHashKeyTextfield.setTextFieldStyle("secure_hash_key".localizedString(),
-                                                 title: "",
-                                                 textColor: UIColor.black,
-                                                 font:GlobalManager.setFont(14),
-                                                 borderWidth: 1,
-                                                 borderColor: UIColor.gray,
-                                                 backgroundColor: UIColor.white,
-                                                 cornerRadius: AppConstants.radiusNumber,
-                                                 placeholderColor: UIColor.gray,
-                                                 maxLength: 100,
-                                                 padding: 5,
-                                                 keyboardType: .alphabet)
-        
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
@@ -181,9 +111,9 @@ class MainViewController: UIViewController {
     }
     
     private func setupSelectChannelTextfieldPickerView() {
-        selectChannelpickerView.backgroundColor = .white
-        selectChannelpickerView.delegate = self
-        selectChannelpickerView.dataSource = self
+        selectChannelPickerView.backgroundColor = .white
+        selectChannelPickerView.delegate = self
+        selectChannelPickerView.dataSource = self
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
@@ -197,7 +127,7 @@ class MainViewController: UIViewController {
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
 
-        selectChannelTextfield.inputView = selectChannelpickerView
+        selectChannelTextfield.inputView = selectChannelPickerView
         selectChannelTextfield.inputAccessoryView = toolBar
     }
 
@@ -215,7 +145,13 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func submitBtnPressed(_ sender: UIButton) {
-        
+        debugPrint(merchantIdTextfield.text)
+        debugPrint(terminalIdTextfield.text)
+        debugPrint(currencyCodeTextfield.text)
+        debugPrint(secureHashKeyTextfield.text)
+        debugPrint(amountTextfield.text)
+        debugPrint("Subsciption Type index: \(subscriptionTypeSegmentedControl.selectedSegmentIndex)")
+        debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
@@ -246,7 +182,7 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if(pickerView == selectChannelpickerView) {
+        if(pickerView == selectChannelPickerView) {
             return subscriptionTypes.count
         } else {
             return environmentTypes.count
@@ -254,7 +190,7 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView == selectChannelpickerView) {
+        if(pickerView == selectChannelPickerView) {
             return subscriptionTypes[row]
         } else {
             return environmentTypes[row]
@@ -269,7 +205,7 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     @objc func pickerValueUpdated() {
         // if mobile number selected
-        if(selectChannelpickerView.selectedRow(inComponent: 0) == 0) {
+        if(selectChannelPickerView.selectedRow(inComponent: 0) == 0) {
             selectChannelTextfield.text = "\(subscriptionTypes[0]) channel selected"
             mobileNumberStackView.isHidden = false
             emailStackView.isHidden = true
