@@ -21,20 +21,11 @@ enum ApiClient {
 extension ApiClient: EndpointType {
     
     private var domain: String {
-        return Constants.DOMAIN_URL
+        return Environment.Grey.description
     }
     
     var gateway: String {
-        switch self {
-        case .payByNaps:
-            return "/LightboxAPI/api"
-        default:
-            if(Constants.DOMAIN_URL == Environment.Grey.description) {
-                return "/omni/PayLink.svc/api"
-            } else {
-                return "/cube/PayLink.svc/api"
-            }
-        }
+        return "/cube/PayLink.svc/api"
     }
     
     var baseURL: URL {
