@@ -11,8 +11,6 @@ import Foundation
 enum ApiClient {
     case checkPaymentMethod(_ params: PaymentMethodParameters)
     case payByCard(_ params: PayByCardParameters)
-    case payByWallet(_ params: PayByWalletParameters)
-    case payByNaps(_ params: PayByNapsParameters)
     case checkTransactionStatus(_ params: CheckTransactionStatusParameters)
     case getSessionForCustomerToken(_ params: GetCustomerSessionParameters)
     case getAllCardsForCustomerToken(_ params: GetCustomerTokensParameters)
@@ -51,10 +49,6 @@ extension ApiClient: EndpointType {
             return "/CheckPaymentMethod"
         case .payByCard:
             return "/PayByCard"
-        case .payByWallet:
-            return "/DebitWallet"
-        case .payByNaps:
-            return "/PayNAPS"
         case .checkTransactionStatus:
             return "/CheckTxnStatus"
         case .getSessionForCustomerToken:
@@ -78,8 +72,6 @@ extension ApiClient: EndpointType {
             return params.toDict()
         case  .payByCard(let params):
             return params.toDict()
-        case .payByWallet(let params):
-            return params.toDict()
         case .checkTransactionStatus(let params):
             return params.toDict()
         case .getSessionForCustomerToken(let params):
@@ -90,8 +82,6 @@ extension ApiClient: EndpointType {
             return params.toDict()
         case .deleteToken(let params):
             return params.toDict()
-        case .payByNaps:
-            return nil
         }
     }
     
