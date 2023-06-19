@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import DLRadioButton
 
 class CardListTblCell: UITableViewCell {
 
+    @IBOutlet weak var selectCardBtn: DLRadioButton!
     @IBOutlet weak var cvvAlertLbl: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectCardBtn.setTitle("", for: .normal)
         cvvAlertLbl.isHidden = true
     }
 
