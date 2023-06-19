@@ -72,12 +72,12 @@ class CompleteTableViewCell: BaseUITableViewCell {
         
         
         if (EmailED.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast(  "please entre your mail".localizedString()  )
+            UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString()  )
             return
         }
         
         if !(EmailED.text?.isValidEmail())! {
-            UIApplication.topViewController()?.view.makeToast(  "please entre valid mail".localizedString())
+            UIApplication.topViewController()?.view.makeToast("please_enter_valid_mail".localizedString())
             return
         }
         

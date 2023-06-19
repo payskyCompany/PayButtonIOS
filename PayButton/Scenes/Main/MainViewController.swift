@@ -9,6 +9,19 @@
 import UIKit
 import MOLH
 
+extension MainViewController: PaymentDelegate {
+    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
+        if transactionStatusResponse.Success {
+            UIPasteboard.general.string = customerId
+            debugPrint("Customer ID:")
+            debugPrint(customerId)
+            UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
+        } else {
+            UIApplication.topViewController()?.view.makeToast("Transaction failed")
+        }
+    }
+}
+
 class MainViewController: UIViewController {
 
     @IBOutlet weak var versionLabel: UILabel!
@@ -42,6 +55,9 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var currencyCodeLabel: UILabel!
     @IBOutlet weak var currencyCodeTextfield: UITextField!
+    
+    @IBOutlet weak var trnxRefNumberLabel: UILabel!
+    @IBOutlet weak var trnxRefNumberTextfield: UITextField!
     
     @IBOutlet weak var selectUrlLabel: UILabel!
     @IBOutlet weak var selectUrlEnvironmentPicker: UIPickerView!
@@ -103,6 +119,11 @@ class MainViewController: UIViewController {
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
+        
+        merchantIdTextfield.text = "41565"
+        terminalIdTextfield.text = "1583826"
+        secureHashKeyTextfield.text = "09a90e81140dcb0d686c09f0036ef910"
+        customerIdTextfield.text = "7065cee1-1773-4d7e-988b-e7868ece266d"
     }
     
     private func setupSelectUrlEnvironmentPickerView() {
@@ -145,13 +166,78 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func submitBtnPressed(_ sender: UIButton) {
-        debugPrint(merchantIdTextfield.text)
-        debugPrint(terminalIdTextfield.text)
-        debugPrint(currencyCodeTextfield.text)
-        debugPrint(secureHashKeyTextfield.text)
-        debugPrint(amountTextfield.text)
-        debugPrint("Subsciption Type index: \(subscriptionTypeSegmentedControl.selectedSegmentIndex)")
+        guard let merchantId = merchantIdTextfield.text, !merchantId.isEmpty else {
+            UIApplication.topViewController()?.view.makeToast("please_enter_merchant".localizedString())
+            return
+        }
+        guard let terminalId = terminalIdTextfield.text, !terminalId.isEmpty else {
+            UIApplication.topViewController()?.view.makeToast("please_enter_terminal".localizedString())
+            return
+        }
+        guard let secureHashKey = secureHashKeyTextfield.text, !secureHashKey.isEmpty else {
+            UIApplication.topViewController()?.view.makeToast("please_enter_secure_hash_value".localizedString())
+            return
+        }
+        guard let amount = amountTextfield.text, !amount.isEmpty else {
+            UIApplication.topViewController()?.view.makeToast("please_enter_amount".localizedString())
+            return
+        }
+        if(Float(amount) == 0.0) {
+            UIApplication.topViewController()?.view.makeToast("please_enter_amount_greater".localizedString())
+            return
+        }
+        if let currencyCode = currencyCodeTextfield.text, currencyCode.isEmpty {
+            currencyCodeTextfield.text = "\(AppConstants.selectedCountryCode)"
+        }
+        
+        // Check if "Not Subscribed" is selected
+        if(subscriptionTypeSegmentedControl.selectedSegmentIndex == 0) {
+            guard let channel = selectChannelTextfield.text, !channel.isEmpty else {
+                UIApplication.topViewController()?.view.makeToast("please_select_channel".localizedString())
+                return
+            }
+            // Check if channel selected is "Mobile number" else "Email Address"
+            if(selectChannelPickerView.selectedRow(inComponent: 0) == 0) {
+                guard let mobileNumber = mobileNumberTextfield.text, !mobileNumber.isEmpty else {
+                    UIApplication.topViewController()?.view.makeToast("please_enter_mobile_number".localizedString())
+                    return
+                }
+            }
+            else {
+                guard let emailAddress = emailTextfield.text, !emailAddress.isEmpty else {
+                    UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString())
+                    return
+                }
+            }
+        }
+        else {      // else "Subscribed" is selected
+            guard let customerId = customerIdTextfield.text, !customerId.isEmpty else {
+                UIApplication.topViewController()?.view.makeToast("please_enter_customer_id".localizedString())
+                return
+            }
+        }
+        
+        debugPrint("URL: \(selectUrlEnvironmentPicker.selectedRow(inComponent: 0))")
         debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
+    
+        
+        let paymentViewController = PaymentViewController ()
+        paymentViewController.mId = merchantId
+        paymentViewController.tId = terminalId
+        paymentViewController.secureHashKey = secureHashKey
+        paymentViewController.amount = amount
+        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
+        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
+        paymentViewController.delegate = self
+        
+        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
+            paymentViewController.isProduction = true
+        } else {
+            paymentViewController.isProduction = false
+        }
+        
+        paymentViewController.pushViewController()
+        
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {

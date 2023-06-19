@@ -49,7 +49,7 @@ class ViewController: UIViewController, PaymentDelegate {
     }
     
     
-    func finishSdkPayment(_ receipt: TransactionStatusResponse) {
+    func finishSdkPayment(_ receipt: TransactionStatusResponse, withCustomerId customerId: String) {
         self.receipt = receipt
         if receipt.Success {
             LabeResoinse.setTitle("Transaction completed successfully, click here to show callback result", for: .normal)
@@ -216,15 +216,15 @@ class ViewController: UIViewController, PaymentDelegate {
         let paymentViewController = PaymentViewController ()
         paymentViewController.amount =  AmountEd.text!
         paymentViewController.delegate = self
-        paymentViewController.refnumber =  ""
+        paymentViewController.trnxRefNumber =  ""
 
         paymentViewController.mId = MerchantIdEd.text!
         paymentViewController.tId = TerminalIDTF.text!
-        paymentViewController.Currency = CurrencyEd.text!
+        paymentViewController.currency = CurrencyEd.text!
         paymentViewController.isProduction = false
-        paymentViewController.AppStatus = DataToSend[selectedOne]
+//        paymentViewController.AppStatus = DataToSend[selectedOne]
         
-        paymentViewController.Key = SecureHash.text!
+        paymentViewController.secureHashKey = SecureHash.text!
 
         paymentViewController.pushViewController()
     }
