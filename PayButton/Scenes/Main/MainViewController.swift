@@ -145,13 +145,19 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func submitBtnPressed(_ sender: UIButton) {
-        debugPrint(merchantIdTextfield.text)
-        debugPrint(terminalIdTextfield.text)
-        debugPrint(currencyCodeTextfield.text)
-        debugPrint(secureHashKeyTextfield.text)
-        debugPrint(amountTextfield.text)
-        debugPrint("Subsciption Type index: \(subscriptionTypeSegmentedControl.selectedSegmentIndex)")
-        debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
+//        debugPrint(merchantIdTextfield.text)
+//        debugPrint(terminalIdTextfield.text)
+//        debugPrint(currencyCodeTextfield.text)
+//        debugPrint(secureHashKeyTextfield.text)
+//        debugPrint(amountTextfield.text)
+//        debugPrint("Subsciption Type index: \(subscriptionTypeSegmentedControl.selectedSegmentIndex)")
+//        debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
+        //AddNewCardVC
+        let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
+//        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
+        viewController.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
+
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
