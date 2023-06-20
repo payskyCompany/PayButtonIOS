@@ -18,14 +18,14 @@ struct PaymentMethodParameters {
         self.merchantId = merchantId
         self.terminalId = terminalId
         dateTimeLocalTrxn = FormattedDate.getDate()
-        print("------ dateTimeLocalTrxn ---------")
-        print(dateTimeLocalTrxn)
+        debugPrint("------ dateTimeLocalTrxn ---------")
+        debugPrint(dateTimeLocalTrxn)
         var encodedSecureHash  = "DateTimeLocalTrxn=" + dateTimeLocalTrxn + "&MerchantId=" + merchantId + "&TerminalId=" + terminalId
-        print("------ encodedSecureHash before ---------")
-        print(encodedSecureHash)
+        debugPrint("------ encodedSecureHash before ---------")
+        debugPrint(encodedSecureHash)
         encodedSecureHash = encodedSecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: secureHashKey)
-        print("------ encodedSecureHash after ---------")
-        print(encodedSecureHash)
+        debugPrint("------ encodedSecureHash after ---------")
+        debugPrint(encodedSecureHash)
         secureHash = encodedSecureHash
         isMobileSDK = true
     }

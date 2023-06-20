@@ -8,23 +8,6 @@
 
 import Foundation
 
-enum CountryCodes {
-    case egypt
-    case uae
-    case qatar
-    
-    func getCode() -> Int {
-        switch self {
-        case .egypt:
-            return 818
-        case .uae:
-            return 784
-        case .qatar:
-            return 634
-        }
-    }
-}
-
 class AppConstants {
     
     static let selectedCountryCode = CountryCodes.uae.getCode()
@@ -58,7 +41,6 @@ public class PaymentParams {
     static var CURRENCY_CODE = "currency_code";
     static var MERCHANT_TOKEN = "merchant_token";
 }
-
 
 public class ApiURL {
     static var MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";

@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol PaymentDelegate: AnyObject {
-    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse)
+    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String)
 }
 
 public class PaymentViewController  {
@@ -17,11 +17,10 @@ public class PaymentViewController  {
     public  var amount = ""
     public  var tId = ""
     public   var mId = ""
-    public   var Key = ""
-    public   var Currency = ""
-    public   var refnumber = ""
+    public   var secureHashKey = ""
+    public   var currency = ""
+    public   var trnxRefNumber = ""
     public   var isProduction = false
-    public   var AppStatus : UrlTypes = .Testing
 
     public  var delegate: PaymentDelegate?
     
@@ -31,18 +30,16 @@ public class PaymentViewController  {
     
     public func pushViewController()  {
         
-        if  (self.amount.isEmpty  || self.Currency.isEmpty) {
+        if  (self.amount.isEmpty  || self.currency.isEmpty) {
             print("Please enter all  data ");
             return
         }
         
-        switch AppStatus {
-        case .Production:
+        if(isProduction) {
             AppConstants.setPayBtnLiveMode()
-        case .Testing:
+        } else {
             AppConstants.setPayBtnTestMode()
         }
-        
         
         var DoubleAmount = Double(self.amount) ?? 0.00
         DoubleAmount = DoubleAmount * 100.00
@@ -50,15 +47,15 @@ public class PaymentViewController  {
         let paymentData = PaymentData()
         
         paymentData.amount = DoubleAmount
-        paymentData.refnumber = refnumber
+        paymentData.refnumber = trnxRefNumber
 
         paymentData.merchantId = mId
         paymentData.terminalId = tId
-        paymentData.KEY = Key
-        paymentData.currencyCode = Int (Currency)!
+        paymentData.KEY = secureHashKey
+        paymentData.currencyCode = Int (currency)!
 
         if delegate == nil {
-            print("Please implement SDK Delegate ")
+            print("Please implement SDK Delegate")
             return
         }
         
@@ -70,7 +67,7 @@ public class PaymentViewController  {
             print(ApiURL.MAIN_API_LINK)
             RegiserOrGetOldToken(paymentData: paymentData)
        } else {
-           print("Please enter all  data ")
+           print("Please enter all  data")
            return
        }
     }
@@ -82,7 +79,7 @@ public class PaymentViewController  {
             
             if paymentresponse.Success {
                 MainScanViewController.paymentData.merchant_name = paymentresponse.MerchantName
-                MainScanViewController.paymentData.currencyCode = Int ( self.Currency )!
+                MainScanViewController.paymentData.currencyCode = Int ( self.currency )!
                     MainScanViewController.paymentData.PaymentMethod = paymentresponse.PaymentMethod
                 MainScanViewController.paymentData.Is3DS = paymentresponse.Is3DS
                 

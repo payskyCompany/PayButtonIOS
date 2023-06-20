@@ -104,18 +104,17 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     func completeRequest(transactionStatusResponse: TransactionStatusResponse) {
-        delegate?.finishSdkPayment(transactionStatusResponse)
+        // TODO: - pass customer id to finishSdkPayment
+        delegate?.finishSdkPayment(transactionStatusResponse, withCustomerId: "")
+        
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
             self.navigationController?.isNavigationBarHidden = false
-
-        }else{
+        } else {
             self.dismiss(animated: true, completion: nil)
-            
         }
     }
     
- 
     var transactionStatusResponse = TransactionStatusResponse ()
     func saveCard(transactionStatusResponse: TransactionStatusResponse) {
         self.transactionStatusResponse = transactionStatusResponse
@@ -281,16 +280,13 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     @objc func close(sender: UITapGestureRecognizer? = nil) {
-        
-        delegate?.finishSdkPayment(transactionStatusResponse)
+        // TODO: - pass customer id to finishSdkPayment
+        delegate?.finishSdkPayment(transactionStatusResponse, withCustomerId: "")
 
-        
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
-            
-        }else{
+        } else {
             self.dismiss(animated: true, completion: nil)
-
         }
     }
     

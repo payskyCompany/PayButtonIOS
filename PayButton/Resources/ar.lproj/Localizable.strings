@@ -90,29 +90,33 @@
 "mobile_number_valid"="من فضلك ادخل رقم المحمول";
 
 "DateTF_NOTVALID"="من فضلك ادخل تاريخ انتهاء صلاحية البطاقة";
+"DateTF_NOTVALID_AC"=" تاريخ انتهاء صلاحية البطاقة يجب ان يكون 4 ارقام";
 "cardNumber_NOTVALID"="من فضلك ادخل رقم الكارت";
 "cardNumber_VALID"="من فضلك ادخل رقم الكارت صحيح";
-"DateTF_NOTVALID_AC"=" تاريخ انتهاء صلاحية البطاقة يجب ان يكون 4 ارقام";
-
 "CVCTF_NOTVALID"="من فضلك ادخل رمز الحماية";
 "CVCTF_NOTVALID_LENGTH"="رمز الحماية يجب ان يكون مكون من 3 ارقام";
-"please_entre_your_mail"="من فضلك ادخل البريد الالكتروني";
-"please_entre_valid_mail"= " من فضلك ادخل البريد الالكتروني صحيح";
 "email_send_to"= "تم ارسال بريد الكترونى الي";
 "Error" = "حدث خطأ";
 "validation_card"="التحقق من البطاقة";
 "CardHolderNameRequird" = "من فضلك ادخل اسم صاحب البطاقة";
-"please entre merchant" = "من فضلك ادخل رقم التاجر";
-"please entre terminal" = "من فضلك ادخل رقم نقطة البيع";
-"please entre amount" = "من فضلك ادخل المبلغ";
-"please entre currency" = "من فضلك ادخل رقم العملة";
-"please entre your mail" = "من فضلك ادخل بريدك الالكتروني";
-"please entre valid mail" = "من فضلك ادخل بريدك الالكتروني صحيح";
-"ref_number" = "الرقم المرجعي";
-"please entre secure hash value" = "من فضلك ادخل secure hash";
-"please entre valid secure hash value" = "من فضلك ادخل secure hash صحيح";
-"please entre amount greater" = "يجب ان يكون المبلغ اكبر من 0";
 
+"please_enter_merchant" = "من فضلك ادخل رقم التاجر";
+"please_enter_terminal" = "من فضلك ادخل رقم نقطة البيع";
+"please_enter_amount" = "من فضلك ادخل المبلغ";
+"please_enter_currency_code" = "من فضلك ادخل رقم العملة";
+"please_enter_secure_hash_value" = "من فضلك ادخل secure hash";
+"please_enter_valid_secure_hash_value" = "من فضلك ادخل secure hash صحيح";
+"please_enter_amount_greater" = "يجب ان يكون المبلغ اكبر من 0";
+
+"please_select_channel" = "اختر القناة (رقم الموبايل أو البريد الألكتروني)";
+"please_enter_mobile_number" = "من فضلك ادخل رقم المحمول";
+
+"please_enter_your_mail" = "من فضلك ادخل بريدك الالكتروني";
+"please_enter_valid_mail" = "من فضلك ادخل بريدك الالكتروني صحيح";
+
+"please_enter_customer_id" = "من فضلك ادخل Customer ID";
+
+"ref_number" = "الرقم المرجعي";
 
 "818" = "جنية";
 "784" = "درهم";
