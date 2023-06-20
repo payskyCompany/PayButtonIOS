@@ -107,6 +107,10 @@
 		C5FD7441222406D8008BD2AE /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743D222406D8008BD2AE /* CIImageExtension.swift */; };
 		C5FD7442222406D8008BD2AE /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743E222406D8008BD2AE /* CIColorExtension.swift */; };
 		C5FD7443222406D8008BD2AE /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FD743F222406D8008BD2AE /* QRCode.swift */; };
+		FA48AFB02A4099D10064C8B1 /* DefaultCardListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48AFAE2A4099D10064C8B1 /* DefaultCardListVC.swift */; };
+		FA48AFB12A4099D10064C8B1 /* DefaultCardListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA48AFAF2A4099D10064C8B1 /* DefaultCardListVC.xib */; };
+		FA48AFB42A40A34A0064C8B1 /* DefaultCardListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48AFB32A40A34A0064C8B1 /* DefaultCardListHeader.swift */; };
+		FA48AFB82A40A3810064C8B1 /* DefaultCardListHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA48AFB72A40A3810064C8B1 /* DefaultCardListHeader.xib */; };
 		FAAAE5872A3F3828001467A4 /* AddNewCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAE5852A3F3828001467A4 /* AddNewCardVC.swift */; };
 		FAAAE5882A3F3828001467A4 /* AddNewCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAAE5862A3F3828001467A4 /* AddNewCardVC.xib */; };
 		FAAAE58A2A40507C001467A4 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAE5892A40507C001467A4 /* CheckBox.swift */; };
@@ -114,6 +118,12 @@
 		FAE382F82A406B3B00DFB9AF /* SelectCardListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE382F62A406B3B00DFB9AF /* SelectCardListVC.xib */; };
 		FAE382FC2A406E6700DFB9AF /* CardListTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE382FA2A406E6700DFB9AF /* CardListTblCell.swift */; };
 		FAE382FD2A406E6700DFB9AF /* CardListTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE382FB2A406E6700DFB9AF /* CardListTblCell.xib */; };
+		FAF480102A418940005EC676 /* DefaultCardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4800E2A418940005EC676 /* DefaultCardListCell.swift */; };
+		FAF480112A418940005EC676 /* DefaultCardListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4800F2A418940005EC676 /* DefaultCardListCell.xib */; };
+		FAF480152A41A808005EC676 /* ProcessingCardDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF480132A41A808005EC676 /* ProcessingCardDataVC.swift */; };
+		FAF480162A41A808005EC676 /* ProcessingCardDataVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */; };
+		FAF4801A2A41B065005EC676 /* ApprovedCardDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF480182A41B065005EC676 /* ApprovedCardDataVC.swift */; };
+		FAF4801B2A41B065005EC676 /* ApprovedCardDataVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +234,10 @@
 		C5FD743D222406D8008BD2AE /* CIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageExtension.swift; sourceTree = "<group>"; };
 		C5FD743E222406D8008BD2AE /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
 		C5FD743F222406D8008BD2AE /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		FA48AFAE2A4099D10064C8B1 /* DefaultCardListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCardListVC.swift; sourceTree = "<group>"; };
+		FA48AFAF2A4099D10064C8B1 /* DefaultCardListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCardListVC.xib; sourceTree = "<group>"; };
+		FA48AFB32A40A34A0064C8B1 /* DefaultCardListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCardListHeader.swift; sourceTree = "<group>"; };
+		FA48AFB72A40A3810064C8B1 /* DefaultCardListHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCardListHeader.xib; sourceTree = "<group>"; };
 		FAAAE5852A3F3828001467A4 /* AddNewCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardVC.swift; sourceTree = "<group>"; };
 		FAAAE5862A3F3828001467A4 /* AddNewCardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewCardVC.xib; sourceTree = "<group>"; };
 		FAAAE5892A40507C001467A4 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -231,6 +245,12 @@
 		FAE382F62A406B3B00DFB9AF /* SelectCardListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCardListVC.xib; sourceTree = "<group>"; };
 		FAE382FA2A406E6700DFB9AF /* CardListTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListTblCell.swift; sourceTree = "<group>"; };
 		FAE382FB2A406E6700DFB9AF /* CardListTblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardListTblCell.xib; sourceTree = "<group>"; };
+		FAF4800E2A418940005EC676 /* DefaultCardListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCardListCell.swift; sourceTree = "<group>"; };
+		FAF4800F2A418940005EC676 /* DefaultCardListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCardListCell.xib; sourceTree = "<group>"; };
+		FAF480132A41A808005EC676 /* ProcessingCardDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingCardDataVC.swift; sourceTree = "<group>"; };
+		FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessingCardDataVC.xib; sourceTree = "<group>"; };
+		FAF480182A41B065005EC676 /* ApprovedCardDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedCardDataVC.swift; sourceTree = "<group>"; };
+		FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovedCardDataVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,11 +596,34 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
+		FA48AFAD2A40996C0064C8B1 /* Default Card List */ = {
+			isa = PBXGroup;
+			children = (
+				FA48AFAE2A4099D10064C8B1 /* DefaultCardListVC.swift */,
+				FA48AFAF2A4099D10064C8B1 /* DefaultCardListVC.xib */,
+				FA48AFB22A40A2850064C8B1 /* Table Header */,
+				FAF4800D2A41890B005EC676 /* DefaultCardListCell */,
+			);
+			path = "Default Card List";
+			sourceTree = "<group>";
+		};
+		FA48AFB22A40A2850064C8B1 /* Table Header */ = {
+			isa = PBXGroup;
+			children = (
+				FA48AFB32A40A34A0064C8B1 /* DefaultCardListHeader.swift */,
+				FA48AFB72A40A3810064C8B1 /* DefaultCardListHeader.xib */,
+			);
+			path = "Table Header";
+			sourceTree = "<group>";
+		};
 		FAAAE5832A3F34F6001467A4 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				FAAAE5842A3F37CC001467A4 /* Add New Card Data */,
 				FAE382F42A40690800DFB9AF /* Select Card List */,
+				FA48AFAD2A40996C0064C8B1 /* Default Card List */,
+				FAF480122A41A7D1005EC676 /* Processing Card Data */,
+				FAF480172A41AFDB005EC676 /* Approved Card Data */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -611,6 +654,33 @@
 				FAE382FB2A406E6700DFB9AF /* CardListTblCell.xib */,
 			);
 			path = CardListCell;
+			sourceTree = "<group>";
+		};
+		FAF4800D2A41890B005EC676 /* DefaultCardListCell */ = {
+			isa = PBXGroup;
+			children = (
+				FAF4800E2A418940005EC676 /* DefaultCardListCell.swift */,
+				FAF4800F2A418940005EC676 /* DefaultCardListCell.xib */,
+			);
+			path = DefaultCardListCell;
+			sourceTree = "<group>";
+		};
+		FAF480122A41A7D1005EC676 /* Processing Card Data */ = {
+			isa = PBXGroup;
+			children = (
+				FAF480132A41A808005EC676 /* ProcessingCardDataVC.swift */,
+				FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */,
+			);
+			path = "Processing Card Data";
+			sourceTree = "<group>";
+		};
+		FAF480172A41AFDB005EC676 /* Approved Card Data */ = {
+			isa = PBXGroup;
+			children = (
+				FAF480182A41B065005EC676 /* ApprovedCardDataVC.swift */,
+				FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */,
+			);
+			path = "Approved Card Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -676,12 +746,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF480112A418940005EC676 /* DefaultCardListCell.xib in Resources */,
+				FAF480162A41A808005EC676 /* ProcessingCardDataVC.xib in Resources */,
 				894B689F2A1EBC3500BE5812 /* Networking in Resources */,
 				C5B900EC2168F0B500301C13 /* CompleteTableViewCell.xib in Resources */,
 				C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */,
 				C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */,
+				FAF4801B2A41B065005EC676 /* ApprovedCardDataVC.xib in Resources */,
 				C5F5D81D216650C70090E5FF /* CardTableViewCell.xib in Resources */,
 				89C7848F2A309C8F007280F6 /* MainViewController.xib in Resources */,
+				FA48AFB82A40A3810064C8B1 /* DefaultCardListHeader.xib in Resources */,
 				C5190553216FA17600664149 /* WebViewTableViewCell.xib in Resources */,
 				C5B900E82168E7F000301C13 /* QRTableViewCell.xib in Resources */,
 				C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */,
@@ -691,6 +765,7 @@
 				C528E2542166129000CAFBC4 /* AlertDialogViewController.xib in Resources */,
 				C5A4164E21650280008A93B3 /* Assets.xcassets in Resources */,
 				FAE382F82A406B3B00DFB9AF /* SelectCardListVC.xib in Resources */,
+				FA48AFB12A4099D10064C8B1 /* DefaultCardListVC.xib in Resources */,
 				894B68952A1EBB3300BE5812 /* CheckPaymentMethod in Resources */,
 				FAE382FD2A406E6700DFB9AF /* CardListTblCell.xib in Resources */,
 				FAAAE5882A3F3828001467A4 /* AddNewCardVC.xib in Resources */,
@@ -756,8 +831,10 @@
 				C528E2572166130700CAFBC4 /* BaseResponse.swift in Sources */,
 				890894D72A327BA400F6317E /* Bundle+version.swift in Sources */,
 				C5FD7433222405D3008BD2AE /* MaskedTextFieldDelegate.swift in Sources */,
+				FA48AFB42A40A34A0064C8B1 /* DefaultCardListHeader.swift in Sources */,
 				C537888C216CF5B80058CAC8 /* Process3DSTransactionRequest.swift in Sources */,
 				C5378888216CF01C0058CAC8 /* PaymentMethodRequest.swift in Sources */,
+				FAF480102A418940005EC676 /* DefaultCardListCell.swift in Sources */,
 				C5FD7434222405D3008BD2AE /* UITextView.swift in Sources */,
 				C5F5D821216664490090E5FF /* MainScanViewController.swift in Sources */,
 				C5B900EB2168F0B500301C13 /* CompleteTableViewCell.swift in Sources */,
@@ -772,6 +849,8 @@
 				894B68972A1EBB3300BE5812 /* MerchantDataModel.swift in Sources */,
 				C5B900F6216A416F00301C13 /* PaymentData.swift in Sources */,
 				C5FD7424222405D3008BD2AE /* Mask.swift in Sources */,
+				FAF480152A41A808005EC676 /* ProcessingCardDataVC.swift in Sources */,
+				FA48AFB02A4099D10064C8B1 /* DefaultCardListVC.swift in Sources */,
 				C5F5D81C216650C70090E5FF /* CardTableViewCell.swift in Sources */,
 				C5FD7428222405D3008BD2AE /* ValueState.swift in Sources */,
 				C5FD742C222405D3008BD2AE /* FreeState.swift in Sources */,
@@ -811,6 +890,7 @@
 				C5FD7431222405D3008BD2AE /* UITextField.swift in Sources */,
 				C5FD7439222405D3008BD2AE /* NSCharacterSet.swift in Sources */,
 				C5FD7438222405D3008BD2AE /* FormatSanitizer.swift in Sources */,
+				FAF4801A2A41B065005EC676 /* ApprovedCardDataVC.swift in Sources */,
 				044B99F9243242E700522B1F /* UrlTypes.swift in Sources */,
 				C5FD7440222406D8008BD2AE /* UIImageViewExtension.swift in Sources */,
 				FAE382F72A406B3B00DFB9AF /* SelectCardListVC.swift in Sources */,
