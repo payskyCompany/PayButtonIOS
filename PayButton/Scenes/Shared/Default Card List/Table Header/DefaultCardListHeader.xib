@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DefaultCardListHeader" customModule="PayButton" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ked-cp-pWn">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="f84-MN-2gl">
+                            <rect key="frame" x="8" y="8" width="377" height="64"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Default" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sE-lp-T9Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="64"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="wNd-Lx-m7g"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="heightClass=regular-widthClass=regular">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </variation>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Me-tu-z6p">
+                                    <rect key="frame" x="80" y="0.0" width="297" height="64"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="heightClass=regular-widthClass=regular">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </variation>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="f84-MN-2gl" firstAttribute="top" secondItem="Ked-cp-pWn" secondAttribute="top" constant="8" id="EdB-bB-W6h"/>
+                        <constraint firstItem="f84-MN-2gl" firstAttribute="leading" secondItem="Ked-cp-pWn" secondAttribute="leading" constant="8" id="Hac-6f-Eub"/>
+                        <constraint firstAttribute="bottom" secondItem="f84-MN-2gl" secondAttribute="bottom" constant="8" id="gHC-0y-QiE"/>
+                        <constraint firstAttribute="trailing" secondItem="f84-MN-2gl" secondAttribute="trailing" constant="8" id="qV8-G3-9dx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Ked-cp-pWn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MWr-7y-GK8"/>
+                <constraint firstItem="Ked-cp-pWn" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="dYE-A1-gdb"/>
+                <constraint firstItem="Ked-cp-pWn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="loo-Cc-i9V"/>
+                <constraint firstItem="Ked-cp-pWn" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="uZ6-FC-MgT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cardDetailsLbl" destination="0Me-tu-z6p" id="w3w-Qf-YBd"/>
+                <outlet property="setDefaultLbl" destination="5sE-lp-T9Z" id="tSC-ro-edf"/>
+            </connections>
+            <point key="canvasLocation" x="64.492753623188406" y="-303.66847826086956"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

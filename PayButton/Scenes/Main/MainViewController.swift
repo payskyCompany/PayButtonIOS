@@ -237,7 +237,6 @@ class MainViewController: UIViewController {
         }
         
         paymentViewController.pushViewController()
-        
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
