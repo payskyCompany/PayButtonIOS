@@ -220,23 +220,26 @@ class MainViewController: UIViewController {
         debugPrint("URL: \(selectUrlEnvironmentPicker.selectedRow(inComponent: 0))")
         debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
     
+//        let paymentViewController = PaymentViewController ()
+//        paymentViewController.mId = merchantId
+//        paymentViewController.tId = terminalId
+//        paymentViewController.secureHashKey = secureHashKey
+//        paymentViewController.amount = amount
+//        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
+//        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
+//        paymentViewController.delegate = self
+//
+//        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
+//            paymentViewController.isProduction = true
+//        } else {
+//            paymentViewController.isProduction = false
+//        }
+//
+//        paymentViewController.pushViewController()
         
-        let paymentViewController = PaymentViewController ()
-        paymentViewController.mId = merchantId
-        paymentViewController.tId = terminalId
-        paymentViewController.secureHashKey = secureHashKey
-        paymentViewController.amount = amount
-        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
-        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
-        paymentViewController.delegate = self
-        
-        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
-            paymentViewController.isProduction = true
-        } else {
-            paymentViewController.isProduction = false
-        }
-        
-        paymentViewController.pushViewController()
+        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
+        viewController.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
