@@ -13,7 +13,7 @@ extension MainViewController: PaymentDelegate {
     func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
         if transactionStatusResponse.Success {
             UIPasteboard.general.string = customerId
-            debugPrint("Customer ID:")
+            debugPrint("-------- Customer ID --------")
             debugPrint(customerId)
             UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
         } else {
@@ -85,8 +85,6 @@ class MainViewController: UIViewController {
         emailStackView.isHidden = true
         mobileNumberStackView.isHidden = true
         customerIdStackView.isHidden = true
-        
-        setupViewOutlets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,20 +108,40 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func setupSubmitBtnUI() {
+        if let channel = selectChannelTextfield.text, !channel.isEmpty {
+            submitBtn.isEnabled = true
+            submitBtn.backgroundColor = .mainBtnColor
+        } else {
+            submitBtn.isEnabled = false
+            submitBtn.backgroundColor = .lightGray
+        }
+        if let customerId = customerIdTextfield.text, !customerId.isEmpty {
+            submitBtn.isEnabled = true
+            submitBtn.backgroundColor = .mainBtnColor
+        } else {
+            submitBtn.isEnabled = false
+            submitBtn.backgroundColor = .lightGray
+        }
+    }
+    
     private func setupViewOutlets() {
         merchantIdLabel.text = "merchantID".localizedString()
-        terminalIdLabel.text =  "terminalID".localizedString()
+        terminalIdLabel.text = "terminalID".localizedString()
         amountLabel.text = "amount".localizedString()
         currencyCodeLabel.text = "currency_code".localizedString()
         secureHashKeyLabel.text = "secure_hash_key".localizedString()
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
+        setupSubmitBtnUI()
         
         merchantIdTextfield.text = "41565"
         terminalIdTextfield.text = "1583826"
         secureHashKeyTextfield.text = "09a90e81140dcb0d686c09f0036ef910"
-        customerIdTextfield.text = "7065cee1-1773-4d7e-988b-e7868ece266d"
+        amountTextfield.text = "55.25"
+        currencyCodeTextfield.text = "818"
+        customerIdTextfield.text = "4cd7c612-7c13-44d0-b10c-21af9141b14c"
     }
     
     private func setupSelectUrlEnvironmentPickerView() {
@@ -163,6 +181,7 @@ class MainViewController: UIViewController {
             emailStackView.isHidden = true
             customerIdStackView.isHidden = false
         }
+        setupSubmitBtnUI()
     }
     
     @IBAction private func submitBtnPressed(_ sender: UIButton) {
@@ -220,26 +239,26 @@ class MainViewController: UIViewController {
         debugPrint("URL: \(selectUrlEnvironmentPicker.selectedRow(inComponent: 0))")
         debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
     
-//        let paymentViewController = PaymentViewController ()
-//        paymentViewController.mId = merchantId
-//        paymentViewController.tId = terminalId
-//        paymentViewController.secureHashKey = secureHashKey
-//        paymentViewController.amount = amount
-//        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
-//        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
-//        paymentViewController.delegate = self
-//
-//        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
-//            paymentViewController.isProduction = true
-//        } else {
-//            paymentViewController.isProduction = false
-//        }
-//
-//        paymentViewController.pushViewController()
+        let paymentViewController = PaymentViewController ()
+        paymentViewController.mId = merchantId
+        paymentViewController.tId = terminalId
+        paymentViewController.secureHashKey = secureHashKey
+        paymentViewController.amount = amount
+        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
+        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
+        paymentViewController.delegate = self
+
+        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
+            paymentViewController.isProduction = true
+        } else {
+            paymentViewController.isProduction = false
+        }
+
+        paymentViewController.pushViewController()
         
-        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
-        viewController.modalPresentationStyle = .fullScreen
-        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
+//        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
+//        viewController.modalPresentationStyle = .fullScreen
+//        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
@@ -302,6 +321,7 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             mobileNumberStackView.isHidden = true
             emailStackView.isHidden = false
         }
+        setupSubmitBtnUI()
         selectChannelTextfield.resignFirstResponder()
     }
 }

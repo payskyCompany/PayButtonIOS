@@ -1,5 +1,5 @@
 //
-//  GetCustomerTokensParameters.swift
+//  GetCustomerTokenParameters.swift
 //  OoredooPayButton
 //
 //  Created by Hazem-Mohamed on 22/09/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetCustomerTokensParameters {
+struct GetCustomerTokenParameters {
     
     var sessionId: String
     var customerId: String

@@ -14,19 +14,21 @@ struct MerchantDataModel {
     var amount: Double
     var currencyCode: Int
     var secureHashKey: String
+    var trnxRefNumber: String
     var customerId: String
-    var customerName: String
+    var customerMobile: String
     var customerEmail: String
     
-    init(merchantId: String, terminalId: String, amount: Double, secureHashKey: String,
-         customerId: String, customerName: String, customerEmail: String) {
+    init(merchantId: String, terminalId: String, amount: Double, secureHashKey: String, trnxRefNumber: String,
+         customerId: String, customerMobile: String, customerEmail: String) {
         self.merchantId = merchantId
         self.terminalId = terminalId
         self.amount = amount
         self.currencyCode = AppConstants.selectedCountryCode
         self.secureHashKey = secureHashKey
+        self.trnxRefNumber = trnxRefNumber
         self.customerId = customerId
-        self.customerName = customerName
+        self.customerMobile = customerMobile
         self.customerEmail = customerEmail
     }
 }

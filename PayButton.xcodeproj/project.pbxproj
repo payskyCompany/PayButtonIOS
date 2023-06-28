@@ -23,7 +23,7 @@
 		890B8B272A24CE790059DC3F /* FormattedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890B8B262A24CE790059DC3F /* FormattedDate.swift */; };
 		894B68942A1EBB3300BE5812 /* CheckTransactionStatus in Resources */ = {isa = PBXBuildFile; fileRef = 894B688C2A1EBB3300BE5812 /* CheckTransactionStatus */; };
 		894B68952A1EBB3300BE5812 /* CheckPaymentMethod in Resources */ = {isa = PBXBuildFile; fileRef = 894B688D2A1EBB3300BE5812 /* CheckPaymentMethod */; };
-		894B68962A1EBB3300BE5812 /* GetCustomerTokensParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B688E2A1EBB3300BE5812 /* GetCustomerTokensParameters.swift */; };
+		894B68962A1EBB3300BE5812 /* GetCustomerTokenParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B688E2A1EBB3300BE5812 /* GetCustomerTokenParameters.swift */; };
 		894B68972A1EBB3300BE5812 /* MerchantDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B688F2A1EBB3300BE5812 /* MerchantDataModel.swift */; };
 		894B68982A1EBB3300BE5812 /* GetCustomerSession in Resources */ = {isa = PBXBuildFile; fileRef = 894B68902A1EBB3300BE5812 /* GetCustomerSession */; };
 		894B68992A1EBB3300BE5812 /* DeleteToken in Resources */ = {isa = PBXBuildFile; fileRef = 894B68912A1EBB3300BE5812 /* DeleteToken */; };
@@ -146,7 +146,7 @@
 		890B8B262A24CE790059DC3F /* FormattedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedDate.swift; sourceTree = "<group>"; };
 		894B688C2A1EBB3300BE5812 /* CheckTransactionStatus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CheckTransactionStatus; sourceTree = "<group>"; };
 		894B688D2A1EBB3300BE5812 /* CheckPaymentMethod */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CheckPaymentMethod; sourceTree = "<group>"; };
-		894B688E2A1EBB3300BE5812 /* GetCustomerTokensParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCustomerTokensParameters.swift; sourceTree = "<group>"; };
+		894B688E2A1EBB3300BE5812 /* GetCustomerTokenParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCustomerTokenParameters.swift; sourceTree = "<group>"; };
 		894B688F2A1EBB3300BE5812 /* MerchantDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantDataModel.swift; sourceTree = "<group>"; };
 		894B68902A1EBB3300BE5812 /* GetCustomerSession */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GetCustomerSession; sourceTree = "<group>"; };
 		894B68912A1EBB3300BE5812 /* DeleteToken */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DeleteToken; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 				894B68912A1EBB3300BE5812 /* DeleteToken */,
 				894B68902A1EBB3300BE5812 /* GetCustomerSession */,
 				894B68922A1EBB3300BE5812 /* PayByCard */,
-				894B688E2A1EBB3300BE5812 /* GetCustomerTokensParameters.swift */,
+				894B688E2A1EBB3300BE5812 /* GetCustomerTokenParameters.swift */,
 				894B688F2A1EBB3300BE5812 /* MerchantDataModel.swift */,
 				894B68932A1EBB3300BE5812 /* Result.swift */,
 			);
@@ -888,7 +888,7 @@
 				890B8B1F2A23AE950059DC3F /* UIColor+Extensions.swift in Sources */,
 				890B8B232A23B2380059DC3F /* UIView+Extensions.swift in Sources */,
 				C5FD742A222405D3008BD2AE /* FixedState.swift in Sources */,
-				894B68962A1EBB3300BE5812 /* GetCustomerTokensParameters.swift in Sources */,
+				894B68962A1EBB3300BE5812 /* GetCustomerTokenParameters.swift in Sources */,
 				890B8B212A23B1200059DC3F /* URL+Extensions.swift in Sources */,
 				C5FD7430222405D3008BD2AE /* UITextInput.swift in Sources */,
 				C537888E216CF6470058CAC8 /* Process3DSTransactionResonse.swift in Sources */,
