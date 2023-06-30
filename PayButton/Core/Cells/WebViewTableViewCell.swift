@@ -64,7 +64,7 @@ webView.isHidden = true
         }
         UIApplication.topViewController()?.view.hideLoadingIndicator()
 
-        UIApplication.topViewController()?.view.makeToast("Error".localizedString())
+        UIApplication.topViewController()?.view.makeToast("error".localizedString())
 
         self.delegateActions?.tryAgin()
 

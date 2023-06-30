@@ -10,7 +10,7 @@ import UIKit
 import MOLH
 
 extension MainViewController: PaymentDelegate {
-    func finishSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
+    func finishedSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
         if transactionStatusResponse.Success {
             UIPasteboard.general.string = customerId
             debugPrint("-------- Customer ID --------")
@@ -201,12 +201,13 @@ class MainViewController: UIViewController {
             UIApplication.topViewController()?.view.makeToast("please_enter_amount".localizedString())
             return
         }
-        if(Float(amount) == 0.0) {
+        if(Double(amount) == 0.0) {
             UIApplication.topViewController()?.view.makeToast("please_enter_amount_greater".localizedString())
             return
         }
-        if let currencyCode = currencyCodeTextfield.text, currencyCode.isEmpty {
-            currencyCodeTextfield.text = "\(AppConstants.selectedCountryCode)"
+        guard let currencyCode = currencyCodeTextfield.text, !currencyCode.isEmpty else {
+            UIApplication.topViewController()?.view.makeToast("please_enter_currency_code".localizedString())
+            return
         }
         
         // Check if "Not Subscribed" is selected
@@ -221,12 +222,32 @@ class MainViewController: UIViewController {
                     UIApplication.topViewController()?.view.makeToast("please_enter_mobile_number".localizedString())
                     return
                 }
+                let paymentViewController = PaymentViewController(merchantId: merchantId,
+                                                                  terminalId: terminalId,
+                                                                  amount: Double(amount) ?? 0.00,
+                                                                  currencyCode: Int(currencyCode) ?? AppConstants.selectedCountryCode,
+                                                                  secureHashKey: secureHashKey,
+                                                                  trnxRefNumber: trnxRefNumberTextfield.text ?? "",
+                                                                  customerMobile: mobileNumber,
+                                                                  isProduction: selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0)
+                paymentViewController.delegate = self
+                paymentViewController.pushViewController()
             }
             else {
                 guard let emailAddress = emailTextfield.text, !emailAddress.isEmpty else {
                     UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString())
                     return
                 }
+                let paymentViewController = PaymentViewController(merchantId: merchantId,
+                                                                  terminalId: terminalId,
+                                                                  amount: Double(amount) ?? 0.00,
+                                                                  currencyCode: Int(currencyCode) ?? AppConstants.selectedCountryCode,
+                                                                  secureHashKey: secureHashKey,
+                                                                  trnxRefNumber: trnxRefNumberTextfield.text ?? "",
+                                                                  customerEmail: emailAddress,
+                                                                  isProduction: selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0)
+                paymentViewController.delegate = self
+                paymentViewController.pushViewController()
             }
         }
         else {      // else "Subscribed" is selected
@@ -234,31 +255,17 @@ class MainViewController: UIViewController {
                 UIApplication.topViewController()?.view.makeToast("please_enter_customer_id".localizedString())
                 return
             }
+            let paymentViewController = PaymentViewController(merchantId: merchantId,
+                                                              terminalId: terminalId,
+                                                              amount: Double(amount) ?? 0.00,
+                                                              currencyCode: Int(currencyCode) ?? AppConstants.selectedCountryCode,
+                                                              secureHashKey: secureHashKey,
+                                                              trnxRefNumber: trnxRefNumberTextfield.text ?? "",
+                                                              customerId: customerId,
+                                                              isProduction: selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0)
+            paymentViewController.delegate = self
+            paymentViewController.pushViewController()
         }
-        
-        debugPrint("URL: \(selectUrlEnvironmentPicker.selectedRow(inComponent: 0))")
-        debugPrint("Channel index: \(selectChannelPickerView.selectedRow(inComponent: 0))")
-    
-        let paymentViewController = PaymentViewController ()
-        paymentViewController.mId = merchantId
-        paymentViewController.tId = terminalId
-        paymentViewController.secureHashKey = secureHashKey
-        paymentViewController.amount = amount
-        paymentViewController.currency = currencyCodeTextfield.text ?? "\(AppConstants.selectedCountryCode)"
-        paymentViewController.trnxRefNumber = trnxRefNumberTextfield.text ?? ""
-        paymentViewController.delegate = self
-
-        if(selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0) {
-            paymentViewController.isProduction = true
-        } else {
-            paymentViewController.isProduction = false
-        }
-
-        paymentViewController.pushViewController()
-        
-//        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
-//        viewController.modalPresentationStyle = .fullScreen
-//        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
     }
     
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {

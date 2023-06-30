@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public class ApiManger {
-    
+
     static func PayByCard(CardHolderName :String,
                           PAN:String,
                           cvv2:String,
@@ -40,7 +40,7 @@ public class ApiManger {
             completion(TransactionStatusResponse(json: value))
         })
     }
-                    
+
     static func sendEmail(emailTo:String,
                           externalReceiptNo:String,
                           transactionChannel:String,
@@ -56,7 +56,7 @@ public class ApiManger {
             completion(BaseResponse(json: value))
         })
     }
-    
+
     static func generateQrCode(completion: @escaping (QrGenratorResponse) -> ()) {
         let qrGenratorRequest = QrGenratorRequest()
         qrGenratorRequest.AmountTrxn = Int(MainScanViewController.paymentData.amount)
@@ -64,7 +64,7 @@ public class ApiManger {
             completion(QrGenratorResponse(json: value))
         })
     }
-    
+
     static func checkTransactionPaymentStatus(transactionId:Int,
                                                completion: @escaping (TransactionStatusResponse) -> ()) {
         let checkTrxnStatusRequest = BaseResponse()
@@ -73,7 +73,7 @@ public class ApiManger {
             completion(TransactionStatusResponse(json: value))
         })
     }
-    
+
     static func requestToPay(mobileNumber:String, completion: @escaping (BaseResponse) -> ()) {
         let smsPaymentRequest = SmsPaymentRequest()
         smsPaymentRequest.TxnId = MainScanViewController.paymentData.orderId
@@ -83,12 +83,12 @@ public class ApiManger {
             completion(BaseResponse(json: value))
         })
     }
-    
+
     static func CheckPaymentMethod(completion: @escaping (PaymentMethodResponse) -> ()) {
-        let checkPaymentMethodRequest =  PaymentMethodRequest()
-        executePOST(path: ApiURL.CheckPaymentMethod,parameters: checkPaymentMethodRequest, completion: { (value) in
-            completion(PaymentMethodResponse(json: value))
-        })
+//        let checkPaymentMethodRequest =  PaymentMethodRequest()
+//        executePOST(path: ApiURL.CheckPaymentMethod,parameters: checkPaymentMethodRequest, completion: { (value) in
+//            completion(PaymentMethodResponse(json: value))
+//        })
     }
-                    
+
 }

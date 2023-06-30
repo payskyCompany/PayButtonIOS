@@ -38,7 +38,7 @@ struct PayByCardParameters {
          tokenCardId: Int? = 0,
          customerEmail: String) {
         self.amountTrxn = amountTrxn
-        currencyCodeTrxn = "\(AppConstants.selectedCountryCode)"
+        currencyCodeTrxn = "\(MerchantDataManager.shared.merchant.currencyCode)"
         self.merchantId = merchantId
         self.terminalId = terminalId
         dateTimeLocalTrxn = FormattedDate.getDate()
@@ -58,8 +58,8 @@ struct PayByCardParameters {
         isFromPOS = false
         isWebRequest = true
         isMobileSDK = true
-        returnURL = Constants.DOMAIN_URL
-        let transactionReferenceNumber = Constants.generateRandomNumber(digits: 16)
+        returnURL = AppConstants.DOMAIN_URL
+        let transactionReferenceNumber = AppConstants.generateRandomNumber(digits: 16)
         systemTraceNr = transactionReferenceNumber
         merchantReference = transactionReferenceNumber
         self.customerEmail = customerEmail

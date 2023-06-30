@@ -9,13 +9,13 @@
 import Foundation
 
 enum Environment: CustomStringConvertible {
-    case Grey
     case Production
+    case Testing
     
     var description: String {
         switch self {
-            case .Grey: return "https://grey.paysky.io"
-            case .Production: return "https://cube.paysky.io"
+        case .Production: return "https://cube.paysky.io"
+        case .Testing: return "https://grey.paysky.io"
         }
     }
 }

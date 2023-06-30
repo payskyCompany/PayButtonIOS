@@ -30,7 +30,7 @@
 "expire_date"="تاريخ الانتهاء";
 "cvc"="رمز الحماية";
 "proceed"="تأكيد";
-"error"="خطأ";
+"error" = "حدث خطأ";
 "check_internet_connection"="تحقق من الاتصال بالانترنت,وحاول مرة أخرى";
 "ok"="موافق";
 "invalid_card_number_length"="تحقق من ادخال 16 رقم للبطاقة";
@@ -96,7 +96,6 @@
 "CVCTF_NOTVALID"="من فضلك ادخل رمز الحماية";
 "CVCTF_NOTVALID_LENGTH"="رمز الحماية يجب ان يكون مكون من 3 ارقام";
 "email_send_to"= "تم ارسال بريد الكترونى الي";
-"Error" = "حدث خطأ";
 "validation_card"="التحقق من البطاقة";
 "CardHolderNameRequird" = "من فضلك ادخل اسم صاحب البطاقة";
 

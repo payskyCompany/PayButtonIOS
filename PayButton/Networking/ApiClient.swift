@@ -13,17 +13,20 @@ enum ApiClient {
     case payByCard(_ params: PayByCardParameters)
     case checkTransactionStatus(_ params: CheckTransactionStatusParameters)
     case getSessionForCustomerToken(_ params: GetCustomerSessionParameters)
-    case getAllCardsForCustomerToken(_ params: GetCustomerTokensParameters)
-    case getAllWalletsForCustomerToken(_ params: GetCustomerTokensParameters)
+    case getAllCardsForCustomerToken(_ params: GetCustomerTokenParameters)
     case deleteToken(_ params: DeleteTokenParameters)
 }
 
 extension ApiClient: EndpointType {
     
     private var domain: String {
-        return Environment.Grey.description
+        if(MerchantDataManager.shared.isProduction) {
+            return "https://cube.paysky.io"
+        } else {
+            return "https://grey.paysky.io"
+        }
     }
-    
+   
     var gateway: String {
         return "/cube/PayLink.svc/api"
     }
@@ -46,8 +49,6 @@ extension ApiClient: EndpointType {
             return "/GetSessionForCustomerToken"
         case .getAllCardsForCustomerToken:
             return "/GetAllCardsForCustomerToken"
-        case .getAllWalletsForCustomerToken:
-            return "/GetAllWalletsForCustomerToken"
         case .deleteToken:
             return "/RemoveToken"
         }
@@ -69,20 +70,13 @@ extension ApiClient: EndpointType {
             return params.toDict()
         case .getAllCardsForCustomerToken(let params):
             return params.toDict()
-        case .getAllWalletsForCustomerToken(let params):
-            return params.toDict()
         case .deleteToken(let params):
             return params.toDict()
         }
     }
     
     var urlParameters: Parameters? {
-        switch self {
-        case .payByNaps(let params):
-            return params.toDict()
-        default:
-            return nil
-        }
+        return nil
     }
     
     var headers: HTTPHeaders? {

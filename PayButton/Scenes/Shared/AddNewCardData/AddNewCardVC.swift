@@ -230,7 +230,7 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
 
 extension AddNewCardVC {
     
-    @IBAction func SendMoneyByCard(_ sender: Any) {
+    @IBAction func sendMoneyByCard(_ sender: Any) {
         print("\n saveForFutureBool:  \(self.saveForFutureBool)")
         print("  setAsDefaultBool:  \(self.setAsDefaultBool) \n")
 

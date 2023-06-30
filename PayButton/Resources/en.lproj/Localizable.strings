@@ -103,7 +103,6 @@
 "CVCTF_NOTVALID" = "CVC is required";
 "CVCTF_NOTVALID_LENGTH" = "CVC should be 3 digits length";
 "email_send_to" = "Email sent to ";
-"Error" = "Error";
 "validation_card" = "Card validation";
 "CardHolderNameRequird" = "Card holder name is required";
 

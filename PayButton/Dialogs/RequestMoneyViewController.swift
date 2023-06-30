@@ -54,7 +54,7 @@ class RequestMoneyViewController: BasePaymentViewController {
                     self.sendHandler!(base)
                 }
             } else {
-                UIApplication.topViewController()?.showAlert( "Error".localizedString(), message:  base.Message)
+                UIApplication.topViewController()?.showAlert( "error".localizedString(), message:  base.Message)
             }
         }
     }

@@ -10,26 +10,38 @@ import Foundation
 
 class AppConstants {
     
-    static let selectedCountryCode = CountryCodes.uae.getCode()
-    
+    static var selectedCountryCode = CountryCodes.egypt.getCode()
+
     static let radiusNumber = CGFloat(4)
+
+//    static var registrationUserActive1 = "userid"
+//
+//    static func setPayBtnLiveMode() {
+//        ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
+//    }
+//    static func setPayBtnTestMode() {
+//        ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
+//        print("uuuur\(ApiURL.MAIN_API_LINK)")
+//    }
+//    static func setPayBtnUPGStaggingMode() {
+//        ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
+//        print("uuuur\(ApiURL.MAIN_API_LINK)")
+//    }
+//    static func setPayBtnUPGProductionMode() {
+//        ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
+//        print("uuuur\(ApiURL.MAIN_API_LINK)")
+//    }
     
-    static var registrationUserActive1 = "userid"
+    static let DOMAIN_URL: String = {
+        return MerchantDataManager.shared.isProduction ? Environment.Production.description : Environment.Testing.description
+    }()
     
-    static func setPayBtnLiveMode() {
-        ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
-    }
-    static func setPayBtnTestMode() {
-        ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
-        print("uuuur\(ApiURL.MAIN_API_LINK)")
-    }
-    static func setPayBtnUPGStaggingMode() {
-        ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
-        print("uuuur\(ApiURL.MAIN_API_LINK)")
-    }
-    static func setPayBtnUPGProductionMode() {
-        ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
-        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    static func generateRandomNumber(digits: Int) -> String {
+        var number = String()
+        for _ in 1...digits {
+           number += "\(Int.random(in: 1...9))"
+        }
+        return number
     }
 }
 

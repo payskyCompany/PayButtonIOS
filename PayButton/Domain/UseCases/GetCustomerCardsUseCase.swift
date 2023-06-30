@@ -15,9 +15,9 @@ protocol GetCustomerCardsUseCaseContract {
 
 class GetCustomerCardsUseCase: GetCustomerCardsUseCaseContract {
     
-    let getCustomerCardsParamters: GetCustomerTokensParameters
+    let getCustomerCardsParamters: GetCustomerTokenParameters
     
-    init(getCustomerCardsParamters: GetCustomerTokensParameters) {
+    init(getCustomerCardsParamters: GetCustomerTokenParameters) {
         self.getCustomerCardsParamters = getCustomerCardsParamters
     }
     
