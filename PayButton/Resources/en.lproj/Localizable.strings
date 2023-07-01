@@ -134,6 +134,10 @@
 "email_address" = "Email address";
 "ref_number" = "Trnx Ref Number";
 
+"please_enter_card_data" = "Please enter card data";
+"save_for_future_use" = "Save for future use";
+"set_as_default" = "Set as default";
+
 "select_card" = "Select Card";
 "manage_cards" = "Manage Cards";
 "add_new_card" = "Add New Card";

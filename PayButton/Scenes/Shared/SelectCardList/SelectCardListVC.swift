@@ -122,7 +122,6 @@ class SelectCardListVC: UIViewController {
         MOLH.reset()
         Bundle.swizzleLocalization()
         
-        
         let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
         viewController.delegate = self.delegate
         let newPresenter = SelectCardListPresenter(view: viewController, paymentMethodData:

@@ -26,10 +26,17 @@ protocol AddNewCardViewProtocol: AnyObject {
 
 class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardDelegate {
         
+    @IBOutlet weak var closeCurrentPageBtn: UIButton!
+    @IBOutlet weak var headerLbl: UILabel!
     @IBOutlet weak var merchantLbl: UILabel!
     @IBOutlet weak var merchantNameLbl: UILabel!
     @IBOutlet weak var amountLbl: UILabel!
     @IBOutlet weak var amountValueLbl: UILabel!
+    
+    @IBOutlet weak var proceedBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var changeLangBtn: UIButton!
+    @IBOutlet weak var termsAndConditionsBtn: UIButton!
     
     @IBOutlet weak var cardNumberLogo: UIImageView!
     @IBOutlet weak var cardNumberTF: UITextField!
@@ -37,9 +44,11 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     @IBOutlet weak var cardExpireDateTF: UITextField!
     @IBOutlet weak var cardCVVTF: UITextField!
     
-    @IBOutlet weak var closeCurrentPageBtn: UIButton!
+    @IBOutlet weak var enterCardDataLbl: UILabel!
     @IBOutlet weak var scanCardNumber: UIButton!
+    @IBOutlet weak var saveForFutureLbl: UILabel!
     @IBOutlet weak var saveForFutureBtn: CheckBox!
+    @IBOutlet weak var setAsDefaultLbl: UILabel!
     @IBOutlet weak var setAsDefaultBtn: CheckBox!
     
     var MaskedCreditCard: MaskedTextFieldDelegate!
@@ -242,6 +251,39 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         self.dismiss(animated: true)
     }
     
+    @IBAction func changeLangBtnPressed(_ sender: UIButton) {
+        UIView.appearance().semanticContentAttribute = MOLHLanguage.currentAppleLanguage() == "ar" ? .forceRightToLeft : .forceLeftToRight
+        
+        MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
+        if (MOLHLanguage.currentAppleLanguage()=="en") {
+            UserDefaults.standard.set("en", forKey: "AppLanguage")
+        }else{
+            UserDefaults.standard.set("ar", forKey: "AppLanguage")
+        }
+        MOLH.reset()
+        Bundle.swizzleLocalization()
+        
+        let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
+        viewController.delegate = self.delegate
+        let newPresenter = AddNewCardPresenter(view: viewController,
+                                               paymentMethodData: presenter.getPaymentMethodData())
+        viewController.presenter = newPresenter
+        if UIApplication.topViewController()?.navigationController != nil {
+            UIApplication.topViewController()?.dismiss(animated: true, completion: {
+                UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+            })
+        } else {
+            viewController.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.dismiss(animated: true, completion: {
+                UIApplication.topViewController()?.present(viewController, animated: true)
+            })
+        }
+    }
+    
+    @IBAction func termsAndConditionsBtnPressed(_ sender: UIButton) {
+        
+    }
+    
     
 }
 
@@ -336,13 +378,22 @@ extension AddNewCardVC {
     
 extension AddNewCardVC {
     private func setupUIView() {
+        closeCurrentPageBtn.setTitle("", for: .normal)
+        headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
         merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
         amountLbl.text = "amount".localizedString().uppercased()
         amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
         + " " + "\(MerchantDataManager.shared.merchant.amount)"
         
-        closeCurrentPageBtn.setTitle("", for: .normal)
+        proceedBtn.setTitle("proceed".localizedString(), for: .normal)
+        backBtn.setTitle("back".localizedString(), for: .normal)
+        changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
+        termsAndConditionsBtn.setTitle("terms_conditions".localizedString(), for: .normal)
+        
+        enterCardDataLbl.text = "please_enter_card_data".localizedString()
+        saveForFutureLbl.text = "save_for_future_use".localizedString()
+        setAsDefaultLbl.text = "set_as_default".localizedString()
         scanCardNumber.setTitle("", for: .normal)
         saveForFutureBtn.setTitle("", for: .normal)
         setAsDefaultBtn.setTitle("", for: .normal)

@@ -14,17 +14,25 @@
             <connections>
                 <outlet property="amountLbl" destination="T7e-nf-sQb" id="bdS-u6-SQi"/>
                 <outlet property="amountValueLbl" destination="O9a-6E-knM" id="c49-qP-eI4"/>
+                <outlet property="backBtn" destination="9zQ-65-XTq" id="Xda-M4-5vX"/>
                 <outlet property="cardCVVTF" destination="81F-yW-lya" id="9bd-Ho-nRm"/>
                 <outlet property="cardExpireDateTF" destination="gnC-T5-oNw" id="4Vs-Tt-OvE"/>
                 <outlet property="cardHolderNameTF" destination="Csy-fb-A3d" id="OpA-8k-gWD"/>
                 <outlet property="cardNumberLogo" destination="cqi-Ch-B94" id="Ia3-zA-qmR"/>
                 <outlet property="cardNumberTF" destination="OwK-Sa-Pqc" id="h74-0u-PgX"/>
+                <outlet property="changeLangBtn" destination="o7p-Z4-Khw" id="tBv-K2-leR"/>
                 <outlet property="closeCurrentPageBtn" destination="7Hf-r2-HBv" id="eTA-fc-tAK"/>
+                <outlet property="enterCardDataLbl" destination="sUf-4M-7ut" id="K8j-yg-tg6"/>
+                <outlet property="headerLbl" destination="MHF-G2-GS1" id="rtz-j1-y7c"/>
                 <outlet property="merchantLbl" destination="FGX-il-8pE" id="15N-wq-aJC"/>
                 <outlet property="merchantNameLbl" destination="Y2r-WC-FXl" id="qeX-em-mJz"/>
+                <outlet property="proceedBtn" destination="toR-Ed-y7U" id="69S-IR-nYG"/>
                 <outlet property="saveForFutureBtn" destination="tAa-N8-NAL" id="1Jh-Zk-Gyi"/>
+                <outlet property="saveForFutureLbl" destination="x7p-kL-746" id="DCA-Yf-BPO"/>
                 <outlet property="scanCardNumber" destination="fvC-hI-I65" id="5CV-PY-UVg"/>
                 <outlet property="setAsDefaultBtn" destination="eWi-uw-xs4" id="7Go-rj-nia"/>
+                <outlet property="setAsDefaultLbl" destination="R1R-yB-IAj" id="iPn-bB-dRf"/>
+                <outlet property="termsAndConditionsBtn" destination="AVZ-jE-Imq" id="gSA-xX-D0d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -580,6 +588,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="24.666666666666668"/>
                                                     <color key="tintColor" systemColor="systemCyanColor"/>
                                                     <state key="normal" title="Change Language"/>
+                                                    <connections>
+                                                        <action selector="changeLangBtnPressed:" destination="-1" eventType="touchUpInside" id="83B-NW-2nJ"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-gS-QUu">
                                                     <rect key="frame" x="272" y="0.0" width="102" height="24.666666666666668"/>
@@ -590,6 +601,9 @@
                                             <rect key="frame" x="0.0" y="24.666666666666629" width="147" height="25.333333333333329"/>
                                             <color key="tintColor" systemColor="systemCyanColor"/>
                                             <state key="normal" title="Terms and conditions"/>
+                                            <connections>
+                                                <action selector="termsAndConditionsBtnPressed:" destination="-1" eventType="touchUpInside" id="dUh-o3-pVo"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
