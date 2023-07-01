@@ -66,7 +66,7 @@ webView.isHidden = true
 
         UIApplication.topViewController()?.view.makeToast("error".localizedString())
 
-        self.delegateActions?.tryAgin()
+        self.delegateActions?.tryAgain()
 
     }
     
@@ -98,7 +98,7 @@ webView.isHidden = true
                                         
 
                                         
-                                        self.delegateActions?.tryAgin()
+                                        self.delegateActions?.tryAgain()
 
                                     }
                                     

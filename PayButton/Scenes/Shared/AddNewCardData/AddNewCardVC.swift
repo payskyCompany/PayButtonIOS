@@ -12,9 +12,13 @@ import PayCardsRecognizer
 import PopupDialog
 import AVFoundation
 
-
 class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardDelegate {
         
+    @IBOutlet weak var merchantLbl: UILabel!
+    @IBOutlet weak var merchantNameLbl: UILabel!
+    @IBOutlet weak var amountLbl: UILabel!
+    @IBOutlet weak var amountValueLbl: UILabel!
+    
     @IBOutlet weak var cardNumberLogo: UIImageView!
     @IBOutlet weak var cardNumberTF: UITextField!
     @IBOutlet weak var cardHolderNameTF: UITextField!
@@ -37,7 +41,7 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     var validCard = false
     
     var validDate = false
-    var PreviousLength = 0
+    var previousLength = 0
     var year = ""
     var month = ""
     
@@ -51,19 +55,19 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         // Do any additional setup after loading the view.
         self.setupUIView()
         
-    }//--- end of viewDidLoad
+    }
 
     
-    @IBAction func ScanCreditCard(_ sender: Any) {
+    @IBAction func scanCardData(_ sender: UIButton) {
         let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
 
         let vc: CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
         vc.delegate = self.scanCreditCardDelegate
         vc.modalPresentationStyle = .fullScreen
         UIApplication.topViewController()?.present(vc, animated: true,completion: nil)
-    }//--- End of Scan Credit Card
+    }
     
-    func cardResult(_ result: PayCardsRecognizerResult) { //Scan Credit Card Result
+    func cardResult(_ result: PayCardsRecognizerResult) {
         cardHolderNameTF.text =   result.recognizedHolderName
 
         let mask: Mask = try! Mask(format: "[0000] [0000] [0000] [0000]")
@@ -73,7 +77,7 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
                 string: input,
                 caretPosition: input.endIndex
             ),
-            autocomplete: true // you may consider disabling autocompletion for your case
+            autocomplete: true
         )
         cardNumberTF.text = maskResult.formattedText.string
 
@@ -166,12 +170,12 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
                 validDate = false;
             }
         }
-    }//--- End of textField()
+    }
     
     @IBAction func cardExpireDateChanges(_ sender: UITextField) {
         validDate = false;
-        if PreviousLength > cardExpireDateTF.text!.count {
-            PreviousLength = cardExpireDateTF.text!.count
+        if previousLength > cardExpireDateTF.text!.count {
+            previousLength = cardExpireDateTF.text!.count
             return
         }
         if cardExpireDateTF.text!.count == 1 && Int(cardExpireDateTF.text!)! > 2 {
@@ -196,11 +200,9 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
             }
         }
         
-        PreviousLength = cardExpireDateTF.text!.count
+        previousLength = cardExpireDateTF.text!.count
         
-    }//--- End of cardExpireDateChanges()
-    
-   //--- Save for future use and set as default options
+    }
     
     @IBAction func saveForFutureBtnAction(_ sender: CheckBox) {
         if !(sender.isChecked) {
@@ -222,15 +224,17 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
             self.setAsDefaultBool = false
         }
     }
+    
     @IBAction func dismissCurrentPageAction(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
-}//--- end of class
+    
+}
 
 extension AddNewCardVC {
     
-    @IBAction func sendMoneyByCard(_ sender: Any) {
+    @IBAction func proceedBtnPressed(_ sender: UIButton) {
         print("\n saveForFutureBool:  \(self.saveForFutureBool)")
         print("  setAsDefaultBool:  \(self.setAsDefaultBool) \n")
 
@@ -318,7 +322,13 @@ extension AddNewCardVC {
 }
     
 extension AddNewCardVC {
-    private func setupUIView(){
+    private func setupUIView() {
+        merchantLbl.text = "merchant".localizedString().uppercased()
+        merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
+        amountLbl.text = "amount".localizedString().uppercased()
+        amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
+        + " " + "\(MerchantDataManager.shared.merchant.amount)"
+        
         closeCurrentPageBtn.setTitle("", for: .normal)
         scanCardNumber.setTitle("", for: .normal)
         saveForFutureBtn.setTitle("", for: .normal)

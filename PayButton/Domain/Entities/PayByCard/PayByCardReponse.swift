@@ -1,6 +1,6 @@
 //
 //  PayByCardReponse.swift
-//  OoredooPayButton
+//  PayButton
 //
 //  Created by Nada Kamel on 09/09/2022.
 //

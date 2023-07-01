@@ -1,6 +1,6 @@
 //
 //  CheckTransactionStatusUseCase.swift
-//  OoredooPayButton
+//  PayButton
 //
 //  Created by Nada Kamel on 19/09/2022.
 //

@@ -179,7 +179,7 @@ class CompleteTableViewCell: BaseUITableViewCell {
     }
     
     @IBAction func TryAction(_ sender: Any) {
-        delegateActions?.tryAgin()
+        delegateActions?.tryAgain()
     }
     
 }

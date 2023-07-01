@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,8 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectCardListVC" customModule="PayButton" customModuleProvider="target">
             <connections>
+                <outlet property="amountLbl" destination="ENK-VT-LYM" id="XS4-Om-CMV"/>
+                <outlet property="amountValueLbl" destination="m0c-yY-0xb" id="0YS-W5-VcU"/>
                 <outlet property="cardListTbl" destination="KPS-l3-sDy" id="PCP-SX-bVb"/>
                 <outlet property="cardListTblHeight" destination="0qK-SM-CKo" id="VBl-He-kg0"/>
+                <outlet property="merchantLbl" destination="S35-rd-DU0" id="1CD-gn-QCD"/>
+                <outlet property="merchantNameLbl" destination="03S-c2-UoF" id="qR3-zi-j5H"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKC-39-dHP">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pe-ji-79T" userLabel="Header View">
                             <rect key="frame" x="20" y="16" width="374" height="140"/>
@@ -190,7 +194,7 @@
                             </constraints>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-ow-qPG" userLabel="Content Scroll View">
-                            <rect key="frame" x="20" y="164" width="374" height="384"/>
+                            <rect key="frame" x="20" y="164" width="374" height="364"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQg-bq-3eB" userLabel="Content View">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
@@ -286,7 +290,7 @@
                             </constraints>
                         </scrollView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lJ-fV-LAb" userLabel="Footer View">
-                            <rect key="frame" x="20" y="556" width="374" height="180"/>
+                            <rect key="frame" x="20" y="536" width="374" height="180"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="EGl-Ge-Fdu">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>

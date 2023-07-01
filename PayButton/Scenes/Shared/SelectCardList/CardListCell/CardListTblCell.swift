@@ -19,7 +19,7 @@ class CardListTblCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         selectCardBtn.setTitle("", for: .normal)
-//        cvvAlertLbl.isHidden = true
+        cvvAlertLbl.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

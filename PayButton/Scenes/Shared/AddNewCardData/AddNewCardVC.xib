@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -11,12 +12,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewCardVC" customModule="PayButton" customModuleProvider="target">
             <connections>
+                <outlet property="amountLbl" destination="T7e-nf-sQb" id="bdS-u6-SQi"/>
+                <outlet property="amountValueLbl" destination="O9a-6E-knM" id="c49-qP-eI4"/>
                 <outlet property="cardCVVTF" destination="81F-yW-lya" id="9bd-Ho-nRm"/>
                 <outlet property="cardExpireDateTF" destination="gnC-T5-oNw" id="4Vs-Tt-OvE"/>
                 <outlet property="cardHolderNameTF" destination="Csy-fb-A3d" id="OpA-8k-gWD"/>
                 <outlet property="cardNumberLogo" destination="cqi-Ch-B94" id="Ia3-zA-qmR"/>
                 <outlet property="cardNumberTF" destination="OwK-Sa-Pqc" id="h74-0u-PgX"/>
                 <outlet property="closeCurrentPageBtn" destination="7Hf-r2-HBv" id="eTA-fc-tAK"/>
+                <outlet property="merchantLbl" destination="FGX-il-8pE" id="15N-wq-aJC"/>
+                <outlet property="merchantNameLbl" destination="Y2r-WC-FXl" id="qeX-em-mJz"/>
                 <outlet property="saveForFutureBtn" destination="tAa-N8-NAL" id="1Jh-Zk-Gyi"/>
                 <outlet property="scanCardNumber" destination="fvC-hI-I65" id="5CV-PY-UVg"/>
                 <outlet property="setAsDefaultBtn" destination="eWi-uw-xs4" id="7Go-rj-nia"/>
@@ -257,7 +262,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="camera"/>
                                                     <connections>
-                                                        <action selector="ScanCreditCard:" destination="-1" eventType="touchUpInside" id="V46-We-p7W"/>
+                                                        <action selector="scanCardData:" destination="-1" eventType="touchUpInside" id="V46-We-p7W"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -413,7 +418,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-y9-3du">
-                                            <rect key="frame" x="0.0" y="226" width="374" height="60"/>
+                                            <rect key="frame" x="5" y="226" width="369" height="60"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VdQ-7b-r7B">
                                                     <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="18"/>
@@ -424,6 +429,7 @@
                                                                 <constraint firstAttribute="height" constant="18" id="89s-ui-HCp"/>
                                                                 <constraint firstAttribute="width" constant="18" id="kDy-xG-ldS"/>
                                                             </constraints>
+                                                            <color key="tintColor" red="0.25882352941176467" green="0.56470588235294117" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                             <connections>
@@ -450,6 +456,7 @@
                                                                 <constraint firstAttribute="height" constant="18" id="ZGC-Cw-kui"/>
                                                                 <constraint firstAttribute="width" constant="18" id="jI4-3p-4PC"/>
                                                             </constraints>
+                                                            <color key="tintColor" red="0.25882352941176467" green="0.56470588235294117" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                             <connections>
@@ -489,7 +496,7 @@
                                         <constraint firstItem="sUf-4M-7ut" firstAttribute="top" secondItem="eSb-DX-rve" secondAttribute="top" constant="8" id="lkb-wt-aBb"/>
                                         <constraint firstItem="kV8-1U-v20" firstAttribute="leading" secondItem="eSb-DX-rve" secondAttribute="leading" id="rnM-kT-0fX"/>
                                         <constraint firstItem="W4h-4o-zJd" firstAttribute="leading" secondItem="kV8-1U-v20" secondAttribute="leading" id="tde-h7-gVN"/>
-                                        <constraint firstItem="A0e-y9-3du" firstAttribute="leading" secondItem="Ysh-wK-OBC" secondAttribute="leading" id="uOn-N9-acu"/>
+                                        <constraint firstItem="A0e-y9-3du" firstAttribute="leading" secondItem="Ysh-wK-OBC" secondAttribute="leading" constant="5" id="uOn-N9-acu"/>
                                         <constraint firstItem="W4h-4o-zJd" firstAttribute="trailing" secondItem="kV8-1U-v20" secondAttribute="trailing" id="uma-17-4E1"/>
                                         <constraint firstItem="kV8-1U-v20" firstAttribute="top" secondItem="sUf-4M-7ut" secondAttribute="bottom" constant="20" id="vVU-av-CU1"/>
                                         <constraint firstAttribute="trailing" secondItem="sUf-4M-7ut" secondAttribute="trailing" id="zaK-jG-q95"/>
@@ -524,7 +531,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             </variation>
                                             <connections>
-                                                <action selector="sendMoneyByCard:" destination="-1" eventType="touchUpInside" id="eJJ-OD-BIq"/>
+                                                <action selector="proceedBtnPressed:" destination="-1" eventType="touchUpInside" id="eJJ-OD-BIq"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zQ-65-XTq">

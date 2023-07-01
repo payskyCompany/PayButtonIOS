@@ -1,6 +1,6 @@
 //
 //  GetCustomerTokenParameters.swift
-//  OoredooPayButton
+//  PayButton
 //
 //  Created by Hazem-Mohamed on 22/09/2022.
 //

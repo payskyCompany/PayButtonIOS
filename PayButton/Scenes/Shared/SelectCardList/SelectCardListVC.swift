@@ -10,16 +10,20 @@ import UIKit
 
 class SelectCardListVC: UIViewController {
     
+    @IBOutlet weak var merchantLbl: UILabel!
+    @IBOutlet weak var merchantNameLbl: UILabel!
+    @IBOutlet weak var amountLbl: UILabel!
+    @IBOutlet weak var amountValueLbl: UILabel!
+    
     @IBOutlet weak var cardListTbl: UITableView!
     @IBOutlet weak var cardListTblHeight: NSLayoutConstraint!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         self.setupUIView()
-        
-    }//--- end of viewDidLoad
+    }
     
     override func viewWillLayoutSubviews() {
         super.updateViewConstraints()
@@ -27,7 +31,7 @@ class SelectCardListVC: UIViewController {
     }
     
     
-}//--- end of class
+}
 
 extension SelectCardListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -54,6 +58,12 @@ extension SelectCardListVC: UITableViewDataSource, UITableViewDelegate {
 
 extension SelectCardListVC {
     private func setupUIView() {
+        merchantLbl.text = "merchant".localizedString().uppercased()
+        merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
+        amountLbl.text = "amount".localizedString().uppercased()
+        amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
+        + " " + "\(MerchantDataManager.shared.merchant.amount)"
+        
         cardListTbl.register(UINib(nibName: "CardListTblCell", bundle: nil),
                              forCellReuseIdentifier: "CardListTblCell")
         cardListTbl.dataSource = self

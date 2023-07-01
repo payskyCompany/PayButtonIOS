@@ -91,7 +91,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
    
     
     
-    func tryAgin() {
+    func tryAgain() {
         if MainScanViewController.paymentData.PaymentMethod == 0  || MainScanViewController.paymentData.PaymentMethod == 2{
             selectedCell = 1
         }

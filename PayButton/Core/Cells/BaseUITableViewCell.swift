@@ -39,5 +39,5 @@ protocol ActionCellActionDelegate: AnyObject {
    
     func closeWebView(compose3DSTransactionResponse: TransactionStatusResponse)
     
-    func tryAgin()
+    func tryAgain()
 }

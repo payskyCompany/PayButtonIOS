@@ -37,6 +37,8 @@ public class PaymentViewController  {
     
     public weak var delegate: PaymentDelegate?
     
+    private var viewDelegate: MainViewProtocol!
+    
     init(merchantId: String, terminalId: String, amount: Double, currencyCode: Int,
          secureHashKey: String, trnxRefNumber: String = "", customerId: String = "",
          customerMobile: String = "", customerEmail: String = "", isProduction: Bool = false) {
@@ -51,6 +53,7 @@ public class PaymentViewController  {
         self.customerEmail = customerEmail
         MerchantDataManager.shared.isProduction = isProduction
         AppConstants.selectedCountryCode = currencyCode
+        viewDelegate = self
         addSpinnerView()
     }
     
@@ -100,31 +103,6 @@ public class PaymentViewController  {
     public func pushViewController()  {
         validateData()
         
-        var doubleAmount = Double(self.amount)
-        doubleAmount = doubleAmount * 100.00
-        
-//        let paymentData = PaymentData()
-//
-//        paymentData.amount = doubleAmount
-//        paymentData.refnumber = trnxRefNumber
-//
-//        paymentData.merchantId = mId
-//        paymentData.terminalId = tId
-//        paymentData.key = secureHashKey
-//        paymentData.currencyCode = currencyCode
-//
-//        if(paymentData.amount != 0
-//           && !paymentData.merchantId.isEmpty
-//           && !paymentData.key.isEmpty
-//           && paymentData.currencyCode != 0
-//           && !paymentData.terminalId.isEmpty) {
-//            print(ApiURL.MAIN_API_LINK)
-//            RegiserOrGetOldToken(paymentData: paymentData)
-//       } else {
-//           print("Please enter all  data")
-//           return
-//       }
-        
         let merchantInfo = MerchantDataModel(merchantId: mId,
                                              terminalId: tId,
                                              amount: amount,
@@ -158,7 +136,9 @@ public class PaymentViewController  {
             case let .success(response):
                 if(response.success == true) {
                     MerchantDataManager.shared.saveMerchant(merchantData)
-                    navigateToAddNewCardViewController(withPaymentMethodData: response)
+                    
+                    let presenter = MainPresenter(view: viewDelegate, paymentMethodData: response)
+                    navigateToNextScreen(presenter, withPaymentMethodResponseData: response)
                 } else {
                     UIApplication.topViewController()?.showAlert("error".localizedString(), message: response.message ?? "")
                 }
@@ -168,9 +148,35 @@ public class PaymentViewController  {
         }
     }
     
-    private func navigateToAddNewCardViewController(withPaymentMethodData: PaymentMethodResponse) {
+    private func navigateToNextScreen(_ presenter: MainPresenter, withPaymentMethodResponseData response: PaymentMethodResponse) {
+        if MerchantDataManager.shared.merchant.customerId.isEmpty == false {
+            presenter.getCustomerSession() { sessionId in
+                presenter.getCustomerCards(usingSessionId: sessionId)
+            }
+        } else {
+            navigateToAddNewCardView(withResponse: response)
+        }
+    }
+
+    
+}
+
+extension PaymentViewController: MainViewProtocol {
+    func startLoading() {
+        loginSpinner.startAnimating()
+    }
+
+    func endLoading() {
+        loginSpinner.stopAnimating()
+    }
+
+    func showErrorAlertView(withMessage errorMsg: String) {
+        UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
+    }
+
+    func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse) {
         let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
-        
+
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
         } else {
@@ -178,63 +184,15 @@ public class PaymentViewController  {
             UIApplication.topViewController()?.present(viewController, animated: true)
         }
     }
-    
-    
-//    private func registerOrGetOldToken(paymentData: PaymentData)  {
-//        MainScanViewController.paymentData = paymentData
-//        MainScanViewController.paymentData.amount = (MainScanViewController.paymentData.amount)
-//        ApiManger.CheckPaymentMethod { (paymentresponse) in
-//
-//            if paymentresponse?.success {
-//                MainScanViewController.paymentData.merchant_name = paymentresponse.MerchantName
-//                MainScanViewController.paymentData.currencyCode = self.currencyCode
-//                    MainScanViewController.paymentData.PaymentMethod = paymentresponse.PaymentMethod
-//                MainScanViewController.paymentData.Is3DS = paymentresponse.Is3DS
-//
-//                self.getStaticQr()
-//            } else {
-//                if paymentresponse.Message == "" {
-//                     UIApplication.topViewController()?.view.makeToast("Authentication failed")
-//                }
-//                else {
-//                UIApplication.topViewController()?.view.makeToast(  paymentresponse.Message)
-//                }
-//            }
-//
-//        }
-//    }
-//
-//    private func getStaticQr() {
-//        if  MainScanViewController.paymentData.PaymentMethod == 1 ||
-//                MainScanViewController.paymentData.PaymentMethod == 2 {
-//
-//            ApiManger.generateQrCode { (qrResponse) in
-//                MainScanViewController.paymentData.staticQR = qrResponse.ISOQR
-//                MainScanViewController.paymentData.orderId = qrResponse.TxnId
-//
-//                self.gotoNextPage()
-//            }
-//        } else {
-//            self.gotoNextPage()
-//        }
-//    }
-//
-//    private func gotoNextPage() {
-//        UIApplication.topViewController()?.view.hideLoadingIndicator()
-//
-//        let psb = UIStoryboard.init(name: "PayButtonBoard", bundle: nil)
-//        let vc :MainScanViewController = psb.instantiateViewController(withIdentifier: "MainScanViewController") as! MainScanViewController
-//        vc.delegate = self.delegate
-//        if UIApplication.topViewController()?.navigationController != nil {
-//            UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
-//            vc.fromNav = true
-//        }else{
-//            vc.modalPresentationStyle = .fullScreen
-//            UIApplication.topViewController()?.present(vc, animated: true, completion: nil)
-//            vc.fromNav = false
-//
-//        }
-//    }
-    
-    
+
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse) {
+        let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
+
+        if UIApplication.topViewController()?.navigationController != nil {
+            UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            viewController.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.present(viewController, animated: true)
+        }
+    }
 }
