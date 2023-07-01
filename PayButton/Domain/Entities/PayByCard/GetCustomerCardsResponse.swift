@@ -31,15 +31,17 @@ struct CardDetails: Decodable {
     let displayName: String?
     let maskedCardNumber: String?
     let brand: String?
-    let cardsListPostfix: String?
+    let postfix: String?
     let token: String?
+    let isDefaultCard: Bool?
 
     enum CodingKeys: String, CodingKey {
         case cardID = "CardId"
         case displayName = "DisplayName"
         case maskedCardNumber = "MaskedCardNumber"
         case brand = "Brand"
-        case cardsListPostfix = "Postfix"
+        case postfix = "Postfix"
         case token = "Token"
+        case isDefaultCard = "IsDefaultCard"
     }
 }

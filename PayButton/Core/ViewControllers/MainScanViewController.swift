@@ -128,7 +128,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     
     
 
-    var delegate: PaymentDelegate?
+    var delegate: PayButtonDelegate?
     public static var paymentData = PaymentData()
     var UrlTypeRow = 0
 
@@ -311,7 +311,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
         self.WalletBtn.setTitleColor(UIColor.white, for: UIControl.State())
         
         self.CardView.backgroundColor = UIColor.white
-        self.CardImage.image = #imageLiteral(resourceName: "un_selected_card")
+        self.CardImage.image = #imageLiteral(resourceName: "card_list_icon")
         self.CardBtn.setTitleColor(UIColor.black, for: UIControl.State())
      
         selectedCell = 2;

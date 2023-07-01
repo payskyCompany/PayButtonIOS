@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,7 +44,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="un_selected_card" translatesAutoresizingMaskIntoConstraints="NO" id="R2m-HU-Ely">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_list_icon" translatesAutoresizingMaskIntoConstraints="NO" id="R2m-HU-Ely">
                                 <rect key="frame" x="36" y="20" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VrZ-LH-3B7"/>
@@ -151,6 +151,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cardHolderNameLbl" destination="0g7-sd-3Bp" id="zll-dH-rIL"/>
+                <outlet property="cardLogo" destination="R2m-HU-Ely" id="HqR-Fo-lHt"/>
+                <outlet property="cardNumberLbl" destination="Wbf-5U-ebV" id="D7P-1H-hGU"/>
                 <outlet property="cvvAlertLbl" destination="hON-bv-dDW" id="kWC-AZ-g6t"/>
                 <outlet property="selectCardBtn" destination="uW0-nB-a2a" id="XXR-Mb-tmV"/>
             </connections>
@@ -158,8 +161,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="card_list_icon" width="20.666666030883789" height="14"/>
         <image name="cvc_icon" width="14.666666984558105" height="9.3333330154418945"/>
-        <image name="un_selected_card" width="20.666666030883789" height="14"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

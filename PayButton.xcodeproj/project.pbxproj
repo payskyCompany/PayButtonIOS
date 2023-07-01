@@ -51,7 +51,7 @@
 		896E77972A4F58E70057F09E /* MerchantDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E77962A4F58E70057F09E /* MerchantDataManager.swift */; };
 		899CE60B2A4F822C00F2F2FA /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE60A2A4F822C00F2F2FA /* MainPresenter.swift */; };
 		899CE60D2A4FA67A00F2F2FA /* AddNewCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE60C2A4FA67A00F2F2FA /* AddNewCardPresenter.swift */; };
-		899CE60F2A4FA71400F2F2FA /* SelectCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE60E2A4FA71400F2F2FA /* SelectCardPresenter.swift */; };
+		899CE60F2A4FA71400F2F2FA /* SelectCardListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE60E2A4FA71400F2F2FA /* SelectCardListPresenter.swift */; };
 		899F240A2A3FA06800A1AFE8 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899F24092A3FA06800A1AFE8 /* Enums.swift */; };
 		89C7848E2A309C8F007280F6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C7848C2A309C8F007280F6 /* MainViewController.swift */; };
 		89C7848F2A309C8F007280F6 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C7848D2A309C8F007280F6 /* MainViewController.xib */; };
@@ -193,7 +193,7 @@
 		896E77962A4F58E70057F09E /* MerchantDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantDataManager.swift; sourceTree = "<group>"; };
 		899CE60A2A4F822C00F2F2FA /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		899CE60C2A4FA67A00F2F2FA /* AddNewCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardPresenter.swift; sourceTree = "<group>"; };
-		899CE60E2A4FA71400F2F2FA /* SelectCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCardPresenter.swift; sourceTree = "<group>"; };
+		899CE60E2A4FA71400F2F2FA /* SelectCardListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCardListPresenter.swift; sourceTree = "<group>"; };
 		899F24092A3FA06800A1AFE8 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89C7848C2A309C8F007280F6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		89C7848D2A309C8F007280F6 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -766,7 +766,7 @@
 		FAE382F42A40690800DFB9AF /* SelectCardList */ = {
 			isa = PBXGroup;
 			children = (
-				899CE60E2A4FA71400F2F2FA /* SelectCardPresenter.swift */,
+				899CE60E2A4FA71400F2F2FA /* SelectCardListPresenter.swift */,
 				FAE382F52A406B3B00DFB9AF /* SelectCardListVC.swift */,
 				FAE382F62A406B3B00DFB9AF /* SelectCardListVC.xib */,
 				FAE382F92A406E0F00DFB9AF /* CardListCell */,
@@ -1031,7 +1031,7 @@
 				C5FD7431222405D3008BD2AE /* UITextField.swift in Sources */,
 				C5FD7439222405D3008BD2AE /* NSCharacterSet.swift in Sources */,
 				C5FD7438222405D3008BD2AE /* FormatSanitizer.swift in Sources */,
-				899CE60F2A4FA71400F2F2FA /* SelectCardPresenter.swift in Sources */,
+				899CE60F2A4FA71400F2F2FA /* SelectCardListPresenter.swift in Sources */,
 				FAF4801A2A41B065005EC676 /* ApprovedCardDataVC.swift in Sources */,
 				044B99F9243242E700522B1F /* UrlTypes.swift in Sources */,
 				C5FD7440222406D8008BD2AE /* UIImageViewExtension.swift in Sources */,

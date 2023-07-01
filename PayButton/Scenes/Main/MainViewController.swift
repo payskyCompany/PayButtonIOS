@@ -9,7 +9,7 @@
 import UIKit
 import MOLH
 
-extension MainViewController: PaymentDelegate {
+extension MainViewController: PayButtonDelegate {
     func finishedSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
         if transactionStatusResponse.Success {
             UIPasteboard.general.string = customerId

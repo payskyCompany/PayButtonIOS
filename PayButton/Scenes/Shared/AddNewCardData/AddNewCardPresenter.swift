@@ -8,40 +8,24 @@
 
 import Foundation
 
-// MARK: - View Protocol
-protocol NewCardPaymentViewProtocol: AnyObject {
-    func setAmountTextField(withValue amount: String)
-    func hideSaveThisCardOutlets()
-    func onScanCardBtnTapped()
-    func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool)
-    func isAllCardPaymentInfoProvided() -> Bool
-    func onPayBtnTapped()
-    func openWebView(withUrlPath path: String)
-    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
-    func navigateToPaymentRejectedView(withMessage text: String)
-    func startLoading()
-    func endLoading()
-}
-
-// MARK: - Presenter
-protocol NewCardPaymentPresenterProtocol: AnyObject {
-    var view: NewCardPaymentViewProtocol? { get set }
+protocol AddNewCardPresenterProtocol: AnyObject {
+    var view: AddNewCardViewProtocol? { get set }
     func viewDidLoad()
     func getPaymentMethodData() -> PaymentMethodResponse
     func updateIsSaveCard(withValue state: Bool)
     func callPayBycardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)
 }
 
-class NewCardPaymentPresenter: NewCardPaymentPresenterProtocol {
+class AddNewCardPresenter: AddNewCardPresenterProtocol {
     
-    weak var view: NewCardPaymentViewProtocol?
+    weak var view: AddNewCardViewProtocol?
     
     private var paymentMethodData: PaymentMethodResponse!
     private var customerSessionId: String?
     
     private var isSaveCardSwitchOn: Bool = false
     
-    required init(view: NewCardPaymentViewProtocol,
+    required init(view: AddNewCardViewProtocol,
                   paymentMethodData: PaymentMethodResponse,
                   sessionId: String? = nil) {
         self.view = view
@@ -50,7 +34,6 @@ class NewCardPaymentPresenter: NewCardPaymentPresenterProtocol {
     }
     
     func viewDidLoad() {
-        view?.setAmountTextField(withValue: String(MerchantDataManager.shared.merchant.amount))
         if(paymentMethodData.isTokenized == false) {
             view?.hideSaveThisCardOutlets()
         }

@@ -1,5 +1,5 @@
 //
-//  SelectCardPresenter.swift
+//  SelectCardListPresenter.swift
 //  PayButton
 //
 //  Created by Nada Kamel on 01/07/2023.
@@ -8,53 +8,27 @@
 
 import Foundation
 
-// MARK: - View Protocol
-protocol SavedCardPaymentViewProtocol: AnyObject {
-    func setSavedCardAmountTextField(withValue amount: String)
-    func didTapToggleButton(forCell selectedCell: CardListTblCell)
-    func didTapDeleteIconButton(forCell selectedCell: CardListTblCell)
-    func didTapCvvTextField(forCell selectedCell: CardListTblCell)
-    func openWebView(withUrlPath path: String)
-    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
-    func navigateToPaymentRejectedView(withMessage text: String)
-    func onPayBtnTapped()
-    func didDeleteCardSuccessfully()
-    func updateSavedCardList(withAllCardResponse: GetCustomerCardsResponse)
-    func navigateToAddNewCardView()
-    func navigateToAddNewCard(withAllCardResponse: GetCustomerCardsResponse)
-    func startLoading()
-    func endLoading()
-}
-
-// MARK: - Presenter
-protocol SavedCardPaymentPresenterProtocol: AnyObject {
-    var view: SavedCardPaymentViewProtocol? { get set }
-    func viewDidLoad()
-    func getPaymentMethodData() -> PaymentMethodResponse
+protocol SelectCardListPresenterProtocol: AnyObject {
+    var view: SelectCardListViewProtocol? { get set }
     func callPayBySavedCardAPI(customerSession: String, cardID: Int, cvv: String)
-    func deleteSavedCardAPI(token: String, customerID: String)
     func getCustomerSession(completionHandler: @escaping (String) -> Void)
     func getCustomerCards(usingSessionId sessionId: String)
 }
 
-class SavedCardPaymentPresenter: SavedCardPaymentPresenterProtocol {
+class SelectCardListPresenter: SelectCardListPresenterProtocol {
     
-    weak var view: SavedCardPaymentViewProtocol?
+    weak var view: SelectCardListViewProtocol?
     
-    private var paymentMethodData: PaymentMethodResponse!
+    private var customerCards: GetCustomerCardsResponse!
     
-    required init(view: SavedCardPaymentViewProtocol,
-                  paymentMethodData: PaymentMethodResponse) {
+    required init(view: SelectCardListViewProtocol,
+                  customerCards: GetCustomerCardsResponse) {
         self.view = view
-        self.paymentMethodData = paymentMethodData
+        self.customerCards = customerCards
     }
     
-    func viewDidLoad() {
-        view?.setSavedCardAmountTextField(withValue: String(MerchantDataManager.shared.merchant.amount))
-    }
-    
-    func getPaymentMethodData() -> PaymentMethodResponse {
-        return paymentMethodData
+    func getCustomerCards() -> GetCustomerCardsResponse {
+        return customerCards
     }
     
     func callPayBySavedCardAPI(customerSession: String, cardID: Int, cvv: String) {
@@ -105,32 +79,7 @@ class SavedCardPaymentPresenter: SavedCardPaymentPresenterProtocol {
             }
         }
     }
-    
-    func deleteSavedCardAPI(token: String, customerID: String) {
-        view?.startLoading()
-        
-        let parameters = DeleteTokenParameters(token: token,
-                                               customerId: customerID,
-                                               merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                               terminalId: MerchantDataManager.shared.merchant.terminalId,
-                                               secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
-        
-        let deleteSavedCardUseCase = DeleteSavedCardUseCase(deleteSavedCardParamters: parameters)
-        deleteSavedCardUseCase.deleteSavedCard { [self] result in
-            view?.endLoading()
-            switch result {
-            case let .success(response):
-                if(response.success == true) {
-                    view?.didDeleteCardSuccessfully()
-                } else {
-                    view?.navigateToPaymentRejectedView(withMessage: String(response.message ?? ""))
-                }
-            case let .failure(error):
-                view?.navigateToPaymentRejectedView(withMessage: error.localizedDescription)
-            }
-        }
-    }
-    
+   
     func getCustomerSession(completionHandler: @escaping (String) -> Void) {
         view?.startLoading()
         

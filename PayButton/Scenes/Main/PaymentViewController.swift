@@ -8,11 +8,19 @@
 
 import UIKit
 
-public protocol PaymentDelegate: AnyObject {
+public protocol PayButtonDelegate: AnyObject {
     func finishedSdkPayment(_ transactionStatus: TransactionStatusResponse, withCustomerId customer: String)
 }
 
-public class PaymentViewController  {
+protocol PaymentView: AnyObject {
+    func startLoading()
+    func endLoading()
+    func showErrorAlertView(withMessage errorMsg: String)
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse)
+    func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse)
+}
+
+public class PaymentViewController {
 
     let loginSpinner: UIActivityIndicatorView = {
         let loginSpinner = UIActivityIndicatorView(style: .large)
@@ -35,10 +43,10 @@ public class PaymentViewController  {
     let customerMobile: String
     let customerEmail: String
     
-    public weak var delegate: PaymentDelegate?
+    private var view: PaymentView!
     
-    private var viewDelegate: MainViewProtocol!
-    
+    public weak var delegate: PayButtonDelegate?
+  
     init(merchantId: String, terminalId: String, amount: Double, currencyCode: Int,
          secureHashKey: String, trnxRefNumber: String = "", customerId: String = "",
          customerMobile: String = "", customerEmail: String = "", isProduction: Bool = false) {
@@ -53,7 +61,7 @@ public class PaymentViewController  {
         self.customerEmail = customerEmail
         MerchantDataManager.shared.isProduction = isProduction
         AppConstants.selectedCountryCode = currencyCode
-        viewDelegate = self
+        view = self
         addSpinnerView()
     }
     
@@ -137,7 +145,7 @@ public class PaymentViewController  {
                 if(response.success == true) {
                     MerchantDataManager.shared.saveMerchant(merchantData)
                     
-                    let presenter = MainPresenter(view: viewDelegate, paymentMethodData: response)
+                    let presenter = MainPresenter(view: self.view, paymentMethodData: response)
                     navigateToNextScreen(presenter, withPaymentMethodResponseData: response)
                 } else {
                     UIApplication.topViewController()?.showAlert("error".localizedString(), message: response.message ?? "")
@@ -161,7 +169,7 @@ public class PaymentViewController  {
     
 }
 
-extension PaymentViewController: MainViewProtocol {
+extension PaymentViewController: PaymentView {
     func startLoading() {
         loginSpinner.startAnimating()
     }
@@ -176,7 +184,11 @@ extension PaymentViewController: MainViewProtocol {
 
     func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse) {
         let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
-
+        viewController.delegate = self.delegate
+        
+        let presenter = AddNewCardPresenter(view: viewController, paymentMethodData: checkPaymentResponse)
+        viewController.presenter = presenter
+        
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
         } else {
@@ -187,7 +199,11 @@ extension PaymentViewController: MainViewProtocol {
 
     func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse) {
         let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
-
+        viewController.delegate = self.delegate
+        
+        let presenter = SelectCardListPresenter(view: viewController, customerCards: allCardResponse)
+        viewController.presenter = presenter
+        
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
         } else {

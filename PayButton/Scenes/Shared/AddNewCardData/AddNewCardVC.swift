@@ -12,6 +12,18 @@ import PayCardsRecognizer
 import PopupDialog
 import AVFoundation
 
+protocol AddNewCardViewProtocol: AnyObject {
+    func hideSaveThisCardOutlets()
+    func onScanCardBtnTapped()
+    func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool)
+    func onPayBtnTapped()
+    func openWebView(withUrlPath path: String)
+    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
+    func navigateToPaymentRejectedView(withMessage text: String)
+    func startLoading()
+    func endLoading()
+}
+
 class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardDelegate {
         
     @IBOutlet weak var merchantLbl: UILabel!
@@ -50,13 +62,16 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     
     weak var delegateActions: ActionCellActionDelegate? // navigation after api callout
     
+    var presenter: AddNewCardPresenter!
+    
+    weak var delegate: PayButtonDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.setupUIView()
         
+        presenter.viewDidLoad()
+        self.setupUIView()
     }
-
     
     @IBAction func scanCardData(_ sender: UIButton) {
         let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
@@ -363,6 +378,43 @@ extension AddNewCardVC {
         
         cardExpireDateTF.tag = 2
         scanCreditCardDelegate = self
-        
+    }
+}
+
+extension AddNewCardVC: AddNewCardViewProtocol {
+    func hideSaveThisCardOutlets() {
+        print("hideSaveThisCardOutlets")
+    }
+    
+    func onScanCardBtnTapped() {
+        print("onScanCardBtnTapped")
+    }
+    
+    func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool) {
+        print("onSaveCardSwitchValueChanged")
+    }
+   
+    func onPayBtnTapped() {
+        print("onPayBtnTapped")
+    }
+    
+    func openWebView(withUrlPath path: String) {
+        print("openWebView")
+    }
+    
+    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String) {
+        print("navigateToPaymentApprovedView")
+    }
+    
+    func navigateToPaymentRejectedView(withMessage text: String) {
+        print("navigateToPaymentRejectedView")
+    }
+    
+    func startLoading() {
+        print("startLoading")
+    }
+    
+    func endLoading() {
+        print("endLoading")
     }
 }

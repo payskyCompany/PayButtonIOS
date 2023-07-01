@@ -8,19 +8,9 @@
 
 import Foundation
 
-// MARK: - View Protocol
-protocol MainViewProtocol: AnyObject {
-    func startLoading()
-    func endLoading()
-    func showErrorAlertView(withMessage errorMsg: String)
-    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse)
-    func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse)
-}
-
 // MARK: - Presenter
 protocol MainViewPresenter: AnyObject {
-    init(view: MainViewProtocol, paymentMethodData: PaymentMethodResponse)
-    func viewDidLoad()
+    init(view: PaymentView, paymentMethodData: PaymentMethodResponse)
     func getPaymentMethodData() -> PaymentMethodResponse
     func getCustomerSession(completionHandler: @escaping (String) -> Void)
     func getCustomerCards(usingSessionId sessionId: String)
@@ -28,18 +18,13 @@ protocol MainViewPresenter: AnyObject {
 
 class MainPresenter: MainViewPresenter {
     
-    weak var view: MainViewProtocol?
+    weak var view: PaymentView?
     
     private var paymentMethodData: PaymentMethodResponse!
 
-    required init(view: MainViewProtocol, paymentMethodData: PaymentMethodResponse) {
+    required init(view: PaymentView, paymentMethodData: PaymentMethodResponse) {
         self.view = view
         self.paymentMethodData = paymentMethodData
-    }
-    
-    func viewDidLoad() {
-        debugPrint("isTokenized: \(paymentMethodData.isTokenized ?? false)")
-        debugPrint("isCard: \(paymentMethodData.isCard ?? false)")
     }
     
     func getPaymentMethodData() -> PaymentMethodResponse {
