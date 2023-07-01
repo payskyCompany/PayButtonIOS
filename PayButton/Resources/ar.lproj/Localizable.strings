@@ -8,7 +8,7 @@
 
 "change_lang" = "تغيير اللغة";
 
-"Done" = "تأكيد";
+"done" = "تأكيد";
 "submit" = "إرسال";
 
 "request_send_to_mobile" = "تم ارسال الطلب بنجاح";
@@ -30,6 +30,7 @@
 "expire_date"="تاريخ الانتهاء";
 "cvc"="رمز الحماية";
 "proceed"="تأكيد";
+"back" = "رجوع";
 "error" = "حدث خطأ";
 "check_internet_connection"="تحقق من الاتصال بالانترنت,وحاول مرة أخرى";
 "ok"="موافق";
@@ -115,7 +116,20 @@
 
 "please_enter_customer_id" = "من فضلك ادخل Customer ID";
 
+"subscribed" = "مشترك";
+"not_subscribed" = "غير مشترك";
+"select_channel" = "اختر القناة (رقم الموبايل أو البريد الإلكتروني)";
+"mobile_channel_selected" = "تم تحديد قناة رقم الموبايل";
+"email_channel_selected" = "تم تحديد قناة البريد الألكتروني";
+"customer_id" = "كود العميل";
+"mobile_number" = "رقم الموبايل";
+"email" = "البريد الألكتروني";
+"email_address" = "البريد الألكتروني";
 "ref_number" = "الرقم المرجعي";
+
+"select_card" = "اختر بطاقة";
+"manage_cards" = "إدارة البطاقات";
+"add_new_card" = "إضافة بطاقة جديدة";
 
 "818" = "جنية";
 "784" = "درهم";

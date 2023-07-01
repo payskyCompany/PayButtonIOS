@@ -6,7 +6,7 @@
 "currency_code" = "Currency Code";
 "secure_hash_key" = "Secure Hash Key";
 
-"Done" = "Done";
+"done" = "Done";
 "submit" = "Submit";
 
 "scanCard" = "Scan card data ";
@@ -27,6 +27,7 @@
 "expire_date"="Expiry date";
 "cvc"="CVC";
 "proceed"="Proceed";
+"back" = "Back";
 "error"="Error";
 "check_internet_connection"="Check internet connection and try again.";
 "ok"="OK";
@@ -122,7 +123,20 @@
 
 "please_enter_customer_id" = "Missing Customer ID";
 
-"ref_number" = "Ref #";
+"subscribed" = "Subscribed";
+"not_subscribed" = "Not Subscribed";
+"select_channel" = "Select channel (Mobile number or Email)";
+"mobile_channel_selected" = "Mobile number channel selected";
+"email_channel_selected" = "Email address channel selected";
+"customer_id" = "Customer ID";
+"mobile_number" = "Mobile number";
+"email" = "Email";
+"email_address" = "Email address";
+"ref_number" = "Trnx Ref Number";
+
+"select_card" = "Select Card";
+"manage_cards" = "Manage Cards";
+"add_new_card" = "Add New Card";
 
 "818" = "EGP";
 "784" = "AED";

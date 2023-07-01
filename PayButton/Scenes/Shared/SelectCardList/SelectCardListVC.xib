@@ -12,12 +12,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectCardListVC" customModule="PayButton" customModuleProvider="target">
             <connections>
+                <outlet property="addNewCardBtn" destination="wil-XE-4lO" id="VWb-do-H81"/>
                 <outlet property="amountLbl" destination="ENK-VT-LYM" id="XS4-Om-CMV"/>
                 <outlet property="amountValueLbl" destination="m0c-yY-0xb" id="0YS-W5-VcU"/>
+                <outlet property="backBtn" destination="gnF-n9-OkX" id="EZq-tM-zru"/>
                 <outlet property="cardListTbl" destination="KPS-l3-sDy" id="PCP-SX-bVb"/>
                 <outlet property="cardListTblHeight" destination="0qK-SM-CKo" id="VBl-He-kg0"/>
+                <outlet property="changeLangBtn" destination="GTD-ZY-F5J" id="DtQ-QZ-13Q"/>
+                <outlet property="closeCurrentPageBtn" destination="qa3-8F-Jjb" id="P0C-G4-zRt"/>
+                <outlet property="headerLbl" destination="MUG-tt-Asz" id="S4j-GV-IrW"/>
+                <outlet property="manageCardsBtn" destination="riJ-DK-7aB" id="LoP-Nq-cV5"/>
                 <outlet property="merchantLbl" destination="S35-rd-DU0" id="1CD-gn-QCD"/>
                 <outlet property="merchantNameLbl" destination="03S-c2-UoF" id="qR3-zi-j5H"/>
+                <outlet property="proceedBtn" destination="z2K-u4-6AM" id="F9X-oB-MFW"/>
+                <outlet property="selectCardLbl" destination="zAN-Fw-JmE" id="yB9-Vh-20V"/>
+                <outlet property="termsAndConditionsBtn" destination="G7N-yO-YjK" id="bYs-9g-R7g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,15 +47,20 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="f9f-OF-TRr">
                                             <rect key="frame" x="10" y="5" width="188.33333333333334" height="30"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="avi-rI-Xgr">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qa3-8F-Jjb">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="WnL-Wp-Mat"/>
-                                                        <constraint firstAttribute="width" constant="30" id="wat-nf-Xhc"/>
+                                                        <constraint firstAttribute="height" constant="30" id="HTH-o2-vOs"/>
+                                                        <constraint firstAttribute="width" constant="30" id="rtr-hV-gT6"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="close"/>
+                                                    <connections>
+                                                        <action selector="dismissCurrentPageAction:" destination="-1" eventType="touchUpInside" id="Q5q-uX-15D"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Payment Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-tt-Asz">
-                                                    <rect key="frame" x="30" y="5" width="158.33333333333334" height="20.333333333333332"/>
+                                                    <rect key="frame" x="30" y="5" width="158.33333333333331" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.95686274510000002" green="0.94901960780000005" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -227,6 +241,9 @@
                                                             <color key="value" red="0.0" green="0.65490196078431373" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="manageCardsBtnPressed:" destination="-1" eventType="touchUpInside" id="xsH-oC-Lox"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -264,6 +281,9 @@
                                                     <color key="value" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="addNewCardBtnPressed:" destination="-1" eventType="touchUpInside" id="iPN-4M-eEX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -308,6 +328,9 @@
                                             <variation key="heightClass=regular-widthClass=regular">
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             </variation>
+                                            <connections>
+                                                <action selector="proceedBtnPressed:" destination="-1" eventType="touchUpInside" id="2Y4-RX-dzg"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnF-n9-OkX">
                                             <rect key="frame" x="0.0" y="52" width="374" height="36"/>
@@ -332,6 +355,9 @@
                                             <variation key="heightClass=regular-widthClass=regular">
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             </variation>
+                                            <connections>
+                                                <action selector="dismissCurrentPageAction:" destination="-1" eventType="touchUpInside" id="p6v-2l-DaX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -352,6 +378,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="24.666666666666668"/>
                                                     <color key="tintColor" systemColor="systemCyanColor"/>
                                                     <state key="normal" title="Change Language"/>
+                                                    <connections>
+                                                        <action selector="changeLangBtnPressed:" destination="-1" eventType="touchUpInside" id="9Ay-1M-Pas"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="igb-w8-ABE">
                                                     <rect key="frame" x="272" y="0.0" width="102" height="24.666666666666668"/>
@@ -362,6 +391,9 @@
                                             <rect key="frame" x="0.0" y="24.666666666666629" width="147" height="25.333333333333329"/>
                                             <color key="tintColor" systemColor="systemCyanColor"/>
                                             <state key="normal" title="Terms and conditions"/>
+                                            <connections>
+                                                <action selector="termsAndConditionsBtnPressed:" destination="-1" eventType="touchUpInside" id="NMi-xi-9xK"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

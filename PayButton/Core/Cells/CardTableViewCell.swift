@@ -64,7 +64,7 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener, S
         //        IQToolbar.appearance().barTintColor = UIColor.white
         //        IQToolbar.appearance().shouldHideToolbarPlaceholder = false
         //
-        //        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localizedString()
+        //        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "done".localizedString()
         //        IQKeyboardManager.shared.toolbarTintColor = UIColor.white
         //        IQKeyboardManager.shared.toolbarBarTintColor = PaySkySDKColor.NavColor
         //        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)

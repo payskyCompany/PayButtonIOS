@@ -114,11 +114,9 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         )
     }//--- End of Scan Credit Card Result
     
-    open func textField(
-        _ textField: UITextField,
-        didFillMandatoryCharacters complete: Bool,
-        didExtractValue value: String
-    ) {
+    open func textField(_ textField: UITextField,
+                        didFillMandatoryCharacters complete: Bool,
+                        didExtractValue value: String) {
         
         textField.text = textField.text?.replacedArabicDigitsWithEnglish
         if  textField.tag  == 1 {
@@ -187,7 +185,7 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         }
     }
     
-    @IBAction func cardExpireDateChanges(_ sender: UITextField) {
+    @IBAction func cardExpireDateChanged(_ sender: UITextField) {
         validDate = false;
         if previousLength > cardExpireDateTF.text!.count {
             previousLength = cardExpireDateTF.text!.count

@@ -74,7 +74,7 @@ class MainPresenter: MainViewPresenter {
             case let .success(response):
                 if response.success == true {
                     if !(response.cardsList?.isEmpty ?? true) {
-                        view?.navigateToSelectCardListView(withResponse: response)
+                        view?.navigateToSelectCardListView(withResponse: response, checkPaymentResponse: paymentMethodData)
                     } else {
                         view?.navigateToAddNewCardView(withResponse: paymentMethodData)
                     }

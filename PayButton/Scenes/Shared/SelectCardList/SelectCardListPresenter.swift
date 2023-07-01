@@ -19,12 +19,19 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
     
     weak var view: SelectCardListViewProtocol?
     
+    private var paymentMethodData: PaymentMethodResponse!
     private var customerCards: GetCustomerCardsResponse!
     
     required init(view: SelectCardListViewProtocol,
+                  paymentMethodData: PaymentMethodResponse,
                   customerCards: GetCustomerCardsResponse) {
         self.view = view
+        self.paymentMethodData = paymentMethodData
         self.customerCards = customerCards
+    }
+    
+    func getPaymentMethodData() -> PaymentMethodResponse {
+        return paymentMethodData
     }
     
     func getCustomerCards() -> GetCustomerCardsResponse {
@@ -125,7 +132,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                     if !(response.cardsList?.isEmpty ?? true) {
                         view?.updateSavedCardList(withAllCardResponse: response)
                     } else {
-                        view?.navigateToAddNewCard(withAllCardResponse: response)
+                        view?.navigateToAddNewCardView(withCheckPaymentResponse: paymentMethodData)
                     }
                 }
             case let .failure(error):

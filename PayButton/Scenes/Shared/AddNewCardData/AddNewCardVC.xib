@@ -338,7 +338,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                             </variation>
                                                             <connections>
-                                                                <action selector="cardExpireDateChanges:" destination="-1" eventType="editingChanged" id="CKg-8G-xxf"/>
+                                                                <action selector="cardExpireDateChanged:" destination="-1" eventType="editingChanged" id="CKg-8G-xxf"/>
                                                             </connections>
                                                         </textField>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date_icon" translatesAutoresizingMaskIntoConstraints="NO" id="621-zU-MMV">

@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var submitBtn: UIButton!
     
     let selectChannelPickerView = UIPickerView()
-    private let subscriptionTypes = ["Mobile number", "Email address"]
+    private let subscriptionTypes = ["mobile_number".localizedString(), "email_address".localizedString()]
     private let environmentTypes = ["Production", "Testing"]
     
     override func viewDidLoad() {
@@ -91,19 +91,29 @@ class MainViewController: UIViewController {
         setupViewOutlets()
         
         if MOLHLanguage.currentAppleLanguage() != "ar" {
+            selectChannelTextfield.textAlignment = .left
+            customerIdTextfield.textAlignment = .left
+            mobileNumberTextfield.textAlignment = .left
+            emailTextfield.textAlignment = .left
             merchantIdTextfield.textAlignment = .left
             terminalIdTextfield.textAlignment = .left
             secureHashKeyTextfield.textAlignment = .left
             amountTextfield.textAlignment = .left
             currencyCodeTextfield.textAlignment = .left
+            trnxRefNumberTextfield.textAlignment = .left
             selectUrlLabel.text = "Select URL"
         }
         else {
+            selectChannelTextfield.textAlignment = .right
+            customerIdTextfield.textAlignment = .right
+            mobileNumberTextfield.textAlignment = .right
+            emailTextfield.textAlignment = .right
             merchantIdTextfield.textAlignment = .right
             terminalIdTextfield.textAlignment = .right
             secureHashKeyTextfield.textAlignment = .right
             amountTextfield.textAlignment = .right
             currencyCodeTextfield.textAlignment = .right
+            trnxRefNumberTextfield.textAlignment = .right
             selectUrlLabel.text = "اختر الرابط"
         }
     }
@@ -126,11 +136,18 @@ class MainViewController: UIViewController {
     }
     
     private func setupViewOutlets() {
+        subscriptionTypeSegmentedControl.setTitle("not_subscribed".localizedString(), forSegmentAt: 0)
+        subscriptionTypeSegmentedControl.setTitle("subscribed".localizedString(), forSegmentAt: 1)
+        selectChannelTextfield.placeholder = "select_channel".localizedString()
+        customerIdLabel.text = "customer_id".localizedString()
+        mobileNumberLabel.text = "mobile_number".localizedString()
+        emailLabel.text = "email".localizedString()
         merchantIdLabel.text = "merchantID".localizedString()
         terminalIdLabel.text = "terminalID".localizedString()
+        secureHashKeyLabel.text = "secure_hash_key".localizedString()
         amountLabel.text = "amount".localizedString()
         currencyCodeLabel.text = "currency_code".localizedString()
-        secureHashKeyLabel.text = "secure_hash_key".localizedString()
+        trnxRefNumberLabel.text = "ref_number".localizedString()
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
@@ -160,10 +177,9 @@ class MainViewController: UIViewController {
         toolBar.tintColor = UIColor.systemBlue
         toolBar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.pickerValueUpdated))
+        let doneButton = UIBarButtonItem(title: "done".localizedString(), style: UIBarButtonItem.Style.done, target: self, action: #selector(self.pickerValueUpdated))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.pickerValueUpdated))
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
+        toolBar.setItems([spaceButton, doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
 
         selectChannelTextfield.inputView = selectChannelPickerView
@@ -320,11 +336,11 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     @objc func pickerValueUpdated() {
         // if mobile number selected
         if(selectChannelPickerView.selectedRow(inComponent: 0) == 0) {
-            selectChannelTextfield.text = "\(subscriptionTypes[0]) channel selected"
+            selectChannelTextfield.text = "mobile_channel_selected".localizedString()
             mobileNumberStackView.isHidden = false
             emailStackView.isHidden = true
         } else {       // email address selected
-            selectChannelTextfield.text = "\(subscriptionTypes[1]) channel selected"
+            selectChannelTextfield.text = "email_channel_selected".localizedString()
             mobileNumberStackView.isHidden = true
             emailStackView.isHidden = false
         }
