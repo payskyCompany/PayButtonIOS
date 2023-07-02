@@ -290,89 +290,88 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
 
 extension AddNewCardVC {
     
+    private func validateData() -> Bool {
+        guard !(self.cardNumber.isEmpty) else {
+            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedString())
+            return false
+        }
+        guard self.validCard else {
+            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
+            return false
+        }
+        guard (cardNumber.replacingOccurrences(of: " ", with: "").count == 16
+                && cardNumber.replacingOccurrences(of: " ", with: "").count == 19) else {
+            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
+            return false
+        }
+        guard (self.cardHolderNameTF.text != "") else {
+            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedString())
+            return false
+        }
+        guard (self.cardExpireDateTF.text != "") else {
+            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID".localizedString())
+            return false
+        }
+        guard (self.cardExpireDateTF.text?.count == 5) else {
+            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID_AC".localizedString())
+            return false
+        }
+        guard self.validDate else {
+            UIApplication.topViewController()?.view.makeToast("invalid_expire_date_date".localizedString())
+            return false
+        }
+        guard (self.cardCVVTF.text != "") else {
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedString())
+            return false
+        }
+        guard (self.cardCVVTF.text?.count == 3) else {
+            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedString())
+            return false
+        }
+        return true
+    }
+    
     @IBAction func proceedBtnPressed(_ sender: UIButton) {
         print("\n saveForFutureBool:  \(self.saveForFutureBool)")
         print("  setAsDefaultBool:  \(self.setAsDefaultBool) \n")
 
         UIApplication.topViewController()?.view.endEditing(true)
 
-        guard !(self.cardNumber.isEmpty) else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedString())
-            return
+        if(validateData()) {
+            let val = cardExpireDateTF.text!.split(separator: "/")
+            let YearMonth = val[1] + val[0]
+            
+            // TODO: Call PayByCard API
         }
-
-        guard self.validCard else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
-            return
-        }
-
-        guard (cardNumber.replacingOccurrences(of: " ", with: "").count == 16
-                && cardNumber.replacingOccurrences(of: " ", with: "").count == 19) else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
-            return
-        }
-
-        guard (self.cardHolderNameTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedString())
-            return
-        }
-
-        guard (self.cardExpireDateTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID".localizedString())
-            return
-        }
-
-        guard (self.cardExpireDateTF.text?.count == 5) else {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID_AC".localizedString())
-            return
-        }
-
-        guard self.validDate else {
-            UIApplication.topViewController()?.view.makeToast("invalid_expire_date_date".localizedString())
-            return
-        }
-
-        guard (self.cardCVVTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedString())
-            return
-        }
-
-        guard (self.cardCVVTF.text?.count == 3) else {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedString())
-            return
-        }
-
-        let val = cardExpireDateTF.text!.split(separator: "/")
-        let YearMonth = val[1] + val[0]
-
-        let addcardRequest = ManualPaymentRequest()
-        addcardRequest.PAN = self.cardNumber
-        addcardRequest.CardHolderName = self.cardHolderNameTF.text ?? ""
-
-        addcardRequest.cvv2 =  self.cardCVVTF.text!
-        addcardRequest.DateExpiration = String(YearMonth)
-        addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
-
-        ApiManger.PayByCard(CardHolderName : self.cardHolderNameTF.text! ,
-                            PAN: self.cardNumber,
-                            cvv2: self.cardCVVTF.text!,
-                            DateExpiration: String(YearMonth)) { (transactionStatusResponse) in
-            if transactionStatusResponse.Success {
-                if transactionStatusResponse.ChallengeRequired {
-                    self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse,
-                                                      manualPaymentRequest: addcardRequest)
-                } else {
-                    transactionStatusResponse.FROMWHERE = "Card"
-                    self.delegateActions?.saveCard(transactionStatusResponse: transactionStatusResponse)
-                }
-            } else {
-                if(transactionStatusResponse.Message.isEmpty) {
-                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.ErrorDetail)
-                } else {
-                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
-                }
-            }
-        }
+        
+//        let addcardRequest = ManualPaymentRequest()
+//        addcardRequest.PAN = self.cardNumber
+//        addcardRequest.CardHolderName = self.cardHolderNameTF.text ?? ""
+//
+//        addcardRequest.cvv2 =  self.cardCVVTF.text!
+//        addcardRequest.DateExpiration = String(YearMonth)
+//        addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
+//
+//        ApiManger.PayByCard(CardHolderName : self.cardHolderNameTF.text! ,
+//                            PAN: self.cardNumber,
+//                            cvv2: self.cardCVVTF.text!,
+//                            DateExpiration: String(YearMonth)) { (transactionStatusResponse) in
+//            if transactionStatusResponse.Success {
+//                if transactionStatusResponse.ChallengeRequired {
+//                    self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse,
+//                                                      manualPaymentRequest: addcardRequest)
+//                } else {
+//                    transactionStatusResponse.FROMWHERE = "Card"
+//                    self.delegateActions?.saveCard(transactionStatusResponse: transactionStatusResponse)
+//                }
+//            } else {
+//                if(transactionStatusResponse.Message.isEmpty) {
+//                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.ErrorDetail)
+//                } else {
+//                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
+//                }
+//            }
+//        }
     }
     
 }
