@@ -9,20 +9,31 @@
 import UIKit
 import MOLH
 
-protocol SelectCardListViewProtocol: AnyObject {
-    func didTapToggleButton(forCell selectedCell: CardListTblCell)
+protocol SelectCardListView: AnyObject {
+    func didTapRadioButton(forCell selectedCell: CardListTblCell)
     func didTapCvvTextField(forCell selectedCell: CardListTblCell)
     func openWebView(withUrlPath path: String)
     func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
-    func navigateToPaymentRejectedView(withMessage text: String)
-    func updateSavedCardList(withAllCardResponse: GetCustomerCardsResponse)
-    func navigateToManageCardsView()
+    func showErrorAlertView(withMessage errorMsg: String)
+    func updateSavedCardList()
+    func navigateToManageCardsView(withAllCardResponse: GetCustomerCardsResponse)
     func navigateToAddNewCardView(withCheckPaymentResponse response: PaymentMethodResponse)
     func startLoading()
     func endLoading()
 }
 
 class SelectCardListVC: UIViewController {
+    
+    let loadingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .mainBtnColor
+        spinner.hidesWhenStopped = true
+        spinner.backgroundColor = .lightText
+        spinner.layer.cornerRadius = 20
+        spinner.layer.masksToBounds = true
+        return spinner
+    }()
     
     @IBOutlet weak var closeCurrentPageBtn: UIButton!
     @IBOutlet weak var headerLbl: UILabel!
@@ -45,12 +56,23 @@ class SelectCardListVC: UIViewController {
 
     var presenter: SelectCardListPresenter!
     
+    private var selectedSavedCard: CardDetails?
+    private var selectedCardCvv: String = ""
+    private var selectedCardIndex: Int = 0
+    
     weak var delegate: PayButtonDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        hideKeyboardWhenTappedAround()
         self.setupUIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        selectedSavedCard = presenter.getCustomerCards().cardsList?.first
     }
     
     override func viewWillLayoutSubviews() {
@@ -58,7 +80,19 @@ class SelectCardListVC: UIViewController {
         self.cardListTblHeight?.constant = self.cardListTbl.contentSize.height
     }
     
+    private func addSpinnerView() {
+        if let topControllerView = UIApplication.topViewController()?.view {
+            topControllerView.addSubview(loadingSpinner)
+            loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+            loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+            loadingSpinner.centerXAnchor.constraint(equalTo: topControllerView.centerXAnchor).isActive = true
+            loadingSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
+        }
+    }
+    
     private func setupUIView() {
+        addSpinnerView()
+        
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
@@ -104,6 +138,24 @@ class SelectCardListVC: UIViewController {
     }
     
     @IBAction func proceedBtnPressed(_ sender: UIButton) {
+        if selectedCardCvv != "", let selectedCardId = selectedSavedCard?.cardID {
+            proceedBtn.isUserInteractionEnabled = false
+            startLoading()
+            print("Card ID \n" + "\(selectedCardId)")
+            presenter.getCustomerSession() { [weak self] sessionId in
+                guard let self = self else { return }
+                print("sessionId \n" + "\(sessionId)")
+                presenter.callPayByCardAPI(customerSession: sessionId, cardID: selectedCardId, cvv: selectedCardCvv)
+            }
+        } else {
+            for cell in cardListTbl.visibleCells as! [CardListTblCell] {
+                if(cell.tag == selectedCardIndex) {
+                    cell.showHideCvvAlertLbl(hide: false)
+                } else {
+                    cell.showHideCvvAlertLbl(hide: true)
+                }
+            }
+        }
     }
     
     @IBAction func dismissCurrentPageAction(_ sender: UIButton) {
@@ -167,21 +219,32 @@ extension SelectCardListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CardListTblCell", for: indexPath) as! CardListTblCell
         cell.configure(presenter.getCustomerCards().cardsList?[indexPath.row])
+        cell.tag = indexPath.row
+        cell.delegate = presenter.view
         return cell
     }
 }
 
-extension SelectCardListVC: SelectCardListViewProtocol {
-    func didTapToggleButton(forCell selectedCell: CardListTblCell) {
+extension SelectCardListVC: SelectCardListView {
+    func didTapRadioButton(forCell selectedCell: CardListTblCell) {
         print("didTapToggleButton")
-    }
-    
-    func didTapDeleteIconButton(forCell selectedCell: CardListTblCell) {
-        print("didTapDeleteIconButton")
+        selectedSavedCard = presenter.getCustomerCards().cardsList?[selectedCell.tag]
+        selectedCardIndex = selectedCell.tag
+        selectedCell.selectCardRadioBtn.isSelected = true
+        for cell in cardListTbl.visibleCells as! [CardListTblCell] {
+            if(cell.tag != selectedCell.tag) {
+                cell.selectCardRadioBtn.isSelected = false
+            }
+        }
     }
     
     func didTapCvvTextField(forCell selectedCell: CardListTblCell) {
-        print("didTapCvvTextField")
+        selectedCell.showHideCvvAlertLbl(hide: true)
+        selectedCardCvv = selectedCell.cvvTextField.text ?? ""
+        print(selectedCardCvv)
+        if(selectedCardCvv.count == 3) {
+            dismissKeyboard()
+        }
     }
     
     func openWebView(withUrlPath path: String) {
@@ -192,15 +255,16 @@ extension SelectCardListVC: SelectCardListViewProtocol {
         print("navigateToPaymentApprovedView")
     }
     
-    func navigateToPaymentRejectedView(withMessage text: String) {
-        print("navigateToPaymentRejectedView")
+    func showErrorAlertView(withMessage errorMsg: String) {
+        proceedBtn.isUserInteractionEnabled = true
+        UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
     }
     
-    func updateSavedCardList(withAllCardResponse: GetCustomerCardsResponse) {
-        print("updateSavedCardList")
+    func updateSavedCardList() {
+        cardListTbl.reloadData()
     }
     
-    func navigateToManageCardsView() {
+    func navigateToManageCardsView(withAllCardResponse: GetCustomerCardsResponse) {
         
     }
     
@@ -220,10 +284,10 @@ extension SelectCardListVC: SelectCardListViewProtocol {
     }
     
     func startLoading() {
-        print("startLoading")
+        loadingSpinner.startAnimating()
     }
-    
+
     func endLoading() {
-        print("endLoading")
+        loadingSpinner.stopAnimating()
     }
 }

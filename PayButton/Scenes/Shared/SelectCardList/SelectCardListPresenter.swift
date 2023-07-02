@@ -9,20 +9,20 @@
 import Foundation
 
 protocol SelectCardListPresenterProtocol: AnyObject {
-    var view: SelectCardListViewProtocol? { get set }
-    func callPayBySavedCardAPI(customerSession: String, cardID: Int, cvv: String)
+    var view: SelectCardListView? { get set }
+    func callPayByCardAPI(customerSession: String, cardID: Int, cvv: String)
     func getCustomerSession(completionHandler: @escaping (String) -> Void)
     func getCustomerCards(usingSessionId sessionId: String)
 }
 
 class SelectCardListPresenter: SelectCardListPresenterProtocol {
     
-    weak var view: SelectCardListViewProtocol?
+    weak var view: SelectCardListView?
     
     private var paymentMethodData: PaymentMethodResponse!
     private var customerCards: GetCustomerCardsResponse!
     
-    required init(view: SelectCardListViewProtocol,
+    required init(view: SelectCardListView,
                   paymentMethodData: PaymentMethodResponse,
                   customerCards: GetCustomerCardsResponse) {
         self.view = view
@@ -38,7 +38,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         return customerCards
     }
     
-    func callPayBySavedCardAPI(customerSession: String, cardID: Int, cvv: String) {
+    func callPayByCardAPI(customerSession: String, cardID: Int, cvv: String) {
         view?.startLoading()
         
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
@@ -47,11 +47,9 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                                              terminalId: MerchantDataManager.shared.merchant.terminalId,
                                              secureHashKey: MerchantDataManager.shared.merchant.secureHashKey,
                                              cvv: cvv,
-                                             isSaveCard: false,
                                              tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
                                              tokenCustomerSession: customerSession,
-                                             tokenCardId: cardID,
-                                             customerEmail: MerchantDataManager.shared.merchant.customerEmail)
+                                             tokenCardId: cardID)
         
         let payByCardUseCase = PayByCardUseCaseImp(payByCardParamters: parameters)
         payByCardUseCase.payByCard { [self] result in
@@ -71,7 +69,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                         // if the executed transaction action code is not equal to 00
                         if (response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00")) {
                             // transaction failed
-                            view?.navigateToPaymentRejectedView(withMessage: String(response.message ?? ""))
+                            view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                         } else {
                             // transaction approved
                             view?.navigateToPaymentApprovedView(withTrxnReference: String(response.systemReference ?? 0), andMessage: response.message ?? "")
@@ -79,10 +77,10 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                     }
                 } else {
                     // transaction failed
-                    view?.navigateToPaymentRejectedView(withMessage: String(response.message ?? ""))
+                    view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                 }
             case let .failure(error):
-                view?.navigateToPaymentRejectedView(withMessage: error.localizedDescription)
+                view?.showErrorAlertView(withMessage: error.localizedDescription)
             }
         }
     }
@@ -107,7 +105,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                     }
                 }
             case let .failure(error):
-                view?.navigateToPaymentRejectedView(withMessage: error.localizedDescription)
+                view?.showErrorAlertView(withMessage: error.localizedDescription)
             }
         }
     }
@@ -117,11 +115,11 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = GetCustomerTokenParameters(sessionId: sessionId,
-                                                     customerId: MerchantDataManager.shared.merchant.customerId,
-                                                     amount: String(integerAmount),
-                                                     merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                                     terminalId: MerchantDataManager.shared.merchant.terminalId,
-                                                     secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
+                                                    customerId: MerchantDataManager.shared.merchant.customerId,
+                                                    amount: String(integerAmount),
+                                                    merchantId: MerchantDataManager.shared.merchant.merchantId,
+                                                    terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                                    secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
         
         let getCustomerCardsUseCase = GetCustomerCardsUseCase(getCustomerCardsParamters: parameters)
         getCustomerCardsUseCase.getCustomerCards { [self] result in
@@ -130,13 +128,14 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
             case let .success(response):
                 if response.success == true {
                     if !(response.cardsList?.isEmpty ?? true) {
-                        view?.updateSavedCardList(withAllCardResponse: response)
+                        customerCards = response
+                        view?.updateSavedCardList()
                     } else {
                         view?.navigateToAddNewCardView(withCheckPaymentResponse: paymentMethodData)
                     }
                 }
             case let .failure(error):
-                view?.navigateToPaymentRejectedView(withMessage: error.localizedDescription)
+                view?.showErrorAlertView(withMessage: error.localizedDescription)
             }
         }
     }

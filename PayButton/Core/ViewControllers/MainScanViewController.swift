@@ -104,8 +104,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     func completeRequest(transactionStatusResponse: TransactionStatusResponse) {
-        // TODO: - pass customer id to finishSdkPayment
-        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: "")
+        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
         
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
@@ -280,8 +279,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     @objc func close(sender: UITapGestureRecognizer? = nil) {
-        // TODO: - pass customer id to finishSdkPayment
-        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: "")
+        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
 
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)

@@ -12,7 +12,7 @@ struct PayByCardParameters {
     var amountTrxn, currencyCodeTrxn: String
     var merchantId, terminalId, secureHash: String
     var dateTimeLocalTrxn: String
-    var isSaveCard: Bool
+    var isSaveCard, isDefaultCard: Bool?
     var cardAcceptorIdCode, cardAcceptorTerminalId: String?
     var cardHolderName, dateExpiration: String?
     var cvv2: String?
@@ -22,7 +22,7 @@ struct PayByCardParameters {
     var isFromPOS, isWebRequest, isMobileSDK: Bool?
     var tokenCardId: Int?
     var tokenCustomerId, tokenCustomerSession: String?
-    var customerEmail: String?
+    var customerMobileNo, customerEmail: String?
     
     init(amountTrxn: String,
          merchantId: String,
@@ -32,11 +32,13 @@ struct PayByCardParameters {
          cardHolderName: String? = "",
          expiryDate: String? = "",
          cvv: String? = "",
-         isSaveCard: Bool,
+         isSaveCard: Bool = false,
+         isDefaultCard: Bool = false,
          tokenCustomerId: String? = "",
          tokenCustomerSession: String? = "",
          tokenCardId: Int? = 0,
-         customerEmail: String) {
+         customerMobileNo: String? = "",
+         customerEmail: String? = "") {
         self.amountTrxn = amountTrxn
         currencyCodeTrxn = "\(MerchantDataManager.shared.merchant.currencyCode)"
         self.merchantId = merchantId
@@ -47,6 +49,7 @@ struct PayByCardParameters {
         secureHash = encodedSecureHash
         self.cardHolderName = cardHolderName
         self.isSaveCard = isSaveCard
+        self.isDefaultCard = isDefaultCard
         self.tokenCustomerId = tokenCustomerId
         self.tokenCustomerSession = tokenCustomerSession
         self.tokenCardId = tokenCardId
@@ -62,6 +65,7 @@ struct PayByCardParameters {
         let transactionReferenceNumber = AppConstants.generateRandomNumber(digits: 16)
         systemTraceNr = transactionReferenceNumber
         merchantReference = transactionReferenceNumber
+        self.customerMobileNo = customerMobileNo
         self.customerEmail = customerEmail
     }
 
@@ -85,11 +89,13 @@ struct PayByCardParameters {
         dictionary["ReturnURL"] = returnURL
         dictionary["IsWebRequest"] = isWebRequest
         dictionary["IsMobileSDK"] = isMobileSDK
+        dictionary["IsDefaultCard"] = isDefaultCard
         dictionary["IsSaveCard"] = isSaveCard
         dictionary["TokenCustomerId"] = tokenCustomerId
         dictionary["TokenCustomerSession"] = tokenCustomerSession
         dictionary["TokenCardId"] = tokenCardId
-        dictionary["CustomerEmail"] = customerEmail
+        dictionary["MobileNo"] = customerMobileNo
+        dictionary["Email"] = customerEmail
         return dictionary
     }
 }

@@ -43,6 +43,9 @@
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapRadioButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oaR-VC-ijt"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_list_icon" translatesAutoresizingMaskIntoConstraints="NO" id="R2m-HU-Ely">
                                 <rect key="frame" x="36" y="20" width="30" height="30"/>
@@ -84,6 +87,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="didTapCvvTextField:" destination="KGk-i7-Jjw" eventType="editingChanged" id="bLu-bg-eY7"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvc_icon" translatesAutoresizingMaskIntoConstraints="NO" id="cln-sg-1Ql">
                                         <rect key="frame" x="56" y="0.0" width="15" height="35"/>
@@ -155,7 +161,8 @@
                 <outlet property="cardLogo" destination="R2m-HU-Ely" id="HqR-Fo-lHt"/>
                 <outlet property="cardNumberLbl" destination="Wbf-5U-ebV" id="D7P-1H-hGU"/>
                 <outlet property="cvvAlertLbl" destination="hON-bv-dDW" id="kWC-AZ-g6t"/>
-                <outlet property="selectCardBtn" destination="uW0-nB-a2a" id="XXR-Mb-tmV"/>
+                <outlet property="cvvTextField" destination="UDu-wa-81N" id="X5f-XC-Cev"/>
+                <outlet property="selectCardRadioBtn" destination="uW0-nB-a2a" id="XXR-Mb-tmV"/>
             </connections>
             <point key="canvasLocation" x="303.05343511450383" y="49.295774647887328"/>
         </tableViewCell>

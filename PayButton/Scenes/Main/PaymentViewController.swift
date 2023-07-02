@@ -22,15 +22,15 @@ protocol PaymentView: AnyObject {
 
 public class PaymentViewController {
 
-    let loginSpinner: UIActivityIndicatorView = {
-        let loginSpinner = UIActivityIndicatorView(style: .large)
-        loginSpinner.translatesAutoresizingMaskIntoConstraints = false
-        loginSpinner.color = .mainBtnColor
-        loginSpinner.hidesWhenStopped = true
-        loginSpinner.backgroundColor = .lightText
-        loginSpinner.layer.cornerRadius = 20
-        loginSpinner.layer.masksToBounds = true
-        return loginSpinner
+    let loadingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .mainBtnColor
+        spinner.hidesWhenStopped = true
+        spinner.backgroundColor = .lightText
+        spinner.layer.cornerRadius = 20
+        spinner.layer.masksToBounds = true
+        return spinner
     }()
     
     let mId: String
@@ -67,11 +67,11 @@ public class PaymentViewController {
     
     private func addSpinnerView() {
         if let topControllerView = UIApplication.topViewController()?.view {
-            topControllerView.addSubview(loginSpinner)
-            loginSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loginSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loginSpinner.centerXAnchor.constraint(equalTo: topControllerView.centerXAnchor).isActive = true
-            loginSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
+            topControllerView.addSubview(loadingSpinner)
+            loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+            loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+            loadingSpinner.centerXAnchor.constraint(equalTo: topControllerView.centerXAnchor).isActive = true
+            loadingSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
         }
     }
     
@@ -123,7 +123,7 @@ public class PaymentViewController {
             !merchantInfo.merchantId.isEmpty &&
             !merchantInfo.terminalId.isEmpty &&
             !merchantInfo.secureHashKey.isEmpty) {
-            loginSpinner.startAnimating()
+            loadingSpinner.startAnimating()
             UIApplication.topViewController()?.view.isUserInteractionEnabled = false
             callCheckPaymentMethodAPI(merchantData: merchantInfo)
         } else {
@@ -138,7 +138,7 @@ public class PaymentViewController {
                                                               secureHashKey: merchantData.secureHashKey)
         let checkPaymentMethodUseCase = CheckPaymentMethodUseCaseImp(checkPaymentMethodParamters: paymentMethodParameters)
         checkPaymentMethodUseCase.checkPaymentMethod { [self] result in
-            self.loginSpinner.stopAnimating()
+            self.loadingSpinner.stopAnimating()
             UIApplication.topViewController()?.view.isUserInteractionEnabled = true
             switch result {
             case let .success(response):
@@ -171,11 +171,11 @@ public class PaymentViewController {
 
 extension PaymentViewController: PaymentView {
     func startLoading() {
-        loginSpinner.startAnimating()
+        loadingSpinner.startAnimating()
     }
 
     func endLoading() {
-        loginSpinner.stopAnimating()
+        loadingSpinner.stopAnimating()
     }
 
     func showErrorAlertView(withMessage errorMsg: String) {

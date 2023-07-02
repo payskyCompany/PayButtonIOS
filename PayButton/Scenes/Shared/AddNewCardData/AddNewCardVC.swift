@@ -12,14 +12,14 @@ import PayCardsRecognizer
 import PopupDialog
 import AVFoundation
 
-protocol AddNewCardViewProtocol: AnyObject {
+protocol AddNewCardView: AnyObject {
     func hideSaveThisCardOutlets()
     func onScanCardBtnTapped()
     func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool)
     func onPayBtnTapped()
     func openWebView(withUrlPath path: String)
     func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
-    func navigateToPaymentRejectedView(withMessage text: String)
+    func showErrorAlertView(withMessage errorMsg: String)
     func startLoading()
     func endLoading()
 }
@@ -78,6 +78,7 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedAround()
         presenter.viewDidLoad()
         self.setupUIView()
     }
@@ -430,7 +431,7 @@ extension AddNewCardVC {
     }
 }
 
-extension AddNewCardVC: AddNewCardViewProtocol {
+extension AddNewCardVC: AddNewCardView {
     func hideSaveThisCardOutlets() {
         print("hideSaveThisCardOutlets")
     }
@@ -455,8 +456,9 @@ extension AddNewCardVC: AddNewCardViewProtocol {
         print("navigateToPaymentApprovedView")
     }
     
-    func navigateToPaymentRejectedView(withMessage text: String) {
-        print("navigateToPaymentRejectedView")
+    func showErrorAlertView(withMessage errorMsg: String) {
+        proceedBtn.isUserInteractionEnabled = true
+        UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
     }
     
     func startLoading() {

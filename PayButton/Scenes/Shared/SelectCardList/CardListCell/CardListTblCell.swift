@@ -14,13 +14,17 @@ class CardListTblCell: UITableViewCell {
     @IBOutlet weak var cardLogo: UIImageView!
     @IBOutlet weak var cardHolderNameLbl: UILabel!
     @IBOutlet weak var cardNumberLbl: UILabel!
-    @IBOutlet weak var selectCardBtn: DLRadioButton!
+    @IBOutlet weak var selectCardRadioBtn: DLRadioButton!
+    @IBOutlet weak var cvvTextField: UITextField!
     @IBOutlet weak var cvvAlertLbl: UILabel!
+    
+    weak var delegate: SelectCardListView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        selectCardBtn.setTitle("", for: .normal)
+        selectCardRadioBtn.setTitle("", for: .normal)
+        cvvTextField.delegate = self
         showHideCvvAlertLbl(hide: true)
     }
 
@@ -39,9 +43,9 @@ class CardListTblCell: UITableViewCell {
         cardNumberLbl.text = cardDetails?.maskedCardNumber
         setCardLogo(withType: cardDetails?.brand ?? "")
         if cardDetails?.isDefaultCard == true {
-            selectCardBtn.isSelected = true
+            selectCardRadioBtn.isSelected = true
         } else {
-            selectCardBtn.isSelected = false
+            selectCardRadioBtn.isSelected = false
         }
     }
     
@@ -71,5 +75,26 @@ class CardListTblCell: UITableViewCell {
         }
     }
     
+    @IBAction func didTapCvvTextField(_ sender: UITextField) {
+        delegate?.didTapCvvTextField(forCell: self)
+    }
     
+    @IBAction func didTapRadioButton(_ sender: UIButton) {
+        delegate?.didTapRadioButton(forCell: self)
+    }
+    
+    
+}
+
+extension CardListTblCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if(textField == cvvTextField) {
+            let maxLength = 3
+            let currentString = (textField.text ?? "") as NSString
+            let newString = currentString.replacingCharacters(in: range, with: string)
+            
+            return newString.count <= maxLength
+        }
+        return true
+    }
 }

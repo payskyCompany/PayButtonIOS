@@ -9,23 +9,25 @@
 import Foundation
 
 protocol AddNewCardPresenterProtocol: AnyObject {
-    var view: AddNewCardViewProtocol? { get set }
+    var view: AddNewCardView? { get set }
     func viewDidLoad()
     func getPaymentMethodData() -> PaymentMethodResponse
     func updateIsSaveCard(withValue state: Bool)
-    func callPayBycardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)
+    func updateIsDefaultCard(withValue state: Bool)
+    func callPayByCardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)
 }
 
 class AddNewCardPresenter: AddNewCardPresenterProtocol {
     
-    weak var view: AddNewCardViewProtocol?
+    weak var view: AddNewCardView?
     
     private var paymentMethodData: PaymentMethodResponse!
     private var customerSessionId: String?
     
-    private var isSaveCardSwitchOn: Bool = false
+    private var isSaveCardSelected: Bool = false
+    private var isDefaultCardSelected: Bool = false
     
-    required init(view: AddNewCardViewProtocol,
+    required init(view: AddNewCardView,
                   paymentMethodData: PaymentMethodResponse,
                   sessionId: String? = nil) {
         self.view = view
@@ -44,11 +46,14 @@ class AddNewCardPresenter: AddNewCardPresenterProtocol {
     }
     
     func updateIsSaveCard(withValue state: Bool) {
-        isSaveCardSwitchOn = state
+        isSaveCardSelected = state
     }
     
-    func callPayBycardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)  {
-        
+    func updateIsDefaultCard(withValue state: Bool) {
+        isDefaultCardSelected = state
+    }
+    
+    func callPayByCardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)  {
         view?.startLoading()
         
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
@@ -60,8 +65,10 @@ class AddNewCardPresenter: AddNewCardPresenterProtocol {
                                              cardHolderName: cardHolderName,
                                              expiryDate: expiryDate,
                                              cvv: cvv,
-                                             isSaveCard: isSaveCardSwitchOn,
+                                             isSaveCard: isSaveCardSelected,
+                                             isDefaultCard: isDefaultCardSelected,
                                              tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
+                                             customerMobileNo: MerchantDataManager.shared.merchant.customerMobile,
                                              customerEmail: MerchantDataManager.shared.merchant.customerEmail)
         
         let payByCardUseCase = PayByCardUseCaseImp(payByCardParamters: parameters)
@@ -82,20 +89,19 @@ class AddNewCardPresenter: AddNewCardPresenterProtocol {
                         // if the executed transaction action code is not equal to 00
                         if (response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00")) {
                             // transaction failed
-                            view?.navigateToPaymentRejectedView(withMessage: String(response.message ?? ""))
+                            view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                         } else {
                             // transaction approved
-                            //save customer id here
                             view?.navigateToPaymentApprovedView(withTrxnReference: String(response.systemReference ?? 0),
                                                                 andMessage: response.message ?? "")
                         }
                     }
                 } else {
                     // transaction failed
-                    view?.navigateToPaymentRejectedView(withMessage: String(response.message ?? ""))
+                    view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                 }
             case let .failure(error):
-                view?.navigateToPaymentRejectedView(withMessage: error.localizedDescription)
+                view?.showErrorAlertView(withMessage: error.localizedDescription)
             }
         }
     }
