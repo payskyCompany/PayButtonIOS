@@ -55,6 +55,7 @@
 		899F240A2A3FA06800A1AFE8 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899F24092A3FA06800A1AFE8 /* Enums.swift */; };
 		89C7848E2A309C8F007280F6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C7848C2A309C8F007280F6 /* MainViewController.swift */; };
 		89C7848F2A309C8F007280F6 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C7848D2A309C8F007280F6 /* MainViewController.xib */; };
+		89CCC8162A5219370047CE37 /* AddNewCardVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCC8152A5219370047CE37 /* AddNewCardVC+Extension.swift */; };
 		89F7B7692A263A2500E6333A /* Bundle+swizzleLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F7B7682A263A2500E6333A /* Bundle+swizzleLocalization.swift */; };
 		C5190553216FA17600664149 /* WebViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5190552216FA17600664149 /* WebViewTableViewCell.xib */; };
 		C528E24C2166118F00CAFBC4 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528E2462166118F00CAFBC4 /* UITextView+Extensions.swift */; };
@@ -197,6 +198,7 @@
 		899F24092A3FA06800A1AFE8 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89C7848C2A309C8F007280F6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		89C7848D2A309C8F007280F6 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		89CCC8152A5219370047CE37 /* AddNewCardVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewCardVC+Extension.swift"; sourceTree = "<group>"; };
 		89F7B7682A263A2500E6333A /* Bundle+swizzleLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+swizzleLocalization.swift"; sourceTree = "<group>"; };
 		913426EE6E2A652F168BE130 /* Pods-PayButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.debug.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.debug.xcconfig"; sourceTree = "<group>"; };
 		AA47162EBC533BC775F86881 /* Pods-PayButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayButton.release.xcconfig"; path = "Target Support Files/Pods-PayButton/Pods-PayButton.release.xcconfig"; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				899CE60C2A4FA67A00F2F2FA /* AddNewCardPresenter.swift */,
 				FAAAE5852A3F3828001467A4 /* AddNewCardVC.swift */,
 				FAAAE5862A3F3828001467A4 /* AddNewCardVC.xib */,
+				89CCC8152A5219370047CE37 /* AddNewCardVC+Extension.swift */,
 			);
 			path = AddNewCardData;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				C5FD7425222405D3008BD2AE /* Next.swift in Sources */,
 				C5378890216D06650058CAC8 /* WebViewTableViewCell.swift in Sources */,
 				89C7848E2A309C8F007280F6 /* MainViewController.swift in Sources */,
+				89CCC8162A5219370047CE37 /* AddNewCardVC+Extension.swift in Sources */,
 				C528E24D2166118F00CAFBC4 /* GlobalManager.swift in Sources */,
 				C5B900F4216A404F00301C13 /* PaymentViewController.swift in Sources */,
 				C5FD7427222405D3008BD2AE /* Notation.swift in Sources */,

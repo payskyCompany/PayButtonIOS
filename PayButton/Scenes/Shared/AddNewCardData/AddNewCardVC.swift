@@ -14,9 +14,6 @@ import AVFoundation
 
 protocol AddNewCardView: AnyObject {
     func hideSaveThisCardOutlets()
-    func onScanCardBtnTapped()
-    func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool)
-    func onPayBtnTapped()
     func openWebView(withUrlPath path: String)
     func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
     func showErrorAlertView(withMessage errorMsg: String)
@@ -26,6 +23,17 @@ protocol AddNewCardView: AnyObject {
 
 class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardDelegate {
         
+    let loadingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .mainBtnColor
+        spinner.hidesWhenStopped = true
+        spinner.backgroundColor = .lightText
+        spinner.layer.cornerRadius = 20
+        spinner.layer.masksToBounds = true
+        return spinner
+    }()
+    
     @IBOutlet weak var closeCurrentPageBtn: UIButton!
     @IBOutlet weak var headerLbl: UILabel!
     @IBOutlet weak var merchantLbl: UILabel!
@@ -45,15 +53,15 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     @IBOutlet weak var cardCVVTF: UITextField!
     
     @IBOutlet weak var enterCardDataLbl: UILabel!
-    @IBOutlet weak var scanCardNumber: UIButton!
+    @IBOutlet weak var scanCardBtn: UIButton!
     @IBOutlet weak var saveForFutureLbl: UILabel!
-    @IBOutlet weak var saveForFutureBtn: CheckBox!
+    @IBOutlet weak var saveForFutureCheckBox: CheckBox!
     @IBOutlet weak var setAsDefaultLbl: UILabel!
-    @IBOutlet weak var setAsDefaultBtn: CheckBox!
+    @IBOutlet weak var setAsDefaultCheckBox: CheckBox!
     
-    var MaskedCreditCard: MaskedTextFieldDelegate!
-    var MaskedHolderName: MaskedTextFieldDelegate!
-    var MaskedCVV: MaskedTextFieldDelegate!
+    var maskedCreditCard: MaskedTextFieldDelegate!
+    var maskedHolderName: MaskedTextFieldDelegate!
+    var maskedCVV: MaskedTextFieldDelegate!
     
     var scanCreditCardDelegate: ScanCardDelegate?
     
@@ -61,15 +69,12 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
     let creditCardValidator = CreditCardValidator()
     var validCard = false
     
-    var validDate = false
+    var validExpiryDate = false
     var previousLength = 0
     var year = ""
     var month = ""
-    
-    var saveForFutureBool: Bool = false
-    var setAsDefaultBool: Bool = false
-    
-    weak var delegateActions: ActionCellActionDelegate? // navigation after api callout
+   
+//    weak var delegateActions: ActionCellActionDelegate? // navigation after api callout
     
     var presenter: AddNewCardPresenter!
     
@@ -81,9 +86,18 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         hideKeyboardWhenTappedAround()
         presenter.viewDidLoad()
         self.setupUIView()
+        addSpinnerView()
     }
     
-    @IBAction func scanCardData(_ sender: UIButton) {
+    private func addSpinnerView() {
+        self.view.addSubview(loadingSpinner)
+        loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loadingSpinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
+    
+    @IBAction func scanCardBtnTapped(_ sender: UIButton) {
         let st = UIStoryboard(name: "PayButtonBoard", bundle: nil)
 
         let vc: CardScanViewController = st.instantiateViewController(withIdentifier: "CardScanViewController") as! CardScanViewController
@@ -106,97 +120,40 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         )
         cardNumberTF.text = maskResult.formattedText.string
 
-        self.textField(
-            cardNumberTF,
-            didFillMandatoryCharacters : true,
-            didExtractValue: result.recognizedNumber ?? ""
-        )
-
-
+        self.textField(cardNumberTF, didFillMandatoryCharacters : true, didExtractValue: result.recognizedNumber ?? "")
+        
         let data = (result.recognizedExpireDateMonth ?? "") + "/" + (result.recognizedExpireDateYear ?? "")
-        let valuedate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
+        let valueDate = (result.recognizedExpireDateMonth ?? "") + (result.recognizedExpireDateYear ?? "")
 
         cardExpireDateTF.text = data
-        self.textField(
-            cardExpireDateTF,
-            didFillMandatoryCharacters : true,
-            didExtractValue: valuedate
-        )
-    }//--- End of Scan Credit Card Result
+        self.textField(cardExpireDateTF, didFillMandatoryCharacters : true, didExtractValue: valueDate)
+    }
     
-    open func textField(_ textField: UITextField,
-                        didFillMandatoryCharacters complete: Bool,
-                        didExtractValue value: String) {
-        
+    func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
         textField.text = textField.text?.replacedArabicDigitsWithEnglish
-        if  textField.tag  == 1 {
-            
-            self.cardNumber = value.replacedArabicDigitsWithEnglish
-            
-            if let type = creditCardValidator.type(from: value.replacedArabicDigitsWithEnglish) {
-                
-                self.validCard = true
-                
-                if type.name == "Visa" {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "vi")
-                }else if type.name == "Amex"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "am")
-                }else if type.name == "MasterCard"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "mc")
-                }else if type.name == "Maestro"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "Maestro")
-                }else if type.name == "Diners Club"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "dc")
-                }else if type.name == "JCB"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "jcb")
-                }else if type.name == "Discover"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "ds")
-                }else if type.name == "UnionPay"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "UnionPay")
-                }else if type.name == "Mir"  {
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "Mir")
-                    
-                }else  if type.name == "Meza"{
-                    self.cardNumberLogo.image =  #imageLiteral(resourceName: "miza_logo")
-                      
-                } else {
-                    self.validCard = false
-                    
-                    self.cardNumberLogo.image = #imageLiteral(resourceName: "card_icon")
-                }
-            } else {
-                self.validCard = false
-                self.cardNumberLogo.image = #imageLiteral(resourceName: "card_icon")
-            }
-            
-            if value.count == 16 {
-                if self.creditCardValidator.validate(number:value.replacedArabicDigitsWithEnglish) {
-                    // Card number is valid
-                    self.validCard = true
-                } else {
-                    self.validCard = false
-                    UIApplication.topViewController()?.view.endEditing(true)
-                    UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
-                }
-            }
-        } else if  textField.tag  == 2 {
+        
+        if textField.tag == 1 {
+            checkCardNumberValid(value)
+            debugPrint(cardNumber)
+        }
+        else if textField.tag == 2 {
             if value.count == 4 {
                 self.year  = String(value.replacedArabicDigitsWithEnglish.suffix(2))
                 self.month  = String(value.replacedArabicDigitsWithEnglish.prefix(2))
                 
-                if Int ( self.year)! > 18 && Int ( self.month)! < 13  {
-                    validDate = true;
+                if Int (self.year)! > 18 && Int (self.month)! < 13 {
+                    validExpiryDate = true
                 } else {
-                    validDate = false;
+                    validExpiryDate = false
                 }
             } else {
-                validDate = false;
+                validExpiryDate = false
             }
         }
     }
     
     @IBAction func cardExpireDateChanged(_ sender: UITextField) {
-        validDate = false;
+        validExpiryDate = false
         if previousLength > cardExpireDateTF.text!.count {
             previousLength = cardExpireDateTF.text!.count
             return
@@ -215,36 +172,55 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
         let val = cardExpireDateTF.text!.split(separator: "/")
         if cardExpireDateTF.text!.count == 5 && val.count > 1 {
             if Int(String(val[1] + ""))! > 19 {
-                validDate = true;
-                
-            }else{
-                validDate = false;
-                
+                validExpiryDate = true
+            } else {
+                validExpiryDate = false
             }
         }
         
         previousLength = cardExpireDateTF.text!.count
-        
     }
     
     @IBAction func saveForFutureBtnAction(_ sender: CheckBox) {
         if !(sender.isChecked) {
-            self.saveForFutureBool = true
-            
+            presenter.updateIsSaveCard(withValue: true)
         } else {
-            self.setAsDefaultBool = false
-            self.setAsDefaultBtn.isChecked = false
-            self.saveForFutureBool = false
+            presenter.updateIsSaveCard(withValue: false)
+            
+            self.setAsDefaultCheckBox.isChecked = false
+            presenter.updateIsDefaultCard(withValue: false)
         }
     }
     
     @IBAction func setAsDefaultBtnAction(_ sender: CheckBox) {
         if !(sender.isChecked) {
-            self.setAsDefaultBool = true
-            self.saveForFutureBtn.isChecked = true
-            self.saveForFutureBool = true
-        }else {
-            self.setAsDefaultBool = false
+            presenter.updateIsDefaultCard(withValue: true)
+            
+            self.saveForFutureCheckBox.isChecked = true
+            presenter.updateIsSaveCard(withValue: true)
+        } else {
+            presenter.updateIsDefaultCard(withValue: false)
+        }
+    }
+    
+    @IBAction func proceedBtnPressed(_ sender: UIButton) {
+        UIApplication.topViewController()?.view.endEditing(true)
+
+#if DEBUG
+        debugPrint("Not App Store or TestFlight build")
+        validCard = true
+#else
+        debugPrint("App Store or TestFlight build")
+#endif
+
+        if(isDataValid()) {
+            let expireDate = cardExpireDateTF.text!.split(separator: "/")
+            let yearMonthFormat = expireDate[1] + expireDate[0]
+            
+            presenter.callPayByCardAPI(cardNumber: cardNumber,
+                                       cardHolderName: cardHolderNameTF.text ?? "",
+                                       expiryDate: String(yearMonthFormat),
+                                       cvv: cardCVVTF.text ?? "")
         }
     }
     
@@ -289,95 +265,9 @@ class AddNewCardVC: UIViewController, MaskedTextFieldDelegateListener, ScanCardD
 }
 
 extension AddNewCardVC {
-    
-    private func validateData() -> Bool {
-        guard !(self.cardNumber.isEmpty) else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_NOTVALID".localizedString())
-            return false
-        }
-        guard self.validCard else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
-            return false
-        }
-        guard (cardNumber.replacingOccurrences(of: " ", with: "").count == 16
-                && cardNumber.replacingOccurrences(of: " ", with: "").count == 19) else {
-            UIApplication.topViewController()?.view.makeToast("cardNumber_VALID".localizedString())
-            return false
-        }
-        guard (self.cardHolderNameTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("CardHolderNameRequird".localizedString())
-            return false
-        }
-        guard (self.cardExpireDateTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID".localizedString())
-            return false
-        }
-        guard (self.cardExpireDateTF.text?.count == 5) else {
-            UIApplication.topViewController()?.view.makeToast("DateTF_NOTVALID_AC".localizedString())
-            return false
-        }
-        guard self.validDate else {
-            UIApplication.topViewController()?.view.makeToast("invalid_expire_date_date".localizedString())
-            return false
-        }
-        guard (self.cardCVVTF.text != "") else {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID".localizedString())
-            return false
-        }
-        guard (self.cardCVVTF.text?.count == 3) else {
-            UIApplication.topViewController()?.view.makeToast("CVCTF_NOTVALID_LENGTH".localizedString())
-            return false
-        }
-        return true
-    }
-    
-    @IBAction func proceedBtnPressed(_ sender: UIButton) {
-        print("\n saveForFutureBool:  \(self.saveForFutureBool)")
-        print("  setAsDefaultBool:  \(self.setAsDefaultBool) \n")
-
-        UIApplication.topViewController()?.view.endEditing(true)
-
-        if(validateData()) {
-            let val = cardExpireDateTF.text!.split(separator: "/")
-            let YearMonth = val[1] + val[0]
-            
-            // TODO: Call PayByCard API
-        }
-        
-//        let addcardRequest = ManualPaymentRequest()
-//        addcardRequest.PAN = self.cardNumber
-//        addcardRequest.CardHolderName = self.cardHolderNameTF.text ?? ""
-//
-//        addcardRequest.cvv2 =  self.cardCVVTF.text!
-//        addcardRequest.DateExpiration = String(YearMonth)
-//        addcardRequest.AmountTrxn = String ( MainScanViewController.paymentData.amount )
-//
-//        ApiManger.PayByCard(CardHolderName : self.cardHolderNameTF.text! ,
-//                            PAN: self.cardNumber,
-//                            cvv2: self.cardCVVTF.text!,
-//                            DateExpiration: String(YearMonth)) { (transactionStatusResponse) in
-//            if transactionStatusResponse.Success {
-//                if transactionStatusResponse.ChallengeRequired {
-//                    self.delegateActions?.openWebView(compose3DSTransactionResponse: transactionStatusResponse,
-//                                                      manualPaymentRequest: addcardRequest)
-//                } else {
-//                    transactionStatusResponse.FROMWHERE = "Card"
-//                    self.delegateActions?.saveCard(transactionStatusResponse: transactionStatusResponse)
-//                }
-//            } else {
-//                if(transactionStatusResponse.Message.isEmpty) {
-//                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.ErrorDetail)
-//                } else {
-//                    UIApplication.topViewController()?.view.makeToast(transactionStatusResponse.Message)
-//                }
-//            }
-//        }
-    }
-    
-}
-    
-extension AddNewCardVC {
     private func setupUIView() {
+        hideSaveThisCardOutlets()
+        
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
@@ -394,36 +284,30 @@ extension AddNewCardVC {
         enterCardDataLbl.text = "please_enter_card_data".localizedString()
         saveForFutureLbl.text = "save_for_future_use".localizedString()
         setAsDefaultLbl.text = "set_as_default".localizedString()
-        scanCardNumber.setTitle("", for: .normal)
-        saveForFutureBtn.setTitle("", for: .normal)
-        setAsDefaultBtn.setTitle("", for: .normal)
-        
-        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
-            self.scanCardNumber.isHidden = false
-        } else if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.notDetermined {
-            self.scanCardNumber.isHidden = true
-        }
-        
-        cardNumberTF.setTextFieldStyle( "card_number".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
+        scanCardBtn.setTitle("", for: .normal)
+        saveForFutureCheckBox.setTitle("", for: .normal)
+        setAsDefaultCheckBox.setTitle("", for: .normal)
+
+        cardNumberTF.setTextFieldStyle("card_number".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.clear, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 18,padding: 10)
         
         cardHolderNameTF.setTextFieldStyle("name_on_card".localizedString()  , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 10,padding: 10,keyboardType: UIKeyboardType.default)
         
         cardExpireDateTF.setTextFieldStyle("expire_date".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 5,padding: 10)
         
-        cardCVVTF.setTextFieldStyle( "cvc".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
+        cardCVVTF.setTextFieldStyle("cvc".localizedString() , title: "", textColor: UIColor.black, font:GlobalManager.setFont(14) , borderWidth: 0, borderColor: UIColor.gray, backgroundColor: UIColor.white, cornerRadius: 0, placeholderColor: UIColor.gray,maxLength: 4,padding: 4)
         
-        MaskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
-        MaskedCreditCard.listener = self
-        cardNumberTF.delegate = MaskedCreditCard
+        maskedCreditCard = MaskedTextFieldDelegate(primaryFormat: "[0000] [0000] [0000] [0000]")
+        maskedCreditCard.listener = self
+        cardNumberTF.delegate = maskedCreditCard
         cardNumberTF.tag = 1
         
-        MaskedHolderName  = MaskedTextFieldDelegate(primaryFormat: "[A][--------] [A][---------] [A][---------]")
-        cardHolderNameTF.delegate =  MaskedHolderName
-        MaskedHolderName.listener = self
+        maskedHolderName = MaskedTextFieldDelegate(primaryFormat: "[A][--------] [A][---------] [A][---------]")
+        cardHolderNameTF.delegate =  maskedHolderName
+        maskedHolderName.listener = self
 
-        MaskedCVV = MaskedTextFieldDelegate(primaryFormat: "[000]")
-        MaskedCVV.listener = self
-        cardCVVTF.delegate = MaskedCVV
+        maskedCVV = MaskedTextFieldDelegate(primaryFormat: "[000]")
+        maskedCVV.listener = self
+        cardCVVTF.delegate = maskedCVV
         
         cardExpireDateTF.tag = 2
         scanCreditCardDelegate = self
@@ -433,20 +317,12 @@ extension AddNewCardVC {
 extension AddNewCardVC: AddNewCardView {
     func hideSaveThisCardOutlets() {
         print("hideSaveThisCardOutlets")
-    }
-    
-    func onScanCardBtnTapped() {
-        print("onScanCardBtnTapped")
-    }
-    
-    func onSaveCardSwitchValueChanged(_ isSwitchOn: Bool) {
-        print("onSaveCardSwitchValueChanged")
+        saveForFutureCheckBox.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
+        saveForFutureLbl.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
+        setAsDefaultCheckBox.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
+        setAsDefaultLbl.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
     }
    
-    func onPayBtnTapped() {
-        print("onPayBtnTapped")
-    }
-    
     func openWebView(withUrlPath path: String) {
         print("openWebView")
     }
@@ -459,12 +335,14 @@ extension AddNewCardVC: AddNewCardView {
         proceedBtn.isUserInteractionEnabled = true
         UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
     }
-    
+
     func startLoading() {
-        print("startLoading")
+        proceedBtn.isUserInteractionEnabled = false
+        loadingSpinner.startAnimating()
     }
-    
+
     func endLoading() {
-        print("endLoading")
+        proceedBtn.isUserInteractionEnabled = true
+        loadingSpinner.stopAnimating()
     }
 }

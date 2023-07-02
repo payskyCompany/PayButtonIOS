@@ -67,6 +67,7 @@ class SelectCardListVC: UIViewController {
 
         hideKeyboardWhenTappedAround()
         self.setupUIView()
+        addSpinnerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,18 +82,14 @@ class SelectCardListVC: UIViewController {
     }
     
     private func addSpinnerView() {
-        if let topControllerView = UIApplication.topViewController()?.view {
-            topControllerView.addSubview(loadingSpinner)
-            loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loadingSpinner.centerXAnchor.constraint(equalTo: topControllerView.centerXAnchor).isActive = true
-            loadingSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
-        }
+        self.view.addSubview(loadingSpinner)
+        loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loadingSpinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
     
     private func setupUIView() {
-        addSpinnerView()
-        
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
@@ -139,7 +136,6 @@ class SelectCardListVC: UIViewController {
     
     @IBAction func proceedBtnPressed(_ sender: UIButton) {
         if selectedCardCvv != "", let selectedCardId = selectedSavedCard?.cardID {
-            proceedBtn.isUserInteractionEnabled = false
             startLoading()
             print("Card ID \n" + "\(selectedCardId)")
             presenter.getCustomerSession() { [weak self] sessionId in
@@ -284,10 +280,12 @@ extension SelectCardListVC: SelectCardListView {
     }
     
     func startLoading() {
+        proceedBtn.isUserInteractionEnabled = false
         loadingSpinner.startAnimating()
     }
 
     func endLoading() {
+        proceedBtn.isUserInteractionEnabled = true
         loadingSpinner.stopAnimating()
     }
 }

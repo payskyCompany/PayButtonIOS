@@ -27,10 +27,10 @@
                 <outlet property="merchantLbl" destination="FGX-il-8pE" id="15N-wq-aJC"/>
                 <outlet property="merchantNameLbl" destination="Y2r-WC-FXl" id="qeX-em-mJz"/>
                 <outlet property="proceedBtn" destination="toR-Ed-y7U" id="69S-IR-nYG"/>
-                <outlet property="saveForFutureBtn" destination="tAa-N8-NAL" id="1Jh-Zk-Gyi"/>
+                <outlet property="saveForFutureCheckBox" destination="tAa-N8-NAL" id="1Jh-Zk-Gyi"/>
                 <outlet property="saveForFutureLbl" destination="x7p-kL-746" id="DCA-Yf-BPO"/>
-                <outlet property="scanCardNumber" destination="fvC-hI-I65" id="5CV-PY-UVg"/>
-                <outlet property="setAsDefaultBtn" destination="eWi-uw-xs4" id="7Go-rj-nia"/>
+                <outlet property="scanCardBtn" destination="fvC-hI-I65" id="5CV-PY-UVg"/>
+                <outlet property="setAsDefaultCheckBox" destination="eWi-uw-xs4" id="7Go-rj-nia"/>
                 <outlet property="setAsDefaultLbl" destination="R1R-yB-IAj" id="iPn-bB-dRf"/>
                 <outlet property="termsAndConditionsBtn" destination="AVZ-jE-Imq" id="gSA-xX-D0d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -270,7 +270,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="camera"/>
                                                     <connections>
-                                                        <action selector="scanCardData:" destination="-1" eventType="touchUpInside" id="V46-We-p7W"/>
+                                                        <action selector="scanCardBtnTapped:" destination="-1" eventType="touchUpInside" id="V46-We-p7W"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

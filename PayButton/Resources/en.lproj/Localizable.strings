@@ -97,9 +97,9 @@
 "mobile_number_valid"="please enter mobile number ";
 
 
-"DateTF_NOTVALID"="Please enter Expiry date";
+"DateTF_NOTVALID"="Please enter card expiry date";
 "DateTF_NOTVALID_AC"="Card expiry date should be 4 digits";
-"cardNumber_NOTVALID"="Please enter  card number";
+"cardNumber_NOTVALID"="Please enter card number";
 "cardNumber_VALID"="Please enter valid card number";
 "CVCTF_NOTVALID" = "CVC is required";
 "CVCTF_NOTVALID_LENGTH" = "CVC should be 3 digits length";
