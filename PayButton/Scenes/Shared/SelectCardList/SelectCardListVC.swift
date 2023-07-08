@@ -247,7 +247,7 @@ extension SelectCardListVC: SelectCardListView {
     
     func navigateToProcessingPaymentView(withUrlPath path: String) {
         print("navigateToProcessingPaymentView")
-        let viewController = PaymentProcessingVC(nibName: "ProcessingCardDataVC", bundle: nil)
+        let viewController = PaymentProcessingVC(nibName: "PaymentProcessingVC", bundle: nil)
         viewController.delegate = self.delegate
         
         let presenter = PaymentProcessingPresenter(view: viewController, urlPath: path)

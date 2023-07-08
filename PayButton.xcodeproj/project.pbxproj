@@ -147,9 +147,9 @@
 		FAF480102A418940005EC676 /* DefaultCardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF4800E2A418940005EC676 /* DefaultCardListCell.swift */; };
 		FAF480112A418940005EC676 /* DefaultCardListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF4800F2A418940005EC676 /* DefaultCardListCell.xib */; };
 		FAF480152A41A808005EC676 /* PaymentProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF480132A41A808005EC676 /* PaymentProcessingVC.swift */; };
-		FAF480162A41A808005EC676 /* ProcessingCardDataVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */; };
+		FAF480162A41A808005EC676 /* PaymentProcessingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480142A41A808005EC676 /* PaymentProcessingVC.xib */; };
 		FAF4801A2A41B065005EC676 /* PaymentApprovedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF480182A41B065005EC676 /* PaymentApprovedVC.swift */; };
-		FAF4801B2A41B065005EC676 /* ApprovedCardDataVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */; };
+		FAF4801B2A41B065005EC676 /* PaymentApprovedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF480192A41B065005EC676 /* PaymentApprovedVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -300,9 +300,9 @@
 		FAF4800E2A418940005EC676 /* DefaultCardListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCardListCell.swift; sourceTree = "<group>"; };
 		FAF4800F2A418940005EC676 /* DefaultCardListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCardListCell.xib; sourceTree = "<group>"; };
 		FAF480132A41A808005EC676 /* PaymentProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProcessingVC.swift; sourceTree = "<group>"; };
-		FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessingCardDataVC.xib; sourceTree = "<group>"; };
+		FAF480142A41A808005EC676 /* PaymentProcessingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentProcessingVC.xib; sourceTree = "<group>"; };
 		FAF480182A41B065005EC676 /* PaymentApprovedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentApprovedVC.swift; sourceTree = "<group>"; };
-		FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovedCardDataVC.xib; sourceTree = "<group>"; };
+		FAF480192A41B065005EC676 /* PaymentApprovedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentApprovedVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -818,7 +818,7 @@
 			children = (
 				89C017A52A58E2B80050108A /* PaymentProcessingPresenter.swift */,
 				FAF480132A41A808005EC676 /* PaymentProcessingVC.swift */,
-				FAF480142A41A808005EC676 /* ProcessingCardDataVC.xib */,
+				FAF480142A41A808005EC676 /* PaymentProcessingVC.xib */,
 			);
 			path = PaymentProcessing;
 			sourceTree = "<group>";
@@ -828,7 +828,7 @@
 			children = (
 				89C017A72A58E2DA0050108A /* PaymentApprovedPresenter.swift */,
 				FAF480182A41B065005EC676 /* PaymentApprovedVC.swift */,
-				FAF480192A41B065005EC676 /* ApprovedCardDataVC.xib */,
+				FAF480192A41B065005EC676 /* PaymentApprovedVC.xib */,
 			);
 			path = PaymentApproved;
 			sourceTree = "<group>";
@@ -897,11 +897,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF480112A418940005EC676 /* DefaultCardListCell.xib in Resources */,
-				FAF480162A41A808005EC676 /* ProcessingCardDataVC.xib in Resources */,
+				FAF480162A41A808005EC676 /* PaymentProcessingVC.xib in Resources */,
 				C5B900EC2168F0B500301C13 /* CompleteTableViewCell.xib in Resources */,
 				C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */,
 				C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */,
-				FAF4801B2A41B065005EC676 /* ApprovedCardDataVC.xib in Resources */,
+				FAF4801B2A41B065005EC676 /* PaymentApprovedVC.xib in Resources */,
 				C5F5D81D216650C70090E5FF /* CardTableViewCell.xib in Resources */,
 				89C7848F2A309C8F007280F6 /* MainViewController.xib in Resources */,
 				FA48AFB82A40A3810064C8B1 /* DefaultCardListHeader.xib in Resources */,
