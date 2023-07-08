@@ -104,7 +104,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     func completeRequest(transactionStatusResponse: TransactionStatusResponse) {
-        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
+//        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
         
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
@@ -279,7 +279,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     @objc func close(sender: UITapGestureRecognizer? = nil) {
-        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
+//        delegate?.finishedSdkPayment(transactionStatusResponse, withCustomerId: MerchantDataManager.shared.merchant.customerId)
 
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
@@ -289,7 +289,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     @IBAction func CardAction(_ sender: Any) {
-        self.CardView.backgroundColor = UIColor.mainBtnColor
+        self.CardView.backgroundColor = UIColor.mainColor
         self.CardImage.image = #imageLiteral(resourceName: "card")
         self.CardBtn.setTitleColor(UIColor.white, for: UIControl.State())
         
@@ -304,7 +304,7 @@ class MainScanViewController: BasePaymentViewController , UITableViewDataSource,
     }
     
     @IBAction func WalletAction(_ sender: Any) {
-        self.WalletView.backgroundColor = UIColor.mainBtnColor
+        self.WalletView.backgroundColor = UIColor.mainColor
         self.WalletImage.image =  #imageLiteral(resourceName: "selected_wallet")
         self.WalletBtn.setTitleColor(UIColor.white, for: UIControl.State())
         

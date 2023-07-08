@@ -14,8 +14,8 @@ enum Environment: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .Production: return "https://cube.paysky.io"
-        case .Testing: return "https://grey.paysky.io"
+        case .Production: return "https://cube.paysky.io/"
+        case .Testing: return "https://grey.paysky.io/"
         }
     }
 }

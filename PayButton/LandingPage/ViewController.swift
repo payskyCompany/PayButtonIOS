@@ -9,7 +9,7 @@
 import UIKit
 import MOLH
 
-class ViewController: UIViewController, PayButtonDelegate {
+class ViewController: UIViewController {
     
     let payskyTitle = "PAYSKY"
     let upgTitle = "UPG"

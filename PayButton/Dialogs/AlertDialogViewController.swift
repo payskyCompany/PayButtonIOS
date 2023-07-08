@@ -45,7 +45,7 @@ class AlertDialogViewController: UIViewController {
         headerView.backgroundColor = UIColor.NavColor
         
         okButton.setButtonStyle(okText,
-                                backgroundColor: UIColor.mainBtnColor,
+                                backgroundColor: UIColor.mainColor,
                                 cornerRadius: 5,
                                 borderWidth: 0,
                                 borderColor: .clear,

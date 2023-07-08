@@ -10,7 +10,8 @@ import Foundation
 
 enum ApiClient {
     case checkPaymentMethod(_ params: PaymentMethodParameters)
-    case payByCard(_ params: PayByCardParameters)
+    case payByNewCard(_ params: PayByCardParameters)
+    case payByTokenizedCard(_ params: TokenizedCardParameters)
     case checkTransactionStatus(_ params: CheckTransactionStatusParameters)
     case getSessionForCustomerToken(_ params: GetCustomerSessionParameters)
     case getAllCardsForCustomerToken(_ params: GetCustomerTokenParameters)
@@ -20,15 +21,11 @@ enum ApiClient {
 extension ApiClient: EndpointType {
     
     private var domain: String {
-        if(MerchantDataManager.shared.isProduction) {
-            return "https://cube.paysky.io"
-        } else {
-            return "https://grey.paysky.io"
-        }
+        return AppConstants.DOMAIN_URL
     }
    
     var gateway: String {
-        return "/cube/PayLink.svc/api"
+        return "cube/PayLink.svc/api"
     }
     
     var baseURL: URL {
@@ -41,7 +38,9 @@ extension ApiClient: EndpointType {
         switch self {
         case .checkPaymentMethod:
             return "/CheckPaymentMethod"
-        case .payByCard:
+        case .payByNewCard:
+            return "/PayByCard"
+        case .payByTokenizedCard:
             return "/PayByCard"
         case .checkTransactionStatus:
             return "/CheckTxnStatus"
@@ -62,7 +61,9 @@ extension ApiClient: EndpointType {
         switch self {
         case .checkPaymentMethod(let params):
             return params.toDict()
-        case  .payByCard(let params):
+        case  .payByNewCard(let params):
+            return params.toDict()
+        case .payByTokenizedCard(let params):
             return params.toDict()
         case .checkTransactionStatus(let params):
             return params.toDict()

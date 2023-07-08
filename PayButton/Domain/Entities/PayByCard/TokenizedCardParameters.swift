@@ -1,41 +1,33 @@
 //
-//  PayByCardParameters.swift
+//  TokenizedCardParameters.swift
 //  PayButton
 //
-//  Created by Nada Kamel on 02/09/2022.
+//  Created by Nada Kamel on 06/07/2023.
+//  Copyright © 2023 PaySky. All rights reserved.
 //
 
 import Foundation
 
-struct PayByCardParameters {
+struct TokenizedCardParameters {
     var amountTrxn, currencyCodeTrxn: String
     var merchantId, terminalId, secureHash: String
     var dateTimeLocalTrxn: String
-    var isSaveCard, isDefaultCard: Bool?
     var cardAcceptorIdCode, cardAcceptorTerminalId: String?
-    var cardHolderName, dateExpiration: String?
     var cvv2: String?
-    var pan: String?
     var merchantReference, systemTraceNr: String?
     var returnURL: String?
     var isFromPOS, isWebRequest, isMobileSDK: Bool?
-    var customerMobileNo, customerEmail: String?
+    var tokenCardId: String?
     var tokenCustomerId, tokenCustomerSession: String?
 
     init(amountTrxn: String,
          merchantId: String,
          terminalId: String,
          secureHashKey: String,
-         cardNumber: String,
-         cardHolderName: String,
-         expiryDate: String,
          cvv: String,
-         isSaveCard: Bool = false,
-         isDefaultCard: Bool = false,
-         customerMobileNo: String? = "",
-         customerEmail: String? = "",
-         tokenCustomerId: String?,
-         tokenCustomerSession: String?) {
+         tokenCustomerId: String,
+         tokenCustomerSession: String,
+         tokenCardId: String) {
         self.amountTrxn = amountTrxn
         currencyCodeTrxn = "\(MerchantDataManager.shared.merchant.currencyCode)"
         self.merchantId = merchantId
@@ -44,13 +36,8 @@ struct PayByCardParameters {
         var encodedSecureHash = "DateTimeLocalTrxn=" + dateTimeLocalTrxn + "&MerchantId=" + merchantId + "&TerminalId=" + terminalId
         encodedSecureHash = encodedSecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: secureHashKey)
         secureHash = encodedSecureHash
-        self.cardHolderName = cardHolderName
-        self.isSaveCard = isSaveCard
-        self.isDefaultCard = isDefaultCard
         cardAcceptorIdCode = merchantId
         cardAcceptorTerminalId = terminalId
-        pan = cardNumber
-        dateExpiration = expiryDate
         cvv2 = cvv
         isFromPOS = false
         isWebRequest = true
@@ -59,10 +46,9 @@ struct PayByCardParameters {
         let transactionReferenceNumber = MerchantDataManager.shared.merchant.trnxRefNumber
         systemTraceNr = transactionReferenceNumber
         merchantReference = transactionReferenceNumber
-        self.customerMobileNo = customerMobileNo
-        self.customerEmail = customerEmail
         self.tokenCustomerId = tokenCustomerId
         self.tokenCustomerSession = tokenCustomerSession
+        self.tokenCardId = tokenCardId
     }
 
     func toDict() -> [String: Any] {
@@ -74,23 +60,17 @@ struct PayByCardParameters {
         dictionary["TerminalId"] = terminalId
         dictionary["SecureHash"] = secureHash
         dictionary["DateTimeLocalTrxn"] = dateTimeLocalTrxn
-        dictionary["CardHolderName"] = cardHolderName
         dictionary["cvv2"] = cvv2
         dictionary["CardAcceptorIDcode"] = cardAcceptorIdCode
         dictionary["CardAcceptorTerminalID"] = cardAcceptorTerminalId
         dictionary["ISFromPOS"] = isFromPOS
-        dictionary["DateExpiration"] = dateExpiration
         dictionary["SystemTraceNr"] = systemTraceNr
-        dictionary["PAN"] = pan
         dictionary["ReturnURL"] = returnURL
         dictionary["IsWebRequest"] = isWebRequest
         dictionary["IsMobileSDK"] = isMobileSDK
-        dictionary["IsDefaultCard"] = isDefaultCard
-        dictionary["IsSaveCard"] = isSaveCard
-        dictionary["MobileNo"] = customerMobileNo
-        dictionary["Email"] = customerEmail
         dictionary["TokenCustomerId"] = tokenCustomerId
         dictionary["TokenCustomerSession"] = tokenCustomerSession
+        dictionary["TokenCardId"] = tokenCardId
         return dictionary
     }
 }

@@ -12,8 +12,8 @@ import MOLH
 protocol SelectCardListView: AnyObject {
     func didTapRadioButton(forCell selectedCell: CardListTblCell)
     func didTapCvvTextField(forCell selectedCell: CardListTblCell)
-    func openWebView(withUrlPath path: String)
-    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String)
+    func navigateToProcessingPaymentView(withUrlPath path: String)
+    func navigateToPaymentApprovedView(withTrxnResponse response: PayByCardReponse)
     func showErrorAlertView(withMessage errorMsg: String)
     func updateSavedCardList()
     func navigateToManageCardsView(withAllCardResponse: GetCustomerCardsResponse)
@@ -27,7 +27,7 @@ class SelectCardListVC: UIViewController {
     let loadingSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = .mainBtnColor
+        spinner.color = .mainColor
         spinner.hidesWhenStopped = true
         spinner.backgroundColor = .lightText
         spinner.layer.cornerRadius = 20
@@ -96,7 +96,7 @@ class SelectCardListVC: UIViewController {
         merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
         amountLbl.text = "amount".localizedString().uppercased()
         amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
-        + " " + "\(MerchantDataManager.shared.merchant.amount)"
+        + " " + String(format: "%.2f", MerchantDataManager.shared.merchant.amount)
         
         proceedBtn.setTitle("proceed".localizedString(), for: .normal)
         backBtn.setTitle("back".localizedString(), for: .normal)
@@ -146,9 +146,9 @@ class SelectCardListVC: UIViewController {
         } else {
             for cell in cardListTbl.visibleCells as! [CardListTblCell] {
                 if(cell.tag == selectedCardIndex) {
-                    cell.showHideCvvAlertLbl(hide: false)
+                    cell.hideCvvAlertLbl(state: false)
                 } else {
-                    cell.showHideCvvAlertLbl(hide: true)
+                    cell.hideCvvAlertLbl(state: true)
                 }
             }
         }
@@ -227,15 +227,17 @@ extension SelectCardListVC: SelectCardListView {
         selectedSavedCard = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         selectedCardIndex = selectedCell.tag
         selectedCell.selectCardRadioBtn.isSelected = true
+        selectedCell.hideCvvView(state: false)
         for cell in cardListTbl.visibleCells as! [CardListTblCell] {
             if(cell.tag != selectedCell.tag) {
                 cell.selectCardRadioBtn.isSelected = false
+                cell.hideCvvView(state: true)
             }
         }
     }
     
     func didTapCvvTextField(forCell selectedCell: CardListTblCell) {
-        selectedCell.showHideCvvAlertLbl(hide: true)
+        selectedCell.hideCvvAlertLbl(state: true)
         selectedCardCvv = selectedCell.cvvTextField.text ?? ""
         print(selectedCardCvv)
         if(selectedCardCvv.count == 3) {
@@ -243,14 +245,37 @@ extension SelectCardListVC: SelectCardListView {
         }
     }
     
-    func openWebView(withUrlPath path: String) {
-        print("openWebView")
+    func navigateToProcessingPaymentView(withUrlPath path: String) {
+        print("navigateToProcessingPaymentView")
+        let viewController = PaymentProcessingVC(nibName: "ProcessingCardDataVC", bundle: nil)
+        viewController.delegate = self.delegate
+        
+        let presenter = PaymentProcessingPresenter(view: viewController, urlPath: path)
+        viewController.presenter = presenter
+        
+        if UIApplication.topViewController()?.navigationController != nil {
+            UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            viewController.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.present(viewController, animated: true)
+        }
     }
     
-    func navigateToPaymentApprovedView(withTrxnReference reference: String, andMessage message: String) {
-        print("navigateToPaymentApprovedView")
+    func navigateToPaymentApprovedView(withTrxnResponse response: PayByCardReponse) {
+        let viewController = PaymentApprovedVC(nibName: "PaymentApprovedVC", bundle: nil)
+        viewController.delegate = self.delegate
+        
+        let presenter = PaymentApprovedPresenter(view: viewController, payByCardResponse: response)
+        viewController.presenter = presenter
+        
+        if UIApplication.topViewController()?.navigationController != nil {
+            UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            viewController.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.present(viewController, animated: true)
+        }
     }
-    
+
     func showErrorAlertView(withMessage errorMsg: String) {
         proceedBtn.isUserInteractionEnabled = true
         UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)

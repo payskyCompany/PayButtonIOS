@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    static var mainBtnColor = hexStringToUIColor("#00a7f6")
+    static var mainColor = hexStringToUIColor("#00a7f6")
     static var fontColor = hexStringToUIColor("#2C93C6")
     static var secondColorBtn = hexStringToUIColor("#2C93C6")
     static var NavColor = hexStringToUIColor("#00a7f6")

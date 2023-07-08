@@ -9,10 +9,9 @@
 import UIKit
 
 extension URL {
-    
-    public var queryParameters: [String: String]? {
+    var queryParameters: [String: String]? {
         guard let components = URLComponents(url: self, resolvingAgainstBaseURL: true),
-                let queryItems = components.queryItems else {
+              let queryItems = components.queryItems else {
             return nil
         }
         var parameters = [String: String]()
@@ -20,5 +19,22 @@ extension URL {
             parameters[item.name] = item.value
         }
         return parameters
+    }
+
+    var queryDictionary: [String: String]? {
+        guard let query = query else { return nil }
+
+        var queryStrings = [String: String]()
+        for pair in query.components(separatedBy: "&") {
+            let key = pair.components(separatedBy: "=")[0]
+
+            let value = pair
+                .components(separatedBy: "=")[1]
+                .replacingOccurrences(of: "+", with: " ")
+                .removingPercentEncoding ?? ""
+
+            queryStrings[key] = value
+        }
+        return queryStrings
     }
 }

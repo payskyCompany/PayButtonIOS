@@ -15,6 +15,7 @@ class CardListTblCell: UITableViewCell {
     @IBOutlet weak var cardHolderNameLbl: UILabel!
     @IBOutlet weak var cardNumberLbl: UILabel!
     @IBOutlet weak var selectCardRadioBtn: DLRadioButton!
+    @IBOutlet weak var cvvView: UIView!
     @IBOutlet weak var cvvTextField: UITextField!
     @IBOutlet weak var cvvAlertLbl: UILabel!
     
@@ -25,7 +26,8 @@ class CardListTblCell: UITableViewCell {
         // Initialization code
         selectCardRadioBtn.setTitle("", for: .normal)
         cvvTextField.delegate = self
-        showHideCvvAlertLbl(hide: true)
+        hideCvvView(state: true)
+        hideCvvAlertLbl(state: true)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,8 +36,12 @@ class CardListTblCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func showHideCvvAlertLbl(hide: Bool) {
-        cvvAlertLbl.isHidden = hide
+    func hideCvvView(state: Bool) {
+        cvvView.isHidden = state
+    }
+    
+    func hideCvvAlertLbl(state: Bool) {
+        cvvAlertLbl.isHidden = state
     }
     
     func configure(_ cardDetails: CardDetails?) {
@@ -46,6 +52,11 @@ class CardListTblCell: UITableViewCell {
             selectCardRadioBtn.isSelected = true
         } else {
             selectCardRadioBtn.isSelected = false
+        }
+        if(selectCardRadioBtn.isSelected) {
+            hideCvvView(state: false)
+        } else {
+            hideCvvView(state: true)
         }
     }
     

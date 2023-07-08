@@ -16,12 +16,11 @@ protocol SelectCardListPresenterProtocol: AnyObject {
 }
 
 class SelectCardListPresenter: SelectCardListPresenterProtocol {
-    
     weak var view: SelectCardListView?
-    
+
     private var paymentMethodData: PaymentMethodResponse!
     private var customerCards: GetCustomerCardsResponse!
-    
+
     required init(view: SelectCardListView,
                   paymentMethodData: PaymentMethodResponse,
                   customerCards: GetCustomerCardsResponse) {
@@ -29,50 +28,50 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         self.paymentMethodData = paymentMethodData
         self.customerCards = customerCards
     }
-    
+
     func getPaymentMethodData() -> PaymentMethodResponse {
         return paymentMethodData
     }
-    
+
     func getCustomerCards() -> GetCustomerCardsResponse {
         return customerCards
     }
-    
+
     func callPayByCardAPI(customerSession: String, cardID: Int, cvv: String) {
         view?.startLoading()
-        
+
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
-        let parameters = PayByCardParameters(amountTrxn: String(integerAmount),
-                                             merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                             terminalId: MerchantDataManager.shared.merchant.terminalId,
-                                             secureHashKey: MerchantDataManager.shared.merchant.secureHashKey,
-                                             cvv: cvv,
-                                             tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
-                                             tokenCustomerSession: customerSession,
-                                             tokenCardId: cardID)
-        
-        let payByCardUseCase = PayByCardUseCaseImp(payByCardParamters: parameters)
-        payByCardUseCase.payByCard { [self] result in
+        let parameters = TokenizedCardParameters(amountTrxn: String(integerAmount),
+                                                 merchantId: MerchantDataManager.shared.merchant.merchantId,
+                                                 terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                                 secureHashKey: MerchantDataManager.shared.merchant.secureHashKey,
+                                                 cvv: cvv,
+                                                 tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
+                                                 tokenCustomerSession: customerSession,
+                                                 tokenCardId: String(cardID))
+
+        let payByTokenizedCardUseCase = PayByTokenizedCardUseCaseImp(tokenizedCardParamters: parameters)
+        payByTokenizedCardUseCase.payByTokenizedCard { [self] result in
             view?.endLoading()
             switch result {
             case let .success(response):
-                if(response.success == true) {
+                if response.success == true {
                     if response.tokenCustomerId != "" && response.tokenCustomerId != nil {
                         MerchantDataManager.shared.merchant.customerId = response.tokenCustomerId ?? ""
                     }
                     // if challenge required, open web view with 3DS URL in response
-                    if(response.challengeRequired == true) {
+                    if response.challengeRequired == true {
                         if let threeDSURLString = response.threeDSUrl {
-                            view?.openWebView(withUrlPath: threeDSURLString)
+                            view?.navigateToProcessingPaymentView(withUrlPath: threeDSURLString)
                         }
                     } else {
                         // if the executed transaction action code is not equal to 00
-                        if (response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00")) {
+                        if response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00") {
                             // transaction failed
                             view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                         } else {
                             // transaction approved
-                            view?.navigateToPaymentApprovedView(withTrxnReference: String(response.systemReference ?? 0), andMessage: response.message ?? "")
+                            view?.navigateToPaymentApprovedView(withTrxnResponse: response)
                         }
                     }
                 } else {
@@ -84,16 +83,16 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
             }
         }
     }
-   
+
     func getCustomerSession(completionHandler: @escaping (String) -> Void) {
         view?.startLoading()
-        
+
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
                                                       amount: String(integerAmount),
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
                                                       terminalId: MerchantDataManager.shared.merchant.terminalId)
-        
+
         let getCustomerSessionUseCase = GetCustomerSessionUseCase(getCustomerSessionParamters: parameters)
         getCustomerSessionUseCase.getCustomerSession { [self] result in
             view?.endLoading()
@@ -109,10 +108,10 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
             }
         }
     }
-    
+
     func getCustomerCards(usingSessionId sessionId: String) {
         view?.startLoading()
-        
+
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = GetCustomerTokenParameters(sessionId: sessionId,
                                                     customerId: MerchantDataManager.shared.merchant.customerId,
@@ -120,7 +119,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                                                     merchantId: MerchantDataManager.shared.merchant.merchantId,
                                                     terminalId: MerchantDataManager.shared.merchant.terminalId,
                                                     secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
-        
+
         let getCustomerCardsUseCase = GetCustomerCardsUseCase(getCustomerCardsParamters: parameters)
         getCustomerCardsUseCase.getCustomerCards { [self] result in
             view?.endLoading()

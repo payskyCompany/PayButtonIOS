@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol PayButtonDelegate: AnyObject {
-    func finishedSdkPayment(_ transactionStatus: TransactionStatusResponse, withCustomerId customer: String)
+    func finishedSdkPayment(_ response: PayByCardReponse)
 }
 
 protocol PaymentView: AnyObject {
@@ -25,7 +25,7 @@ public class PaymentViewController {
     let loadingSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = .mainBtnColor
+        spinner.color = .mainColor
         spinner.hidesWhenStopped = true
         spinner.backgroundColor = .lightText
         spinner.layer.cornerRadius = 20
@@ -116,6 +116,7 @@ public class PaymentViewController {
                                              amount: amount,
                                              currencyCode: currencyCode,
                                              secureHashKey: secureHashKey,
+                                             trnxRefNumber: trnxRefNumber,
                                              customerId: customerId,
                                              customerMobile: customerMobile,
                                              customerEmail: customerEmail)

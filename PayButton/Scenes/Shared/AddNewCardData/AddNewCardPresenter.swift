@@ -18,15 +18,14 @@ protocol AddNewCardPresenterProtocol: AnyObject {
 }
 
 class AddNewCardPresenter: AddNewCardPresenterProtocol {
-    
     weak var view: AddNewCardView?
-    
+
     private var paymentMethodData: PaymentMethodResponse!
     private var customerSessionId: String?
-    
+
     private var isSaveCardSelected: Bool = false
     private var isDefaultCardSelected: Bool = false
-    
+
     required init(view: AddNewCardView,
                   paymentMethodData: PaymentMethodResponse,
                   sessionId: String? = nil) {
@@ -34,28 +33,28 @@ class AddNewCardPresenter: AddNewCardPresenterProtocol {
         self.paymentMethodData = paymentMethodData
         customerSessionId = sessionId
     }
-    
+
     func viewDidLoad() {
-        if(paymentMethodData.isTokenized == false) {
+        if paymentMethodData.isTokenized == false {
             view?.hideSaveThisCardOutlets()
         }
     }
-    
+
     func getPaymentMethodData() -> PaymentMethodResponse {
         return paymentMethodData
     }
-    
+
     func updateIsSaveCard(withValue state: Bool) {
         isSaveCardSelected = state
     }
-    
+
     func updateIsDefaultCard(withValue state: Bool) {
         isDefaultCardSelected = state
     }
-    
-    func callPayByCardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String)  {
+
+    func callPayByCardAPI(cardNumber: String, cardHolderName: String, expiryDate: String, cvv: String) {
         view?.startLoading()
-        
+
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = PayByCardParameters(amountTrxn: String(integerAmount),
                                              merchantId: MerchantDataManager.shared.merchant.merchantId,
@@ -67,33 +66,33 @@ class AddNewCardPresenter: AddNewCardPresenterProtocol {
                                              cvv: cvv,
                                              isSaveCard: isSaveCardSelected,
                                              isDefaultCard: isDefaultCardSelected,
-                                             tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
                                              customerMobileNo: MerchantDataManager.shared.merchant.customerMobile,
-                                             customerEmail: MerchantDataManager.shared.merchant.customerEmail)
-        
+                                             customerEmail: MerchantDataManager.shared.merchant.customerEmail,
+                                             tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
+                                             tokenCustomerSession: customerSessionId)
+
         let payByCardUseCase = PayByCardUseCaseImp(payByCardParamters: parameters)
         payByCardUseCase.payByCard { [self] result in
             view?.endLoading()
             switch result {
             case let .success(response):
-                if(response.success == true) {
+                if response.success == true {
                     if response.tokenCustomerId != "" && response.tokenCustomerId != nil {
                         MerchantDataManager.shared.merchant.customerId = response.tokenCustomerId ?? ""
                     }
                     // if challenge required, open web view with 3DS URL in response
-                    if(response.challengeRequired == true) {
+                    if response.challengeRequired == true {
                         if let threeDSURLString = response.threeDSUrl {
-                            view?.openWebView(withUrlPath: threeDSURLString)
+                            view?.navigateToProcessingPaymentView(withUrlPath: threeDSURLString)
                         }
                     } else {
                         // if the executed transaction action code is not equal to 00
-                        if (response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00")) {
+                        if response.actionCode == nil || response.actionCode?.isEmpty == true || !(response.actionCode == "00") {
                             // transaction failed
                             view?.showErrorAlertView(withMessage: String(response.message ?? ""))
                         } else {
                             // transaction approved
-                            view?.navigateToPaymentApprovedView(withTrxnReference: String(response.systemReference ?? 0),
-                                                                andMessage: response.message ?? "")
+                            view?.navigateToPaymentApprovedView(withTrxnResponse: response)
                         }
                     }
                 } else {

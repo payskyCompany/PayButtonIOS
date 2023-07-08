@@ -14,24 +14,6 @@ class AppConstants {
 
     static let radiusNumber = CGFloat(4)
 
-//    static var registrationUserActive1 = "userid"
-//
-//    static func setPayBtnLiveMode() {
-//        ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
-//    }
-//    static func setPayBtnTestMode() {
-//        ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
-//        print("uuuur\(ApiURL.MAIN_API_LINK)")
-//    }
-//    static func setPayBtnUPGStaggingMode() {
-//        ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
-//        print("uuuur\(ApiURL.MAIN_API_LINK)")
-//    }
-//    static func setPayBtnUPGProductionMode() {
-//        ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
-//        print("uuuur\(ApiURL.MAIN_API_LINK)")
-//    }
-    
     static let DOMAIN_URL: String = {
         return MerchantDataManager.shared.isProduction ? Environment.Production.description : Environment.Testing.description
     }()
@@ -43,6 +25,26 @@ class AppConstants {
         }
         return number
     }
+    
+    
+    //    static var registrationUserActive1 = "userid"
+    //
+    //    static func setPayBtnLiveMode() {
+    //        ApiURL.MAIN_API_LINK = "https://cube.paysky.io/Cube/PayLink.svc/api/";
+    //    }
+    //    static func setPayBtnTestMode() {
+    //        ApiURL.MAIN_API_LINK = "https://grey.paysky.io/Cube/PayLink.svc/api/";
+    //        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    //    }
+    //    static func setPayBtnUPGStaggingMode() {
+    //        ApiURL.MAIN_API_LINK = "https://upgstaging.egyptianbanks.com:4006/Cube/PayLink.svc/api/";
+    //        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    //    }
+    //    static func setPayBtnUPGProductionMode() {
+    //        ApiURL.MAIN_API_LINK = "https://upg.egyptianbanks.com/Cube/PayLink.svc/api/";
+    //        print("uuuur\(ApiURL.MAIN_API_LINK)")
+    //    }
+        
 }
 
 public class PaymentParams {

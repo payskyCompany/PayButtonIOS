@@ -6,90 +6,89 @@
 //  Copyright © 2023 PaySky. All rights reserved.
 //
 
-import UIKit
 import MOLH
+import UIKit
 
 extension MainViewController: PayButtonDelegate {
-    func finishedSdkPayment(_ transactionStatusResponse: TransactionStatusResponse, withCustomerId customerId: String) {
-        if transactionStatusResponse.Success {
-            UIPasteboard.general.string = customerId
+    func finishedSdkPayment(_ response: PayByCardReponse) {
+        if response.success == true {
+            UIPasteboard.general.string = response.tokenCustomerId
             debugPrint("-------- Customer ID --------")
-            debugPrint(customerId)
+            debugPrint(response.tokenCustomerId ?? "")
             UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
         } else {
-            UIApplication.topViewController()?.view.makeToast("Transaction failed")
+            UIApplication.topViewController()?.view.makeToast(response.message)
         }
     }
 }
 
 class MainViewController: UIViewController {
+    @IBOutlet var versionLabel: UILabel!
 
-    @IBOutlet weak var versionLabel: UILabel!
-    
-    @IBOutlet weak var subscriptionTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var selectChannelTextfield: UITextField!
-    
-    @IBOutlet weak var emailStackView: UIStackView!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var emailTextfield: UITextField!
-    
-    @IBOutlet weak var mobileNumberStackView: UIStackView!
-    @IBOutlet weak var mobileNumberLabel: UILabel!
-    @IBOutlet weak var mobileNumberTextfield: UITextField!
-    
-    @IBOutlet weak var customerIdStackView: UIStackView!
-    @IBOutlet weak var customerIdLabel: UILabel!
-    @IBOutlet weak var customerIdTextfield: UITextField!
-    
-    @IBOutlet weak var merchantIdLabel: UILabel!
-    @IBOutlet weak var merchantIdTextfield: UITextField!
-    
-    @IBOutlet weak var terminalIdLabel: UILabel!
-    @IBOutlet weak var terminalIdTextfield: UITextField!
-    
-    @IBOutlet weak var secureHashKeyLabel: UILabel!
-    @IBOutlet weak var secureHashKeyTextfield: UITextField!
-    
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var amountTextfield: UITextField!
-    
-    @IBOutlet weak var currencyCodeLabel: UILabel!
-    @IBOutlet weak var currencyCodeTextfield: UITextField!
-    
-    @IBOutlet weak var trnxRefNumberLabel: UILabel!
-    @IBOutlet weak var trnxRefNumberTextfield: UITextField!
-    
-    @IBOutlet weak var selectUrlLabel: UILabel!
-    @IBOutlet weak var selectUrlEnvironmentPicker: UIPickerView!
-    
-    @IBOutlet weak var changeLangBtn: UIButton!
-    @IBOutlet weak var submitBtn: UIButton!
-    
+    @IBOutlet var subscriptionTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet var selectChannelTextfield: UITextField!
+
+    @IBOutlet var emailStackView: UIStackView!
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var emailTextfield: UITextField!
+
+    @IBOutlet var mobileNumberStackView: UIStackView!
+    @IBOutlet var mobileNumberLabel: UILabel!
+    @IBOutlet var mobileNumberTextfield: UITextField!
+
+    @IBOutlet var customerIdStackView: UIStackView!
+    @IBOutlet var customerIdLabel: UILabel!
+    @IBOutlet var customerIdTextfield: UITextField!
+
+    @IBOutlet var merchantIdLabel: UILabel!
+    @IBOutlet var merchantIdTextfield: UITextField!
+
+    @IBOutlet var terminalIdLabel: UILabel!
+    @IBOutlet var terminalIdTextfield: UITextField!
+
+    @IBOutlet var secureHashKeyLabel: UILabel!
+    @IBOutlet var secureHashKeyTextfield: UITextField!
+
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var amountTextfield: UITextField!
+
+    @IBOutlet var currencyCodeLabel: UILabel!
+    @IBOutlet var currencyCodeTextfield: UITextField!
+
+    @IBOutlet var trnxRefNumberLabel: UILabel!
+    @IBOutlet var trnxRefNumberTextfield: UITextField!
+
+    @IBOutlet var selectUrlLabel: UILabel!
+    @IBOutlet var selectUrlEnvironmentPicker: UIPickerView!
+
+    @IBOutlet var changeLangBtn: UIButton!
+    @IBOutlet var submitBtn: UIButton!
+
     let selectChannelPickerView = UIPickerView()
     private let subscriptionTypes = ["mobile_number".localizedString(), "email_address".localizedString()]
     private let environmentTypes = ["Production", "Testing"]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         versionLabel.text = (versionLabel.text ?? "") + "\(Bundle.main.releaseVersionNumber ?? "")"
-        
+
         let normalTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         let selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         subscriptionTypeSegmentedControl.setTitleTextAttributes(normalTitleTextAttributes, for: .normal)
         subscriptionTypeSegmentedControl.setTitleTextAttributes(selectedTitleTextAttributes, for: .selected)
-        
+
         setupSelectUrlEnvironmentPickerView()
-        
+
         setupSelectChannelTextfieldPickerView()
         emailStackView.isHidden = true
         mobileNumberStackView.isHidden = true
         customerIdStackView.isHidden = true
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         setupViewOutlets()
-        
+
         if MOLHLanguage.currentAppleLanguage() != "ar" {
             selectChannelTextfield.textAlignment = .left
             customerIdTextfield.textAlignment = .left
@@ -102,8 +101,7 @@ class MainViewController: UIViewController {
             currencyCodeTextfield.textAlignment = .left
             trnxRefNumberTextfield.textAlignment = .left
             selectUrlLabel.text = "Select URL"
-        }
-        else {
+        } else {
             selectChannelTextfield.textAlignment = .right
             customerIdTextfield.textAlignment = .right
             mobileNumberTextfield.textAlignment = .right
@@ -117,24 +115,24 @@ class MainViewController: UIViewController {
             selectUrlLabel.text = "اختر الرابط"
         }
     }
-    
+
     private func setupSubmitBtnUI() {
         if let channel = selectChannelTextfield.text, !channel.isEmpty {
             submitBtn.isEnabled = true
-            submitBtn.backgroundColor = .mainBtnColor
+            submitBtn.backgroundColor = .mainColor
         } else {
             submitBtn.isEnabled = false
             submitBtn.backgroundColor = .lightGray
         }
         if let customerId = customerIdTextfield.text, !customerId.isEmpty {
             submitBtn.isEnabled = true
-            submitBtn.backgroundColor = .mainBtnColor
+            submitBtn.backgroundColor = .mainColor
         } else {
             submitBtn.isEnabled = false
             submitBtn.backgroundColor = .lightGray
         }
     }
-    
+
     private func setupViewOutlets() {
         subscriptionTypeSegmentedControl.setTitle("not_subscribed".localizedString(), forSegmentAt: 0)
         subscriptionTypeSegmentedControl.setTitle("subscribed".localizedString(), forSegmentAt: 1)
@@ -152,32 +150,32 @@ class MainViewController: UIViewController {
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
         setupSubmitBtnUI()
-        
+
         merchantIdTextfield.text = "41565"
         terminalIdTextfield.text = "1583826"
         secureHashKeyTextfield.text = "09a90e81140dcb0d686c09f0036ef910"
-        amountTextfield.text = "55.25"
+        amountTextfield.text = "10"
         currencyCodeTextfield.text = "818"
         customerIdTextfield.text = "4cd7c612-7c13-44d0-b10c-21af9141b14c"
     }
-    
+
     private func setupSelectUrlEnvironmentPickerView() {
         selectUrlEnvironmentPicker.delegate = self
         selectUrlEnvironmentPicker.dataSource = self
     }
-    
+
     private func setupSelectChannelTextfieldPickerView() {
         selectChannelPickerView.backgroundColor = .white
         selectChannelPickerView.delegate = self
         selectChannelPickerView.dataSource = self
-        
+
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
         toolBar.tintColor = UIColor.systemBlue
         toolBar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: "done".localizedString(), style: UIBarButtonItem.Style.done, target: self, action: #selector(self.pickerValueUpdated))
+        let doneButton = UIBarButtonItem(title: "done".localizedString(), style: UIBarButtonItem.Style.done, target: self, action: #selector(pickerValueUpdated))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
@@ -187,11 +185,11 @@ class MainViewController: UIViewController {
     }
 
     @IBAction private func subscriptionTypeValueChanged(_ sender: UISegmentedControl) {
-        if(sender.selectedSegmentIndex == 0) {      // Not subscribed
+        if sender.selectedSegmentIndex == 0 { // Not subscribed
             selectChannelTextfield.isHidden = false
             customerIdStackView.isHidden = true
             pickerValueUpdated()
-        } else {                                    // Subscribed
+        } else { // Subscribed
             selectChannelTextfield.isHidden = true
             mobileNumberStackView.isHidden = true
             emailStackView.isHidden = true
@@ -199,7 +197,7 @@ class MainViewController: UIViewController {
         }
         setupSubmitBtnUI()
     }
-    
+
     @IBAction private func submitBtnPressed(_ sender: UIButton) {
         guard let merchantId = merchantIdTextfield.text, !merchantId.isEmpty else {
             UIApplication.topViewController()?.view.makeToast("please_enter_merchant".localizedString())
@@ -217,7 +215,7 @@ class MainViewController: UIViewController {
             UIApplication.topViewController()?.view.makeToast("please_enter_amount".localizedString())
             return
         }
-        if(Double(amount) == 0.0) {
+        if Double(amount) == 0.0 {
             UIApplication.topViewController()?.view.makeToast("please_enter_amount_greater".localizedString())
             return
         }
@@ -225,15 +223,15 @@ class MainViewController: UIViewController {
             UIApplication.topViewController()?.view.makeToast("please_enter_currency_code".localizedString())
             return
         }
-        
+
         // Check if "Not Subscribed" is selected
-        if(subscriptionTypeSegmentedControl.selectedSegmentIndex == 0) {
+        if subscriptionTypeSegmentedControl.selectedSegmentIndex == 0 {
             guard let channel = selectChannelTextfield.text, !channel.isEmpty else {
                 UIApplication.topViewController()?.view.makeToast("please_select_channel".localizedString())
                 return
             }
             // Check if channel selected is "Mobile number" else "Email Address"
-            if(selectChannelPickerView.selectedRow(inComponent: 0) == 0) {
+            if selectChannelPickerView.selectedRow(inComponent: 0) == 0 {
                 guard let mobileNumber = mobileNumberTextfield.text, !mobileNumber.isEmpty else {
                     UIApplication.topViewController()?.view.makeToast("please_enter_mobile_number".localizedString())
                     return
@@ -248,8 +246,7 @@ class MainViewController: UIViewController {
                                                                   isProduction: selectUrlEnvironmentPicker.selectedRow(inComponent: 0) == 0)
                 paymentViewController.delegate = self
                 paymentViewController.pushViewController()
-            }
-            else {
+            } else {
                 guard let emailAddress = emailTextfield.text, !emailAddress.isEmpty else {
                     UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString())
                     return
@@ -265,8 +262,7 @@ class MainViewController: UIViewController {
                 paymentViewController.delegate = self
                 paymentViewController.pushViewController()
             }
-        }
-        else {      // else "Subscribed" is selected
+        } else { // else "Subscribed" is selected
             guard let customerId = customerIdTextfield.text, !customerId.isEmpty else {
                 UIApplication.topViewController()?.view.makeToast("please_enter_customer_id".localizedString())
                 return
@@ -283,36 +279,35 @@ class MainViewController: UIViewController {
             paymentViewController.pushViewController()
         }
     }
-    
+
     @IBAction private func changeLangBtnPressed(_ sender: UIButton) {
         UIView.appearance().semanticContentAttribute = MOLHLanguage.currentAppleLanguage() == "ar" ? .forceRightToLeft : .forceLeftToRight
-        
+
         MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
-        if (MOLHLanguage.currentAppleLanguage() == "en") {
+        if MOLHLanguage.currentAppleLanguage() == "en" {
             UserDefaults.standard.set("en", forKey: "AppLanguage")
         } else {
             UserDefaults.standard.set("ar", forKey: "AppLanguage")
         }
-        
+
         MOLH.reset()
         Bundle.swizzleLocalization()
-        
+
         let viewController = MainViewController(nibName: "MainViewController", bundle: nil)
         viewController.modalPresentationStyle = .fullScreen
-        UIApplication.topViewController()?.present(viewController, animated: true,completion: nil)
+        UIApplication.topViewController()?.present(viewController, animated: true, completion: nil)
     }
-    
-    
 }
 
 // MARK: - [Not Subscribed] Select Channel Textfield Accessory
+
 extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if(pickerView == selectChannelPickerView) {
+        if pickerView == selectChannelPickerView {
             return subscriptionTypes.count
         } else {
             return environmentTypes.count
@@ -320,7 +315,7 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView == selectChannelPickerView) {
+        if pickerView == selectChannelPickerView {
             return subscriptionTypes[row]
         } else {
             return environmentTypes[row]
@@ -328,18 +323,18 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(pickerView == selectUrlEnvironmentPicker) {
+        if pickerView == selectUrlEnvironmentPicker {
             debugPrint(environmentTypes[row])
         }
     }
-    
+
     @objc func pickerValueUpdated() {
         // if mobile number selected
-        if(selectChannelPickerView.selectedRow(inComponent: 0) == 0) {
+        if selectChannelPickerView.selectedRow(inComponent: 0) == 0 {
             selectChannelTextfield.text = "mobile_channel_selected".localizedString()
             mobileNumberStackView.isHidden = false
             emailStackView.isHidden = true
-        } else {       // email address selected
+        } else { // email address selected
             selectChannelTextfield.text = "email_channel_selected".localizedString()
             mobileNumberStackView.isHidden = true
             emailStackView.isHidden = false

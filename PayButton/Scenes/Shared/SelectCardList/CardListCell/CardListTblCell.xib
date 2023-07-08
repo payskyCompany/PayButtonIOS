@@ -162,6 +162,7 @@
                 <outlet property="cardNumberLbl" destination="Wbf-5U-ebV" id="D7P-1H-hGU"/>
                 <outlet property="cvvAlertLbl" destination="hON-bv-dDW" id="kWC-AZ-g6t"/>
                 <outlet property="cvvTextField" destination="UDu-wa-81N" id="X5f-XC-Cev"/>
+                <outlet property="cvvView" destination="9BP-eo-GTB" id="gNK-3X-fIA"/>
                 <outlet property="selectCardRadioBtn" destination="uW0-nB-a2a" id="XXR-Mb-tmV"/>
             </connections>
             <point key="canvasLocation" x="303.05343511450383" y="49.295774647887328"/>

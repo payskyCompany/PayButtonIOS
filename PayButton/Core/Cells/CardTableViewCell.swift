@@ -70,7 +70,7 @@ class CardTableViewCell: BaseUITableViewCell, MaskedTextFieldDelegateListener, S
         //        IQKeyboardManager.shared.placeholderFont = Global.setFont(13)
         //
         
-        SaveCardBtn.backgroundColor = UIColor.mainBtnColor
+        SaveCardBtn.backgroundColor = UIColor.mainColor
         
         SaveCardBtn.layer.cornerRadius = 5
         ScanBtn.imageView?.contentMode = .scaleAspectFit
