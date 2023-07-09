@@ -138,11 +138,7 @@ class SelectCardListVC: UIViewController {
         if selectedCardCvv != "", let selectedCardId = selectedSavedCard?.cardID {
             startLoading()
             print("Card ID \n" + "\(selectedCardId)")
-            presenter.getCustomerSession() { [weak self] sessionId in
-                guard let self = self else { return }
-                print("sessionId \n" + "\(sessionId)")
-                presenter.callPayByCardAPI(customerSession: sessionId, cardID: selectedCardId, cvv: selectedCardCvv)
-            }
+            presenter.callPayByCardAPI(cardID: selectedCardId, cvv: selectedCardCvv)
         } else {
             for cell in cardListTbl.visibleCells as! [CardListTblCell] {
                 if(cell.tag == selectedCardIndex) {
@@ -172,9 +168,10 @@ class SelectCardListVC: UIViewController {
         
         let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
         viewController.delegate = self.delegate
-        let newPresenter = SelectCardListPresenter(view: viewController, paymentMethodData:
-                                                    presenter.getPaymentMethodData(),
-                                                   customerCards: presenter.getCustomerCards())
+        let newPresenter = SelectCardListPresenter(view: viewController,
+                                                   paymentMethodData: presenter.getPaymentMethodData(),
+                                                   customerCards: presenter.getCustomerCards(),
+                                                   customerSessionId: presenter.getSessionId())
         viewController.presenter = newPresenter
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.dismiss(animated: true, completion: {

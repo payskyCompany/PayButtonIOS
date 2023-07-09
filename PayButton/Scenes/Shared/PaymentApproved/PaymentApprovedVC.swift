@@ -14,7 +14,7 @@ protocol PaymentApprovedView: AnyObject {
     func setTransactionNoLabel(withText text: String)
     func startLoading()
     func endLoading()
-    func didSendTrxnReceiptByEmail(withMessage message: String)
+    func didSendTrxnReceiptByEmail()
     func showErrorAlertView(withMessage errorMsg: String)
 }
 
@@ -29,7 +29,9 @@ class PaymentApprovedVC: UIViewController {
         spinner.layer.masksToBounds = true
         return spinner
     }()
-    
+
+    @IBOutlet var scrollView: UIScrollView!
+
     @IBOutlet var closeCurrentPageBtn: UIButton!
     @IBOutlet var headerLbl: UILabel!
     @IBOutlet var merchantLbl: UILabel!
@@ -58,45 +60,64 @@ class PaymentApprovedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
         hideKeyboardWhenTappedAround()
         presenter.viewDidLoad()
         setupUIView()
         addSpinnerView()
     }
-    
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = view.convert(keyboardFrame, from: nil)
+
+        var contentInset: UIEdgeInsets = scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+    }
+
     private func addSpinnerView() {
-        self.view.addSubview(loadingSpinner)
+        view.addSubview(loadingSpinner)
         loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
         loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-        loadingSpinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        loadingSpinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingSpinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingSpinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
     @IBAction func sendEmailBtnTapped(_ sender: UIButton) {
         emailTextField.endEditing(true)
-        
+
         if (emailTextField.text?.isEmpty)! {
-            UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString()  )
+            UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString())
             return
         }
-        
+
         if !(emailTextField.text?.isValidEmail())! {
             UIApplication.topViewController()?.view.makeToast("please_enter_valid_mail".localizedString())
             return
         }
-        
+
         presenter.sendEmail(emailTo: emailTextField.text ?? "",
                             externalReceiptNo: presenter.getPayByCardReponse().receiptNumber ?? "",
                             transactionChannel: presenter.getPayByCardReponse().fromWhere ?? "",
                             transactionId: String(presenter.getPayByCardReponse().systemReference ?? 0))
     }
-    
+
     @IBAction func onCloseBtnTapped(_ sender: UIButton) {
-        delegate?.finishedSdkPayment(presenter.getPayByCardReponse())
-        if navigationController != nil {
-            if let paymentVC = navigationController?.viewControllers.filter({ $0 is MainViewController }).first {
-                navigationController?.popToViewController(paymentVC, animated: true)
-            }
+        UIPasteboard.general.string = presenter.getPayByCardReponse().tokenCustomerId
+        UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
+        
+        let seconds = 4.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.delegate?.finishedSdkPayment(self.presenter.getPayByCardReponse())
         }
     }
 
@@ -183,12 +204,12 @@ extension PaymentApprovedVC: PaymentApprovedView {
         sendBtn.isUserInteractionEnabled = true
         loadingSpinner.stopAnimating()
     }
-    
-    func didSendTrxnReceiptByEmail(withMessage message: String) {
+
+    func didSendTrxnReceiptByEmail() {
         endLoading()
-        UIApplication.topViewController()?.view.makeToast(message)
+        UIApplication.topViewController()?.view.makeToast("email_send_to".localizedString() + (emailTextField.text ?? ""))
     }
-    
+
     func showErrorAlertView(withMessage errorMsg: String) {
         UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
     }

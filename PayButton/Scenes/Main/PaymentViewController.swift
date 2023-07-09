@@ -17,7 +17,9 @@ protocol PaymentView: AnyObject {
     func endLoading()
     func showErrorAlertView(withMessage errorMsg: String)
     func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse)
-    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse, checkPaymentResponse: PaymentMethodResponse)
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse,
+                                      checkPaymentResponse: PaymentMethodResponse,
+                                      customerSessionId: String)
 }
 
 public class PaymentViewController {
@@ -198,13 +200,16 @@ extension PaymentViewController: PaymentView {
         }
     }
 
-    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse, checkPaymentResponse: PaymentMethodResponse) {
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse,
+                                      checkPaymentResponse: PaymentMethodResponse,
+                                      customerSessionId: String) {
         let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
         viewController.delegate = self.delegate
         
         let presenter = SelectCardListPresenter(view: viewController,
                                                 paymentMethodData: checkPaymentResponse,
-                                                customerCards: allCardResponse)
+                                                customerCards: allCardResponse,
+                                                customerSessionId: customerSessionId)
         viewController.presenter = presenter
         
         if UIApplication.topViewController()?.navigationController != nil {

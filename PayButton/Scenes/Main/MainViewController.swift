@@ -12,10 +12,14 @@ import UIKit
 extension MainViewController: PayButtonDelegate {
     func finishedSdkPayment(_ response: PayByCardReponse) {
         if response.success == true {
-            UIPasteboard.general.string = response.tokenCustomerId
             debugPrint("-------- Customer ID --------")
             debugPrint(response.tokenCustomerId ?? "")
-            UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
+            
+            if navigationController != nil {
+                navigationController?.popViewController(animated: true)
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
         } else {
             UIApplication.topViewController()?.view.makeToast(response.message)
         }

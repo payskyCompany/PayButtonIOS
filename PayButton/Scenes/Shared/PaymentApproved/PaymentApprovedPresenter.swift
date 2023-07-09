@@ -52,7 +52,7 @@ class PaymentApprovedPresenter: PaymentApprovedPresenterProtocol {
             switch result {
             case let .success(response):
                 if response.success == true {
-                    view?.didSendTrxnReceiptByEmail(withMessage: response.message ?? "")
+                    view?.didSendTrxnReceiptByEmail()
                 } else {
                     view?.showErrorAlertView(withMessage: response.message ?? "")
                 }

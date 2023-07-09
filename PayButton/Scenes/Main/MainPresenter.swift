@@ -34,9 +34,8 @@ class MainPresenter: MainViewPresenter {
     func getCustomerSession(completionHandler: @escaping (String) -> Void) {
         view?.startLoading()
         
-        let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
-                                                      amount: String(integerAmount),
+                                                      amount: String(MerchantDataManager.shared.merchant.amount),
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
                                                       terminalId: MerchantDataManager.shared.merchant.terminalId)
         
@@ -59,7 +58,7 @@ class MainPresenter: MainViewPresenter {
     func getCustomerCards(usingSessionId sessionId: String) {
         view?.startLoading()
         
-        let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
+        let integerAmount = Int(MerchantDataManager.shared.merchant.amount)
         let parameters = GetCustomerTokenParameters(sessionId: sessionId,
                                                     customerId: MerchantDataManager.shared.merchant.customerId,
                                                     amount: String(integerAmount),
@@ -74,7 +73,9 @@ class MainPresenter: MainViewPresenter {
             case let .success(response):
                 if response.success == true {
                     if !(response.cardsList?.isEmpty ?? true) {
-                        view?.navigateToSelectCardListView(withResponse: response, checkPaymentResponse: paymentMethodData)
+                        view?.navigateToSelectCardListView(withResponse: response,
+                                                           checkPaymentResponse: paymentMethodData,
+                                                           customerSessionId: sessionId)
                     } else {
                         view?.navigateToAddNewCardView(withResponse: paymentMethodData)
                     }

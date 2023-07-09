@@ -10,7 +10,7 @@ import Foundation
 
 protocol SelectCardListPresenterProtocol: AnyObject {
     var view: SelectCardListView? { get set }
-    func callPayByCardAPI(customerSession: String, cardID: Int, cvv: String)
+    func callPayByCardAPI(cardID: Int, cvv: String)
     func getCustomerSession(completionHandler: @escaping (String) -> Void)
     func getCustomerCards(usingSessionId sessionId: String)
 }
@@ -20,13 +20,16 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
 
     private var paymentMethodData: PaymentMethodResponse!
     private var customerCards: GetCustomerCardsResponse!
+    private var sessionId: String!
 
     required init(view: SelectCardListView,
                   paymentMethodData: PaymentMethodResponse,
-                  customerCards: GetCustomerCardsResponse) {
+                  customerCards: GetCustomerCardsResponse,
+                  customerSessionId: String) {
         self.view = view
         self.paymentMethodData = paymentMethodData
         self.customerCards = customerCards
+        sessionId = customerSessionId
     }
 
     func getPaymentMethodData() -> PaymentMethodResponse {
@@ -36,8 +39,12 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
     func getCustomerCards() -> GetCustomerCardsResponse {
         return customerCards
     }
+    
+    func getSessionId() -> String {
+        return sessionId
+    }
 
-    func callPayByCardAPI(customerSession: String, cardID: Int, cvv: String) {
+    func callPayByCardAPI(cardID: Int, cvv: String) {
         view?.startLoading()
 
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
@@ -47,7 +54,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
                                                  secureHashKey: MerchantDataManager.shared.merchant.secureHashKey,
                                                  cvv: cvv,
                                                  tokenCustomerId: MerchantDataManager.shared.merchant.customerId,
-                                                 tokenCustomerSession: customerSession,
+                                                 tokenCustomerSession: sessionId,
                                                  tokenCardId: String(cardID))
 
         let payByTokenizedCardUseCase = PayByTokenizedCardUseCaseImp(tokenizedCardParamters: parameters)
@@ -87,9 +94,8 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
     func getCustomerSession(completionHandler: @escaping (String) -> Void) {
         view?.startLoading()
 
-        let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
-                                                      amount: String(integerAmount),
+                                                      amount: String(MerchantDataManager.shared.merchant.amount),
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
                                                       terminalId: MerchantDataManager.shared.merchant.terminalId)
 
@@ -112,7 +118,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
     func getCustomerCards(usingSessionId sessionId: String) {
         view?.startLoading()
 
-        let integerAmount = Int(MerchantDataManager.shared.merchant.amount * 100.00)
+        let integerAmount = Int(MerchantDataManager.shared.merchant.amount)
         let parameters = GetCustomerTokenParameters(sessionId: sessionId,
                                                     customerId: MerchantDataManager.shared.merchant.customerId,
                                                     amount: String(integerAmount),
