@@ -60,7 +60,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Payment Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-tt-Asz">
-                                                    <rect key="frame" x="30" y="5" width="158.33333333333331" height="20.333333333333332"/>
+                                                    <rect key="frame" x="30" y="5" width="158.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.95686274510000002" green="0.94901960780000005" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -325,6 +325,11 @@
                                             <state key="normal" title="Proceed">
                                                 <color key="titleColor" red="0.95686274510000002" green="0.94901960780000005" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusV">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <variation key="heightClass=regular-widthClass=regular">
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             </variation>

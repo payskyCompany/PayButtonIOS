@@ -10,8 +10,8 @@ import MOLH
 import UIKit
 
 protocol PaymentApprovedView: AnyObject {
-    func setSuccessMessageLabel(withText text: String)
-    func setReferenceNoLabel(withText text: String)
+    func setAuthCodeLabel(withText text: String)
+    func setTransactionNoLabel(withText text: String)
 }
 
 class PaymentApprovedVC: UIViewController {
@@ -23,6 +23,12 @@ class PaymentApprovedVC: UIViewController {
     @IBOutlet var amountValueLbl: UILabel!
 
     @IBOutlet var enterCardDataLbl: UILabel!
+    @IBOutlet var trxnApprovedLbl: UILabel!
+    @IBOutlet var authCodeLbl: UILabel!
+    @IBOutlet var authCodeValueLbl: UILabel!
+    @IBOutlet var trxnNoLbl: UILabel!
+    @IBOutlet var trxnNoValueLbl: UILabel!
+    @IBOutlet var sendReceiptLbl: UILabel!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var sendBtn: UIButton!
     @IBOutlet var closeBtn: UIButton!
@@ -49,10 +55,6 @@ class PaymentApprovedVC: UIViewController {
                 navigationController?.popToViewController(paymentVC, animated: true)
             }
         }
-    }
-
-    @IBAction func dismissCurrentPageAction(_ sender: UIButton) {
-        dismiss(animated: true)
     }
 
     @IBAction func changeLangBtnPressed(_ sender: UIButton) {
@@ -103,17 +105,29 @@ extension PaymentApprovedVC {
         termsAndConditionsBtn.setTitle("terms_conditions".localizedString(), for: .normal)
 
         enterCardDataLbl.text = "please_enter_card_data".localizedString()
+        authCodeLbl.text = "auth_number".localizedString()
+        trxnNoLbl.text = "trx_id".localizedString()
+        sendReceiptLbl.text = "send_receipt".localizedString()
+        emailTextField.placeholder = "email".localizedString()
+        sendBtn.setTitle("send".localizedString(), for: .normal)
+        closeBtn.setTitle("close".localizedString(), for: .normal)
+
+        let string = "transaction_success".localizedString()
+        let stringArr = string.components(separatedBy: " ")
+        let myMutableString = NSMutableAttributedString(string: string, attributes: nil)
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor,
+                                     value: UIColor.hexStringToUIColor("#00BFA5"),
+                                     range: NSRange(location: stringArr[0].count, length: stringArr[1].count + 1))
+        trxnApprovedLbl.attributedText = myMutableString
     }
 }
 
 extension PaymentApprovedVC: PaymentApprovedView {
-    func setSuccessMessageLabel(withText text: String) {
-//        _view.successMessageLabel.text = text
+    func setAuthCodeLabel(withText text: String) {
+        authCodeValueLbl.text = "#\(text)"
     }
 
-    func setReferenceNoLabel(withText text: String) {
-//        if let label = _view.referenceNoLabel.text {
-//            _view.referenceNoLabel.text = "\(label) \(text)"
-//        }
+    func setTransactionNoLabel(withText text: String) {
+        trxnNoValueLbl.text = "#\(text)"
     }
 }

@@ -11,7 +11,7 @@
 "done" = "تأكيد";
 "submit" = "إرسال";
 
-"request_send_to_mobile" = "تم ارسال الطلب بنجاح";
+"processing" = "جاري الاتصال";
 
 "scanCard" = "افحص بيانات الكارت";
 "pay_now"="ادفع الآن";
@@ -57,6 +57,8 @@
 "enter_send_money"="1-اضغط ارسال اموال";
 "help"="مساعدة؟";
 "qr_code"="كود الدفع";
+
+"request_send_to_mobile" = "تم ارسال الطلب بنجاح";
 "sms"="رسالة";
 "quick_payment_form"="نموذج الدفع السريع";
 "select_send_money"="2-اختر ارسال اموال";

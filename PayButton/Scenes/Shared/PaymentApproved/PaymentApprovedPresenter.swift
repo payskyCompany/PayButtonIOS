@@ -18,19 +18,19 @@ class PaymentApprovedPresenter: PaymentApprovedPresenterProtocol {
     weak var view: PaymentApprovedView?
 
     private var payByCardResponse: PayByCardReponse
-    private var paymentApprovedMessage: String
+    private var authCode: String
     private var transactionReferenceNo: Int
 
     required init(view: PaymentApprovedView, payByCardResponse: PayByCardReponse) {
         self.view = view
         self.payByCardResponse = payByCardResponse
+        authCode = payByCardResponse.authCode ?? ""
         transactionReferenceNo = payByCardResponse.systemReference ?? 0
-        paymentApprovedMessage = payByCardResponse.message ?? ""
     }
 
     func viewDidLoad() {
-        view?.setReferenceNoLabel(withText: String(transactionReferenceNo))
-        view?.setSuccessMessageLabel(withText: paymentApprovedMessage)
+        view?.setAuthCodeLabel(withText: authCode)
+        view?.setTransactionNoLabel(withText: String(transactionReferenceNo))
     }
 
     func getPayByCardReponse() -> PayByCardReponse {

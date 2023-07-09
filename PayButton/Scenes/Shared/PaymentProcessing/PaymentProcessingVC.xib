@@ -21,6 +21,7 @@
                 <outlet property="merchantLbl" destination="bUv-qZ-HLv" id="PCF-Hn-IAN"/>
                 <outlet property="merchantNameLbl" destination="arE-9w-C4h" id="EPE-0y-lPn"/>
                 <outlet property="paymentWKWebView" destination="7lB-US-D2S" id="Odg-mf-eng"/>
+                <outlet property="processingLbl" destination="WtQ-5b-yiK" id="Elp-Sq-9Jh"/>
                 <outlet property="termsAndConditionsBtn" destination="04s-mr-4sB" id="96z-5P-AHY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

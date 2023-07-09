@@ -6,13 +6,14 @@
 "currency_code" = "Currency Code";
 "secure_hash_key" = "Secure Hash Key";
 
+"change_lang" = "Change Language";
+
 "done" = "Done";
 "submit" = "Submit";
 
-"scanCard" = "Scan card data ";
+"processing" = "Processing";
 
-"change_lang" = "Change Language";
-
+"scanCard" = "Scan card data";
 "pay_now"="Pay Now";
 "quick_payment_from"="Quick Payment Form";
 "merchant"="MERCHANT";

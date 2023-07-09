@@ -26,6 +26,7 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
     @IBOutlet var amountValueLbl: UILabel!
 
     @IBOutlet var enterCardDataLbl: UILabel!
+    @IBOutlet var processingLbl: UILabel!
     @IBOutlet var paymentWKWebView: WKWebView!
 
     @IBOutlet var changeLangBtn: UIButton!
@@ -112,7 +113,7 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        showActivityIndicator(show: false)
+        showActivityIndicator(show: true)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -171,6 +172,7 @@ extension PaymentProcessingVC {
         termsAndConditionsBtn.setTitle("terms_conditions".localizedString(), for: .normal)
 
         enterCardDataLbl.text = "please_enter_card_data".localizedString()
+        processingLbl.text = "processing".localizedString()
     }
 }
 
