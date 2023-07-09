@@ -36,4 +36,29 @@ class PaymentApprovedPresenter: PaymentApprovedPresenterProtocol {
     func getPayByCardReponse() -> PayByCardReponse {
         return payByCardResponse
     }
+
+    func sendEmail(emailTo: String, externalReceiptNo: String, transactionChannel: String, transactionId: String) {
+        view?.startLoading()
+
+        let parameters = SendReceiptByEmailParameters(emailTo: emailTo,
+                                                      externalReceiptNumber: externalReceiptNo,
+                                                      externalReceiptNo: externalReceiptNo,
+                                                      transactionId: transactionId,
+                                                      transactionChannel: transactionChannel)
+
+        let sendTrxnReceiptByEmailUseCase = SendTrxnReceiptByEmailUseCase(sendReceiptByEmailParameters: parameters)
+        sendTrxnReceiptByEmailUseCase.sendReceiptByEmail { [self] result in
+            view?.endLoading()
+            switch result {
+            case let .success(response):
+                if response.success == true {
+                    view?.didSendTrxnReceiptByEmail(withMessage: response.message ?? "")
+                } else {
+                    view?.showErrorAlertView(withMessage: response.message ?? "")
+                }
+            case let .failure(error):
+                view?.showErrorAlertView(withMessage: error.localizedDescription)
+            }
+        }
+    }
 }

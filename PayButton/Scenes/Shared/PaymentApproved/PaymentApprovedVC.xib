@@ -385,6 +385,9 @@
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="sendEmailBtnTapped:" destination="-1" eventType="touchUpInside" id="u0g-BY-0D7"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

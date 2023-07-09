@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+struct SendReceiptByEmailResponse: Decodable {
+    let message: String?
+    let secureHash: String?
+    let secureHashData: String?
+    let success: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case message = "Message"
+        case secureHash = "SecureHash"
+        case secureHashData = "SecureHashData"
+        case success = "Success"
+    }
+}

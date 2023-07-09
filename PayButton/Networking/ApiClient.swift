@@ -16,6 +16,7 @@ enum ApiClient {
     case getSessionForCustomerToken(_ params: GetCustomerSessionParameters)
     case getAllCardsForCustomerToken(_ params: GetCustomerTokenParameters)
     case deleteToken(_ params: DeleteTokenParameters)
+    case sendReceiptByEmail(_ params: SendReceiptByEmailParameters)
 }
 
 extension ApiClient: EndpointType {
@@ -50,6 +51,8 @@ extension ApiClient: EndpointType {
             return "/GetAllCardsForCustomerToken"
         case .deleteToken:
             return "/RemoveToken"
+        case .sendReceiptByEmail:
+            return "/SendReceiptToEmail"
         }
     }
     
@@ -72,6 +75,8 @@ extension ApiClient: EndpointType {
         case .getAllCardsForCustomerToken(let params):
             return params.toDict()
         case .deleteToken(let params):
+            return params.toDict()
+        case .sendReceiptByEmail(let params):
             return params.toDict()
         }
     }

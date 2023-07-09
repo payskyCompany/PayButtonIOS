@@ -1,5 +1,5 @@
 //
-//  SendReceiptByEmailRequest.swift
+//  SendReceiptByEmailParameters.swift
 //  PayButton
 //
 //  Created by Nada Kamel on 09/07/2023.
@@ -8,33 +8,28 @@
 
 import Foundation
 
-struct SendReceiptByEmailRequest {
+struct SendReceiptByEmailParameters {
     var emailTo: String
     var externalReceiptNumber: String
     var externalReceiptNo: String
     var transactionId: String
     var transactionChannel: String
-    
-    init(token: String, customerId: String, merchantId: String, terminalId: String, secureHashKey: String) {
-        self.token = token
-        self.customerId = customerId
-        self.merchantId = merchantId
-        self.terminalId = terminalId
-        dateTimeLocalTrxn = FormattedDate.getDate()
-        var encodedSecureHash  = "DateTimeLocalTrxn=" + dateTimeLocalTrxn + "&MerchantId=" + merchantId + "&TerminalId=" + terminalId
-        encodedSecureHash = encodedSecureHash.hmac(algorithm: HMACAlgorithm.SHA256, key: secureHashKey)
-        secureHash = encodedSecureHash
-    }
-    
-    func toDict() -> [String: Any] {
-        var dictionary = [String: Any]()
-        dictionary["Token"] = token
-        dictionary["CustomerId"] = customerId
-        dictionary["MerchantId"] = merchantId
-        dictionary["TerminalId"] = terminalId
-        dictionary["DateTimeLocalTrxn"] = dateTimeLocalTrxn
-        dictionary["SecureHash"] = secureHash
-        return dictionary
+
+    init(emailTo: String, externalReceiptNumber: String, externalReceiptNo: String, transactionId: String, transactionChannel: String) {
+        self.emailTo = emailTo
+        self.externalReceiptNumber = externalReceiptNumber
+        self.externalReceiptNo = externalReceiptNo
+        self.transactionId = transactionId
+        self.transactionChannel = transactionChannel
     }
 
+    func toDict() -> [String: Any] {
+        var dictionary = [String: Any]()
+        dictionary["EmailTo"] = emailTo
+        dictionary["ExternalReceiptNumber"] = externalReceiptNumber
+        dictionary["ExternalReceiptNo"] = externalReceiptNo
+        dictionary["TransactionId"] = transactionId
+        dictionary["TransactionChannel"] = transactionChannel
+        return dictionary
+    }
 }

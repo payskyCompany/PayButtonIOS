@@ -12,9 +12,24 @@ import UIKit
 protocol PaymentApprovedView: AnyObject {
     func setAuthCodeLabel(withText text: String)
     func setTransactionNoLabel(withText text: String)
+    func startLoading()
+    func endLoading()
+    func didSendTrxnReceiptByEmail(withMessage message: String)
+    func showErrorAlertView(withMessage errorMsg: String)
 }
 
 class PaymentApprovedVC: UIViewController {
+    let loadingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .mainColor
+        spinner.hidesWhenStopped = true
+        spinner.backgroundColor = .lightText
+        spinner.layer.cornerRadius = 20
+        spinner.layer.masksToBounds = true
+        return spinner
+    }()
+    
     @IBOutlet var closeCurrentPageBtn: UIButton!
     @IBOutlet var headerLbl: UILabel!
     @IBOutlet var merchantLbl: UILabel!
@@ -46,8 +61,36 @@ class PaymentApprovedVC: UIViewController {
         hideKeyboardWhenTappedAround()
         presenter.viewDidLoad()
         setupUIView()
+        addSpinnerView()
+    }
+    
+    private func addSpinnerView() {
+        self.view.addSubview(loadingSpinner)
+        loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        loadingSpinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loadingSpinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 
+    @IBAction func sendEmailBtnTapped(_ sender: UIButton) {
+        emailTextField.endEditing(true)
+        
+        if (emailTextField.text?.isEmpty)! {
+            UIApplication.topViewController()?.view.makeToast("please_enter_your_mail".localizedString()  )
+            return
+        }
+        
+        if !(emailTextField.text?.isValidEmail())! {
+            UIApplication.topViewController()?.view.makeToast("please_enter_valid_mail".localizedString())
+            return
+        }
+        
+        presenter.sendEmail(emailTo: emailTextField.text ?? "",
+                            externalReceiptNo: presenter.getPayByCardReponse().receiptNumber ?? "",
+                            transactionChannel: presenter.getPayByCardReponse().fromWhere ?? "",
+                            transactionId: String(presenter.getPayByCardReponse().systemReference ?? 0))
+    }
+    
     @IBAction func onCloseBtnTapped(_ sender: UIButton) {
         delegate?.finishedSdkPayment(presenter.getPayByCardReponse())
         if navigationController != nil {
@@ -129,5 +172,24 @@ extension PaymentApprovedVC: PaymentApprovedView {
 
     func setTransactionNoLabel(withText text: String) {
         trxnNoValueLbl.text = "#\(text)"
+    }
+
+    func startLoading() {
+        sendBtn.isUserInteractionEnabled = false
+        loadingSpinner.startAnimating()
+    }
+
+    func endLoading() {
+        sendBtn.isUserInteractionEnabled = true
+        loadingSpinner.stopAnimating()
+    }
+    
+    func didSendTrxnReceiptByEmail(withMessage message: String) {
+        endLoading()
+        UIApplication.topViewController()?.view.makeToast(message)
+    }
+    
+    func showErrorAlertView(withMessage errorMsg: String) {
+        UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
     }
 }
