@@ -1,5 +1,5 @@
 //
-//  DefaultCardListCell.swift
+//  ManageCardsTblCell.swift
 //  PayButton
 //
 //  Created by PaySky105 on 20/06/2023.
@@ -9,7 +9,7 @@
 import UIKit
 import DLRadioButton
 
-class DefaultCardListCell: UITableViewCell {
+class ManageCardsTblCell: UITableViewCell {
 
     @IBOutlet weak var selectCardBtn: DLRadioButton!
     @IBOutlet weak var deleteCardBtn: UIButton!

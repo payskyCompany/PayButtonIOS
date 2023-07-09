@@ -1,5 +1,5 @@
 //
-//  DefaultCardListVC.swift
+//  ManageCardsVC.swift
 //  PayButton
 //
 //  Created by PaySky105 on 19/06/2023.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DefaultCardListVC: UIViewController {
+class ManageCardsVC: UIViewController {
     
     @IBOutlet weak var defaultCardListTbl: UITableView!
     @IBOutlet weak var defaultCardListTblHeight: NSLayoutConstraint!
@@ -29,7 +29,7 @@ class DefaultCardListVC: UIViewController {
     
 }//--- end of class
 
-extension DefaultCardListVC: UITableViewDataSource, UITableViewDelegate {
+extension ManageCardsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.viewWillLayoutSubviews()
     }
@@ -47,12 +47,12 @@ extension DefaultCardListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCardListCell", for: indexPath) as! DefaultCardListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCardListCell", for: indexPath) as! ManageCardsTblCell
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DefaultCardListHeader") as! DefaultCardListHeader
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DefaultCardListHeader") as! ManageCardsTableHeader
         return headerView
     }
     
@@ -61,7 +61,7 @@ extension DefaultCardListVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension DefaultCardListVC {
+extension ManageCardsVC {
     private func setupUIView() {
         defaultCardListTbl.register(UINib(nibName: "DefaultCardListCell", bundle: nil),
                              forCellReuseIdentifier: "DefaultCardListCell")

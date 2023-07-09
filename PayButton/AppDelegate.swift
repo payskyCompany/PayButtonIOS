@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         MOLH.shared.activate(true)
         
+        window = UIWindow(frame: UIScreen.main.bounds)
         let mainView = MainViewController(nibName: "MainViewController", bundle: nil)
         self.window?.rootViewController = mainView
         self.window?.makeKeyAndVisible()
