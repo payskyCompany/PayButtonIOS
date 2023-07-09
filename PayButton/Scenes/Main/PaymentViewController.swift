@@ -23,7 +23,6 @@ protocol PaymentView: AnyObject {
 }
 
 public class PaymentViewController {
-
     let loadingSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +33,7 @@ public class PaymentViewController {
         spinner.layer.masksToBounds = true
         return spinner
     }()
-    
+
     let mId: String
     let tId: String
     let amount: Double
@@ -44,11 +43,11 @@ public class PaymentViewController {
     let customerId: String
     let customerMobile: String
     let customerEmail: String
-    
+
     private var view: PaymentView!
-    
+
     public weak var delegate: PayButtonDelegate?
-  
+
     init(merchantId: String, terminalId: String, amount: Double, currencyCode: Int,
          secureHashKey: String, trnxRefNumber: String = "", customerId: String = "",
          customerMobile: String = "", customerEmail: String = "", isProduction: Bool = false) {
@@ -66,7 +65,7 @@ public class PaymentViewController {
         view = self
         addSpinnerView()
     }
-    
+
     private func addSpinnerView() {
         if let topControllerView = UIApplication.topViewController()?.view {
             topControllerView.addSubview(loadingSpinner)
@@ -76,43 +75,43 @@ public class PaymentViewController {
             loadingSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
         }
     }
-    
+
     private func validateData() {
         if delegate == nil {
             print("Missing SDK Delegate implementation")
             return
         }
-        if(mId.isEmpty) {
+        if mId.isEmpty {
             print("Missing required data: Merchant ID")
             return
         }
-        if(tId.isEmpty) {
+        if tId.isEmpty {
             print("Missing required data: Terminal ID")
             return
         }
-        if(secureHashKey.isEmpty) {
+        if secureHashKey.isEmpty {
             print("Missing required data: Secure Hash Key")
             return
         }
-        if(amount == 0) {
+        if amount == 0 {
             print("Missing required data: Amount")
             return
         }
-        if(currencyCode == 0) {
+        if currencyCode == 0 {
             print("Missing required data: Secure Hash Key")
             return
         }
-        if(customerId.isEmpty) {
-            if(customerMobile.isEmpty && customerEmail.isEmpty) {
+        if customerId.isEmpty {
+            if customerMobile.isEmpty && customerEmail.isEmpty {
                 print("Missing required data: Customer Mobile (OR) Cutomer Email")
                 return
             }
         }
     }
-    
-    public func pushViewController()  {
+
+    public func pushViewController() {
         validateData()
-        
+
         let merchantInfo = MerchantDataModel(merchantId: mId,
                                              terminalId: tId,
                                              amount: amount,
@@ -122,10 +121,10 @@ public class PaymentViewController {
                                              customerId: customerId,
                                              customerMobile: customerMobile,
                                              customerEmail: customerEmail)
-        if (amount > 0 &&
+        if amount > 0 &&
             !merchantInfo.merchantId.isEmpty &&
             !merchantInfo.terminalId.isEmpty &&
-            !merchantInfo.secureHashKey.isEmpty) {
+            !merchantInfo.secureHashKey.isEmpty {
             loadingSpinner.startAnimating()
             UIApplication.topViewController()?.view.isUserInteractionEnabled = false
             callCheckPaymentMethodAPI(merchantData: merchantInfo)
@@ -134,7 +133,7 @@ public class PaymentViewController {
             return
         }
     }
-    
+
     private func callCheckPaymentMethodAPI(merchantData: MerchantDataModel) {
         let paymentMethodParameters = PaymentMethodParameters(merchantId: merchantData.merchantId,
                                                               terminalId: merchantData.terminalId,
@@ -145,9 +144,9 @@ public class PaymentViewController {
             UIApplication.topViewController()?.view.isUserInteractionEnabled = true
             switch result {
             case let .success(response):
-                if(response.success == true) {
+                if response.success == true {
                     MerchantDataManager.shared.saveMerchant(merchantData)
-                    
+
                     let presenter = MainPresenter(view: self.view, paymentMethodData: response)
                     navigateToNextScreen(presenter, withPaymentMethodResponseData: response)
                 } else {
@@ -158,18 +157,16 @@ public class PaymentViewController {
             }
         }
     }
-    
+
     private func navigateToNextScreen(_ presenter: MainPresenter, withPaymentMethodResponseData response: PaymentMethodResponse) {
         if MerchantDataManager.shared.merchant.customerId.isEmpty == false {
-            presenter.getCustomerSession() { sessionId in
+            presenter.getCustomerSession { sessionId in
                 presenter.getCustomerCards(usingSessionId: sessionId)
             }
         } else {
             navigateToAddNewCardView(withResponse: response)
         }
     }
-
-    
 }
 
 extension PaymentViewController: PaymentView {
@@ -187,11 +184,11 @@ extension PaymentViewController: PaymentView {
 
     func navigateToAddNewCardView(withResponse checkPaymentResponse: PaymentMethodResponse) {
         let viewController = AddNewCardVC(nibName: "AddNewCardVC", bundle: nil)
-        viewController.delegate = self.delegate
-        
+        viewController.delegate = delegate
+
         let presenter = AddNewCardPresenter(view: viewController, paymentMethodData: checkPaymentResponse)
         viewController.presenter = presenter
-        
+
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
         } else {
@@ -204,14 +201,14 @@ extension PaymentViewController: PaymentView {
                                       checkPaymentResponse: PaymentMethodResponse,
                                       customerSessionId: String) {
         let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
-        viewController.delegate = self.delegate
-        
+        viewController.delegate = delegate
+
         let presenter = SelectCardListPresenter(view: viewController,
                                                 paymentMethodData: checkPaymentResponse,
                                                 customerCards: allCardResponse,
                                                 customerSessionId: customerSessionId)
         viewController.presenter = presenter
-        
+
         if UIApplication.topViewController()?.navigationController != nil {
             UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
         } else {

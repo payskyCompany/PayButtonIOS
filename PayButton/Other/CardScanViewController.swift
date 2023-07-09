@@ -6,37 +6,35 @@
 //  Copyright © 2018 Paysky. All rights reserved.
 //
 
-import UIKit
 import PayCardsRecognizer
+import UIKit
 
 protocol ScanCardDelegate: AnyObject {
-    func cardResult(_ result : PayCardsRecognizerResult)
+    func cardResult(_ result: PayCardsRecognizerResult)
 }
 
-class CardScanViewController: BasePaymentViewController, PayCardsRecognizerPlatformDelegate {
-    
-    @IBOutlet weak var HeaderView: UIView!
-    @IBOutlet weak var CloseImage: UIImageView!
-    @IBOutlet weak var HeaderLabel: UILabel!
-    @IBOutlet weak var CameraView: UIView!
-    
+class CardScanViewController: UIViewController, PayCardsRecognizerPlatformDelegate {
+    @IBOutlet var HeaderView: UIView!
+    @IBOutlet var CloseImage: UIImageView!
+    @IBOutlet var HeaderLabel: UILabel!
+    @IBOutlet var CameraView: UIView!
+
     var recognizer: PayCardsRecognizer!
     var delegate: ScanCardDelegate!
 
-     
     override func viewDidLoad() {
         super.viewDidLoad()
-       recognizer = PayCardsRecognizer(delegate: self, resultMode: .async, container: self.CameraView, frameColor: .green)
-        // Do any additional setup after loading the view.
-        
-        let tap3 = UITapGestureRecognizer(target: self, action: #selector(close(sender:)))
-        
+        hideKeyboardWhenTappedAround()
+
+        recognizer = PayCardsRecognizer(delegate: self, resultMode: .async, container: CameraView, frameColor: .green)
         recognizer.delegate = self
-        
+
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(close(sender:)))
+
         HeaderView.layer.cornerRadius = AppConstants.radiusNumber
         HeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        self.CloseImage.isUserInteractionEnabled = true
-        self.CloseImage.addGestureRecognizer(tap3)
+        CloseImage.isUserInteractionEnabled = true
+        CloseImage.addGestureRecognizer(tap3)
         HeaderLabel.text = "scanCard".localizedString()
     }
 
@@ -44,33 +42,30 @@ class CardScanViewController: BasePaymentViewController, PayCardsRecognizerPlatf
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @objc func close(sender: UITapGestureRecognizer? = nil) {
-        if self.navigationController != nil {
-            self.navigationController?.popViewController(animated: true)
-            self.navigationController?.isNavigationBarHidden = false
+        if navigationController != nil {
+            navigationController?.popViewController(animated: true)
+            navigationController?.isNavigationBarHidden = false
 
         } else {
-            self.dismiss(animated: true, completion: nil)
-            
+            dismiss(animated: true, completion: nil)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         recognizer.startCamera()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         recognizer.stopCamera()
     }
-    
+
     func payCardsRecognizer(_ payCardsRecognizer: PayCardsRecognizer, didRecognize result: PayCardsRecognizerResult) {
         delegate.cardResult(result)
         recognizer.stopCamera()
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
- 
-
 }

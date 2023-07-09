@@ -115,8 +115,7 @@ class PaymentApprovedVC: UIViewController {
         UIPasteboard.general.string = presenter.getPayByCardReponse().tokenCustomerId
         UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
         
-        let seconds = 4.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.delegate?.finishedSdkPayment(self.presenter.getPayByCardReponse())
         }
     }

@@ -9,8 +9,13 @@
 import UIKit
 
 class ManageCardsTableHeader: UITableViewHeaderFooterView {
+    @IBOutlet var setDefaultLbl: UILabel!
+    @IBOutlet var cardDetailsLbl: UILabel!
 
-    @IBOutlet weak var setDefaultLbl: UILabel!
-    @IBOutlet weak var cardDetailsLbl: UILabel!
-    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setDefaultLbl.text = "set_default".localizedString()
+        cardDetailsLbl.text = "card_details".localizedString()
+    }
 }

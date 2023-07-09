@@ -12,8 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageCardsVC" customModule="PayButton" customModuleProvider="target">
             <connections>
-                <outlet property="defaultCardListTbl" destination="ADj-ca-ueb" id="rIq-Qf-xmR"/>
+                <outlet property="backBtn" destination="6my-rQ-yG8" id="S2u-w6-zjg"/>
+                <outlet property="changeLangBtn" destination="oX3-t6-SSm" id="4RS-kE-StR"/>
+                <outlet property="closeCurrentPageBtn" destination="Acf-jf-XLg" id="asE-WH-Ivw"/>
                 <outlet property="defaultCardListTblHeight" destination="jSg-8M-C8j" id="aMc-a3-r7s"/>
+                <outlet property="headerLbl" destination="lcy-uq-rd8" id="wQb-gY-RPS"/>
+                <outlet property="manageCardsListTbl" destination="ADj-ca-ueb" id="rIq-Qf-xmR"/>
+                <outlet property="setDefaultCardLbl" destination="LYj-SX-9hf" id="mfw-36-yAf"/>
+                <outlet property="termsAndConditionsBtn" destination="KqN-wc-glf" id="EIK-vF-ogQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,13 +40,18 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QNb-d4-Xaa">
                                             <rect key="frame" x="10" y="5" width="188.33333333333334" height="30"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="MVV-7K-0ex">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-jf-XLg">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Qy0-Vi-w0A"/>
-                                                        <constraint firstAttribute="width" constant="30" id="geV-fY-yrg"/>
+                                                        <constraint firstAttribute="width" constant="30" id="kY7-Pt-x51"/>
+                                                        <constraint firstAttribute="height" constant="30" id="q6E-33-7Mo"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="close"/>
+                                                    <connections>
+                                                        <action selector="dismissCurrentPageAction:" destination="-1" eventType="touchUpInside" id="Jtr-Bh-O9h"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Payment Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcy-uq-rd8">
                                                     <rect key="frame" x="30" y="5" width="158.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -76,12 +87,12 @@
                             <rect key="frame" x="20" y="64" width="374" height="516"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-bL-lUG" userLabel="Content View">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="174"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="168"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Your Default Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYj-SX-9hf">
-                                            <rect key="frame" x="0.0" y="20" width="374" height="36"/>
+                                            <rect key="frame" x="0.0" y="20" width="374" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="36" id="nxP-CW-MzQ"/>
+                                                <constraint firstAttribute="height" constant="30" id="nxP-CW-MzQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -91,7 +102,7 @@
                                             </variation>
                                         </label>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ADj-ca-ueb">
-                                            <rect key="frame" x="0.0" y="64" width="374" height="100"/>
+                                            <rect key="frame" x="0.0" y="58" width="374" height="100"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="jSg-8M-C8j"/>
@@ -147,6 +158,9 @@
                                             <variation key="heightClass=regular-widthClass=regular">
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             </variation>
+                                            <connections>
+                                                <action selector="dismissCurrentPageAction:" destination="-1" eventType="touchUpInside" id="aHp-8b-gsg"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -160,7 +174,7 @@
                                         <constraint firstAttribute="height" constant="1" id="r5o-Yj-a1o"/>
                                     </constraints>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wLF-Mz-d90">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wLF-Mz-d90">
                                     <rect key="frame" x="0.0" y="58" width="374" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zZD-CK-ZGO">
@@ -170,6 +184,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="24.666666666666668"/>
                                                     <color key="tintColor" systemColor="systemCyanColor"/>
                                                     <state key="normal" title="Change Language"/>
+                                                    <connections>
+                                                        <action selector="changeLangBtnPressed:" destination="-1" eventType="touchUpInside" id="Cqb-vW-DNz"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pmP-me-Psd">
                                                     <rect key="frame" x="272" y="0.0" width="102" height="24.666666666666668"/>
@@ -177,9 +194,12 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqN-wc-glf">
-                                            <rect key="frame" x="0.0" y="24.666666666666629" width="147" height="25.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="29.666666666666629" width="147" height="20.333333333333329"/>
                                             <color key="tintColor" systemColor="systemCyanColor"/>
                                             <state key="normal" title="Terms and conditions"/>
+                                            <connections>
+                                                <action selector="termsAndConditionsBtnPressed:" destination="-1" eventType="touchUpInside" id="ktZ-wr-LUJ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

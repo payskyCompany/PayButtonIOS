@@ -2,9 +2,6 @@ PODS:
   - Alamofire (5.0.5)
   - DLRadioButton (1.4.12)
   - DynamicBlurView (4.1.0)
-  - EVReflection (5.10.1):
-    - EVReflection/Core (= 5.10.1)
-  - EVReflection/Core (5.10.1)
   - MOLH (1.4.3)
   - PayCardsRecognizer (1.1.7)
   - PopupDialog (1.1.1):
@@ -13,7 +10,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - DLRadioButton
-  - EVReflection
   - MOLH
   - PayCardsRecognizer
   - PopupDialog
@@ -23,7 +19,6 @@ SPEC REPOS:
     - Alamofire
     - DLRadioButton
     - DynamicBlurView
-    - EVReflection
     - MOLH
     - PayCardsRecognizer
     - PopupDialog
@@ -32,11 +27,10 @@ SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
-  EVReflection: 8124de482178d34ccd56473e16cd95990f9a1113
   MOLH: e45827d200aeb1310641090fd8cd03ad2b42ae72
   PayCardsRecognizer: 2e4d1b2fdd5f1528fb56064a91e1d58a1af7a2db
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
 
-PODFILE CHECKSUM: 592a71386143d8c9a1b4543aefa61fb3642ba029
+PODFILE CHECKSUM: 6ebc9855911b03d90ff76b1b83c2f968a111d3f7
 
 COCOAPODS: 1.12.0

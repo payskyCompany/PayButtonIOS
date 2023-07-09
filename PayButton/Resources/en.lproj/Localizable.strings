@@ -143,6 +143,10 @@
 "manage_cards" = "Manage Cards";
 "add_new_card" = "Add New Card";
 
+"set_your_default_card" = "Set Your Default Card";
+"set_default" = "Set\nDefault";
+"card_details" = "Card Details";
+
 "818" = "EGP";
 "784" = "AED";
 "826" = "GBP";
