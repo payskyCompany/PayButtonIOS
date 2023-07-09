@@ -26,7 +26,7 @@ class PaymentProcessingPresenter: PaymentProcessingPresenterProtocol {
     }
     
     func viewDidLoad() {
-        if let url =  URL(string: urlPath) {
+        if let url = URL(string: urlPath) {
             view?.loadWebView(withURL: url)
         }
     }

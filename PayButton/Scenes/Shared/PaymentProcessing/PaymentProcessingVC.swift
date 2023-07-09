@@ -56,6 +56,7 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
     }
 
     private func setupWebView() {
+        paymentWKWebView.navigationDelegate = self
         paymentWKWebView.contentMode = .scaleAspectFill
         paymentWKWebView.scrollView.zoomScale = 2.0
     }
@@ -77,12 +78,33 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
         }
         if url.contains(AppConstants.DOMAIN_URL) && url.contains("Success") {
             debugPrint("new page url = \(url)")
-            webView.removeFromSuperview()
+            webView.isHidden = true
 
             if webView.url?.queryDictionary?["Success"] == "True" {
                 debugPrint(webView.url?.queryDictionary ?? "")
-//                navigateToPaymentApprovedView(withTrxnReference: webView.url?.queryDictionary?["SystemReference"] ?? "",
-//                                              andMessage: webView.url?.queryDictionary?["Message"] ?? "")
+                var jsonObj: [String: Any] = [
+                    "Message": webView.url?.queryDictionary?["Message"] as String? ?? "",
+                    "ActionCode": webView.url?.queryDictionary?["ActionCode"] as String? ?? "",
+                    "AuthCode": webView.url?.queryDictionary?["AuthCode"] as String? ?? "",
+                    "MerchantReference": webView.url?.queryDictionary?["MerchantReference"] as String? ?? "",
+                    "NetworkReference": webView.url?.queryDictionary?["NetworkReference"] as String? ?? "",
+                    "ReceiptNumber": webView.url?.queryDictionary?["ReceiptNumber"] as String? ?? "",
+                    "TokenCustomerId": MerchantDataManager.shared.merchant.customerId,
+                ]
+                jsonObj["SystemReference"] = Int(webView.url?.queryDictionary?["SystemReference"] ?? "0")
+                if webView.url?.queryDictionary?["Success"] == "True" {
+                    jsonObj["Success"] = true
+                } else {
+                    jsonObj["Success"] = false
+                }
+                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: []) {
+                    do {
+                        let response = try JSONDecoder().decode(PayByCardReponse.self, from: jsonData)
+                        navigateToPaymentApprovedView(withTrxnResponse: response)
+                    } catch let error {
+                        showErrorAlertView(withMessage: error.localizedDescription)
+                    }
+                }
             } else if webView.url?.queryDictionary?["Success"] == "False" {
                 showErrorAlertView(withMessage: webView.url?.queryDictionary?["Message"] ?? "")
             }
@@ -116,7 +138,7 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
         let viewController = PaymentProcessingVC(nibName: "PaymentProcessingVC", bundle: nil)
         viewController.delegate = delegate
         let newPresenter = PaymentProcessingPresenter(view: viewController,
-                                                       urlPath: presenter.getUrlPath())
+                                                      urlPath: presenter.getUrlPath())
 
         viewController.presenter = newPresenter
         if UIApplication.topViewController()?.navigationController != nil {
@@ -154,6 +176,7 @@ extension PaymentProcessingVC {
 
 extension PaymentProcessingVC: PaymentProcessingView {
     func loadWebView(withURL url: URL) {
+        paymentWKWebView.isHidden = false
         let myRequest = URLRequest(url: url)
         paymentWKWebView.load(myRequest)
     }

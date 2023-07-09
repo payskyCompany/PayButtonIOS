@@ -8,7 +8,6 @@
 import Foundation
 
 public struct PayByCardReponse: Decodable {
-    
     let success: Bool?
     let message: String?
     let actionCode, authCode, mWMessage: String?
@@ -20,7 +19,7 @@ public struct PayByCardReponse: Decodable {
     let challengeRequired: Bool?
     let isPaid: Bool?
     let fromWhere: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case success = "Success"
         case message = "Message"
