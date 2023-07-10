@@ -11,7 +11,17 @@ import UIKit
 
 protocol ManageCardView: AnyObject {
     func didTapRadioButton(forCell selectedCell: ManageCardsTblCell)
+    func setCardAsDefault(position: Int)
     func didTapDeleteButton(forCell selectedCell: ManageCardsTblCell)
+    func didRemoveCard()
+    func updateCardsList()
+    func startLoading()
+    func endLoading()
+    func showErrorAlertView(withMessage errorMsg: String)
+    func dismissView()
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse,
+                                      checkPaymentResponse: PaymentMethodResponse,
+                                      customerSessionId: String)
 }
 
 class ManageCardsVC: UIViewController {
@@ -158,9 +168,72 @@ extension ManageCardsVC: UITableViewDataSource, UITableViewDelegate {
 extension ManageCardsVC: ManageCardView {
     func didTapRadioButton(forCell selectedCell: ManageCardsTblCell) {
         debugPrint("didTapRadioButton")
+        let card: CardDetails? = presenter.getCustomerCards().cardsList?[selectedCell.tag]
+        if card?.isDefaultCard == false {
+            presenter.callChangeDefaultCardAPI(cardToken: card?.token ?? "",
+                                               cardIndexInList: selectedCell.tag)
+        }
+    }
+
+    func setCardAsDefault(position: Int) {
+        for cell in manageCardsListTbl.visibleCells as! [ManageCardsTblCell] {
+            if cell.tag == position {
+                cell.selectCardRadioBtn.isSelected = true
+            } else {
+                cell.selectCardRadioBtn.isSelected = false
+            }
+        }
     }
 
     func didTapDeleteButton(forCell selectedCell: ManageCardsTblCell) {
         debugPrint("didTapDeleteButton")
+        let card: CardDetails? = presenter.getCustomerCards().cardsList?[selectedCell.tag]
+        presenter.callRemoveCardAPI(cardToken: card?.token ?? "")
+    }
+
+    func didRemoveCard() {
+        presenter.getCustomerSession { sessionId in
+            self.presenter.getCustomerCards(usingSessionId: sessionId)
+        }
+    }
+
+    func updateCardsList() {
+        manageCardsListTbl.reloadData()
+    }
+
+    func startLoading() {
+        loadingSpinner.startAnimating()
+    }
+
+    func endLoading() {
+        loadingSpinner.stopAnimating()
+    }
+
+    func showErrorAlertView(withMessage errorMsg: String) {
+        UIApplication.topViewController()?.showAlert("error".localizedString(), message: errorMsg)
+    }
+
+    func dismissView() {
+        dismiss(animated: true)
+    }
+
+    func navigateToSelectCardListView(withResponse allCardResponse: GetCustomerCardsResponse,
+                                      checkPaymentResponse: PaymentMethodResponse,
+                                      customerSessionId: String) {
+        let viewController = SelectCardListVC(nibName: "SelectCardListVC", bundle: nil)
+        viewController.delegate = delegate
+
+        let presenter = SelectCardListPresenter(view: viewController,
+                                                paymentMethodData: checkPaymentResponse,
+                                                customerCards: allCardResponse,
+                                                customerSessionId: customerSessionId)
+        viewController.presenter = presenter
+
+        if UIApplication.topViewController()?.navigationController != nil {
+            UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            viewController.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.present(viewController, animated: true)
+        }
     }
 }
