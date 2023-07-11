@@ -73,7 +73,9 @@ class SelectCardListVC: UIViewController {
         super.viewWillAppear(animated)
 
         presenter.viewDidLoad()
-        selectedSavedCard = presenter.getCustomerCards().cardsList?.first
+        if(presenter.getCustomerCards().cardsList?.isEmpty == false) {
+            selectedSavedCard = presenter.getCustomerCards().cardsList?.first
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -126,7 +128,6 @@ class SelectCardListVC: UIViewController {
     @IBAction func proceedBtnPressed(_ sender: UIButton) {
         if selectedCardCvv != "", let selectedCardId = selectedSavedCard?.cardID {
             startLoading()
-            print("Card ID \n" + "\(selectedCardId)")
             presenter.callPayByCardAPI(cardID: selectedCardId, cvv: selectedCardCvv)
         } else {
             for cell in cardListTbl.visibleCells as! [CardListTblCell] {
@@ -206,7 +207,6 @@ extension SelectCardListVC: UITableViewDataSource, UITableViewDelegate {
 
 extension SelectCardListVC: SelectCardListView {
     func didTapRadioButton(forCell selectedCell: CardListTblCell) {
-        print("didTapToggleButton")
         selectedSavedCard = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         selectedCardIndex = selectedCell.tag
         selectedCell.selectCardRadioBtn.isSelected = true
@@ -222,14 +222,12 @@ extension SelectCardListVC: SelectCardListView {
     func didTapCvvTextField(forCell selectedCell: CardListTblCell) {
         selectedCell.hideCvvAlertLbl(state: true)
         selectedCardCvv = selectedCell.cvvTextField.text ?? ""
-        print(selectedCardCvv)
         if selectedCardCvv.count == 3 {
             dismissKeyboard()
         }
     }
 
     func navigateToProcessingPaymentView(withUrlPath path: String) {
-        print("navigateToProcessingPaymentView")
         let viewController = PaymentProcessingVC(nibName: "PaymentProcessingVC", bundle: nil)
         viewController.delegate = delegate
 

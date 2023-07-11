@@ -166,7 +166,6 @@ extension ManageCardsVC: UITableViewDataSource, UITableViewDelegate {
 
 extension ManageCardsVC: ManageCardView {
     func didTapRadioButton(forCell selectedCell: ManageCardsTblCell) {
-        debugPrint("didTapRadioButton")
         let card: CardDetails? = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         if card?.isDefaultCard == false {
             presenter.callChangeDefaultCardAPI(selectedCell,
@@ -176,7 +175,6 @@ extension ManageCardsVC: ManageCardView {
     }
 
     func didTapDeleteButton(forCell selectedCell: ManageCardsTblCell) {
-        debugPrint("didTapDeleteButton")
         let card: CardDetails? = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         presenter.callRemoveCardAPI(cardToken: card?.token ?? "")
     }

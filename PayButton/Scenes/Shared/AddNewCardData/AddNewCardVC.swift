@@ -307,7 +307,6 @@ extension AddNewCardVC {
 
 extension AddNewCardVC: AddNewCardView {
     func hideSaveThisCardOutlets() {
-        print("hideSaveThisCardOutlets")
         saveForFutureCheckBox.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
         saveForFutureLbl.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
         setAsDefaultCheckBox.isHidden = !(presenter.getPaymentMethodData().isTokenized ?? false)
@@ -315,7 +314,6 @@ extension AddNewCardVC: AddNewCardView {
     }
 
     func navigateToProcessingPaymentView(withUrlPath path: String) {
-        print("navigateToProcessingPaymentView")
         let viewController = PaymentProcessingVC(nibName: "PaymentProcessingVC", bundle: nil)
         viewController.delegate = delegate
 

@@ -78,32 +78,32 @@ public class PaymentViewController {
 
     private func validateData() {
         if delegate == nil {
-            print("Missing SDK Delegate implementation")
+            debugPrint("Missing SDK Delegate implementation")
             return
         }
         if mId.isEmpty {
-            print("Missing required data: Merchant ID")
+            debugPrint("Missing required data: Merchant ID")
             return
         }
         if tId.isEmpty {
-            print("Missing required data: Terminal ID")
+            debugPrint("Missing required data: Terminal ID")
             return
         }
         if secureHashKey.isEmpty {
-            print("Missing required data: Secure Hash Key")
+            debugPrint("Missing required data: Secure Hash Key")
             return
         }
         if amount == 0 {
-            print("Missing required data: Amount")
+            debugPrint("Missing required data: Amount")
             return
         }
         if currencyCode == 0 {
-            print("Missing required data: Secure Hash Key")
+            debugPrint("Missing required data: Secure Hash Key")
             return
         }
         if customerId.isEmpty {
             if customerMobile.isEmpty && customerEmail.isEmpty {
-                print("Missing required data: Customer Mobile (OR) Cutomer Email")
+                debugPrint("Missing required data: Customer Mobile (OR) Cutomer Email")
                 return
             }
         }

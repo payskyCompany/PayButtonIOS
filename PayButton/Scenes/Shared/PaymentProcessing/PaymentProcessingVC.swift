@@ -171,7 +171,7 @@ extension PaymentProcessingVC {
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
         termsAndConditionsBtn.setTitle("terms_conditions".localizedString(), for: .normal)
 
-        enterCardDataLbl.text = "please_enter_card_data".localizedString()
+        enterCardDataLbl.text = "processing_card_data".localizedString()
         processingLbl.text = "processing".localizedString()
     }
 }

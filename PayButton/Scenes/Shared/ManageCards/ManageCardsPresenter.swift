@@ -84,9 +84,9 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
     func callRemoveCardAPI(cardToken: String) {
         view?.startLoading()
         let parameters = DeleteTokenParameters(token: cardToken,
-                                                      customerId: MerchantDataManager.shared.merchant.customerId,
-                                                      merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                                      terminalId: MerchantDataManager.shared.merchant.terminalId)
+                                               customerId: MerchantDataManager.shared.merchant.customerId,
+                                               merchantId: MerchantDataManager.shared.merchant.merchantId,
+                                               terminalId: MerchantDataManager.shared.merchant.terminalId)
         
         let deleteSavedCardUseCase = DeleteSavedCardUseCase(deleteSavedCardParamters: parameters)
         deleteSavedCardUseCase.deleteSavedCard { [self] result in
@@ -158,9 +158,6 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
                         view?.updateCardsList()
                     } else {
                         view?.dismissView()
-//                        view?.navigateToSelectCardListView(withResponse: customerCards,
-//                                                           checkPaymentResponse: paymentMethodData,
-//                                                           customerSessionId: sessionId)
                     }
                 }
             case let .failure(error):

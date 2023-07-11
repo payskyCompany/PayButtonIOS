@@ -136,6 +136,7 @@
 "ref_number" = "Trnx Ref Number";
 
 "please_enter_card_data" = "Please enter card data";
+"processing_card_data" = "Processing card data";
 "save_for_future_use" = "Save for future use";
 "set_as_default" = "Set as default";
 
