@@ -12,7 +12,7 @@ struct GetCustomerCardsResponse: Decodable {
     let message, referenceId, secureHash, secureHashData: String?
     let success: Bool?
     let transactionId: String?
-    let cardsList: [CardDetails]?
+    var cardsList: [CardDetails]?
     
     enum CodingKeys: String, CodingKey {
         case message = "Message"
@@ -33,7 +33,7 @@ struct CardDetails: Decodable {
     let brand: String?
     let postfix: String?
     let token: String?
-    let isDefaultCard: Bool?
+    var isDefaultCard: Bool?
 
     enum CodingKeys: String, CodingKey {
         case cardID = "CardId"

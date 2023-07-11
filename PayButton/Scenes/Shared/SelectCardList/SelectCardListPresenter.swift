@@ -10,9 +10,10 @@ import Foundation
 
 protocol SelectCardListPresenterProtocol: AnyObject {
     var view: SelectCardListView? { get set }
+    func viewDidLoad()
     func callPayByCardAPI(cardID: Int, cvv: String)
-    func getCustomerSession(completionHandler: @escaping (String) -> Void)
-    func getCustomerCards(usingSessionId sessionId: String)
+    func callGetCustomerSessionAPI(completionHandler: @escaping (String) -> Void)
+    func callGetCustomerCardsAPI(usingSessionId sessionId: String)
 }
 
 class SelectCardListPresenter: SelectCardListPresenterProtocol {
@@ -32,6 +33,12 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         sessionId = customerSessionId
     }
 
+    func viewDidLoad() {
+        callGetCustomerSessionAPI { _sessionId in
+            self.callGetCustomerCardsAPI(usingSessionId: _sessionId)
+        }
+    }
+    
     func getPaymentMethodData() -> PaymentMethodResponse {
         return paymentMethodData
     }
@@ -91,7 +98,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         }
     }
 
-    func getCustomerSession(completionHandler: @escaping (String) -> Void) {
+    func callGetCustomerSessionAPI(completionHandler: @escaping (String) -> Void) {
         view?.startLoading()
 
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
@@ -115,7 +122,7 @@ class SelectCardListPresenter: SelectCardListPresenterProtocol {
         }
     }
 
-    func getCustomerCards(usingSessionId sessionId: String) {
+    func callGetCustomerCardsAPI(usingSessionId sessionId: String) {
         view?.startLoading()
 
         let integerAmount = Int(MerchantDataManager.shared.merchant.amount)

@@ -87,7 +87,7 @@
                             <rect key="frame" x="20" y="64" width="374" height="516"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0l-bL-lUG" userLabel="Content View">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="418"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="373"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Your Default Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYj-SX-9hf">
                                             <rect key="frame" x="0.0" y="20" width="374" height="30"/>
@@ -102,10 +102,10 @@
                                             </variation>
                                         </label>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ADj-ca-ueb">
-                                            <rect key="frame" x="0.0" y="58" width="374" height="350"/>
+                                            <rect key="frame" x="0.0" y="58" width="374" height="300"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="350" id="jSg-8M-C8j"/>
+                                                <constraint firstAttribute="height" constant="300" id="jSg-8M-C8j"/>
                                             </constraints>
                                         </tableView>
                                     </subviews>
@@ -115,7 +115,7 @@
                                         <constraint firstItem="LYj-SX-9hf" firstAttribute="leading" secondItem="C0l-bL-lUG" secondAttribute="leading" id="c4C-HM-Gd7"/>
                                         <constraint firstItem="LYj-SX-9hf" firstAttribute="top" secondItem="C0l-bL-lUG" secondAttribute="top" constant="20" symbolic="YES" id="kRG-J0-0K6"/>
                                         <constraint firstItem="ADj-ca-ueb" firstAttribute="top" secondItem="LYj-SX-9hf" secondAttribute="bottom" constant="8" symbolic="YES" id="nav-1f-jDs"/>
-                                        <constraint firstAttribute="bottom" secondItem="ADj-ca-ueb" secondAttribute="bottom" constant="10" id="u0g-0m-qCW"/>
+                                        <constraint firstAttribute="bottom" secondItem="ADj-ca-ueb" secondAttribute="bottom" constant="15" id="u0g-0m-qCW"/>
                                         <constraint firstAttribute="trailing" secondItem="ADj-ca-ueb" secondAttribute="trailing" id="waW-MH-dFB"/>
                                         <constraint firstAttribute="trailing" secondItem="LYj-SX-9hf" secondAttribute="trailing" id="yhc-AL-bH8"/>
                                     </constraints>

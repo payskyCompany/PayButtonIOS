@@ -41,7 +41,9 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
         return sessionId
     }
 
-    func callChangeDefaultCardAPI(cardToken: String, cardIndexInList: Int) {
+    func callChangeDefaultCardAPI(_ cell: ManageCardsTblCell,
+                                  cardToken: String,
+                                  cardIndexInList: Int) {
         view?.startLoading()
         let parameters = ChangeDefaultTokenParameters(token: cardToken,
                                                       customerId: MerchantDataManager.shared.merchant.customerId,
@@ -54,7 +56,14 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
             switch result {
             case let .success(response):
                 if response.success == true {
-                    view?.setCardAsDefault(position: cardIndexInList)
+                    for index in 0..<(customerCards.cardsList?.count ?? 0) {
+                        if(index == cardIndexInList) {
+                            customerCards.cardsList?[index].isDefaultCard = true
+                        } else {
+                            customerCards.cardsList?[index].isDefaultCard = false
+                        }
+                    }
+                    view?.updateCardsList()
                 } else {
                     if response.message == nil {
                         if response.errorDetail == nil {

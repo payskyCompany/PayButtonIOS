@@ -72,6 +72,7 @@ class SelectCardListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        presenter.viewDidLoad()
         selectedSavedCard = presenter.getCustomerCards().cardsList?.first
     }
 
@@ -301,12 +302,16 @@ extension SelectCardListVC: SelectCardListView {
     }
 
     func startLoading() {
-        proceedBtn.isUserInteractionEnabled = false
+        if(proceedBtn != nil) {
+            proceedBtn.isUserInteractionEnabled = false
+        }
         loadingSpinner.startAnimating()
     }
 
     func endLoading() {
-        proceedBtn.isUserInteractionEnabled = true
+        if(proceedBtn != nil) {
+            proceedBtn.isUserInteractionEnabled = true
+        }
         loadingSpinner.stopAnimating()
     }
 }

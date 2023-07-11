@@ -11,7 +11,6 @@ import UIKit
 
 protocol ManageCardView: AnyObject {
     func didTapRadioButton(forCell selectedCell: ManageCardsTblCell)
-    func setCardAsDefault(position: Int)
     func didTapDeleteButton(forCell selectedCell: ManageCardsTblCell)
     func didRemoveCard()
     func updateCardsList()
@@ -67,7 +66,7 @@ class ManageCardsVC: UIViewController {
     private func setupUIView() {
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
-        setDefaultCardLbl.text = "set_your_default_card".localizedString()
+        setDefaultCardLbl.text = "manage_my_cards".localizedString()
 
         backBtn.setTitle("back".localizedString(), for: .normal)
         changeLangBtn.setTitle("change_lang".localizedString(), for: .normal)
@@ -170,18 +169,9 @@ extension ManageCardsVC: ManageCardView {
         debugPrint("didTapRadioButton")
         let card: CardDetails? = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         if card?.isDefaultCard == false {
-            presenter.callChangeDefaultCardAPI(cardToken: card?.token ?? "",
+            presenter.callChangeDefaultCardAPI(selectedCell,
+                                               cardToken: card?.token ?? "",
                                                cardIndexInList: selectedCell.tag)
-        }
-    }
-
-    func setCardAsDefault(position: Int) {
-        for cell in manageCardsListTbl.visibleCells as! [ManageCardsTblCell] {
-            if cell.tag == position {
-                cell.selectCardRadioBtn.isSelected = true
-            } else {
-                cell.selectCardRadioBtn.isSelected = false
-            }
         }
     }
 
