@@ -112,12 +112,7 @@ class PaymentApprovedVC: UIViewController {
     }
 
     @IBAction func onCloseBtnTapped(_ sender: UIButton) {
-        UIPasteboard.general.string = presenter.getPayByCardReponse().tokenCustomerId
-        UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.delegate?.finishedSdkPayment(self.presenter.getPayByCardReponse())
-        }
+        self.delegate?.finishedSdkPayment(self.presenter.getPayByCardReponse())
     }
 
     @IBAction func changeLangBtnPressed(_ sender: UIButton) {

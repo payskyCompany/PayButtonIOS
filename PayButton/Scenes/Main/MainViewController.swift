@@ -15,10 +15,15 @@ extension MainViewController: PayButtonDelegate {
             debugPrint("-------- Customer ID --------")
             debugPrint(response.tokenCustomerId ?? "")
             
-            if navigationController != nil {
-                navigationController?.popViewController(animated: true)
-            } else {
-                dismiss(animated: true, completion: nil)
+            UIPasteboard.general.string = response.tokenCustomerId
+            UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                if self.navigationController != nil {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         } else {
             UIApplication.topViewController()?.view.makeToast(response.message)
