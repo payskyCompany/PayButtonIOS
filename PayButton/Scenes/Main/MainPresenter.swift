@@ -37,7 +37,8 @@ class MainPresenter: MainViewPresenter {
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
                                                       amount: String(MerchantDataManager.shared.merchant.amount),
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                                      terminalId: MerchantDataManager.shared.merchant.terminalId)
+                                                      terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                                      secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
         
         let getCustomerSessionUseCase = GetCustomerSessionUseCase(getCustomerSessionParamters: parameters)
         getCustomerSessionUseCase.getCustomerSession { [self] result in

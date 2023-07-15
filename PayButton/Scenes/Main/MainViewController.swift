@@ -159,13 +159,6 @@ class MainViewController: UIViewController {
         submitBtn.setTitle("submit".localizedString(), for: .normal)
         submitBtn.layer.cornerRadius = AppConstants.radiusNumber
         setupSubmitBtnUI()
-
-        merchantIdTextfield.text = "41565"
-        terminalIdTextfield.text = "1583826"
-        secureHashKeyTextfield.text = "09a90e81140dcb0d686c09f0036ef910"
-        amountTextfield.text = "10"
-        currencyCodeTextfield.text = "818"
-        customerIdTextfield.text = "4cd7c612-7c13-44d0-b10c-21af9141b14c"
     }
 
     private func setupSelectUrlEnvironmentPickerView() {

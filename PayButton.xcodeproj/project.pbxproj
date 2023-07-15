@@ -390,8 +390,8 @@
 		896E775D2A4F52610057F09E /* CheckPaymentMethod */ = {
 			isa = PBXGroup;
 			children = (
-				896E775E2A4F52610057F09E /* PaymentMethodResponse.swift */,
 				896E775F2A4F52610057F09E /* PaymentMethodParameters.swift */,
+				896E775E2A4F52610057F09E /* PaymentMethodResponse.swift */,
 			);
 			path = CheckPaymentMethod;
 			sourceTree = "<group>";

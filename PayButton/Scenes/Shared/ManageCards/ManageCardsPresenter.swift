@@ -48,7 +48,8 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
         let parameters = ChangeDefaultTokenParameters(token: cardToken,
                                                       customerId: MerchantDataManager.shared.merchant.customerId,
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                                      terminalId: MerchantDataManager.shared.merchant.terminalId)
+                                                      terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                                      secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
 
         let changeDefaultCardUseCase = ChangeDefaultCardUseCase(changeDefaultCardParamters: parameters)
         changeDefaultCardUseCase.changeDefaultCard { [self] result in
@@ -86,7 +87,8 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
         let parameters = DeleteTokenParameters(token: cardToken,
                                                customerId: MerchantDataManager.shared.merchant.customerId,
                                                merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                               terminalId: MerchantDataManager.shared.merchant.terminalId)
+                                               terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                               secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
         
         let deleteSavedCardUseCase = DeleteSavedCardUseCase(deleteSavedCardParamters: parameters)
         deleteSavedCardUseCase.deleteSavedCard { [self] result in
@@ -118,7 +120,8 @@ class ManageCardsPresenter: ManageCardsPresenterProtocol {
         let parameters = GetCustomerSessionParameters(customerId: MerchantDataManager.shared.merchant.customerId,
                                                       amount: String(MerchantDataManager.shared.merchant.amount),
                                                       merchantId: MerchantDataManager.shared.merchant.merchantId,
-                                                      terminalId: MerchantDataManager.shared.merchant.terminalId)
+                                                      terminalId: MerchantDataManager.shared.merchant.terminalId,
+                                                      secureHashKey: MerchantDataManager.shared.merchant.secureHashKey)
 
         let getCustomerSessionUseCase = GetCustomerSessionUseCase(getCustomerSessionParamters: parameters)
         getCustomerSessionUseCase.getCustomerSession { [self] result in
