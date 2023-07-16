@@ -12,7 +12,6 @@ import WebKit
 
 protocol PaymentProcessingView: AnyObject {
     func loadWebView(withURL url: URL)
-    func showActivityIndicator(show: Bool)
     func navigateToPaymentApprovedView(withTrxnResponse response: PayByCardReponse)
     func showErrorAlertView(withMessage errorMsg: String)
 }
@@ -32,17 +31,6 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
     @IBOutlet var changeLangBtn: UIButton!
     @IBOutlet var termsAndConditionsBtn: UIButton!
 
-    let loadingSpinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = .mainColor
-        spinner.hidesWhenStopped = true
-        spinner.backgroundColor = .lightText
-        spinner.layer.cornerRadius = 20
-        spinner.layer.masksToBounds = true
-        return spinner
-    }()
-
     var presenter: PaymentProcessingPresenter!
 
     weak var delegate: PayButtonDelegate?
@@ -52,7 +40,6 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
 
         setupUIView()
         setupWebView()
-        addSpinnerView()
         presenter.viewDidLoad()
     }
 
@@ -62,25 +49,16 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
         paymentWKWebView.scrollView.zoomScale = 2.0
     }
 
-    private func addSpinnerView() {
-        if let topControllerView = UIApplication.topViewController()?.view {
-            topControllerView.addSubview(loadingSpinner)
-            loadingSpinner.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loadingSpinner.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-            loadingSpinner.centerXAnchor.constraint(equalTo: topControllerView.centerXAnchor).isActive = true
-            loadingSpinner.centerYAnchor.constraint(equalTo: topControllerView.centerYAnchor).isActive = true
-        }
-    }
-
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        showActivityIndicator(show: true)
+        webView.showLoadingIndicator()
+        
         guard let url = webView.url?.absoluteString else {
             return
         }
         if url.contains(AppConstants.DOMAIN_URL) && url.contains("Success") {
             debugPrint("new page url = \(url)")
-            webView.isHidden = true
-
+            webView.hideLoadingIndicator()
+            
             if webView.url?.queryDictionary?["Success"] == "True" {
                 debugPrint(webView.url?.queryDictionary ?? "")
                 var jsonObj: [String: Any] = [
@@ -113,11 +91,12 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        showActivityIndicator(show: true)
+        webView.isHidden = false
+        webView.hideLoadingIndicator()
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        showActivityIndicator(show: false)
+        webView.hideLoadingIndicator()
     }
 
     @IBAction func dismissCurrentPageAction(_ sender: UIButton) {
@@ -139,6 +118,7 @@ class PaymentProcessingVC: UIViewController, WKNavigationDelegate {
         let viewController = PaymentProcessingVC(nibName: "PaymentProcessingVC", bundle: nil)
         viewController.delegate = delegate
         let newPresenter = PaymentProcessingPresenter(view: viewController,
+                                                      paymentMethodData: presenter.getPaymentMethodData(),
                                                       urlPath: presenter.getUrlPath())
 
         viewController.presenter = newPresenter
@@ -163,7 +143,7 @@ extension PaymentProcessingVC {
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
-        merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
+        merchantNameLbl.text = presenter.getPaymentMethodData().merchantName
         amountLbl.text = "amount".localizedString().uppercased()
         amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
             + " " + String(format: "%.2f", MerchantDataManager.shared.merchant.amount)
@@ -178,24 +158,17 @@ extension PaymentProcessingVC {
 
 extension PaymentProcessingVC: PaymentProcessingView {
     func loadWebView(withURL url: URL) {
-        paymentWKWebView.isHidden = false
         let myRequest = URLRequest(url: url)
         paymentWKWebView.load(myRequest)
-    }
-
-    func showActivityIndicator(show: Bool) {
-        if show {
-            loadingSpinner.startAnimating()
-        } else {
-            loadingSpinner.stopAnimating()
-        }
     }
 
     func navigateToPaymentApprovedView(withTrxnResponse response: PayByCardReponse) {
         let viewController = PaymentApprovedVC(nibName: "PaymentApprovedVC", bundle: nil)
         viewController.delegate = delegate
 
-        let presenter = PaymentApprovedPresenter(view: viewController, payByCardResponse: response)
+        let presenter = PaymentApprovedPresenter(view: viewController,
+                                                 paymentMethodData: presenter.getPaymentMethodData(),
+                                                 payByCardResponse: response)
         viewController.presenter = presenter
 
         if UIApplication.topViewController()?.navigationController != nil {

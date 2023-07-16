@@ -16,7 +16,7 @@ extension UIView {
     }
     
     func hideLoadingIndicator() {
-         self.hideToastActivity()
+        self.hideToastActivity()
         self.isUserInteractionEnabled = true
     }
     

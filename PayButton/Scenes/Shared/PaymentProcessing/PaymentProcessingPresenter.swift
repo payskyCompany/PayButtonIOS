@@ -16,10 +16,12 @@ protocol PaymentProcessingPresenterProtocol: AnyObject {
 class PaymentProcessingPresenter: PaymentProcessingPresenterProtocol {
     weak var view: PaymentProcessingView?
 
+    private var paymentMethodData: PaymentMethodResponse!
     private var urlPath: String
 
-    required init(view: PaymentProcessingView, urlPath: String) {
+    required init(view: PaymentProcessingView, paymentMethodData: PaymentMethodResponse, urlPath: String) {
         self.view = view
+        self.paymentMethodData = paymentMethodData
         self.urlPath = urlPath
     }
 
@@ -29,6 +31,10 @@ class PaymentProcessingPresenter: PaymentProcessingPresenterProtocol {
         }
     }
 
+    func getPaymentMethodData() -> PaymentMethodResponse {
+        return paymentMethodData
+    }
+    
     func getUrlPath() -> String {
         return urlPath
     }

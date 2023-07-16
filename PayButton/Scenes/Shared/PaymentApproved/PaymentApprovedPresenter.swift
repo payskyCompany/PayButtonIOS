@@ -17,12 +17,14 @@ protocol PaymentApprovedPresenterProtocol: AnyObject {
 class PaymentApprovedPresenter: PaymentApprovedPresenterProtocol {
     weak var view: PaymentApprovedView?
 
+    private var paymentMethodData: PaymentMethodResponse
     private var payByCardResponse: PayByCardReponse
     private var authCode: String
     private var transactionReferenceNo: Int
 
-    required init(view: PaymentApprovedView, payByCardResponse: PayByCardReponse) {
+    required init(view: PaymentApprovedView, paymentMethodData: PaymentMethodResponse, payByCardResponse: PayByCardReponse) {
         self.view = view
+        self.paymentMethodData = paymentMethodData
         self.payByCardResponse = payByCardResponse
         authCode = payByCardResponse.authCode ?? ""
         transactionReferenceNo = payByCardResponse.systemReference ?? 0
@@ -33,6 +35,10 @@ class PaymentApprovedPresenter: PaymentApprovedPresenterProtocol {
         view?.setTransactionNoLabel(withText: String(transactionReferenceNo))
     }
 
+    func getPaymentMethodData() -> PaymentMethodResponse {
+        return paymentMethodData
+    }
+    
     func getPayByCardReponse() -> PayByCardReponse {
         return payByCardResponse
     }

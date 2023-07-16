@@ -18,7 +18,7 @@ extension MainViewController: PayButtonDelegate {
             UIPasteboard.general.string = response.tokenCustomerId
             UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 if self.navigationController != nil {
                     self.navigationController?.popViewController(animated: true)
                 } else {

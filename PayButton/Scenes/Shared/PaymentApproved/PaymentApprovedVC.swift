@@ -130,6 +130,7 @@ class PaymentApprovedVC: UIViewController {
         let viewController = PaymentApprovedVC(nibName: "PaymentApprovedVC", bundle: nil)
         viewController.delegate = delegate
         let newPresenter = PaymentApprovedPresenter(view: viewController,
+                                                    paymentMethodData: presenter.getPaymentMethodData(),
                                                     payByCardResponse: presenter.getPayByCardReponse())
 
         viewController.presenter = newPresenter
@@ -154,7 +155,7 @@ extension PaymentApprovedVC {
         closeCurrentPageBtn.setTitle("", for: .normal)
         headerLbl.text = "quick_payment_form".localizedString()
         merchantLbl.text = "merchant".localizedString().uppercased()
-        merchantNameLbl.text = MerchantDataManager.shared.merchant.merchantId
+        merchantNameLbl.text = presenter.getPaymentMethodData().merchantName
         amountLbl.text = "amount".localizedString().uppercased()
         amountValueLbl.text = "\(MerchantDataManager.shared.merchant.currencyCode)".localizedString()
             + " " + String(format: "%.2f", MerchantDataManager.shared.merchant.amount)
