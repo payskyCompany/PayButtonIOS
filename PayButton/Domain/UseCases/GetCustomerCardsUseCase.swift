@@ -1,6 +1,6 @@
 //
 //  GetCustomerCardsUseCase.swift
-//  OoredooPayButton
+//  PayButton
 //
 //  Created by Hazem-Mohamed on 22/09/2022.
 //
@@ -15,9 +15,9 @@ protocol GetCustomerCardsUseCaseContract {
 
 class GetCustomerCardsUseCase: GetCustomerCardsUseCaseContract {
     
-    let getCustomerCardsParamters: GetCustomerTokensParameters
+    let getCustomerCardsParamters: GetCustomerTokenParameters
     
-    init(getCustomerCardsParamters: GetCustomerTokensParameters) {
+    init(getCustomerCardsParamters: GetCustomerTokenParameters) {
         self.getCustomerCardsParamters = getCustomerCardsParamters
     }
     

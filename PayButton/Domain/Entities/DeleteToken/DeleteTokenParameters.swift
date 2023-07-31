@@ -1,6 +1,6 @@
 //
 //  DeleteTokenParameters.swift
-//  OoredooPayButton
+//  PayButton
 //
 //  Created by Nada Kamel on 24/09/2022.
 //

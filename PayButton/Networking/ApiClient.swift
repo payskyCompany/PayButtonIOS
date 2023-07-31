@@ -10,33 +10,24 @@ import Foundation
 
 enum ApiClient {
     case checkPaymentMethod(_ params: PaymentMethodParameters)
-    case payByCard(_ params: PayByCardParameters)
-    case payByWallet(_ params: PayByWalletParameters)
-    case payByNaps(_ params: PayByNapsParameters)
+    case payByNewCard(_ params: PayByCardParameters)
+    case payByTokenizedCard(_ params: TokenizedCardParameters)
     case checkTransactionStatus(_ params: CheckTransactionStatusParameters)
     case getSessionForCustomerToken(_ params: GetCustomerSessionParameters)
-    case getAllCardsForCustomerToken(_ params: GetCustomerTokensParameters)
-    case getAllWalletsForCustomerToken(_ params: GetCustomerTokensParameters)
+    case getAllCardsForCustomerToken(_ params: GetCustomerTokenParameters)
+    case changeDefaultToken(_ params: ChangeDefaultTokenParameters)
     case deleteToken(_ params: DeleteTokenParameters)
+    case sendReceiptByEmail(_ params: SendReceiptByEmailParameters)
 }
 
 extension ApiClient: EndpointType {
     
     private var domain: String {
-        return Constants.DOMAIN_URL
+        return AppConstants.DOMAIN_URL
     }
-    
+   
     var gateway: String {
-        switch self {
-        case .payByNaps:
-            return "/LightboxAPI/api"
-        default:
-            if(Constants.DOMAIN_URL == Environment.Grey.description) {
-                return "/omni/PayLink.svc/api"
-            } else {
-                return "/cube/PayLink.svc/api"
-            }
-        }
+        return "cube/PayLink.svc/api"
     }
     
     var baseURL: URL {
@@ -49,22 +40,22 @@ extension ApiClient: EndpointType {
         switch self {
         case .checkPaymentMethod:
             return "/CheckPaymentMethod"
-        case .payByCard:
+        case .payByNewCard:
             return "/PayByCard"
-        case .payByWallet:
-            return "/DebitWallet"
-        case .payByNaps:
-            return "/PayNAPS"
+        case .payByTokenizedCard:
+            return "/PayByCard"
         case .checkTransactionStatus:
             return "/CheckTxnStatus"
         case .getSessionForCustomerToken:
             return "/GetSessionForCustomerToken"
         case .getAllCardsForCustomerToken:
             return "/GetAllCardsForCustomerToken"
-        case .getAllWalletsForCustomerToken:
-            return "/GetAllWalletsForCustomerToken"
+        case .changeDefaultToken:
+            return "/ChangeDefaultToken"
         case .deleteToken:
             return "/RemoveToken"
+        case .sendReceiptByEmail:
+            return "/SendReceiptToEmail"
         }
     }
     
@@ -76,9 +67,9 @@ extension ApiClient: EndpointType {
         switch self {
         case .checkPaymentMethod(let params):
             return params.toDict()
-        case  .payByCard(let params):
+        case  .payByNewCard(let params):
             return params.toDict()
-        case .payByWallet(let params):
+        case .payByTokenizedCard(let params):
             return params.toDict()
         case .checkTransactionStatus(let params):
             return params.toDict()
@@ -86,22 +77,17 @@ extension ApiClient: EndpointType {
             return params.toDict()
         case .getAllCardsForCustomerToken(let params):
             return params.toDict()
-        case .getAllWalletsForCustomerToken(let params):
+        case .changeDefaultToken(let params):
             return params.toDict()
         case .deleteToken(let params):
             return params.toDict()
-        case .payByNaps:
-            return nil
+        case .sendReceiptByEmail(let params):
+            return params.toDict()
         }
     }
     
     var urlParameters: Parameters? {
-        switch self {
-        case .payByNaps(let params):
-            return params.toDict()
-        default:
-            return nil
-        }
+        return nil
     }
     
     var headers: HTTPHeaders? {
