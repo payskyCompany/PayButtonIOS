@@ -134,8 +134,7 @@ class ViewController: UIViewController, PayButtonDelegate {
 
 ## 🛠️ Built With
 * [Alamofire](https://github.com/Alamofire/Alamofire)  
-* [EVReflection](https://github.com/evermeer/EVReflection)  
-
+* [PayCardsRecognizer](https://cocoapods.org/pods/PayCardsRecognizer)
 
 ## ✍️ Authors
 **PaySky Company** - (https://www.paysky.io)
