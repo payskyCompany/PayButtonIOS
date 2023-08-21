@@ -40,56 +40,96 @@ pod install
 ```
 
 ## 🚀 Deployment
-1. Before deploying your project live, you should get a merchant ID and terminal ID from our company.
+1. Before deploying your project live, you should get a merchant ID, terminal ID and Secure Hash Key from our company.
 2. You should keep your merchant ID and terminal ID secured in your project, encrypt them before save them in project.
 
 ## 🛠 How to use
-In order to use the SDK you should get a Merchant ID, a Terminal ID and Secure Hash from PaySky company.
+In order to use the SDK you should get a Merchant ID, a Terminal ID, and a Secure Hash Key from PaySky company.​
 
 ### 👉 Import
-In the class you want to intiate the payment from, you should import the framework
+In the class you want to initiate the payment from, you should import the framework
 ```swift
 import PayButton
 ```
 
-After the import, create a new instance from PayButton
+After the import, create a new instance from PayButton and initialize the following data in the PayButton instance.
+1) Merchant id
+2) Terminal id
+3) Secure hash key
+4) Payment amount
+5) Currency code (https://www.iban.com/currency-codes)
+6) Transaction reference number [Optional] (Generate unique 16-digits number)
+7) If the user is not subscribed, you will need to pass the customer's mobile number or email.
+   Otherwise, the user is subscribed so you will pass by the customer ID.
+
+
+If the merchant is *Not Subscribed*, and the channel selected is *Mobile Number*:-
 ```swift
-let paymentViewController = PaymentViewController()
+let paymentViewController = PaymentViewController(merchantId: "merchantId",
+                                                  terminalId: "terminalId",
+                                                  amount: Double("amount"),
+                                                  currencyCode: Int("currencyCode"),
+                                                  secureHashKey: "secure_hash_key",
+                                                  trnxRefNumber: "reference_number" ?? "",
+                                                  customerMobile: "xxxxxxxxxx",
+                                                  isProduction: true)    // for testing environment use false
+paymentViewController.delegate = self       // Payment Delegate
+paymentViewController.pushViewController()
 ```
 
-and intialize the following data in the PayButton instance:-
-1) Merchat id
-2) Terminal id
-3) Secure hash
-4) Transaction reference number
-5) Payment amount
-6) Currency code [Optional]
-
+If the merchant is *Not Subscribed*, and the channel selected is *Email*:-
 ```swift
-paymentViewController.delegate = self                 // Payment Delegate
-paymentViewController.mId = "merchantId"              // Merchant id
-paymentViewController.tId = "terminalId"              // Terminal id
-paymentViewController.Key = "Merchant secure hash"    // Merchant secrue hash
-paymentViewController.refnumber = "reference number"  // Generate unique 16-digits number
-paymentViewController.amount =  "amount"              // Amount
-paymentViewController.Currency = "currencyCode"       // Currency Code [Optional]
+let paymentViewController = PaymentViewController(merchantId: "merchantId",
+                                                  terminalId: "terminalId",
+                                                  amount: Double("amount"),
+                                                  currencyCode: Int("currencyCode"),
+                                                  secureHashKey: "secure_hash_key",
+                                                  trnxRefNumber: "reference_number" ?? "",
+                                                  customerEmail: "joe@name.com",
+                                                  isProduction: true)    // for testing environment use false
+paymentViewController.delegate = self   // Payment Delegate
+paymentViewController.pushViewController()
+```
+
+If the merchant is *Subscribed*:-
+```swift
+let paymentViewController = PaymentViewController(merchantId: "merchantId",
+                                                  terminalId: "terminalId",
+                                                  amount: Double("amount"),
+                                                  currencyCode: Int("currencyCode"),
+                                                  secureHashKey: "secure_hash_key",
+                                                  trnxRefNumber: "reference_number" ?? "",
+                                                  customerId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                                                  isProduction: true)     // for testing environment use false
+paymentViewController.delegate = self   // Payment Delegate
 paymentViewController.pushViewController()
 ```
 
 In order to create transaction callback in delegate PaymentDelegate, implement delegate on your ViewController.
 
 ```swift 
-    class ViewController: UIViewController, PaymentDelegate  {
-        func finishSdkPayment(_ receipt: TransactionStatusResponse) {
-           if receipt.Success {                  // if transaction success is true
-               print("Transaction completed successfully")
-               print(receipt.NetworkReference)           // reference number of transaction.
-           } else {
-               print("Transaction failed")
-               print(receipt.Message)           // response error
-           }
+class ViewController: UIViewController, PayButtonDelegate {
+    func finishedSdkPayment(_ response: PayByCardReponse) {
+        if response.success == true {
+            debugPrint("-------- Customer ID --------")
+            debugPrint(response.tokenCustomerId ?? "")
+            
+            UIPasteboard.general.string = response.tokenCustomerId
+            UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                if self.navigationController != nil {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        } else {
+            debugPrint("response.message")
+            UIApplication.topViewController()?.view.makeToast(response.message)
         }
     }
+}
 ```
 
 ## 🛠️ Built With
