@@ -7,18 +7,18 @@
 
 import Foundation
 
-public struct PayByCardReponse: Decodable {
-    let success: Bool?
-    let message: String?
-    let actionCode, authCode, mWMessage: String?
-    let merchantReference, networkReference: String?
-    let receiptNumber, refNumber: String?
-    let systemReference: Int?
-    let tokenCustomerId: String?
-    let transactionNo, threeDSUrl: String?
-    let challengeRequired: Bool?
-    let isPaid: Bool?
-    let fromWhere: String?
+public struct PayByCardReponse: Codable {
+    public let success: Bool?
+    public let message: String?
+    public let actionCode, authCode, mWMessage: String?
+    public let merchantReference, networkReference: String?
+    public let receiptNumber, refNumber: String?
+    public let systemReference: Int?
+    public let tokenCustomerId: String?
+    public let transactionNo, threeDSUrl: String?
+    public let challengeRequired: Bool?
+    public let isPaid: Bool?
+    public let fromWhere: String?
 
     enum CodingKeys: String, CodingKey {
         case success = "Success"

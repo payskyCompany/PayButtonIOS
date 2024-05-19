@@ -27,14 +27,15 @@ extension String {
     }
     
     func localizedString(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
-        var bundle: Bundle!
-        let path = Bundle(for: BasePaymentViewController.self).path(forResource:"PayButton", ofType: "bundle")
-        if path != nil {
-            bundle = Bundle(path: path!) ?? Bundle.main
-        } else {
-            bundle = Bundle.main
-        }
-        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: "**\(self)**", comment: "")
+//        var bundle: Bundle!
+//        let path = Bundle(for: BasePaymentViewController.self).path(forResource:"PayButton", ofType: "bundle")
+//        if path != nil {
+//            bundle = Bundle(path: path!) ?? Bundle.main
+//        } else {
+//            bundle = Bundle.main
+//        }
+//        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: "**\(self)**", comment: "")
+        return NSLocalizedString(self, comment: "")
     }
     
     func isValidEmail() -> Bool {

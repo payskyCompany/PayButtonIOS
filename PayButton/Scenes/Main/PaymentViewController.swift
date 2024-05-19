@@ -48,9 +48,9 @@ public class PaymentViewController {
 
     public weak var delegate: PayButtonDelegate?
 
-    init(merchantId: String, terminalId: String, amount: Double, currencyCode: Int,
-         secureHashKey: String, trnxRefNumber: String = "", customerId: String = "",
-         customerMobile: String = "", customerEmail: String = "", isProduction: Bool = false) {
+    public init(merchantId: String, terminalId: String, amount: Double, currencyCode: Int,
+                secureHashKey: String, trnxRefNumber: String = "", customerId: String = "",
+                customerMobile: String = "", customerEmail: String = "", isProduction: Bool = false) {
         mId = merchantId
         tId = terminalId
         self.amount = amount
