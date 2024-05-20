@@ -3,7 +3,7 @@
 # PaySky PayButton SDK
 The PayButton helps make the integration of card acceptance into your app easy.
 
-You simply provide the merchant information you receieve from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a summary screen at the end of the transaction.
+You simply provide the merchant information you receive from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a summary screen at the end of the transaction.
 
 ### Getting Started
 
@@ -28,8 +28,8 @@ pod 'PayButton'
 pod deintegrate
 pod install
 ```
-##### Optional step (recommendedd)
-To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
+##### Optional step (recommended)
+To avoid pods `DEPLOYMENT_TARGET` errors add the next lines in end of podFile
 ```
 post_install do |installer|
   installer.pods_project.targets.each do |target|
