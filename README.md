@@ -40,7 +40,7 @@ post_install do |installer|
 end
 ```
 
-4. Disable **USER_SCRIPT_SANDBOXING**
+5. Disable **USER_SCRIPT_SANDBOXING**
     1. Reopen _.xcworkspace.
     2. navigate to **targets** and select your app name.
     3. navigate to Build Sittings
