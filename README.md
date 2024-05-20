@@ -43,7 +43,7 @@ end
 5. Disable **USER_SCRIPT_SANDBOXING**
     1. Reopen _.xcworkspace.
     2. navigate to **targets** and select your app name.
-    3. navigate to Build Sittings
+    3. navigate to Build Settings
     4. Search for USER_SCRIPT_SANDBOXING and set it to **NO**.
 <a href="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png">
     <img src="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png" />
