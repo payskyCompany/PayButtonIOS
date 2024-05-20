@@ -3,7 +3,7 @@
 # PaySky PayButton SDK
 The PayButton helps make the integration of card acceptance into your app easy.
 
-You simply provide the merchant information you receive from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a summary screen at the end of the transaction.
+You simply provide the merchant information you receieve from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a summary screen at the end of the transaction.
 
 ### Getting Started
 
@@ -28,8 +28,8 @@ pod 'PayButton'
 pod deintegrate
 pod install
 ```
-##### Optional step (recommended)
-To avoid pods `DEPLOYMENT_TARGET` errors add the next lines in end of podFile
+##### ❍ Optional step (recommended)
+To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
 ```
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -40,6 +40,41 @@ post_install do |installer|
 end
 ```
 
+4. Disable **USER_SCRIPT_SANDBOXING**
+    1. Reopen _.xcworkspace.
+    2. navigate to **targets** and select your app name.
+    3. navigate to Build Sittings
+    4. Search for USER_SCRIPT_SANDBOXING and set it to **NO**.
+<a href="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png">
+    <img src="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png" />
+</a>
+
+
+```
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+  end
+end
+```
+
+##### ⚠️ Addition step 
+If you have this error : 
+ ```
+Multiple commands produce '/Users/paysky106/Library/Developer/Xcode/
+DerivedData/TestPayButton-ghdftwdswnoxgexfnpfxqmwsgah/Build/Products/
+Debug-iphonesimulator/TestPayButton.app/Assets.car'
+ ```
+ <br />
+Place disable_input_output_paths: true in Podfile, to skip optimisation and always download resources from Pods cleanly every time, since it is not copying bundled assets during build. Adding extra overhead to build doesn't seem optimal, and leads to bad experience during local App development
+
+```
+# Podfile
+# platform :ios, '13.0'
+install! 'cocoapods', :disable_input_output_paths => true
+```
 ## 🚀 Deployment
 1. Before deploying your project live, you should get a merchant ID and terminal ID provided by PaySky.
 2. You should keep your merchant ID and terminal ID **secured** in your project, **encrypt** them before save them in project.
