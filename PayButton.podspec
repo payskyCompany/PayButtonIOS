@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   
   s.source_files = "PayButton/**/*.{swift,h,m}"
-  s.resource_bundle = { "PayButton" => ["PayButton/Strings/*.lproj/*.strings",
-    "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"] }
+  s.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
+  s.resource_bundle = { "PayButton" => ["PayButton/Strings/*.lproj/*.strings", "PayButton/**/*.xcassets"] }
   
   s.exclude_files = [
     'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
