@@ -1,132 +1,91 @@
-<p align="center"><a href="https://paysky.io/" target="_blank"><img width="440" src="https://paysky.io/wp-content/uploads/2021/05/PaySky-logo.svg"></a></p>
+<p align="center"><a href="https://paysky.io/" target="_blank"><img width="440" src="https://paysky.io/wp-content/uploads/2023/12/Paysky-logo.png"></a></p>
 
 # PaySky PayButton SDK
 The PayButton helps make the integration of card acceptance into your app easy.
 
-You simply provide the merchant information you receieve from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a Summary screen at the end of the transaction.
+You simply provide the merchant information you receieve from PaySky to the payment SDK. The PayButton displays a ready-made view that guides the merchant through the payment process and shows a summary screen at the end of the transaction.
 
 ### Getting Started
 
 ### Prerequisites
-This project uses cocoapods for dependencies management. If you don't have cocoapods installed in your machine, or are using older version of cocoapods, you can install it in terminal by running command ```sudo gem install cocoapods```. For more information go to https://cocoapods.org/
+This project uses cocoapods for dependencies management. If you don't have cocoapods installed in your machine, or are using older version of cocoapods, you can install it in terminal by running command ```sudo gem install cocoapods```. 
+For more information go to [Cocoapods.org](https://guides.cocoapods.org/using/getting-started.html)
 
-1. Download CocoaPods on your machine if you don't already have it
-```
-sudo gem install cocoapods
-```
-
+## 💻 Installation
+1. Close Xcode project.
 2. Create a Podfile to your project.
+**From the terminal** navigate to project location then use next command
 ```
 pod init
 ```
-
-3. Install third-party libraries using `pod`
-```
-pod install
-```
-
-## 💻 Installation
-
-1. Add the pod to your Podfile:
+3. Add the pod to your Podfile:
+**Open Podfile** with any text editor tool then add the next line inside "target 'PayButton' do "scoop 
 ```
 pod 'PayButton'
 ```
-
-2. Open the terminal and run
+4. Open the terminal and run
 ```
 pod deintegrate
-pod clean
 pod install
+```
+##### Optional step (recommendedd)
+To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
+```
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+  end
+end
 ```
 
 ## 🚀 Deployment
-1. Before deploying your project live, you should get a merchant ID, terminal ID and Secure Hash Key from our company.
-2. You should keep your merchant ID and terminal ID secured in your project, encrypt them before save them in project.
+1. Before deploying your project live, you should get a merchant ID and terminal ID provided by PaySky.
+2. You should keep your merchant ID and terminal ID **secured** in your project, **encrypt** them before save them in project.
 
 ## 🛠 How to use
-In order to use the SDK you should get a Merchant ID, a Terminal ID, and a Secure Hash Key from PaySky company.​
+In order to use the SDK you should use a production merchantId, terminalId and secure_hash key provided by PaySky.
 
-### 👉 Import
-In the class you want to initiate the payment from, you should import the framework
+### 👉 Usage/Examples 
+In the class you want to intiate the payment from, you should import the framework
 ```swift
 import PayButton
 ```
 
-After the import, create a new instance from PayButton and initialize the following data in the PayButton instance.
-1) Merchant id
-2) Terminal id
-3) Secure hash key
-4) Payment amount
-5) Currency code (https://www.iban.com/currency-codes)
-6) Transaction reference number [Optional] (Generate unique 16-digits number)
-7) If the user is not subscribed, you will need to pass the customer's mobile number or email.
-   Otherwise, the user is subscribed so you will pass by the customer ID.
-
-
-If the merchant is *Not Subscribed*, and the channel selected is *Mobile Number*:-
+After the import, create a new instance from PayButton
 ```swift
-let paymentViewController = PaymentViewController(merchantId: "merchantId",
-                                                  terminalId: "terminalId",
-                                                  amount: Double("amount"),
-                                                  currencyCode: Int("currencyCode"),
-                                                  secureHashKey: "secure_hash_key",
-                                                  trnxRefNumber: "reference_number" ?? "",
-                                                  customerMobile: "xxxxxxxxxx",
-                                                  isProduction: true)    // for testing environment use false
-paymentViewController.delegate = self       // Payment Delegate
-paymentViewController.pushViewController()
+let paymentViewController = PaymentViewController(
+                merchantId: "merchantId", //Mandatory
+                terminalId: "terminalId", //Mandatory
+                amount: 100.0, //Mandatory - provide the amount and currency with it's decimal factor
+                currencyCode: 0, //Mandatory - Provided by PaySky
+                secureHashKey: "secure_hash",//Mandatory - Provided by PaySky
+                trnxRefNumber: "", //Optinal (remove it if not use), Provided by PaySky
+                customerId: "", //Optinal (remove it if not use), Provided by PaySky
+                customerMobile: "", //Optinal (remove it if not use), Provided by PaySky
+                customerEmail: "", //Optinal (remove it if not use), Provided by PaySky
+                isProduction: false //Choose the needed inviroment
+            )
 ```
 
-If the merchant is *Not Subscribed*, and the channel selected is *Email*:-
+Then confirm to **PaymentDelegate** :-
 ```swift
-let paymentViewController = PaymentViewController(merchantId: "merchantId",
-                                                  terminalId: "terminalId",
-                                                  amount: Double("amount"),
-                                                  currencyCode: Int("currencyCode"),
-                                                  secureHashKey: "secure_hash_key",
-                                                  trnxRefNumber: "reference_number" ?? "",
-                                                  customerEmail: "joe@name.com",
-                                                  isProduction: true)    // for testing environment use false
-paymentViewController.delegate = self   // Payment Delegate
-paymentViewController.pushViewController()
-```
-
-If the merchant is *Subscribed*:-
-```swift
-let paymentViewController = PaymentViewController(merchantId: "merchantId",
-                                                  terminalId: "terminalId",
-                                                  amount: Double("amount"),
-                                                  currencyCode: Int("currencyCode"),
-                                                  secureHashKey: "secure_hash_key",
-                                                  trnxRefNumber: "reference_number" ?? "",
-                                                  customerId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                                                  isProduction: true)     // for testing environment use false
-paymentViewController.delegate = self   // Payment Delegate
+paymentViewController.delegate = self // Payment Delegate
 paymentViewController.pushViewController()
 ```
 
 In order to create transaction callback in delegate PaymentDelegate, implement delegate on your ViewController.
 
 ```swift 
-class ViewController: UIViewController, PayButtonDelegate {
-    func finishedSdkPayment(_ response: PayByCardReponse) {
+extension ViewController: PayButtonDelegate {
+    func finishedSdkPayment(_ response: PayButton.PayByCardReponse) {
         if response.success == true {
-            debugPrint("-------- Customer ID --------")
-            debugPrint(response.tokenCustomerId ?? "")
-            
-            UIPasteboard.general.string = response.tokenCustomerId
-            UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                if self.navigationController != nil {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
+            print("Transaction completed successfully")
+            print(response.networkReference ?? "") // reference number of transaction.
         } else {
-            debugPrint("response.message")
-            UIApplication.topViewController()?.view.makeToast(response.message)
+            print("Transaction failed")
+            print(response.message ?? "") // response error
         }
     }
 }
@@ -134,10 +93,27 @@ class ViewController: UIViewController, PayButtonDelegate {
 
 ## 🛠️ Built With
 * [Alamofire](https://github.com/Alamofire/Alamofire)  
-* [PayCardsRecognizer](https://cocoapods.org/pods/PayCardsRecognizer)
+* [PopupDialog](https://github.com/orderella/PopupDialog)
+* [PayCardsRecognizer](https://github.com/faceterteam/PayCards_iOS/blob/master/PayCardsRecognizer.podspec)
+* [MOLH](https://github.com/MoathOthman/MOLH)
+* [DLRadioButton](https://github.com/DavydLiu/DLRadioButton)
 
 ## ✍️ Authors
-**PaySky Company** - (https://www.paysky.io)
+**PaySky Company**
 
-## 👀 Sample Project
-**https://github.com/payskyCompany/PayButtonIOSExample.git**
+<a href="https://www.paysky.io">
+  <img src="https://paysky.io/wp-content/uploads/2023/12/Paysky-logo.png" alt="paysky" height="50">
+</a>
+
+
+## 🔗 Links
+
+<a href="https://www.paysky.io">
+  <img src="https://paysky.io/wp-content/uploads/2023/12/Paysky-logo.png" alt="paysky" height="50">
+</a> <a href="https://www.linkedin.com/company/paysky">
+  <img src="https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="paysky" height="40">
+</a>
+
+
+## 👀 Demo
+[iOS Sample Project](https://github.com/payskyCompany/PayButtonIOSExample.git)
