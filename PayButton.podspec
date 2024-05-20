@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'PayButton'
  
   s.description      = "PaySky PayButton SDK"
@@ -29,11 +29,11 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency 'Alamofire', '~> 5.0.5'
-  s.dependency 'DLRadioButton', '~> 1.4.12'
-  s.dependency 'DynamicBlurView', '~> 4.1.0'
-  s.dependency 'MOLH', '~> 1.4.3'
-  s.dependency 'PayCardsRecognizer', '~> 1.1.7'
-  s.dependency 'PopupDialog', '~> 1.1.1'
+  s.dependency 'DLRadioButton'
+  s.dependency 'DynamicBlurView'
+  s.dependency 'MOLH'
+  s.dependency 'PayCardsRecognizer'
+  s.dependency 'PopupDialog'
   
   s.static_framework = true
   s.requires_arc = true
