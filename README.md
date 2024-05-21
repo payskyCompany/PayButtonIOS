@@ -28,7 +28,7 @@ pod 'PayButton'
 pod deintegrate
 pod install
 ```
-### ﹢ Optional step (recommended)
+##### ﹢ Optional step (recommended)
 To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
 ```
 post_install do |installer|
@@ -49,7 +49,7 @@ end
     <img src="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png" />
 </a>
 
-### ⚠️ Addition step 
+##### ⚠️ Addition step 
 If you have this error : 
  ```
 Multiple commands produce '/Users/paysky106/Library/Developer/Xcode/
