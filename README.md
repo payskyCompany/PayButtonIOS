@@ -8,7 +8,7 @@ You simply provide the merchant information you receieve from PaySky to the paym
 ### Getting Started
 
 ### Prerequisites
-This project uses cocoapods for dependencies management. If you don't have cocoapods installed in your machine, or are using older version of cocoapods, you can install it in terminal by running command ```sudo gem install cocoapods```. 
+This project uses cocoapods for dependencies management. If you don't have cocoapods installed in your machine, or are using older version of cocoapods, you can install it in terminal by running command ```sudo gem install cocoapods``` or ```brew install cocoapods```. 
 For more information go to [Cocoapods.org](https://guides.cocoapods.org/using/getting-started.html)
 
 ## 💻 Installation
@@ -29,7 +29,7 @@ pod deintegrate
 pod install
 ```
 ##### ﹢ Optional step (recommended)
-To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
+To avoid pods `DEPLOYMENT_TARGET` errors add the next lines to the end of podFile
 ```
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -42,8 +42,8 @@ end
 
 5. Disable **USER_SCRIPT_SANDBOXING**
     1. Reopen _.xcworkspace.
-    2. navigate to **targets** and select your app name.
-    3. navigate to Build Settings
+    2. Navigate to **targets** and select your app name.
+    3. Navigate to Build Settings
     4. Search for USER_SCRIPT_SANDBOXING and set it to **NO**.
 <a href="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png">
     <img src="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png" />
