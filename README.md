@@ -28,7 +28,7 @@ pod 'PayButton'
 pod deintegrate
 pod install
 ```
-### ❍ Optional step (recommended)
+### ﹢ Optional step (recommended)
 To avoid pods `DEPLOYMENT_TARGET` errors add the next lins in end of podFile
 ```
 post_install do |installer|
