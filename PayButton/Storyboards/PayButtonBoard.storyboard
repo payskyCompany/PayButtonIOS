@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,8 +48,8 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="MainColor"/>
+                                                <color key="tintColor" name="MainColor"/>
                                                 <constraints>
                                                     <constraint firstItem="TP4-g6-YtS" firstAttribute="centerY" secondItem="sH0-3V-Cd1" secondAttribute="centerY" id="Dlm-wW-nu0"/>
                                                     <constraint firstAttribute="height" constant="40" id="YUC-tq-Eht">
@@ -86,7 +87,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zqp-3V-BsJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="2"/>
-                                                                        <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="backgroundColor" name="MainColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="2" id="BJh-tg-6ao"/>
                                                                             <constraint firstAttribute="width" constant="30" id="QNn-lY-yKq"/>
@@ -132,7 +133,7 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-xh-6wm">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="2"/>
-                                                                        <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="backgroundColor" name="MainColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="Isz-Gh-MXh"/>
                                                                             <constraint firstAttribute="height" constant="2" id="nPw-yD-Rxw"/>
@@ -428,8 +429,8 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="MainColor"/>
+                                        <color key="tintColor" name="MainColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="2ac-Og-wdX">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
@@ -470,9 +471,12 @@
         <image name="card" width="27" height="17.666666030883789"/>
         <image name="close" width="15" height="30"/>
         <image name="fab_trans" width="16" height="16"/>
-        <image name="power_by_paysky" width="79.666664123535156" height="33.333332061767578"/>
+        <image name="power_by_paysky" width="640" height="192.66667175292969"/>
         <image name="three_dots" width="5" height="17"/>
         <image name="wallet" width="20.666666030883789" height="19.666666030883789"/>
+        <namedColor name="MainColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

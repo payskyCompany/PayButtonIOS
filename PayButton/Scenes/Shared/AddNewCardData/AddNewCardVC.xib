@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -77,8 +78,8 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="MainColor"/>
+                                    <color key="tintColor" name="MainColor"/>
                                     <constraints>
                                         <constraint firstItem="Tf4-0l-znJ" firstAttribute="leading" secondItem="6oe-w8-ESn" secondAttribute="leading" constant="10" id="Ntb-gi-EG1"/>
                                         <constraint firstItem="Tf4-0l-znJ" firstAttribute="centerY" secondItem="6oe-w8-ESn" secondAttribute="centerY" id="QmI-AZ-q2q"/>
@@ -119,7 +120,7 @@
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZN-MH-ZvZ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="2"/>
-                                                                    <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" name="MainColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="1e4-QC-9NX"/>
                                                                         <constraint firstAttribute="height" constant="2" id="DmO-gL-n7A"/>
@@ -165,7 +166,7 @@
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7Z-Zq-OgC">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="2"/>
-                                                                    <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" systemColor="labelColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="2" id="Xwx-Vt-zWY"/>
                                                                         <constraint firstAttribute="width" constant="30" id="yUE-8G-87G"/>
@@ -236,7 +237,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7o-dm-nuK">
                                                     <rect key="frame" x="0.0" y="0.0" width="8" height="36"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.65490196078431373" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" name="MainColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="8" id="3Qa-yM-5dR"/>
                                                     </constraints>
@@ -527,7 +528,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toR-Ed-y7U">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
-                                            <color key="backgroundColor" red="0.0" green="0.65490196078431373" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="MainColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="36" id="bwW-AJ-Nf3"/>
                                             </constraints>
@@ -587,24 +588,27 @@
                                     <rect key="frame" x="0.0" y="110" width="374" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aol-qG-26J">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="24.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7p-Z4-Khw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="24.666666666666668"/>
-                                                    <color key="tintColor" systemColor="systemCyanColor"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                                    <color key="tintColor" name="MainColor"/>
                                                     <state key="normal" title="Change Language"/>
                                                     <connections>
                                                         <action selector="changeLangBtnPressed:" destination="-1" eventType="touchUpInside" id="83B-NW-2nJ"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-gS-QUu">
-                                                    <rect key="frame" x="272" y="0.0" width="102" height="24.666666666666668"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="power_by_paysky" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-gS-QUu">
+                                                    <rect key="frame" x="264" y="0.0" width="110" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="110" id="0I6-EP-WJe"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVZ-jE-Imq">
-                                            <rect key="frame" x="0.0" y="24.666666666666629" width="147" height="25.333333333333329"/>
-                                            <color key="tintColor" systemColor="systemCyanColor"/>
+                                            <rect key="frame" x="0.0" y="30" width="147" height="20"/>
+                                            <color key="tintColor" name="MainColor"/>
                                             <state key="normal" title="Terms and conditions"/>
                                             <connections>
                                                 <action selector="termsAndConditionsBtnPressed:" destination="-1" eventType="touchUpInside" id="dUh-o3-pVo"/>
@@ -664,16 +668,16 @@
         <image name="close" width="15" height="30"/>
         <image name="cvc_icon" width="14.666666984558105" height="9.3333330154418945"/>
         <image name="date_icon" width="13.666666984558105" height="13"/>
-        <image name="logo" width="102" height="24.666666030883789"/>
+        <image name="power_by_paysky" width="640" height="192.66667175292969"/>
         <image name="three_dots" width="5" height="17"/>
-        <systemColor name="labelColor">
+        <namedColor name="MainColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
