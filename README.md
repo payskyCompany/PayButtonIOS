@@ -49,7 +49,7 @@ end
     <img src="https://raw.githubusercontent.com/payskyCompany/PayButtonIOS/develop/Screenshot%202024-05-20%20at%204.14.24%E2%80%AFPM.png" />
 </a>
 
-##### ⚠️ Addition step 
+### ⚠️ Addition step 
 If you have this error : 
  ```
 Multiple commands produce '/Users/paysky106/Library/Developer/Xcode/
