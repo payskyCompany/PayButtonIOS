@@ -80,8 +80,6 @@
 		C5A4164E21650280008A93B3 /* PayButtonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164D21650280008A93B3 /* PayButtonAssets.xcassets */; };
 		C5A4165121650280008A93B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A4164F21650280008A93B3 /* LaunchScreen.storyboard */; };
 		C5B1E7F7220058FF00C09D13 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1E7F6220058FF00C09D13 /* Toast.swift */; };
-		C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */; };
-		C5B900F0216918F500301C13 /* RequestMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */; };
 		C5B900F4216A404F00301C13 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F3216A404F00301C13 /* PaymentViewController.swift */; };
 		C5B900FA216A44A200301C13 /* BasePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B900F9216A44A200301C13 /* BasePaymentViewController.swift */; };
 		C5F5D81F216655D40090E5FF /* CardScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F5D81E216655D40090E5FF /* CardScanViewController.swift */; };
@@ -211,8 +209,6 @@
 		C5A4165021650280008A93B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5A4165221650280008A93B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B1E7F6220058FF00C09D13 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestMoneyViewController.xib; sourceTree = "<group>"; };
-		C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMoneyViewController.swift; sourceTree = "<group>"; };
 		C5B900F3216A404F00301C13 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C5B900F9216A44A200301C13 /* BasePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePaymentViewController.swift; sourceTree = "<group>"; };
 		C5DB9148216B9CB700C69497 /* PayButton-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PayButton-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -562,8 +558,6 @@
 			children = (
 				C528E2592166135D00CAFBC4 /* AlertDialogViewController.swift */,
 				C528E2532166129000CAFBC4 /* AlertDialogViewController.xib */,
-				C5B900EF216918F500301C13 /* RequestMoneyViewController.swift */,
-				C5B900ED216918BB00301C13 /* RequestMoneyViewController.xib */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -817,7 +811,6 @@
 			files = (
 				FAF480112A418940005EC676 /* ManageCardsTblCell.xib in Resources */,
 				FAF480162A41A808005EC676 /* PaymentProcessingVC.xib in Resources */,
-				C5B900EE216918BB00301C13 /* RequestMoneyViewController.xib in Resources */,
 				C528E2612166377700CAFBC4 /* PayButtonBoard.storyboard in Resources */,
 				FAF4801B2A41B065005EC676 /* PaymentApprovedVC.xib in Resources */,
 				89C7848F2A309C8F007280F6 /* MainViewController.xib in Resources */,
@@ -977,7 +970,6 @@
 				890B8B192A23A97D0059DC3F /* UIFont+Extensions.swift in Sources */,
 				89C017A82A58E2DA0050108A /* PaymentApprovedPresenter.swift in Sources */,
 				FAAAE5872A3F3828001467A4 /* AddNewCardVC.swift in Sources */,
-				C5B900F0216918F500301C13 /* RequestMoneyViewController.swift in Sources */,
 				C5FD7435222405D3008BD2AE /* CaretStringIterator.swift in Sources */,
 				896E77922A4F526C0057F09E /* ParameterEncoding.swift in Sources */,
 				C5FD7441222406D8008BD2AE /* CIImageExtension.swift in Sources */,
