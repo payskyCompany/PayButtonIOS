@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PayButton'
-  s.version          = '0.6.5'
+  s.version          = '1.1.0'
   s.summary          = 'PayButton'
  
   s.description      = "PaySky PayButton SDK"
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.platform         = :ios
   
-  s.ios.deployment_target = "13.0"
+  s.ios.deployment_target = "14.0"
 
   s.source           = { :git => 'https://github.com/payskyCompany/payButtonIOS.git', :tag => "#{s.version}" }
  
@@ -29,17 +29,18 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency 'Alamofire', '~> 5.0.5'
-  s.dependency 'EVReflection', '~> 5.10.1'
-  s.dependency 'MOLH', '~> 1.4.3'
-  s.dependency 'PayCardsRecognizer', '~> 1.1.7'
-  s.dependency 'PopupDialog', '~> 1.1.1'
+  s.dependency 'DLRadioButton'
+  s.dependency 'DynamicBlurView'
+  s.dependency 'MOLH'
+  s.dependency 'PayCardsRecognizer'
+  s.dependency 'PopupDialog'
   
   s.static_framework = true
   s.requires_arc = true
   
   s.source_files = "PayButton/**/*.{swift,h,m}"
   s.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
-  s.resource_bundle = { "PayButton" => ["PayButton/Strings/*.lproj/*.strings"] }
+  s.resource_bundle = { "PayButton" => ["PayButton/Strings/*.lproj/*.strings", "PayButton/**/*.xcassets"] }
   
   s.exclude_files = [
     'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
