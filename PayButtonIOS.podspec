@@ -2,70 +2,52 @@ Pod::Spec.new do |spec|
   spec.name         = "PayButtonIOS"
   spec.version      = "1.1.0"
   spec.summary      = "PaySky PayButton SDK"
-  spec.description  = "PaySky PayButton SDK"
+  spec.description  = "The PayButton helps make the integration of card acceptance into your app easy."
   spec.homepage     = "https://github.com/payskyCompany/payButtonIOS"
-  spec.license      = "MIT"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  spec.license      = { :type => "MIT" }
 
   spec.author             = { "Paysky" => "abdullah.tarek@paysky.io" }
   spec.social_media_url   = "https://paysky.io/"
 
-  spec.platform     = :ios
-  spec.platform     = :ios, "14.0"
+  spec.platform           = :ios, "13.0"
+  spec.source             = { :git => "https://github.com/payskyCompany/PayButtonIOS.git", :tag => "1.1.0" }
+  spec.swift_version      = "5.0"
+
+  spec.source_files       = "PayButton/**/*"
+  spec.exclude_files      = [
+    "PayButton/TestApi/Base.lproj/LaunchScreen.storyboard",
+    "PayButton/TestApi/Base.lproj/Main.storyboard",
+    "PayButton/TestApi/ViewController.swift",
+    "PayButton/AppDelegate.swift",
+    "PayButton/Info.plist",
+    "PayButton/PayButtonAssets.xcassets/AppIcon.appiconset/**"
+  ]
   
-  spec.source       = { :git => "https://github.com/payskyCompany/PayButtonIOS", :tag => "#{spec.version}" }
+spec.resource_bundles = {
+    'PayButton' => ['PayButton/**']
+  }
 
+  spec.public_header_files = "PayButton/PayButton-Bridging-Header.h"
 
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
+  # Ensure these resource files exist in your project
+  spec.resources          = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
+  spec.framework          = "UIKit"
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m}"
-  spec.exclude_files = "Classes/Exclude"
+  spec.requires_arc       = true
+  spec.static_framework   = true
 
-  # spec.public_header_files = "Classes/**/*.h"
+  spec.xcconfig = {
+    "APPLY_RULES_IN_COPY_FILES" => "YES",
+    "STRINGS_FILE_OUTPUT_ENCODING" => "binary",
+    "OTHER_LDFLAGS" => "-lz"
+  }
+  spec.pod_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
+  spec.user_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
 
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # spec.resource  = "icon.png"
-  # spec.resources = "Resources/*.png"
-
-  # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # spec.framework  = "SomeFramework"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
-
-  # spec.library   = "iconv"
-  # spec.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
-  # spec.requires_arc = true
-
-  # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.dependency "JSONKit", "~> 1.4"
-
+  spec.dependency "Alamofire", "~> 5.0.5"
+  spec.dependency "DLRadioButton", "~> 1.4.12"
+  spec.dependency "DynamicBlurView", "~> 4.1.0"
+  spec.dependency "MOLH", "~> 1.4.3"
+  spec.dependency "PayCardsRecognizer", "~> 1.1.7"
+  spec.dependency "PopupDialog", "~> 1.1.1"
 end
