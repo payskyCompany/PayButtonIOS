@@ -8,11 +8,11 @@ PODS:
     - DynamicBlurView (~> 4.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0.0-rc.3)
-  - DLRadioButton
-  - MOLH
-  - PayCardsRecognizer
-  - PopupDialog
+  - Alamofire (~> 5.0.5)
+  - DLRadioButton (~> 1.4.12)
+  - MOLH (~> 1.4.3)
+  - PayCardsRecognizer (~> 1.1.7)
+  - PopupDialog (~> 1.1.1)
 
 SPEC REPOS:
   trunk:
@@ -31,6 +31,6 @@ SPEC CHECKSUMS:
   PayCardsRecognizer: 2e4d1b2fdd5f1528fb56064a91e1d58a1af7a2db
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
 
-PODFILE CHECKSUM: 14098ffe92e76291e9017ce8112b4cfc60974d62
+PODFILE CHECKSUM: bb527334eaf5bc60738685d572380d4b06f63ba5
 
 COCOAPODS: 1.15.2
