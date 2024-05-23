@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "PayButtonIOS"
-  spec.version      = "1.1.0"
+  spec.version      = "1.2.0"
   spec.summary      = "Paysky PayButton SDK"
   spec.description  = "The PayButton helps make the integration of card acceptance into your app easy."
   spec.homepage     = "https://github.com/payskyCompany/payButtonIOS"
