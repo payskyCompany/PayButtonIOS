@@ -209,11 +209,11 @@ extension SelectCardListVC: SelectCardListView {
     func didTapRadioButton(forCell selectedCell: CardListTblCell) {
         selectedSavedCard = presenter.getCustomerCards().cardsList?[selectedCell.tag]
         selectedCardIndex = selectedCell.tag
-        selectedCell.selectCardRadioBtn.isSelected = true
+        selectedCell.isCardRadioSelected = true
         selectedCell.hideCvvView(state: false)
         for cell in cardListTbl.visibleCells as! [CardListTblCell] {
             if cell.tag != selectedCell.tag {
-                cell.selectCardRadioBtn.isSelected = false
+                cell.isCardRadioSelected = false
                 cell.hideCvvView(state: true)
             }
         }

@@ -13,21 +13,8 @@ Pod::Spec.new do |spec|
   spec.source             = { :git => "https://github.com/payskyCompany/PayButtonIOS.git", :tag => spec.version.to_s }
   spec.swift_version      = "5.0"
 
-  spec.source_files       = "PayButton/**/*"
-  
-  spec.exclude_files      = [
-    "PayButton/TestApi/Base.lproj/LaunchScreen.storyboard",
-    "PayButton/TestApi/Base.lproj/Main.storyboard",
-    "PayButton/TestApi/ViewController.swift",
-    "PayButton/AppDelegate.swift",
-    "PayButton/Info.plist",
-    "PayButton/Resources/PayButtonAssets.xcassets/AppIcon.appiconset/**"
-  ]
-
   spec.public_header_files = "PayButton/PayButton-Bridging-Header.h"
-
-  spec.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
-
+  
   spec.framework          = "UIKit"
 
   spec.requires_arc       = true
@@ -41,10 +28,23 @@ Pod::Spec.new do |spec|
   
   spec.pod_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
   spec.user_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
+  
+  spec.source_files = "PayButton/**/*.{swift,h,m}"
+  spec.resources = "PayButton/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,lproj,json,plist,strings}"
+  spec.resource_bundle = { "PayButton" => ["PayButton/Resources/*.lproj/*.strings"] }
+  spec.exclude_files = [
+    'PayButton/TestApi/Base.lproj/LaunchScreen.storyboard',
+    'PayButton/TestApi/Base.lproj/Main.storyboard',
+    'PayButton/TestApi/ViewController.swift',
+    'PayButton/AppDelegate.swift',
+    'PayButton/Info.plist',
+    'PayButton/PayButtonAssets.xcassets/AppIcon.appiconset/**',
+  ]
 
   spec.dependency "Alamofire", "~> 5.0.5"
   spec.dependency "DLRadioButton", "~> 1.4.12"
   spec.dependency "MOLH", "~> 1.4.3"
   spec.dependency "PayCardsRecognizer", "~> 1.1.7"
   spec.dependency "PopupDialog", "~> 1.1.1"
+  
 end

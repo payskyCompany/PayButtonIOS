@@ -6,14 +6,13 @@
 //  Copyright © 2023 PaySky. All rights reserved.
 //
 
-import DLRadioButton
 import UIKit
 
 class ManageCardsTblCell: UITableViewCell {
     @IBOutlet var cardLogo: UIImageView!
     @IBOutlet var cardHolderNameLbl: UILabel!
     @IBOutlet var cardNumberLbl: UILabel!
-    @IBOutlet var selectCardRadioBtn: DLRadioButton!
+    @IBOutlet var selectCardRadioBtn: UIImageView!
     @IBOutlet var deleteCardBtn: UIButton!
 
     weak var delegate: ManageCardView?
@@ -21,7 +20,8 @@ class ManageCardsTblCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        selectCardRadioBtn.setTitle("", for: .normal)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectButtonPressed))
+        selectCardRadioBtn.addGestureRecognizer(tapGesture)
         deleteCardBtn.setTitle("", for: .normal)
     }
 
@@ -30,15 +30,21 @@ class ManageCardsTblCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @objc func selectButtonPressed() {
+        delegate?.didTapRadioButton(forCell: self)
+    }
 
     func configure(_ cardDetails: CardDetails?) {
         cardHolderNameLbl.text = cardDetails?.displayName
         cardNumberLbl.text = cardDetails?.maskedCardNumber
         setCardLogo(withType: cardDetails?.brand ?? "")
         if cardDetails?.isDefaultCard == true {
-            selectCardRadioBtn.isSelected = true
+//            selectCardRadioBtn.isSelected = true
+            selectCardRadioBtn.image = UIImage(systemName: "circle.inset.filled")?.withTintColor(UIColor.mainColor)
         } else {
-            selectCardRadioBtn.isSelected = false
+//            selectCardRadioBtn.isSelected = false
+            selectCardRadioBtn.image = UIImage(systemName: "circle")?.withTintColor(UIColor.mainColor)
         }
     }
 
@@ -69,7 +75,7 @@ class ManageCardsTblCell: UITableViewCell {
     }
 
     @IBAction func didTapRadioButton(_ sender: UIButton) {
-        delegate?.didTapRadioButton(forCell: self)
+//        delegate?.didTapRadioButton(forCell: self)
     }
 
     @IBAction func didTapDeleteButton(_ sender: UIButton) {

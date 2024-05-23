@@ -6,27 +6,34 @@
 //  Copyright © 2023 PaySky. All rights reserved.
 //
 
-import DLRadioButton
 import UIKit
 
 class CardListTblCell: UITableViewCell {
     @IBOutlet var cardLogo: UIImageView!
     @IBOutlet var cardHolderNameLbl: UILabel!
     @IBOutlet var cardNumberLbl: UILabel!
-    @IBOutlet var selectCardRadioBtn: DLRadioButton!
+    @IBOutlet var selectCardRadioBtn: UIImageView!
     @IBOutlet var cvvView: UIView!
     @IBOutlet var cvvTextField: UITextField!
     @IBOutlet var cvvAlertLbl: UILabel!
 
     weak var delegate: SelectCardListView?
+    
+    var isCardRadioSelected = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectCardRadioBtn.setTitle("", for: .normal)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectButtonPressed))
+        selectCardRadioBtn.addGestureRecognizer(tapGesture)
+        
         cvvTextField.delegate = self
         hideCvvView(state: true)
         hideCvvAlertLbl(state: true)
+    }
+    
+    @objc func selectButtonPressed() {
+        delegate?.didTapRadioButton(forCell: self)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,11 +55,14 @@ class CardListTblCell: UITableViewCell {
         cardNumberLbl.text = cardDetails?.maskedCardNumber
         setCardLogo(withType: cardDetails?.brand ?? "")
         if cardDetails?.isDefaultCard == true {
-            selectCardRadioBtn.isSelected = true
+            selectCardRadioBtn.image = UIImage(systemName: "circle.inset.filled")?.withTintColor(UIColor.mainColor)
+            isCardRadioSelected = true
         } else {
-            selectCardRadioBtn.isSelected = false
+            selectCardRadioBtn.image = UIImage(systemName: "circle")?.withTintColor(UIColor.mainColor)
+            isCardRadioSelected = false
         }
-        if selectCardRadioBtn.isSelected {
+        
+        if isCardRadioSelected {
             hideCvvView(state: false)
         } else {
             hideCvvView(state: true)
@@ -90,7 +100,7 @@ class CardListTblCell: UITableViewCell {
     }
 
     @IBAction func didTapRadioButton(_ sender: UIButton) {
-        delegate?.didTapRadioButton(forCell: self)
+//        delegate?.didTapRadioButton(forCell: self)
     }
 }
 
