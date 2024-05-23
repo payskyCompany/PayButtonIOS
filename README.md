@@ -21,7 +21,7 @@ pod init
 3. Add the pod to your Podfile:
 **Open Podfile** with any text editor tool then add the next line inside "target 'PayButton' do "scoop 
 ```
-pod 'PayButton'
+pod 'PayButtonIOS', :git => 'https://github.com/payskyCompany/PayButtonIOS.git', :branch => 'master'
 ```
 4. Open the terminal and run
 ```
@@ -40,7 +40,7 @@ post_install do |installer|
 end
 ```
 
-5. Disable **USER_SCRIPT_SANDBOXING**
+5. Disable ```USER_SCRIPT_SANDBOXING```
     1. Reopen _.xcworkspace.
     2. Navigate to **targets** and select your app name.
     3. Navigate to Build Settings
