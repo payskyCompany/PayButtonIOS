@@ -6,11 +6,12 @@ target 'PayButton' do
   use_frameworks!
 
   # Pods for PayButton
-   pod 'Alamofire', '~> 5.0.0-rc.3'
-   pod 'PopupDialog'
-   pod 'PayCardsRecognizer'
-   pod 'MOLH'
-   pod 'DLRadioButton'
+
+  pod "Alamofire", "~> 5.0.5"
+  pod "DLRadioButton", "~> 1.4.12"
+  pod "MOLH", "~> 1.4.3"
+  pod "PayCardsRecognizer", "~> 1.1.7"
+  pod "PopupDialog", "~> 1.1.1"
    
 end
 

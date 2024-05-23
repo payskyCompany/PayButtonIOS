@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -126,6 +126,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="GrY-fb-qbL"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -156,6 +159,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="iIE-xV-0VQ"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -186,6 +192,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="cAG-gX-I9O"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -216,6 +225,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="uOB-HS-F9o"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -246,6 +258,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="LeX-eo-Odh"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -276,6 +291,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="b0M-DK-Dpu"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -306,6 +324,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="q4Z-Rt-kve"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -336,6 +357,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="4q5-VF-PvE"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -366,6 +390,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="Ntr-Tw-IuS"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -459,7 +486,7 @@
     </objects>
     <resources>
         <image name="ic_wallet_sdk" width="100" height="87"/>
-        <image name="power_by_paysky" width="1920" height="578"/>
+        <image name="power_by_paysky" width="640" height="192.66667175292969"/>
         <namedColor name="MainColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
