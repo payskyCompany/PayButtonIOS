@@ -14,10 +14,10 @@ extension MainViewController: PayButtonDelegate {
         if response.success == true {
             debugPrint("-------- Customer ID --------")
             debugPrint(response.tokenCustomerId ?? "")
-            
+
             UIPasteboard.general.string = response.tokenCustomerId
             UIApplication.topViewController()?.view.makeToast("Transaction completed successfully and customer Id copied to clipboard")
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 if self.navigationController != nil {
                     self.navigationController?.popViewController(animated: true)
@@ -126,19 +126,22 @@ class MainViewController: UIViewController {
     }
 
     private func setupSubmitBtnUI() {
-        if let channel = selectChannelTextfield.text, !channel.isEmpty {
-            submitBtn.isEnabled = true
-            submitBtn.backgroundColor = .mainColor
+        if subscriptionTypeSegmentedControl.selectedSegmentIndex == 0 {
+            if let channel = selectChannelTextfield.text, !channel.isEmpty {
+                submitBtn.isEnabled = true
+                submitBtn.backgroundColor = .mainColor
+            } else {
+                submitBtn.isEnabled = false
+                submitBtn.backgroundColor = .lightGray
+            }
         } else {
-            submitBtn.isEnabled = false
-            submitBtn.backgroundColor = .lightGray
-        }
-        if let customerId = customerIdTextfield.text, !customerId.isEmpty {
-            submitBtn.isEnabled = true
-            submitBtn.backgroundColor = .mainColor
-        } else {
-            submitBtn.isEnabled = false
-            submitBtn.backgroundColor = .lightGray
+            if let customerId = customerIdTextfield.text, !customerId.isEmpty {
+                submitBtn.isEnabled = true
+                submitBtn.backgroundColor = .mainColor
+            } else {
+                submitBtn.isEnabled = false
+                submitBtn.backgroundColor = .lightGray
+            }
         }
     }
 
@@ -184,6 +187,10 @@ class MainViewController: UIViewController {
 
         selectChannelTextfield.inputView = selectChannelPickerView
         selectChannelTextfield.inputAccessoryView = toolBar
+    }
+
+    @IBAction func textFieldsOnChange(_ sender: Any) {
+        setupSubmitBtnUI()
     }
 
     @IBAction private func subscriptionTypeValueChanged(_ sender: UISegmentedControl) {

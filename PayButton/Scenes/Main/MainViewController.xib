@@ -3,7 +3,8 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -49,6 +50,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_wallet_sdk" translatesAutoresizingMaskIntoConstraints="NO" id="ZIq-KR-Bfo">
                     <rect key="frame" x="130" y="66" width="115" height="100"/>
+                    <color key="tintColor" name="MainColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="115" id="FM0-bX-SKc"/>
                         <constraint firstAttribute="height" constant="100" id="MMa-m1-c5O"/>
@@ -63,8 +65,8 @@
                         <segment title="Not Subscribed"/>
                         <segment title="Subscribed"/>
                     </segments>
-                    <color key="tintColor" systemColor="tintColor"/>
-                    <color key="selectedSegmentTintColor" red="0.33725491169999999" green="0.64705884459999996" blue="0.85098040100000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" name="MainColor"/>
+                    <color key="selectedSegmentTintColor" name="MainColor"/>
                     <connections>
                         <action selector="subscriptionTypeValueChanged:" destination="-1" eventType="valueChanged" id="HLU-PT-cMS"/>
                     </connections>
@@ -124,6 +126,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="GrY-fb-qbL"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -154,6 +159,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="iIE-xV-0VQ"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -184,6 +192,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="cAG-gX-I9O"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -214,6 +225,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="uOB-HS-F9o"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -244,6 +258,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="LeX-eo-Odh"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -274,6 +291,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="b0M-DK-Dpu"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -304,6 +324,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="q4Z-Rt-kve"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -334,6 +357,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="4q5-VF-PvE"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -364,6 +390,9 @@
                                     <variation key="heightClass=regular-widthClass=regular">
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </variation>
+                                    <connections>
+                                        <action selector="textFieldsOnChange:" destination="-1" eventType="editingChanged" id="Ntr-Tw-IuS"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -393,23 +422,25 @@
                     </subviews>
                 </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="power_by_paysky" translatesAutoresizingMaskIntoConstraints="NO" id="wEW-2U-Kbj">
-                    <rect key="frame" x="205" y="922" width="154" height="50"/>
+                    <rect key="frame" x="239" y="922" width="120" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="fpP-Dg-2TC"/>
-                        <constraint firstAttribute="width" constant="154" id="vCq-nt-ZjB"/>
+                        <constraint firstAttribute="width" constant="120" id="vCq-nt-ZjB"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-hG-njZ">
                     <rect key="frame" x="20" y="932" width="125" height="30"/>
-                    <color key="tintColor" systemColor="systemCyanColor"/>
-                    <state key="normal" title="Change Language"/>
+                    <color key="tintColor" name="MainColor"/>
+                    <state key="normal" title="Change Language">
+                        <color key="titleColor" name="MainColor"/>
+                    </state>
                     <connections>
                         <action selector="changeLangBtnPressed:" destination="-1" eventType="touchUpInside" id="uQ6-Na-upd"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mb4-65-vTQ">
                     <rect key="frame" x="16" y="857" width="343" height="40"/>
-                    <color key="backgroundColor" systemColor="systemCyanColor"/>
+                    <color key="backgroundColor" name="MainColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="HNa-sr-NBe"/>
                     </constraints>
@@ -454,16 +485,13 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_wallet_sdk" width="300" height="261"/>
-        <image name="power_by_paysky" width="79.666664123535156" height="33.333332061767578"/>
+        <image name="ic_wallet_sdk" width="100" height="87"/>
+        <image name="power_by_paysky" width="640" height="192.66667175292969"/>
+        <namedColor name="MainColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
