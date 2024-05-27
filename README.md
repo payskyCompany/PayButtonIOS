@@ -103,7 +103,7 @@ In order to create transaction callback in delegate PaymentDelegate, implement d
 
 ```swift 
 extension ViewController: PayButtonDelegate {
-    func finishedSdkPayment(_ response: PayButton.PayByCardReponse) {
+     func finishedSdkPayment(_ response: PayButtonIOS.PayByCardReponse) {
         if response.success == true {
             print("Transaction completed successfully")
             print(response.networkReference ?? "") // reference number of transaction.
