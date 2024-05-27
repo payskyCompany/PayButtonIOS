@@ -74,7 +74,7 @@ In order to use the SDK you should use a production merchantId, terminalId and s
 ### 👉 Usage/Examples 
 In the class you want to intiate the payment from, you should import the framework
 ```swift
-import PayButton
+import PayButtonIOS
 ```
 
 After the import, create a new instance from PayButton
